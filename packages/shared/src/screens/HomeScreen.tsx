@@ -1,107 +1,98 @@
-import React, {useState, useCallback} from 'react';
-import {StyleSheet, Text, ImageBackground, View} from 'react-native';
-import {Tile} from '../components/Tile';
-import {tiles} from '../data/tiles';
-import {ApiDemo} from '../components/ApiDemo';
-import {IconReactNativeAnimated} from '../components/IconReactNativeAnimated/IconReactNativeAnimated';
-import {Header} from '../components/Header/Header';
+import React from 'react';
+import {ScrollView, Text, View} from 'react-native';
+import {StringKey} from '../core';
+import {Focusable} from '../components/Focusable';
+import {Screen} from '../components/Screen';
+import {useUI} from '../settings/useUI';
 
-import {scaleFontSize, scaleWidth, scaleHeight} from '../utils/scaling';
+export type HomeTileId = 'watch' | 'family' | 'medicines' | 'help' | 'settings';
 
-export const HomeScreen = () => {
-  const [focusedTileId, setFocusedTileId] = useState<string>('home');
+interface TileDef {
+  id: HomeTileId;
+  labelKey: StringKey;
+  glyph: string;
+}
 
-  const focusedTile = tiles.find(t => t.id === focusedTileId);
+// Plain text glyphs; the label always sits next to them.
+const TILES: readonly TileDef[] = [
+  {id: 'watch', labelKey: 'tile.watch', glyph: '▶'},
+  {id: 'family', labelKey: 'tile.family', glyph: '●●'},
+  {id: 'medicines', labelKey: 'tile.medicines', glyph: '+'},
+  {id: 'help', labelKey: 'tile.help', glyph: '?'},
+  {id: 'settings', labelKey: 'tile.settings', glyph: '≡'},
+];
 
-  const handleTileFocus = useCallback((tileId: string) => {
-    setFocusedTileId(tileId);
-  }, []);
-
-  const handleTileBlur = useCallback(() => {
-    setFocusedTileId('home');
-  }, []);
-
-  const renderFocusedContent = () => {
-    if (focusedTileId === 'home') {
-      return <Header />;
-    }
-
-    return (
-      <>
-        <Text style={styles.focusedTitle}>{focusedTile?.label}</Text>
-        {focusedTileId === 'api-demo' && <ApiDemo />}
-        {focusedTileId === 'animation' && (
-          <View style={styles.animationWrapper}>
-            <IconReactNativeAnimated />
-          </View>
-        )}
-        {focusedTileId !== 'api-demo' && focusedTileId !== 'animation' && (
-          <Text style={styles.focusedDescription}>
-            {focusedTile?.description}
-          </Text>
-        )}
-      </>
-    );
-  };
+export const HomeScreen = ({onOpen}: {onOpen: (id: HomeTileId) => void}) => {
+  const {t, colors, fs, sz, px} = useUI();
 
   return (
-    <ImageBackground
-      source={require('../assets/background.png')}
-      style={styles.background}>
-      <View style={styles.headerArea}>{renderFocusedContent()}</View>
-      <View style={styles.tileRowContent}>
-        {tiles.map(tile => (
-          <Tile
-            key={tile.id}
-            id={tile.id}
-            label={tile.label}
-            icon={tile.icon}
-            isFocused={focusedTileId === tile.id}
-            onFocus={handleTileFocus}
-            onBlur={handleTileBlur}
-            testID={`tile-${tile.id}`}
-            accessibilityLabel={tile.accessibilityLabel}
-            hasTVPreferredFocus={tile.id === 'home'}
-          />
-        ))}
-      </View>
-    </ImageBackground>
+    <Screen>
+      <Text
+        accessibilityRole="header"
+        style={{
+          color: colors.text,
+          fontSize: fs(64),
+          lineHeight: fs(76),
+          fontWeight: 'bold',
+          marginBottom: px(32),
+        }}>
+        {t('home.title')}
+      </Text>
+      <ScrollView
+        contentContainerStyle={{
+          flexDirection: 'row',
+          flexWrap: 'wrap',
+          gap: px(32),
+          paddingBottom: px(20),
+        }}>
+        {TILES.map((tile, i) => {
+          const label = t(tile.labelKey);
+          return (
+            <Focusable
+              key={tile.id}
+              role="button"
+              label={label}
+              preferred={i === 0}
+              onPress={() => onOpen(tile.id)}
+              testID={`tile-${tile.id}`}>
+              {focused => (
+                <View
+                  style={{
+                    width: sz(400),
+                    height: sz(230),
+                    borderRadius: 20,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: px(8),
+                    backgroundColor: focused
+                      ? colors.surfaceFocused
+                      : colors.surface,
+                  }}>
+                  <Text
+                    accessible={false}
+                    style={{
+                      color: colors.accent,
+                      fontSize: fs(72),
+                      lineHeight: fs(84),
+                      fontWeight: 'bold',
+                    }}>
+                    {tile.glyph}
+                  </Text>
+                  <Text
+                    style={{
+                      color: colors.text,
+                      fontSize: fs(52),
+                      lineHeight: fs(62),
+                      fontWeight: 'bold',
+                    }}>
+                    {label}
+                  </Text>
+                </View>
+              )}
+            </Focusable>
+          );
+        })}
+      </ScrollView>
+    </Screen>
   );
 };
-
-
-const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-    padding: scaleWidth(160),
-  },
-  headerArea: {
-    flex: 3,
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-  },
-  focusedTitle: {
-    color: '#FFFFFF',
-    fontSize: scaleFontSize(150),
-    lineHeight: scaleFontSize(140),
-    fontWeight: 'bold',
-    width: scaleWidth(700),
-  },
-  focusedDescription: {
-    color: '#FFFFFF',
-    fontSize: scaleFontSize(60),
-    lineHeight: scaleFontSize(80),
-    flex: 1,
-  },
-  tileRowContent: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-    justifyContent: 'space-between',
-  },
-  animationWrapper: {
-    flex: 1,
-    alignItems: 'flex-end',
-    justifyContent: 'center',
-  },
-});
