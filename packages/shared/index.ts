@@ -13,3 +13,8 @@ export {createHttpClient} from './src/services/httpClient';
 export type {HttpClientConfig, HttpResponse} from './src/services/httpClient';
 
 
+
+// Accessibility core (pure) and settings
+export * from './src/core';
+export {SettingsProvider, useSettings} from './src/settings/SettingsProvider';
+export type {SettingsContextValue} from './src/settings/SettingsProvider';
