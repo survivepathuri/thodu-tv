@@ -1,5 +1,6 @@
 import React from 'react';
-import {ScrollView, Text, View} from 'react-native';
+import {ScrollView, View} from 'react-native';
+import {Text} from '../components/Text';
 import {StringKey, TileId} from '../core';
 import {Focusable} from '../components/Focusable';
 import {Screen} from '../components/Screen';

@@ -45,12 +45,12 @@ const history = scan([run('git', ['log', '--all', '-p', '--no-color'], {cwd: REP
 const commits = run('git', ['rev-list', '--all', '--count'], {cwd: REPO}).out.trim();
 
 // (b) yarn npm audit (Yarn 4 through npx; registry access only).
-function audit() {
+function audit(extra = []) {
   const npx = path.join(path.dirname(process.execPath), 'node_modules', 'npm', 'bin', 'npx-cli.js');
   if (!fs.existsSync(npx)) {
     return {unavailable: 'npx-cli.js not found next to node'};
   }
-  const r = run(process.execPath, [npx, '--yes', '@yarnpkg/cli-dist@4.5.0', 'npm', 'audit', '--all', '--recursive', '--json'], {
+  const r = run(process.execPath, [npx, '--yes', '@yarnpkg/cli-dist@4.5.0', 'npm', 'audit', '--all', '--recursive', '--json', ...extra], {
     cwd: REPO,
     timeout: 240000,
   });
@@ -77,6 +77,7 @@ function audit() {
   return {sev, total: advisories.size};
 }
 const a = audit();
+const aProd = audit(['--environment', 'production']);
 
 // (c)(d)(e) from the release APK's real binary manifest.
 let manifest = {error: 'release APK not found'};
@@ -107,6 +108,17 @@ if (fs.existsSync(APK)) {
   }
 }
 
+const sevTable = (title, r) =>
+  r.unavailable
+    ? `**${title}:** unavailable: ${r.unavailable}`
+    : `**${title}:** ${r.total} unique advisories
+
+| Severity | Count |
+|---|---|
+${['critical', 'high', 'moderate', 'low', 'info']
+        .map(s => `| ${s} | ${r.sev[s] || 0} |`)
+        .join('\n')}`;
+
 const row = (k, v) => `| ${k} | ${v} |`;
 const md = `# Security self-check
 
@@ -124,13 +136,9 @@ Email-like and phone-like matches are expected to be noise (lockfile hashes, ima
 
 ## (b) Dependency audit (\`yarn npm audit --all --recursive\`)
 
-${
-  a.unavailable
-    ? `Unavailable: ${a.unavailable}`
-    : `Unique advisories: ${a.total}\n\n| Severity | Count |\n|---|---|\n${['critical', 'high', 'moderate', 'low', 'info']
-        .map(s => `| ${s} | ${a.sev[s] || 0} |`)
-        .join('\n')}`
-}
+${sevTable('All dependencies (includes build and test tooling)', a)}
+
+${sevTable('Production dependencies only (--environment production)', aProd)}
 
 An audit lists known advisories for resolved package versions. It does not say whether the vulnerable code is reachable from this app.
 

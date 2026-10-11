@@ -1,5 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {ScrollView, Text, View} from 'react-native';
+import {ScrollView, View} from 'react-native';
+import {Text} from '../components/Text';
 import {FetchLike, SendFailure, StringKey, isValidTopic, sendHelp} from '../core';
 import {ActionButton} from '../components/ActionButton';
 import {Focusable} from '../components/Focusable';
@@ -175,7 +176,13 @@ export const FamilySettingsScreen = ({
 
   return (
     <Screen>
-      <ScrollView contentContainerStyle={{gap: px(20), paddingBottom: px(60)}}>
+      <ScrollView
+        contentContainerStyle={{
+          gap: px(20),
+          paddingHorizontal: px(16),
+          paddingTop: px(8),
+          paddingBottom: px(60),
+        }}>
         <Text
           accessibilityRole="header"
           style={{color: colors.text, fontSize: fs(56), fontWeight: 'bold'}}>

@@ -40,13 +40,19 @@ function analyse(name, uri, xml) {
   const inApp = [...xml.matchAll(/<node [^>]*>/g)]
     .map(m => attrs(m[0]))
     .filter(n => n.package === PKG);
-  const interactive = inApp.filter(n => n.clickable === 'true' || n.focusable === 'true');
+  // A scrollable container (ScrollView) is reported focusable by uiautomator but is
+  // not a control the person operates, so it is counted separately.
+  const scrollers = inApp.filter(n => n.scrollable === 'true').length;
+  const interactive = inApp.filter(
+    n => n.scrollable !== 'true' && (n.clickable === 'true' || n.focusable === 'true'),
+  );
   const label = n => decode(n['content-desc'] || '').trim() || decode(n.text || '').trim();
   return {
     name,
     uri,
     total: inApp.length,
     interactive: interactive.length,
+    scrollers,
     unlabeled: interactive.filter(n => !label(n)),
     labels: interactive.map(label).filter(Boolean),
   };

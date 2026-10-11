@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
+import {Text} from '../components/Text';
 import {CAPTION_KEYS, CAPTION_LINE_MS, captionIndexAt} from '../core';
 import {ActionButton} from '../components/ActionButton';
 import {Screen} from '../components/Screen';

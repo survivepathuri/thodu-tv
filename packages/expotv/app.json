@@ -33,7 +33,8 @@
         "android.permission.WRITE_EXTERNAL_STORAGE",
         "android.permission.SYSTEM_ALERT_WINDOW",
         "android.permission.VIBRATE"
-      ]
+      ],
+      "allowBackup": false
     },
     "experiments": {
       "autolinkingModuleResolution": true,
