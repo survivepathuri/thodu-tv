@@ -21,6 +21,7 @@ Many older viewers and viewers with disabilities find a TV remote, small text an
 - **Read-aloud and screen-reader support.** With read-aloud on, focused items are spoken with Android text-to-speech; if a screen reader is on, the app announces through it instead and suggests needs ("Choose them for me") without applying anything by itself.
 - **Captions demo.** With "easier to hear" chosen, the Watch screen is a demo panel (no real video) with a looping caption bar; without it, Watch is a placeholder screen.
 - **Visual alerts.** When "easier to hear" is chosen, the help confirmation shows a flashing "ALERT SENT" banner.
+- **Simple language and labelled buttons.** "Easier to read" also switches about 40 key strings per language to shorter, plainer wording (`core/simpleText.ts`; strings without a simple variant stay as they are) and adds a text glyph next to the label of every action button. The glyphs are plain characters (no emoji, no images) and the text label is always kept. Hindi and Telugu simple wording has not been reviewed by native speakers.
 - **English, Hindi, Telugu.** Language chips on the setup screen. Hindi and Telugu need review by native speakers (see Limitations).
 - **Persistence.** Needs, language, scanning speed and the family settings are saved on the device; the next launch goes straight to Home. "Reset Thodu" clears them.
 - **Real family notification (optional).** "Tell my family" can send one short, generic message through the free [ntfy.sh](https://ntfy.sh) service to a phone that has the ntfy app. There is no Thodu server. Until a test message has succeeded, the Help button is clearly labelled as a demo, and failures are shown honestly ("We could not reach your family. Please call them.").
@@ -34,7 +35,7 @@ From `packages/shared/src/core/adapt.ts` (tested in `adapt.test.ts`). Needs comb
 | Easier to see (low vision) | text scale 1.6x, high-contrast theme, focus ring width 10 (default 4), larger buttons |
 | Easier to hear (hard of hearing) | captions always on, visual alerts on |
 | Easier remote (remote difficulty) | single-button scanning on (1800 ms per item), larger buttons |
-| Easier to read (reading difficulty) | read-aloud on, simple language on, icons with labels on (the last two are saved as settings but no screen reads them yet; tiles always show an icon plus a label) |
+| Easier to read (reading difficulty) | read-aloud on; simple language on (shorter wording for the key strings on Setup, Home, Help, Family and Settings, in English, Hindi and Telugu); icons with labels on (every action button such as Back, Continue, Try again, Tell my family, Cancel and Send a test shows a glyph next to its text; home tiles always show a glyph and a label) |
 
 Nothing chosen = default settings (text 1.0x, ring 4, everything else off).
 
@@ -84,14 +85,14 @@ All screenshots are from an Android TV **emulator** (Android 14, 1920x1080).
 
 ## Tests
 
-170 unit tests in 10 suites, all passing in the latest run (Jest, pure logic in `packages/shared/src/core`, no device needed):
+186 unit tests in 12 suites, all passing in the latest run (Jest, pure logic in `packages/shared/src/core`, no device needed):
 
 ```bash
 cd packages/shared
 npx jest -c jest.core.config.js        # or: yarn test  (from the repo root)
 ```
 
-Suites: theme 65, notify 27, persist 18, scanner 16, adapt 12, a11y 9, strings 8, helpEvents 7, speech 4, captions 4. The screens themselves have no automated UI tests; they were checked by hand on the emulator.
+Suites: theme 65, notify 27, persist 18, scanner 16, simpleText 13, adapt 12, a11y 9, strings 8, helpEvents 7, speech 4, captions 4, buttonIcons 3. The screens themselves have no automated UI tests; they were checked by hand on the emulator.
 
 ## Measured numbers (emulator only)
 

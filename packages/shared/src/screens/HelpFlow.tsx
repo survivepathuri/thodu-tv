@@ -79,11 +79,13 @@ export const HelpConfirmScreen = ({
             preferred
             label={t('help.confirm.yes')}
             onPress={onConfirm}
+            icon="tell"
             testID="help-confirm-yes"
           />
           <ActionButton
             label={t('help.confirm.no')}
             onPress={onCancel}
+            icon="cancel"
             testID="help-confirm-no"
           />
         </View>
@@ -155,11 +157,13 @@ export const HelpFailedScreen = ({
             preferred
             label={t('help.failed.retry')}
             onPress={onRetry}
+            icon="retry"
             testID="help-failed-retry"
           />
           <ActionButton
             label={t('settings.done')}
             onPress={onDone}
+            icon="ok"
             testID="help-failed-done"
           />
         </View>
@@ -241,6 +245,7 @@ export const HelpSentScreen = ({
             preferred
             label={t('settings.done')}
             onPress={onDone}
+            icon="ok"
             testID="help-sent-done"
           />
         </View>
@@ -310,6 +315,7 @@ export const FamilyScreen = ({onBack}: {onBack: () => void}) => {
               preferred
               label={t('common.back')}
               onPress={onBack}
+              icon="back"
               testID="back-button"
             />
           </View>
@@ -397,9 +403,15 @@ export const ResetConfirmScreen = ({
             preferred
             label={t('reset.no')}
             onPress={onCancel}
+            icon="cancel"
             testID="reset-no"
           />
-          <ActionButton label={t('reset.yes')} onPress={onConfirm} testID="reset-yes" />
+          <ActionButton
+            label={t('reset.yes')}
+            onPress={onConfirm}
+            icon="ok"
+            testID="reset-yes"
+          />
         </View>
       </View>
     </Screen>

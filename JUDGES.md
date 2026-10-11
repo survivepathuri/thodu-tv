@@ -39,7 +39,7 @@ cd packages/shared
 npx jest -c jest.core.config.js
 ```
 
-Expected: 10 suites, 170 tests, all passing (the latest run before this document was written). Needs Node.js and the repository's installed dependencies (`yarn workspaces focus @thodu/expotv` at the repo root). No device, no network.
+Expected: 12 suites, 186 tests, all passing (the latest run before this document was written). Needs Node.js and the repository's installed dependencies (`yarn workspaces focus @thodu/expotv` at the repo root). No device, no network.
 
 ## Real vs simulated (short)
 
@@ -53,5 +53,5 @@ Expected: 10 suites, 170 tests, all passing (the latest run before this document
 - Hindi and Telugu text needs native-speaker review; their speech voices were not verified.
 - No numbers about impact; the cold-start (1136 / 1351 / 1965 ms min / median / max) is an emulator measurement.
 - Release builds use a debug signing key; 108 dependency advisories are listed in SECURITY.md (mostly build tooling by our triage; not upgraded, reachability not assessed).
-- Two settings, simple language and icons with labels, are stored but not yet used by any screen.
+- "Easier to read" now uses simple wording (key strings only) and button glyphs; this is checked by unit tests and on the emulator, not with real users. Hindi and Telugu simple wording awaits native-speaker review.
 - Roadmap only, not built: a voice trigger through Alexa+ for people who cannot use a remote.

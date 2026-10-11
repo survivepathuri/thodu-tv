@@ -11,6 +11,7 @@ import {
 } from '../core';
 import {Focusable} from '../components/Focusable';
 import {Screen} from '../components/Screen';
+import {ButtonContent} from '../components/ButtonContent';
 import {useSettings} from '../settings/SettingsProvider';
 import {useUI} from '../settings/useUI';
 
@@ -371,14 +372,12 @@ export const SetupScreen = ({
                   borderRadius: 20,
                   backgroundColor: colors.accent,
                 }}>
-                <Text
-                  style={{
-                    color: colors.onAccent,
-                    fontSize: fs(44),
-                    fontWeight: 'bold',
-                  }}>
-                  {t(isSetup ? 'setup.continue' : 'settings.done')}
-                </Text>
+                <ButtonContent
+                  label={t(isSetup ? 'setup.continue' : 'settings.done')}
+                  icon={isSetup ? 'continue' : 'ok'}
+                  color={colors.onAccent}
+                  size={44}
+                />
               </View>
             )}
           </Focusable>

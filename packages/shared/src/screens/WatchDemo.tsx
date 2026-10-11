@@ -74,6 +74,7 @@ export const WatchDemoScreen = ({onBack}: {onBack: () => void}) => {
             preferred
             label={t('common.back')}
             onPress={onBack}
+            icon="back"
             testID="back-button"
           />
         </View>

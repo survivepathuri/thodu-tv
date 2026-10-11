@@ -117,9 +117,15 @@ export const FamilySettingsScreen = ({
               preferred
               label={t('fam.new.no')}
               onPress={() => setConfirmNew(false)}
+              icon="cancel"
               testID="fam-new-no"
             />
-            <ActionButton label={t('fam.new.yes')} onPress={makeNew} testID="fam-new-yes" />
+            <ActionButton
+              label={t('fam.new.yes')}
+              onPress={makeNew}
+              icon="ok"
+              testID="fam-new-yes"
+            />
           </View>
         </View>
       </Screen>
@@ -216,11 +222,13 @@ export const FamilySettingsScreen = ({
             preferred
             label={t('fam.test')}
             onPress={test}
+            icon="send"
             testID="fam-test"
           />
           <ActionButton
             label={t('fam.new')}
             onPress={() => setConfirmNew(true)}
+            icon="new"
             testID="fam-new"
           />
         </View>
@@ -248,7 +256,12 @@ export const FamilySettingsScreen = ({
         <EmergencyNote />
 
         <View style={{alignSelf: 'flex-start'}}>
-          <ActionButton label={t('common.back')} onPress={onBack} testID="back-button" />
+          <ActionButton
+            label={t('common.back')}
+            onPress={onBack}
+            icon="back"
+            testID="back-button"
+          />
         </View>
       </ScrollView>
     </Screen>

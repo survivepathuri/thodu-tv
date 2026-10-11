@@ -3,6 +3,7 @@ import {View} from 'react-native';
 import {Text} from '../components/Text';
 import {Focusable} from '../components/Focusable';
 import {Screen} from '../components/Screen';
+import {ButtonContent} from '../components/ButtonContent';
 import {useUI} from '../settings/useUI';
 
 export interface InfoScreenProps {
@@ -71,14 +72,12 @@ export const InfoScreen = ({title, body, alert, onBack}: InfoScreenProps) => {
                   borderWidth: 3,
                   borderColor: colors.border,
                 }}>
-                <Text
-                  style={{
-                    color: colors.text,
-                    fontSize: fs(42),
-                    fontWeight: 'bold',
-                  }}>
-                  {t('common.back')}
-                </Text>
+                <ButtonContent
+                  label={t('common.back')}
+                  icon="back"
+                  color={colors.text}
+                  size={42}
+                />
               </View>
             )}
           </Focusable>

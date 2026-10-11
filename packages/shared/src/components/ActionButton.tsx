@@ -1,8 +1,9 @@
 import React from 'react';
 import {View} from 'react-native';
-import {Text} from './Text';
 import {useUI} from '../settings/useUI';
 import {Focusable} from './Focusable';
+import {ButtonContent} from './ButtonContent';
+import type {ButtonIcon} from '../core/buttonIcons';
 
 /** Big labelled button. `primary` uses the accent fill, `secondary` the surface. */
 export const ActionButton = ({
@@ -10,15 +11,17 @@ export const ActionButton = ({
   onPress,
   primary,
   preferred,
+  icon,
   testID,
 }: {
   label: string;
   onPress: () => void;
   primary?: boolean;
   preferred?: boolean;
+  icon?: ButtonIcon;
   testID?: string;
 }) => {
-  const {colors, fs, sz, px} = useUI();
+  const {colors, sz, px} = useUI();
   return (
     <Focusable
       role="button"
@@ -39,14 +42,12 @@ export const ActionButton = ({
             borderWidth: primary ? 0 : 3,
             borderColor: colors.border,
           }}>
-          <Text
-            style={{
-              color: primary ? colors.onAccent : colors.text,
-              fontSize: fs(48),
-              fontWeight: 'bold',
-            }}>
-            {label}
-          </Text>
+          <ButtonContent
+            label={label}
+            icon={icon}
+            color={primary ? colors.onAccent : colors.text}
+            size={48}
+          />
         </View>
       )}
     </Focusable>

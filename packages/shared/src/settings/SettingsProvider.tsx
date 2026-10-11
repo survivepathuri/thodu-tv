@@ -16,7 +16,7 @@ import {
   deserialize,
   effectiveFontScale,
   serialize,
-  translate,
+  translateSimple,
   Lang,
   HelpEvent,
   Need,
@@ -169,7 +169,8 @@ export const SettingsProvider = ({
   }, [saved.needs, saved.scanIntervalMs, systemFontScale]);
   const theme = useMemo(() => buildTheme(settings), [settings]);
   const lang = saved.lang;
-  const t = useCallback((key: StringKey) => translate(lang, key), [lang]);
+  const simple = settings.simpleLanguage;
+  const t = useCallback((key: StringKey) => translateSimple(lang, key, simple), [lang, simple]);
   const family = useMemo<FamilyState>(
     () => ({
       familyTopic: saved.familyTopic,
