@@ -1,17 +1,19 @@
 import { Scoped } from '@/components/Scoped';
-import { InfoScreen, useSettings } from '@thodu/shared';
+import { HelpConfirmScreen, useSettings } from '@thodu/shared';
 import { useRouter } from 'expo-router';
 
 export default function Help() {
   const router = useRouter();
-  const { t } = useSettings();
+  const { sendHelp } = useSettings();
   return (
     <Scoped>
-      <InfoScreen
-        alert
-        title={t('help.title')}
-        body={t('help.body')}
-        onBack={() => router.back()}
+      <HelpConfirmScreen
+        onConfirm={() => {
+          sendHelp();
+          // replace: Back from the success screen returns to Home.
+          router.replace('/help-sent');
+        }}
+        onCancel={() => router.back()}
       />
     </Scoped>
   );

@@ -11,3 +11,4 @@ export {buildTheme, LARGE_TARGET_SCALE} from './theme';
 export type {Lang, StringKey} from './strings';
 export {LANGS, translate} from './strings';
 export * from './scanner';
+export * from './helpEvents';

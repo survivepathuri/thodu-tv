@@ -1,5 +1,5 @@
 import { Scoped } from '@/components/Scoped';
-import { InfoScreen, useSettings } from '@thodu/shared';
+import { FamilyScreen, InfoScreen, useSettings } from '@thodu/shared';
 import type { StringKey } from '@thodu/shared';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 
@@ -7,7 +7,16 @@ export default function Section() {
   const router = useRouter();
   const { t } = useSettings();
   const { id } = useLocalSearchParams<{ id: string }>();
-  // Placeholder: the section name (Watch, Family, Medicines) is the title.
+
+  if (id === 'family') {
+    return (
+      <Scoped>
+        <FamilyScreen onBack={() => router.back()} />
+      </Scoped>
+    );
+  }
+
+  // Placeholder: the section name (Watch, Medicines) is the title.
   const name = t(`tile.${id}` as StringKey);
   return (
     <Scoped>
