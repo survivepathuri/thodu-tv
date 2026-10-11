@@ -4,12 +4,12 @@ import { useRouter } from 'expo-router';
 
 export default function Help() {
   const router = useRouter();
-  const { sendHelp } = useSettings();
+  const { logHelp } = useSettings();
   return (
     <Scoped>
       <HelpConfirmScreen
         onConfirm={() => {
-          sendHelp();
+          logHelp({ kind: 'helpRequest', result: 'demo' });
           // replace: Back from the success screen returns to Home.
           router.replace('/help-sent');
         }}

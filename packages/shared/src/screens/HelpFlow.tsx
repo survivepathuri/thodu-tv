@@ -256,3 +256,44 @@ export const FamilyScreen = ({onBack}: {onBack: () => void}) => {
     </Screen>
   );
 };
+
+/** "Reset Thodu?" confirmation. Cancel holds the initial focus. */
+export const ResetConfirmScreen = ({
+  onConfirm,
+  onCancel,
+}: {
+  onConfirm: () => void;
+  onCancel: () => void;
+}) => {
+  const {t, colors, fs, px} = useUI();
+  return (
+    <Screen>
+      <View style={{flex: 1, justifyContent: 'center', gap: px(32)}}>
+        <Text
+          accessibilityRole="header"
+          style={{
+            color: colors.text,
+            fontSize: fs(80),
+            lineHeight: fs(94),
+            fontWeight: 'bold',
+          }}>
+          {t('reset.title')}
+        </Text>
+        <Text
+          style={{color: colors.textMuted, fontSize: fs(40), lineHeight: fs(52)}}>
+          {t('reset.body')}
+        </Text>
+        <View style={{flexDirection: 'row', gap: px(40)}}>
+          <ActionButton
+            primary
+            preferred
+            label={t('reset.no')}
+            onPress={onCancel}
+            testID="reset-no"
+          />
+          <ActionButton label={t('reset.yes')} onPress={onConfirm} testID="reset-yes" />
+        </View>
+      </View>
+    </Screen>
+  );
+};

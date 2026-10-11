@@ -1,11 +1,14 @@
-/** In-memory log of simulated "I need help" events (demo only). */
+/** Log of help requests (in memory). */
 export type HelpKind = 'helpRequest';
+/** 'demo' = simulated, 'sent' = the server answered 2xx, 'failed' = it did not. */
+export type HelpResult = 'demo' | 'sent' | 'failed';
 
 export interface HelpEvent {
   id: string;
   /** Epoch milliseconds. */
   at: number;
   kind: HelpKind;
+  result: HelpResult;
 }
 
 export const MAX_HELP_EVENTS = 20;

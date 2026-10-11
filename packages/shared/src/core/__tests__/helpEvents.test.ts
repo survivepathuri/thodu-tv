@@ -10,6 +10,7 @@ const ev = (n: number, at: number = n * 1000): HelpEvent => ({
   id: `h${n}`,
   at,
   kind: 'helpRequest',
+  result: 'demo',
 });
 
 describe('help event log', () => {

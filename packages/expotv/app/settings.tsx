@@ -4,5 +4,13 @@ import { useRouter } from 'expo-router';
 
 export default function Settings() {
   const router = useRouter();
-  return <Scoped><SetupScreen mode="settings" onDone={() => router.back()} /></Scoped>;
+  return (
+    <Scoped>
+      <SetupScreen
+        mode="settings"
+        onDone={() => router.back()}
+        onReset={() => router.push('/reset')}
+      />
+    </Scoped>
+  );
 }

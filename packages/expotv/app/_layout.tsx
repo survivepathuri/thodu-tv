@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SettingsProvider, SpeechProvider, useSettings } from '@thodu/shared';
 import { speak } from '@/components/speech';
 import { useFonts } from 'expo-font';
@@ -20,7 +21,17 @@ configureReanimatedLogger({
 
 // No animation: a transition must never leave focus in limbo on a TV.
 function ThemedStack() {
-  const { theme } = useSettings();
+  const { theme, ready } = useSettings();
+  useEffect(() => {
+    // Keep the splash up until the saved settings are read, so the first
+    // frame is already in the right theme and language.
+    if (ready) {
+      SplashScreen.hideAsync();
+    }
+  }, [ready]);
+  if (!ready) {
+    return null;
+  }
   return (
     <Stack
       screenOptions={{
@@ -39,7 +50,6 @@ export default function RootLayout() {
 
   useEffect(() => {
     if (loaded || error) {
-      SplashScreen.hideAsync();
       if (error) {
         console.warn(`Error in loading fonts: ${error}`);
       }
@@ -51,7 +61,7 @@ export default function RootLayout() {
   }
 
   return (
-    <SettingsProvider>
+    <SettingsProvider storage={AsyncStorage}>
       <SpeechProvider speak={speak}>
         <ThemedStack />
       </SpeechProvider>

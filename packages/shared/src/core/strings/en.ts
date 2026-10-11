@@ -54,6 +54,16 @@ export const en = {
   'settings.title': 'Settings',
   'settings.subtitle': 'Change what helps you.',
   'settings.done': 'Done',
+  'settings.reset': 'Reset Thodu',
+  'settings.family': 'Family notifications',
+  'scan.speed': 'Scanning speed',
+  'scan.slow': 'Slow',
+  'scan.normal': 'Normal',
+  'scan.fast': 'Fast',
+  'reset.title': 'Reset Thodu?',
+  'reset.body': 'This erases your choices and starts again from the beginning.',
+  'reset.yes': 'Yes, reset',
+  'reset.no': 'No, keep my choices',
 } as const;
 
 export type StringKey = keyof typeof en;

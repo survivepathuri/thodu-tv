@@ -13,3 +13,4 @@ export {LANGS, translate} from './strings';
 export * from './scanner';
 export * from './helpEvents';
 export * from './captions';
+export * from './persist';

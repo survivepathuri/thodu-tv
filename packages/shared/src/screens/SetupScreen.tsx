@@ -32,10 +32,26 @@ export interface SetupScreenProps {
   /** 'setup' is first run; 'settings' reuses the same screen later. */
   mode: 'setup' | 'settings';
   onDone: () => void;
+  /** Settings only: open the family notification screen. */
+  onOpenFamily?: () => void;
+  /** Settings only: open the reset confirmation screen. */
+  onReset?: () => void;
 }
 
-export const SetupScreen = ({mode, onDone}: SetupScreenProps) => {
-  const {needs, toggleNeed, lang, setLang} = useSettings();
+const SCAN_SPEEDS: ReadonlyArray<{ms: number; key: StringKey}> = [
+  {ms: 2600, key: 'scan.slow'},
+  {ms: 1800, key: 'scan.normal'},
+  {ms: 1200, key: 'scan.fast'},
+];
+
+export const SetupScreen = ({
+  mode,
+  onDone,
+  onOpenFamily,
+  onReset,
+}: SetupScreenProps) => {
+  const {needs, toggleNeed, lang, setLang, settings, setScanInterval} =
+    useSettings();
   const {t, colors, fs, sz, px, theme} = useUI();
   const isSetup = mode === 'setup';
 
@@ -240,6 +256,65 @@ export const SetupScreen = ({mode, onDone}: SetupScreenProps) => {
               </Focusable>
             );
           })}
+
+          {!isSetup && settings.scanningMode && (
+            <View style={{gap: px(10)}}>
+              <Text style={{color: colors.textMuted, fontSize: fs(26)}}>
+                {t('scan.speed')}
+              </Text>
+              <View style={{flexDirection: 'row', gap: px(20)}}>
+                {SCAN_SPEEDS.map(({ms, key}) => {
+                  const active = settings.scanIntervalMs === ms;
+                  return (
+                    <Focusable
+                      key={ms}
+                      role="radio"
+                      checked={active}
+                      label={t(key)}
+                      onPress={() => setScanInterval(ms)}
+                      testID={`scan-speed-${ms}`}>
+                      {() => (
+                        <View
+                          style={{
+                            minWidth: sz(170),
+                            minHeight: sz(72),
+                            paddingHorizontal: px(24),
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            borderRadius: 20,
+                            backgroundColor: active ? colors.accent : colors.surface,
+                          }}>
+                          <Text
+                            style={{
+                              color: active ? colors.onAccent : colors.text,
+                              fontSize: fs(30),
+                              fontWeight: 'bold',
+                            }}>
+                            {t(key)}
+                          </Text>
+                        </View>
+                      )}
+                    </Focusable>
+                  );
+                })}
+              </View>
+            </View>
+          )}
+
+          {!isSetup && onOpenFamily && (
+            <SettingsRow
+              label={t('settings.family')}
+              onPress={onOpenFamily}
+              testID="settings-family"
+            />
+          )}
+          {!isSetup && onReset && (
+            <SettingsRow
+              label={t('settings.reset')}
+              onPress={onReset}
+              testID="settings-reset"
+            />
+          )}
         </ScrollView>
 
         <View style={{paddingTop: px(16)}}>
@@ -272,5 +347,38 @@ export const SetupScreen = ({mode, onDone}: SetupScreenProps) => {
         </View>
       </View>
     </Screen>
+  );
+};
+
+/** A full-width labelled button used for the extra Settings entries. */
+const SettingsRow = ({
+  label,
+  onPress,
+  testID,
+}: {
+  label: string;
+  onPress: () => void;
+  testID: string;
+}) => {
+  const {colors, fs, sz, px} = useUI();
+  return (
+    <Focusable role="button" label={label} onPress={onPress} testID={testID}>
+      {() => (
+        <View
+          style={{
+            minHeight: sz(100),
+            justifyContent: 'center',
+            paddingHorizontal: px(28),
+            borderRadius: 20,
+            backgroundColor: colors.surface,
+            borderWidth: 3,
+            borderColor: colors.border,
+          }}>
+          <Text style={{color: colors.text, fontSize: fs(36), fontWeight: 'bold'}}>
+            {label}
+          </Text>
+        </View>
+      )}
+    </Focusable>
   );
 };
