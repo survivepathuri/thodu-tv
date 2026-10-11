@@ -6,7 +6,8 @@
     "clean": "yarn workspaces foreach --all run clean ; rm -rf node_modules",
     "expotv": "yarn workspace @thodu/expotv",
     "expotv:prebuild": "yarn workspace @thodu/expotv run prebuild:tv",
-    "expotv:android": "yarn workspace @thodu/expotv run android"
+    "expotv:android": "yarn workspace @thodu/expotv run android",
+    "test": "yarn workspace @thodu/shared test"
   },
   "workspaces": {
     "packages": [

@@ -8,9 +8,10 @@
     "src"
   ],
   "scripts": {
-    "test": "jest",
+    "test": "jest -c jest.core.config.js",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "test:rn": "jest"
   },
   "peerDependencies": {
     "lottie-react-native": "*",
