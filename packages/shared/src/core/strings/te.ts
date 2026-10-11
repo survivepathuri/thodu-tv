@@ -11,6 +11,7 @@ export const te: Record<StringKey, string> = {
   'setup.preview.label': 'ప్రివ్యూ',
   'setup.preview.sample': 'మీ టీవీలో అక్షరాలు ఇలా కనిపిస్తాయి.',
   'setup.language': 'భాష',
+  'scan.hint': 'ఎంచుకోవడానికి OK నొక్కండి',
   'setup.preview.sunrise': 'సూర్యోదయ రూపం',
   'setup.preview.highContrast': 'అధిక కాంట్రాస్ట్ రూపం',
   'need.lowVision.title': 'స్పష్టంగా చూడటం',

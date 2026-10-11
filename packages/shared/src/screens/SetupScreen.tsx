@@ -1,10 +1,19 @@
 import React from 'react';
 import {ScrollView, Text, View} from 'react-native';
-import {ALL_NEEDS, LANGS, Lang, Need, StringKey} from '../core';
+import {LANGS, Lang, Need, StringKey} from '../core';
 import {Focusable} from '../components/Focusable';
 import {Screen} from '../components/Screen';
 import {useSettings} from '../settings/SettingsProvider';
 import {useUI} from '../settings/useUI';
+
+// The need that makes everything else hard to operate comes first and holds
+// the initial focus: one OK press on a fresh install turns scanning on.
+const SETUP_ORDER: readonly Need[] = [
+  'remoteDifficulty',
+  'lowVision',
+  'hardOfHearing',
+  'readingDifficulty',
+];
 
 // Plain text glyphs (no emoji, no image assets).
 const NEED_GLYPH: Record<Need, string> = {
@@ -136,7 +145,7 @@ export const SetupScreen = ({mode, onDone}: SetupScreenProps) => {
         <ScrollView
           style={{flex: 1}}
           contentContainerStyle={{gap: px(18), padding: px(20)}}>
-          {ALL_NEEDS.map((need, i) => {
+          {SETUP_ORDER.map((need, i) => {
             const selected = needs.includes(need);
             const title = t(`need.${need}.title` as StringKey);
             const desc = t(`need.${need}.desc` as StringKey);

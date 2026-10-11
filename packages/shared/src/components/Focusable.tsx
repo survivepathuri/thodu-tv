@@ -1,5 +1,6 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useId, useRef, useState} from 'react';
 import {Pressable, StyleProp, View, ViewStyle} from 'react-native';
+import {useScan} from '../scan/ScanScope';
 import {useSettings} from '../settings/SettingsProvider';
 
 export interface FocusableProps {
@@ -31,7 +32,20 @@ export const Focusable = ({
   children,
 }: FocusableProps) => {
   const {theme} = useSettings();
-  const [focused, setFocused] = useState(false);
+  const [padFocused, setFocused] = useState(false);
+  const id = useId();
+  const {scanning, highlightId, register} = useScan();
+  const onPressRef = useRef(onPress);
+  onPressRef.current = onPress;
+
+  // Join this screen's scan order (registration order = reading order).
+  useEffect(
+    () => register({id, label, onPress: () => onPressRef.current()}),
+    [register, id, label],
+  );
+
+  // D-pad focus and scanner highlight look identical (same ring, same scale).
+  const focused = padFocused || highlightId === id;
   const onFocus = useCallback(() => setFocused(true), []);
   const onBlur = useCallback(() => setFocused(false), []);
 
@@ -41,7 +55,8 @@ export const Focusable = ({
       accessibilityLabel={label}
       accessibilityRole={role}
       accessibilityState={checked === undefined ? undefined : {checked}}
-      hasTVPreferredFocus={preferred}
+      focusable={!scanning}
+      hasTVPreferredFocus={preferred && !scanning}
       onFocus={onFocus}
       onBlur={onBlur}
       onPress={onPress}

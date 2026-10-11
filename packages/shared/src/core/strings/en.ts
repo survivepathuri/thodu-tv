@@ -9,6 +9,7 @@ export const en = {
   'setup.preview.label': 'Preview',
   'setup.preview.sample': 'This is how text will look on your TV.',
   'setup.language': 'Language',
+  'scan.hint': 'Press OK to choose',
   'setup.preview.sunrise': 'Sunrise look',
   'setup.preview.highContrast': 'High-contrast look',
   'need.lowVision.title': 'Easier to see',

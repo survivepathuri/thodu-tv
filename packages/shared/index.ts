@@ -13,3 +13,4 @@ export {
   scaleWidth,
   scaleHeight,
 } from './src/utils/scaling';
+export {ScanScope, useScan} from './src/scan/ScanScope';

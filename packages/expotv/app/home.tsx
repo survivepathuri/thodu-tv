@@ -1,3 +1,4 @@
+import { Scoped } from '@/components/Scoped';
 import { HomeScreen, HomeTileId } from '@thodu/shared';
 import { useRouter } from 'expo-router';
 
@@ -8,5 +9,5 @@ export default function Home() {
     else if (id === 'settings') router.push('/settings');
     else router.push({ pathname: '/section/[id]', params: { id } });
   };
-  return <HomeScreen onOpen={open} />;
+  return <Scoped><HomeScreen onOpen={open} /></Scoped>;
 }
