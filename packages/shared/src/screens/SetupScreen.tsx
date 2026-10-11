@@ -70,7 +70,7 @@ export const SetupScreen = ({mode, onDone}: SetupScreenProps) => {
                 fontSize: fs(22),
                 lineHeight: fs(30),
               }}>
-              {t('setup.preview.label')}
+              {t('setup.preview.label')} - {t(theme.name === 'sunrise' ? 'setup.preview.sunrise' : 'setup.preview.highContrast')}
             </Text>
             <Text
               testID="preview-sample"
@@ -135,7 +135,7 @@ export const SetupScreen = ({mode, onDone}: SetupScreenProps) => {
         <View style={{flex: 1}}>
         <ScrollView
           style={{flex: 1}}
-          contentContainerStyle={{gap: px(18), padding: px(12)}}>
+          contentContainerStyle={{gap: px(18), padding: px(20)}}>
           {ALL_NEEDS.map((need, i) => {
             const selected = needs.includes(need);
             const title = t(`need.${need}.title` as StringKey);
@@ -149,7 +149,10 @@ export const SetupScreen = ({mode, onDone}: SetupScreenProps) => {
                 label={`${title}. ${desc}`}
                 onPress={() => toggleNeed(need)}
                 testID={`need-${need}`}>
-                {focused => (
+                {() => {
+                  const cs = colors.card[need];
+                  const fg = selected ? cs.fgSelected : cs.fg;
+                  return (
                   <View
                     style={{
                       minHeight: sz(120),
@@ -158,11 +161,7 @@ export const SetupScreen = ({mode, onDone}: SetupScreenProps) => {
                       gap: px(24),
                       padding: px(20),
                       borderRadius: 20,
-                      backgroundColor: selected
-                        ? colors.accent
-                        : focused
-                        ? colors.surfaceFocused
-                        : colors.surface,
+                      backgroundColor: selected ? cs.bgSelected : cs.bg,
                     }}>
                     <View
                       style={{
@@ -172,12 +171,12 @@ export const SetupScreen = ({mode, onDone}: SetupScreenProps) => {
                         alignItems: 'center',
                         justifyContent: 'center',
                         borderWidth: 3,
-                        borderColor: selected ? colors.onAccent : colors.border,
+                        borderColor: fg,
                       }}>
                       <Text
                         accessible={false}
                         style={{
-                          color: selected ? colors.onAccent : colors.text,
+                          color: fg,
                           fontSize: fs(32),
                           fontWeight: 'bold',
                         }}>
@@ -187,7 +186,7 @@ export const SetupScreen = ({mode, onDone}: SetupScreenProps) => {
                     <View style={{flex: 1}}>
                       <Text
                         style={{
-                          color: selected ? colors.onAccent : colors.text,
+                          color: fg,
                           fontSize: fs(38),
                           lineHeight: fs(46),
                           fontWeight: 'bold',
@@ -196,7 +195,7 @@ export const SetupScreen = ({mode, onDone}: SetupScreenProps) => {
                       </Text>
                       <Text
                         style={{
-                          color: selected ? colors.onAccent : colors.textMuted,
+                          color: fg,
                           fontSize: fs(26),
                           lineHeight: fs(34),
                         }}>
@@ -209,8 +208,8 @@ export const SetupScreen = ({mode, onDone}: SetupScreenProps) => {
                         height: sz(48),
                         borderRadius: 8,
                         borderWidth: 3,
-                        borderColor: selected ? colors.onAccent : colors.border,
-                        backgroundColor: selected ? colors.onAccent : 'transparent',
+                        borderColor: fg,
+                        backgroundColor: selected ? fg : 'transparent',
                         alignItems: 'center',
                         justifyContent: 'center',
                       }}>
@@ -218,7 +217,7 @@ export const SetupScreen = ({mode, onDone}: SetupScreenProps) => {
                         <Text
                           accessible={false}
                           style={{
-                            color: colors.accent,
+                            color: cs.bgSelected,
                             fontSize: fs(30),
                             fontWeight: 'bold',
                           }}>
@@ -227,7 +226,8 @@ export const SetupScreen = ({mode, onDone}: SetupScreenProps) => {
                       )}
                     </View>
                   </View>
-                )}
+                  );
+                }}
               </Focusable>
             );
           })}

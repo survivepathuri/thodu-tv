@@ -46,7 +46,7 @@ export const Focusable = ({
       onBlur={onBlur}
       onPress={onPress}
       testID={testID}
-      style={style}>
+      style={[style, focused && {transform: [{scale: 1.05}]}]}>
       {children(focused)}
       {/* Ring is an overlay outside the box, so it never changes layout. */}
       <View
@@ -59,7 +59,7 @@ export const Focusable = ({
           bottom: -theme.focusRingWidth,
           borderWidth: theme.focusRingWidth,
           borderRadius: 20 + theme.focusRingWidth,
-          borderColor: focused ? theme.colors.text : 'transparent',
+          borderColor: focused ? theme.colors.focusRing : 'transparent',
         }}
       />
     </Pressable>

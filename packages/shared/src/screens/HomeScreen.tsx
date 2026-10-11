@@ -1,6 +1,6 @@
 import React from 'react';
 import {ScrollView, Text, View} from 'react-native';
-import {StringKey} from '../core';
+import {StringKey, TileId} from '../core';
 import {Focusable} from '../components/Focusable';
 import {Screen} from '../components/Screen';
 import {useUI} from '../settings/useUI';
@@ -18,7 +18,7 @@ function chunk<T>(items: readonly T[], size: number): T[][] {
   return rows;
 }
 
-export type HomeTileId = 'watch' | 'family' | 'medicines' | 'help' | 'settings';
+export type HomeTileId = TileId;
 
 interface TileDef {
   id: HomeTileId;
@@ -36,8 +36,9 @@ const TILES: readonly TileDef[] = [
 ];
 
 export const HomeScreen = ({onOpen}: {onOpen: (id: HomeTileId) => void}) => {
-  const {t, colors, fs, sz, px, settings} = useUI();
-  const rows = chunk(TILES, columnsFor(settings.fontScale));
+  const {t, colors, theme, fs, sz, px, settings} = useUI();
+  const cols = columnsFor(settings.fontScale);
+  const rows = chunk(TILES, cols);
 
   return (
     <Screen>
@@ -52,7 +53,13 @@ export const HomeScreen = ({onOpen}: {onOpen: (id: HomeTileId) => void}) => {
         }}>
         {t('home.title')}
       </Text>
-      <ScrollView contentContainerStyle={{gap: px(32), padding: px(14)}}>
+      <ScrollView
+        contentContainerStyle={{
+          flexGrow: 1,
+          justifyContent: 'center',
+          gap: px(32),
+          padding: px(24),
+        }}>
         {rows.map((row, r) => (
           <View key={r} style={{flexDirection: 'row', gap: px(32)}}>
             {row.map(tile => {
@@ -65,22 +72,25 @@ export const HomeScreen = ({onOpen}: {onOpen: (id: HomeTileId) => void}) => {
                     preferred={tile.id === 'watch'}
                     onPress={() => onOpen(tile.id)}
                     testID={`tile-${tile.id}`}>
-                    {focused => (
+                    {focused => {
+                      const sw = colors.tile[tile.id];
+                      return (
                       <View
                         style={{
-                          height: sz(280),
+                          height: cols === 5 ? sz(420) : px(300),
                           borderRadius: 20,
                           alignItems: 'center',
                           justifyContent: 'center',
                           gap: px(8),
-                          backgroundColor: focused
-                            ? colors.surfaceFocused
-                            : colors.surface,
+                          backgroundColor:
+                            focused && theme.highContrast
+                              ? colors.surfaceFocused
+                              : sw.bg,
                         }}>
                         <Text
                           accessible={false}
                           style={{
-                            color: colors.accent,
+                            color: sw.glyph,
                             fontSize: fs(72),
                             lineHeight: fs(84),
                             fontWeight: 'bold',
@@ -89,7 +99,7 @@ export const HomeScreen = ({onOpen}: {onOpen: (id: HomeTileId) => void}) => {
                         </Text>
                         <Text
                           style={{
-                            color: colors.text,
+                            color: sw.fg,
                             fontSize: fs(48),
                             lineHeight: fs(58),
                             fontWeight: 'bold',
@@ -97,7 +107,8 @@ export const HomeScreen = ({onOpen}: {onOpen: (id: HomeTileId) => void}) => {
                           {label}
                         </Text>
                       </View>
-                    )}
+                      );
+                    }}
                   </Focusable>
                 </View>
               );
