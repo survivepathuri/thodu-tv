@@ -69,3 +69,6 @@ local.properties
 *.jks
 dist
 .DS_Store
+
+# Self-check tool output
+reports/
