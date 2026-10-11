@@ -39,14 +39,14 @@ The release APK is signed with the generated **debug keystore**. That is accepta
 
 ## Secrets and personal data scan (counts only, matched text never printed)
 
-Latest scan of the repository, 106 tracked files at HEAD and 20 commits of history:
+Scan of the repository taken just before this file was last updated (113 tracked files at HEAD, 24 commits of history; the email-like and topic-shaped counts move by a few as documents are added, so re-run the tool for exact current values):
 
 | Pattern | HEAD | History |
 |---|---|---|
 | AWS key, private key block, GitHub token, bearer token, generic secret assignment | 0 | 0 |
 | Absolute local path | 0 | 0 |
-| Email-like strings | 7 | 43 |
-| ntfy topic-shaped strings | 9 | 12 |
+| Email-like strings | 8 | 52 |
+| ntfy topic-shaped strings | 10 | 13 |
 
 The email-like matches are package specifiers such as `yarn@4.5.0`, lockfile entries and upstream contact addresses in the unchanged imported Amazon sample; we found no personal address in the tree. The topic-shaped matches are test fixtures and a documentation example (`thodu-abcd-efgh-ijkl` and similar), not real topics. Commit author identity metadata uses a GitHub no-reply address. Re-run it yourself with `node tools/security-check.mjs` (needs `ANDROID_HOME`).
 
