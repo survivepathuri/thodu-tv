@@ -5,7 +5,7 @@
       [
         "@react-native-tvos/config-tv",
         {
-          "androidTVBanner": "./assets/tv_icons/icon-400x240.png"
+          "androidTVBanner": "../../assets/branding/banner-1280x720.png"
         }
       ],
       "expo-router",
@@ -22,7 +22,8 @@
     ],
     "android": {
       "splash": {
-        "image": "./assets/images/splash.png"
+        "image": "../../assets/branding/splash-mark-1152.png",
+        "backgroundColor": "#FFF4DE"
       },
       "package": "com.thodu.tv",
       "permissions": [
@@ -41,6 +42,7 @@
       "typedRoutes": true
     },
     "name": "Thodu",
-    "slug": "thodu-tv"
+    "slug": "thodu-tv",
+    "icon": "../../assets/branding/icon-1024.png"
   }
 }

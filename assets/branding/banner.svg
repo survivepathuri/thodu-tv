@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+  <title>Thodu launcher banner</title>
+  <rect width="1280" height="720" fill="#FFF4DE"/>
+  <g transform="translate(70 130) scale(0.9)">
+  <path d="M66 370 A190 190 0 0 1 446 370 Z" fill="#FFB703"/>
+  <rect x="86" y="370" width="340" height="20" rx="10" fill="#1B1F3B"/>
+  <circle cx="200" cy="318" r="52" fill="#1B1F3B"/>
+  <circle cx="318" cy="336" r="34" fill="#1B1F3B"/>
+  </g>
+  <text x="580" y="330" font-family="Segoe UI, Roboto, Arial, sans-serif" font-weight="700" font-size="170" fill="#1B1F3B">Thodu</text>
+  <text x="586" y="450" font-family="Nirmala UI, Noto Sans Telugu, sans-serif" font-weight="700" font-size="100" fill="#2A2A8F">తోడు</text>
+  <text x="586" y="545" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="46" fill="#454A6B">The TV that adapts to you.</text>
+  <g>
+    <rect x="70" y="640" width="212" height="28" rx="14" fill="#7DB8FF"/>
+    <rect x="294" y="640" width="212" height="28" rx="14" fill="#FF9EC4"/>
+    <rect x="518" y="640" width="212" height="28" rx="14" fill="#7FD99A"/>
+    <rect x="742" y="640" width="212" height="28" rx="14" fill="#FFA95C"/>
+    <rect x="966" y="640" width="244" height="28" rx="14" fill="#C3A6FF"/>
+  </g>
+</svg>

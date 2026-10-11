@@ -157,6 +157,8 @@ Voice trigger through Alexa+ for people who cannot use a remote (not built).
 
 ## Credits and license
 
+The app icon, launcher banner and splash mark are original artwork made for Thodu (SVG sources in `assets/branding/`, rendered with `tools/make-branding.mjs`); no third-party logos or images are used.
+
 MIT, see [LICENSE](LICENSE). Thodu started from Amazon's [react-native-multi-tv-helloworld](https://github.com/AmazonAppDev/react-native-multi-tv-helloworld) sample (MIT-0); credits are in [NOTICE](NOTICE). Other docs: [SECURITY.md](SECURITY.md), [ACCESSIBILITY.md](ACCESSIBILITY.md), [JUDGES.md](JUDGES.md), [docs/FRICTION_LOG.md](docs/FRICTION_LOG.md).
 
 **Thodu is not an emergency service. In an emergency call your local emergency number.**
