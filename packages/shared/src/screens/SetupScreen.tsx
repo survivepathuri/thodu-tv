@@ -1,6 +1,13 @@
 import React from 'react';
 import {ScrollView, Text, View} from 'react-native';
-import {LANGS, Lang, Need, StringKey, missingSuggestions} from '../core';
+import {
+  LANGS,
+  Lang,
+  Need,
+  StringKey,
+  missingSuggestions,
+  translate,
+} from '../core';
 import {Focusable} from '../components/Focusable';
 import {Screen} from '../components/Screen';
 import {useSettings} from '../settings/SettingsProvider';
@@ -25,6 +32,7 @@ const NEED_GLYPH: Record<Need, string> = {
 
 const LANG_ACCESSIBLE_NAME: Record<Lang, string> = {
   en: 'English',
+  hi: 'हिन्दी',
   te: 'తెలుగు',
 };
 
@@ -127,7 +135,7 @@ export const SetupScreen = ({
             }}>
             {t('setup.language')}
           </Text>
-          <View style={{flexDirection: 'row', gap: px(20)}}>
+          <View style={{flexDirection: 'row', flexWrap: 'wrap', gap: px(16)}}>
             {LANGS.map(code => {
               const active = lang === code;
               return (
@@ -141,7 +149,7 @@ export const SetupScreen = ({
                   {() => (
                     <View
                       style={{
-                        minWidth: sz(150),
+                        minWidth: sz(120),
                         minHeight: sz(72),
                         paddingHorizontal: px(24),
                         alignItems: 'center',
@@ -155,7 +163,7 @@ export const SetupScreen = ({
                           fontSize: fs(32),
                           fontWeight: 'bold',
                         }}>
-                        {code === 'en' ? 'EN' : 'తెలుగు'}
+                        {translate(code, 'lang.name')}
                       </Text>
                     </View>
                   )}

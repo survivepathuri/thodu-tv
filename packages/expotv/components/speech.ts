@@ -1,7 +1,7 @@
 import * as Speech from 'expo-speech';
 import type { Lang } from '@thodu/shared';
 
-const LOCALE: Record<Lang, string> = { en: 'en-US', te: 'te-IN' };
+const LOCALE: Record<Lang, string> = { en: 'en-US', hi: 'hi-IN', te: 'te-IN' };
 
 let warned = false;
 

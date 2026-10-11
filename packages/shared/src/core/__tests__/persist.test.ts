@@ -10,7 +10,7 @@ const topic = 'thodu-abcd-efgh-ijkl';
 
 const full: PersistedState = {
   needs: ['lowVision', 'remoteDifficulty'],
-  lang: 'te',
+  lang: 'hi',
   scanIntervalMs: 2500,
   familyTopic: topic,
   notifyMode: 'real',
