@@ -86,9 +86,11 @@ Method: for each screen, \`adb shell uiautomator dump\`; every node of ${PKG} wi
 
 **Totals: ${totalI} interactive nodes, ${totalU} flagged.**
 
-| Screen | App nodes | Interactive | Flagged |
-|---|---|---|---|
-${results.map(r => `| ${r.name} | ${r.total} | ${r.interactive} | ${r.unlabeled.length} |`).join('\n')}
+Scrollable containers (ScrollView) are not counted as controls; their number is shown in the last column.
+
+| Screen | App nodes | Interactive | Flagged | Scroll containers (excluded) |
+|---|---|---|---|---|
+${results.map(r => `| ${r.name} | ${r.total} | ${r.interactive} | ${r.unlabeled.length} | ${r.scrollers} |`).join('\n')}
 
 ${results
   .map(
