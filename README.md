@@ -19,7 +19,7 @@ Many older viewers and viewers with disabilities find a TV remote, small text an
 - **Single-button scanning.** With "easier remote", the app highlights one item at a time (every 1.8 s by default) and a single OK press selects it, so the app can be used with one button.
 - **Large text and high contrast.** Text scale up to 1.6x, a black-and-yellow high-contrast theme, and a thick focus ring. The default "Sunrise" theme is colourful with one colour per tile.
 - **Read-aloud and screen-reader support.** With read-aloud on, focused items are spoken with Android text-to-speech; if a screen reader is on, the app announces through it instead and suggests needs ("Choose them for me") without applying anything by itself.
-- **Captions demo.** The Watch screen is a demo panel (no real video) with a looping caption bar.
+- **Captions demo.** With "easier to hear" chosen, the Watch screen is a demo panel (no real video) with a looping caption bar; without it, Watch is a placeholder screen.
 - **Visual alerts.** When "easier to hear" is chosen, the help confirmation shows a flashing "ALERT SENT" banner.
 - **English, Hindi, Telugu.** Language chips on the setup screen. Hindi and Telugu need review by native speakers (see Limitations).
 - **Persistence.** Needs, language, scanning speed and the family settings are saved on the device; the next launch goes straight to Home. "Reset Thodu" clears them.
@@ -34,7 +34,7 @@ From `packages/shared/src/core/adapt.ts` (tested in `adapt.test.ts`). Needs comb
 | Easier to see (low vision) | text scale 1.6x, high-contrast theme, focus ring width 10 (default 4), larger buttons |
 | Easier to hear (hard of hearing) | captions always on, visual alerts on |
 | Easier remote (remote difficulty) | single-button scanning on (1800 ms per item), larger buttons |
-| Easier to read (reading difficulty) | read-aloud on, simple language on, icons with labels on |
+| Easier to read (reading difficulty) | read-aloud on, simple language on, icons with labels on (the last two are saved as settings but no screen reads them yet; tiles always show an icon plus a label) |
 
 Nothing chosen = default settings (text 1.0x, ring 4, everything else off).
 
