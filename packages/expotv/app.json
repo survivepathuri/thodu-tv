@@ -14,10 +14,16 @@
         "expo-build-properties",
         {
           "android": {
-            "usesCleartextTraffic": false
+            "usesCleartextTraffic": false,
+            "buildArchs": [
+              "arm64-v8a",
+              "armeabi-v7a",
+              "x86"
+            ]
           }
         }
       ],
+      "./plugins/withLowMemoryGradle.js",
       "expo-web-browser"
     ],
     "android": {
