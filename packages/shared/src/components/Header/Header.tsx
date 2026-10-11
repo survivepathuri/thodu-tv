@@ -4,10 +4,8 @@ import {scaleFontSize, scaleWidth, scaleHeight} from '../../utils/scaling';
 import {HeaderLogo} from './HeaderLogo';
 
 const platformName = Platform.select({
-  ios: 'iOS',
   android: 'Android',
-  web: 'Web',
-  default: 'Vega',
+  default: 'Thodu',
 });
 
 export const Header = () => {
@@ -19,7 +17,7 @@ export const Header = () => {
           Select one of the options to start your development journey 🚀
         </Text>
       </View>
-      <HeaderLogo style={styles.vegaLogo} />
+      <HeaderLogo style={styles.logo} />
     </View>
   );
 };
@@ -42,7 +40,7 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: scaleFontSize(60),
   },
-  vegaLogo: {
+  logo: {
     width: scaleWidth(500),
     height: scaleHeight(350),
     marginLeft: scaleWidth(80),

@@ -7,14 +7,11 @@ package-lock.json
 .yarn/install-state.gz
 .npmrc
 
-# Vega build files
-packages/vega/buildinfo.json
+# Build output
 build/
 dist/
-*.vpkg
 *.bundle
 *.bundle.map
-*.hermes.bundle
 
 # Expo
 .expo/

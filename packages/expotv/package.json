@@ -1,22 +1,18 @@
 {
-  "name": "@multitv/expotv",
+  "name": "@thodu/expotv",
   "main": "expo-router/entry",
   "version": "1.0.0",
   "scripts": {
     "start": "EXPO_TV=1 expo start",
     "android": "EXPO_TV=1 expo run:android",
-    "ios": "EXPO_TV=1 expo run:ios",
-    "web": "expo start --web",
-    "reset-project": "./scripts/reset-project.js",
     "lint": "expo lint",
     "prebuild": "expo prebuild --clean",
-    "prebuild:tv": "EXPO_TV=1 expo prebuild --clean",
-    "deploy": "npx expo export -p web && npx eas-cli@latest deploy"
+    "prebuild:tv": "EXPO_TV=1 expo prebuild --clean"
   },
   "dependencies": {
     "@expo/log-box": "55.0.12",
     "@expo/vector-icons": "^15.0.2",
-    "@multitv/shared": "*",
+    "@thodu/shared": "*",
     "expo": "^55.0.0",
     "expo-build-properties": "~55.0.14",
     "expo-constants": "~55.0.16",

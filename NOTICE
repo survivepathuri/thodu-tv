@@ -1,0 +1,15 @@
+Thodu
+Copyright (c) 2026 survivepathuri, licensed under the MIT License (see LICENSE).
+
+This project started from the following third-party work:
+
+  react-native-multi-tv-helloworld
+  https://github.com/AmazonAppDev/react-native-multi-tv-helloworld
+  Imported at commit 4b9ebf86d697e06c4547084e98b51a7318976a75
+  Copyright 2025 Amazon.com, Inc. or its affiliates. All rights reserved.
+  License: MIT No Attribution (MIT-0). Credit is given here voluntarily.
+
+The imported sample itself includes code derived from the React Native Community
+Template (MIT). Its license text is kept in LICENSE-THIRD-PARTY.
+
+Dependencies installed through Yarn keep their own licenses.

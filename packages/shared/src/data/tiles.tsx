@@ -24,7 +24,7 @@ export const tiles: TileData[] = [
     label: 'Home',
     accessibilityLabel: 'Home',
     description:
-      'Welcome to Vega. Select one of the options below to start your journey.',
+      'Welcome to Thodu. Select one of the options below to start your journey.',
     icon: require('../assets/home.png'),
   },
   {
@@ -39,7 +39,7 @@ export const tiles: TileData[] = [
     label: 'Test &\nDebug',
     accessibilityLabel: 'Test and Debug',
     description:
-      "Press 'd' in the Metro terminal for the developer menu, or debug via Chrome Dev Tools in Vega Studio.",
+      "Press 'd' in the Metro terminal for the developer menu, or debug via Chrome Dev Tools in Android Studio.",
     icon: require('../assets/debug.png'),
   },
   {

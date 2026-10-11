@@ -8,7 +8,7 @@ export interface HeaderLogoProps {
 export const HeaderLogo = ({style}: HeaderLogoProps) => {
   return (
     <Image
-      source={require('../../assets/vega.png')}
+      source={require('../../assets/android.png')}
       style={style}
       resizeMode="contain"
     />

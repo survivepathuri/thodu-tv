@@ -6,8 +6,8 @@
     "lib": ["ES2020"],
     "jsx": "react-native",
     "paths": {
-      "react-native": ["../vega/node_modules/react-native"],
-      "react": ["../vega/node_modules/@types/react"]
+      "react-native": ["../expotv/node_modules/react-native"],
+      "react": ["../expotv/node_modules/@types/react"]
     },
     "strict": true,
     "esModuleInterop": true,

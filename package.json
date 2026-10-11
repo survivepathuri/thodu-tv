@@ -1,18 +1,12 @@
 {
-  "name": "@multitv/workspace",
+  "name": "@thodu/workspace",
   "version": "0.1.0",
-  "description": "Multi-TV Hello World - Monorepo for building TV apps across Vega, Expo TV, and mobile platforms",
+  "description": "Thodu - accessibility-first TV app for Fire TV / Android TV (Yarn workspaces monorepo)",
   "scripts": {
     "clean": "yarn workspaces foreach --all run clean ; rm -rf node_modules",
-    "vega:build": "yarn workspace @multitv/vega run build:debug",
-    "vega:vvd:mseries": "yarn workspace @multitv/vega run vvd:mseries",
-    "vega:vvd:intel": "yarn workspace @multitv/vega run vvd:intel",
-    "vega:firetv": "yarn workspace @multitv/vega run firetv",
-    "expotv": "yarn workspace @multitv/expotv",
-    "expotv:prebuild": "yarn workspace @multitv/expotv run prebuild:tv",
-    "expotv:android": "yarn workspace @multitv/expotv run android",
-    "expotv:ios": "yarn workspace @multitv/expotv run ios",
-    "expotv:web": "yarn workspace @multitv/expotv run web"
+    "expotv": "yarn workspace @thodu/expotv",
+    "expotv:prebuild": "yarn workspace @thodu/expotv run prebuild:tv",
+    "expotv:android": "yarn workspace @thodu/expotv run android"
   },
   "workspaces": {
     "packages": [

@@ -1,5 +1,5 @@
 {
-  "name": "@multitv/shared",
+  "name": "@thodu/shared",
   "version": "0.0.1",
   "description": "Shared app code",
   "main": "index.ts",
