@@ -34,31 +34,31 @@ export const SetupScreen = ({mode, onDone}: SetupScreenProps) => {
     <Screen>
       <View style={{flex: 1, flexDirection: 'row', gap: px(60)}}>
         {/* Left: title, live preview, language. Never scrolls away. */}
-        <View style={{width: '40%'}}>
+        <View style={{width: '35%'}}>
           <Text
             accessibilityRole="header"
             style={{
               color: colors.text,
-              fontSize: fs(58),
+              fontSize: fs(46),
               fontWeight: 'bold',
-              lineHeight: fs(70),
+              lineHeight: fs(56),
             }}>
             {t(isSetup ? 'setup.title' : 'settings.title')}
           </Text>
           <Text
             style={{
               color: colors.textMuted,
-              fontSize: fs(30),
-              lineHeight: fs(40),
-              marginTop: px(16),
+              fontSize: fs(26),
+              lineHeight: fs(34),
+              marginTop: px(8),
             }}>
             {t(isSetup ? 'setup.subtitle' : 'settings.subtitle')}
           </Text>
 
           <View
             style={{
-              marginTop: px(32),
-              padding: px(24),
+              marginTop: px(20),
+              padding: px(16),
               backgroundColor: colors.surface,
               borderWidth: 2,
               borderColor: colors.border,
@@ -76,8 +76,8 @@ export const SetupScreen = ({mode, onDone}: SetupScreenProps) => {
               testID="preview-sample"
               style={{
                 color: colors.text,
-                fontSize: fs(36),
-                lineHeight: fs(48),
+                fontSize: fs(32),
+                lineHeight: fs(42),
                 marginTop: px(8),
               }}>
               {t('setup.preview.sample')}
@@ -87,9 +87,9 @@ export const SetupScreen = ({mode, onDone}: SetupScreenProps) => {
           <Text
             style={{
               color: colors.textMuted,
-              fontSize: fs(24),
-              marginTop: px(32),
-              marginBottom: px(8),
+              fontSize: fs(22),
+              marginTop: px(20),
+              marginBottom: px(6),
             }}>
             {t('setup.language')}
           </Text>
@@ -108,7 +108,7 @@ export const SetupScreen = ({mode, onDone}: SetupScreenProps) => {
                     <View
                       style={{
                         minWidth: sz(150),
-                        minHeight: sz(80),
+                        minHeight: sz(72),
                         paddingHorizontal: px(24),
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -131,10 +131,11 @@ export const SetupScreen = ({mode, onDone}: SetupScreenProps) => {
           </View>
         </View>
 
-        {/* Right: needs, then the big button. Scrolls with focus. */}
+        {/* Right: needs scroll; the big button is a sticky footer. */}
+        <View style={{flex: 1}}>
         <ScrollView
           style={{flex: 1}}
-          contentContainerStyle={{gap: px(20), paddingBottom: px(20)}}>
+          contentContainerStyle={{gap: px(18), padding: px(12)}}>
           {ALL_NEEDS.map((need, i) => {
             const selected = needs.includes(need);
             const title = t(`need.${need}.title` as StringKey);
@@ -151,7 +152,7 @@ export const SetupScreen = ({mode, onDone}: SetupScreenProps) => {
                 {focused => (
                   <View
                     style={{
-                      minHeight: sz(150),
+                      minHeight: sz(120),
                       flexDirection: 'row',
                       alignItems: 'center',
                       gap: px(24),
@@ -230,7 +231,9 @@ export const SetupScreen = ({mode, onDone}: SetupScreenProps) => {
               </Focusable>
             );
           })}
+        </ScrollView>
 
+        <View style={{paddingTop: px(16)}}>
           <Focusable
             role="button"
             label={t(isSetup ? 'setup.continue' : 'settings.done')}
@@ -256,7 +259,8 @@ export const SetupScreen = ({mode, onDone}: SetupScreenProps) => {
               </View>
             )}
           </Focusable>
-        </ScrollView>
+        </View>
+        </View>
       </View>
     </Screen>
   );

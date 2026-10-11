@@ -5,6 +5,19 @@ import {Focusable} from '../components/Focusable';
 import {Screen} from '../components/Screen';
 import {useUI} from '../settings/useUI';
 
+/** Tiles per row: 5 across normally, 3+2 when text is enlarged. */
+export function columnsFor(fontScale: number): number {
+  return fontScale > 1.3 ? 3 : 5;
+}
+
+function chunk<T>(items: readonly T[], size: number): T[][] {
+  const rows: T[][] = [];
+  for (let i = 0; i < items.length; i += size) {
+    rows.push(items.slice(i, i + size));
+  }
+  return rows;
+}
+
 export type HomeTileId = 'watch' | 'family' | 'medicines' | 'help' | 'settings';
 
 interface TileDef {
@@ -23,7 +36,8 @@ const TILES: readonly TileDef[] = [
 ];
 
 export const HomeScreen = ({onOpen}: {onOpen: (id: HomeTileId) => void}) => {
-  const {t, colors, fs, sz, px} = useUI();
+  const {t, colors, fs, sz, px, settings} = useUI();
+  const rows = chunk(TILES, columnsFor(settings.fontScale));
 
   return (
     <Screen>
@@ -38,60 +52,58 @@ export const HomeScreen = ({onOpen}: {onOpen: (id: HomeTileId) => void}) => {
         }}>
         {t('home.title')}
       </Text>
-      <ScrollView
-        contentContainerStyle={{
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-          gap: px(32),
-          paddingBottom: px(20),
-        }}>
-        {TILES.map((tile, i) => {
-          const label = t(tile.labelKey);
-          return (
-            <Focusable
-              key={tile.id}
-              role="button"
-              label={label}
-              preferred={i === 0}
-              onPress={() => onOpen(tile.id)}
-              testID={`tile-${tile.id}`}>
-              {focused => (
-                <View
-                  style={{
-                    width: sz(400),
-                    height: sz(230),
-                    borderRadius: 20,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: px(8),
-                    backgroundColor: focused
-                      ? colors.surfaceFocused
-                      : colors.surface,
-                  }}>
-                  <Text
-                    accessible={false}
-                    style={{
-                      color: colors.accent,
-                      fontSize: fs(72),
-                      lineHeight: fs(84),
-                      fontWeight: 'bold',
-                    }}>
-                    {tile.glyph}
-                  </Text>
-                  <Text
-                    style={{
-                      color: colors.text,
-                      fontSize: fs(52),
-                      lineHeight: fs(62),
-                      fontWeight: 'bold',
-                    }}>
-                    {label}
-                  </Text>
+      <ScrollView contentContainerStyle={{gap: px(32), padding: px(14)}}>
+        {rows.map((row, r) => (
+          <View key={r} style={{flexDirection: 'row', gap: px(32)}}>
+            {row.map(tile => {
+              const label = t(tile.labelKey);
+              return (
+                <View key={tile.id} style={{flex: 1}}>
+                  <Focusable
+                    role="button"
+                    label={label}
+                    preferred={tile.id === 'watch'}
+                    onPress={() => onOpen(tile.id)}
+                    testID={`tile-${tile.id}`}>
+                    {focused => (
+                      <View
+                        style={{
+                          height: sz(280),
+                          borderRadius: 20,
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          gap: px(8),
+                          backgroundColor: focused
+                            ? colors.surfaceFocused
+                            : colors.surface,
+                        }}>
+                        <Text
+                          accessible={false}
+                          style={{
+                            color: colors.accent,
+                            fontSize: fs(72),
+                            lineHeight: fs(84),
+                            fontWeight: 'bold',
+                          }}>
+                          {tile.glyph}
+                        </Text>
+                        <Text
+                          style={{
+                            color: colors.text,
+                            fontSize: fs(48),
+                            lineHeight: fs(58),
+                            fontWeight: 'bold',
+                          }}>
+                          {label}
+                        </Text>
+                      </View>
+                    )}
+                  </Focusable>
                 </View>
-              )}
-            </Focusable>
-          );
-        })}
+              );
+            })}
+          </View>
+        ))}
       </ScrollView>
     </Screen>
   );
