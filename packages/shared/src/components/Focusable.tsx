@@ -1,6 +1,7 @@
 import React, {useCallback, useEffect, useId, useRef, useState} from 'react';
 import {Pressable, StyleProp, View, ViewStyle} from 'react-native';
 import {useScan} from '../scan/ScanScope';
+import {useSpeak} from '../speech/SpeechContext';
 import {useSettings} from '../settings/SettingsProvider';
 
 export interface FocusableProps {
@@ -31,7 +32,8 @@ export const Focusable = ({
   style,
   children,
 }: FocusableProps) => {
-  const {theme} = useSettings();
+  const {theme, settings, lang} = useSettings();
+  const speak = useSpeak();
   const [padFocused, setFocused] = useState(false);
   const id = useId();
   const {scanning, highlightId, register} = useScan();
@@ -46,6 +48,14 @@ export const Focusable = ({
 
   // D-pad focus and scanner highlight look identical (same ring, same scale).
   const focused = padFocused || highlightId === id;
+
+  // Read aloud: speak the accessible label whenever this item gains focus or
+  // is highlighted by the scanner.
+  useEffect(() => {
+    if (focused && settings.readAloud) {
+      speak(label, lang);
+    }
+  }, [focused, settings.readAloud, label, lang, speak]);
   const onFocus = useCallback(() => setFocused(true), []);
   const onBlur = useCallback(() => setFocused(false), []);
 

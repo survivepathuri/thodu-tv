@@ -15,3 +15,6 @@ export {
 } from './src/utils/scaling';
 export {ScanScope, useScan} from './src/scan/ScanScope';
 export {HelpConfirmScreen, HelpSentScreen, FamilyScreen} from './src/screens/HelpFlow';
+export {WatchDemoScreen} from './src/screens/WatchDemo';
+export {SpeechProvider, useSpeak} from './src/speech/SpeechContext';
+export type {SpeakFn} from './src/speech/SpeechContext';

@@ -1,4 +1,5 @@
-import { SettingsProvider, useSettings } from '@thodu/shared';
+import { SettingsProvider, SpeechProvider, useSettings } from '@thodu/shared';
+import { speak } from '@/components/speech';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
@@ -51,7 +52,9 @@ export default function RootLayout() {
 
   return (
     <SettingsProvider>
-      <ThemedStack />
+      <SpeechProvider speak={speak}>
+        <ThemedStack />
+      </SpeechProvider>
     </SettingsProvider>
   );
 }
