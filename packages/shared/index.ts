@@ -14,7 +14,15 @@ export {
   scaleHeight,
 } from './src/utils/scaling';
 export {ScanScope, useScan} from './src/scan/ScanScope';
-export {HelpConfirmScreen, HelpSentScreen, FamilyScreen, ResetConfirmScreen} from './src/screens/HelpFlow';
+export {
+  HelpConfirmScreen,
+  HelpSendingScreen,
+  HelpSentScreen,
+  HelpFailedScreen,
+  FamilyScreen,
+  ResetConfirmScreen,
+} from './src/screens/HelpFlow';
+export {FamilySettingsScreen} from './src/screens/FamilySettings';
 export {WatchDemoScreen} from './src/screens/WatchDemo';
 export {SpeechProvider, useSpeak} from './src/speech/SpeechContext';
 export type {SpeakFn} from './src/speech/SpeechContext';

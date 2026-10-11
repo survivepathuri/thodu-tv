@@ -16,3 +16,4 @@ export * from './captions';
 export * from './persist';
 export * from './a11y';
 export * from './speech';
+export * from './notify';

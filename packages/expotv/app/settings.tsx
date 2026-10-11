@@ -9,6 +9,7 @@ export default function Settings() {
       <SetupScreen
         mode="settings"
         onDone={() => router.back()}
+        onOpenFamily={() => router.push('/family-settings')}
         onReset={() => router.push('/reset')}
       />
     </Scoped>

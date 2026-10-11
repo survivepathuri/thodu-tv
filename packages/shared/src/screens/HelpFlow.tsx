@@ -28,11 +28,25 @@ const DemoTag = ({text}: {text: string}) => {
   );
 };
 
-/** One question, two big buttons. */
+/** Plain, always-visible reminder that Thodu cannot call emergency services. */
+export const EmergencyNote = () => {
+  const {t, colors, fs} = useUI();
+  return (
+    <Text
+      testID="emergency-note"
+      style={{color: colors.textMuted, fontSize: fs(28), lineHeight: fs(38)}}>
+      {t('help.emergency')}
+    </Text>
+  );
+};
+
+/** One question, two big buttons. `real` = a real message will be sent. */
 export const HelpConfirmScreen = ({
+  real,
   onConfirm,
   onCancel,
 }: {
+  real: boolean;
   onConfirm: () => void;
   onCancel: () => void;
 }) => {
@@ -56,7 +70,7 @@ export const HelpConfirmScreen = ({
             fontSize: fs(40),
             lineHeight: fs(52),
           }}>
-          {t('help.confirm.body')}
+          {t(real ? 'help.confirm.body.real' : 'help.confirm.body')}
         </Text>
         <View style={{flexDirection: 'row', gap: px(40)}}>
           <ActionButton
@@ -72,13 +86,99 @@ export const HelpConfirmScreen = ({
             testID="help-confirm-no"
           />
         </View>
+        <EmergencyNote />
       </View>
     </Screen>
   );
 };
 
-/** Success state. With visualAlerts, a flashing high-contrast banner (about 1 Hz). */
-export const HelpSentScreen = ({onDone}: {onDone: () => void}) => {
+/** Shown while the message is on its way (up to ~17 s with the retry). */
+export const HelpSendingScreen = () => {
+  const {t, colors, fs, px} = useUI();
+  return (
+    <Screen>
+      <View style={{flex: 1, justifyContent: 'center', gap: px(28)}}>
+        <Text
+          testID="help-sending"
+          accessibilityLiveRegion="polite"
+          style={{
+            color: colors.text,
+            fontSize: fs(76),
+            lineHeight: fs(90),
+            fontWeight: 'bold',
+          }}>
+          {t('help.sending')}
+        </Text>
+        <EmergencyNote />
+      </View>
+    </Screen>
+  );
+};
+
+/** Failure state: loud, plain, and it never looks like success. */
+export const HelpFailedScreen = ({
+  onRetry,
+  onDone,
+}: {
+  onRetry: () => void;
+  onDone: () => void;
+}) => {
+  const {t, colors, fs, px} = useUI();
+  return (
+    <Screen>
+      <View style={{flex: 1, justifyContent: 'center', gap: px(32)}}>
+        <Text
+          testID="help-failed-title"
+          accessibilityRole="header"
+          accessibilityLiveRegion="assertive"
+          style={{
+            color: colors.text,
+            fontSize: fs(80),
+            lineHeight: fs(94),
+            fontWeight: 'bold',
+          }}>
+          {t('help.failed.title')}
+        </Text>
+        <Text
+          style={{
+            color: colors.text,
+            fontSize: fs(64),
+            lineHeight: fs(76),
+            fontWeight: 'bold',
+          }}>
+          {t('help.failed.body')}
+        </Text>
+        <View style={{flexDirection: 'row', gap: px(40)}}>
+          <ActionButton
+            primary
+            preferred
+            label={t('help.failed.retry')}
+            onPress={onRetry}
+            testID="help-failed-retry"
+          />
+          <ActionButton
+            label={t('settings.done')}
+            onPress={onDone}
+            testID="help-failed-done"
+          />
+        </View>
+        <EmergencyNote />
+      </View>
+    </Screen>
+  );
+};
+
+/**
+ * Success state. With visualAlerts, a flashing high-contrast banner (about
+ * 1 Hz). `demo` = nothing was sent; the screen says so.
+ */
+export const HelpSentScreen = ({
+  demo,
+  onDone,
+}: {
+  demo: boolean;
+  onDone: () => void;
+}) => {
   const {t, colors, fs, px, settings} = useUI();
   const [flash, setFlash] = useState(false);
 
@@ -115,7 +215,7 @@ export const HelpSentScreen = ({onDone}: {onDone: () => void}) => {
             </Text>
           </View>
         )}
-        <DemoTag text={t('demo.label')} />
+        {demo && <DemoTag text={t('demo.label')} />}
         <Text
           accessibilityRole="header"
           style={{
@@ -124,7 +224,7 @@ export const HelpSentScreen = ({onDone}: {onDone: () => void}) => {
             lineHeight: fs(90),
             fontWeight: 'bold',
           }}>
-          {t('help.sent.title')}
+          {t(demo ? 'help.sent.title' : 'help.sent.real.title')}
         </Text>
         <Text
           style={{
@@ -143,6 +243,7 @@ export const HelpSentScreen = ({onDone}: {onDone: () => void}) => {
             testID="help-sent-done"
           />
         </View>
+        <EmergencyNote />
       </View>
     </Screen>
   );
@@ -153,7 +254,13 @@ export const FamilyScreen = ({onBack}: {onBack: () => void}) => {
   const {t, colors, fs, px} = useUI();
   const {helpEvents} = useSettings();
   const recent = recentHelpEvents(helpEvents, 5);
-  const latest = recent[0];
+  // The simulated phone only ever shows simulated (demo) requests.
+  const latest = recent.find(e => e.result === 'demo');
+  const eventKey = {
+    sent: 'family.event',
+    failed: 'family.event.failed',
+    demo: 'family.event.demo',
+  } as const;
 
   return (
     <Screen>
@@ -193,7 +300,7 @@ export const FamilyScreen = ({onBack}: {onBack: () => void}) => {
                 {formatClock(e.at)}
               </Text>
               <Text style={{color: colors.tile.family.fg, fontSize: fs(34)}}>
-                {t('family.event')}
+                {t(eventKey[e.result])}
               </Text>
             </View>
           ))}

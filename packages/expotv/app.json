@@ -14,7 +14,7 @@
         "expo-build-properties",
         {
           "android": {
-            "usesCleartextTraffic": true
+            "usesCleartextTraffic": false
           }
         }
       ],
@@ -24,7 +24,16 @@
       "splash": {
         "image": "./assets/images/splash.png"
       },
-      "package": "com.thodu.tv"
+      "package": "com.thodu.tv",
+      "permissions": [
+        "INTERNET"
+      ],
+      "blockedPermissions": [
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.SYSTEM_ALERT_WINDOW",
+        "android.permission.VIBRATE"
+      ]
     },
     "experiments": {
       "autolinkingModuleResolution": true,

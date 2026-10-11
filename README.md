@@ -12,6 +12,12 @@ Layout: a Yarn 4 workspaces monorepo.
 - `packages/expotv` - the Expo TV app (Expo SDK 55, react-native-tvos 0.83)
 - `packages/shared` - shared screens, components and data
 
+## Family notifications
+
+"Tell my family" can send one short, generic message ("Help was requested from the TV at 18:42") through the free [ntfy](https://ntfy.sh) service. There is no Thodu backend. The TV makes a random private name (a topic such as `thodu-abcd-efgh-ijkl`); the family phone installs the ntfy app and subscribes to it. Anyone who knows the name can read the messages, so it is shown only on the TV. The app only claims success after ntfy answers with an HTTP 2xx; otherwise it says it could not reach the family. Until a test message has succeeded, the Help button is a clearly labelled demo.
+
+**Thodu is not an emergency service. In an emergency call your local emergency number.**
+
 ## Build & run
 
 These are the steps that worked for us on the Android TV emulator (Windows).
