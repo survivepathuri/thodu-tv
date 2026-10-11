@@ -140,7 +140,11 @@ ${sevTable('All dependencies (includes build and test tooling)', a)}
 
 ${sevTable('Production dependencies only (--environment production)', aProd)}
 
-An audit lists known advisories for resolved package versions. It does not say whether the vulnerable code is reachable from this app.
+${
+  a.total !== undefined && a.total === aProd.total
+    ? 'The production-only run returned the same count as the full run, so this filter did not separate build tooling from runtime code here (React Native and Expo list many build tools as normal dependencies).\n\n'
+    : ''
+}An audit lists known advisories for resolved package versions. It does not say whether the vulnerable code is reachable from this app.
 
 ## (c) Permissions in the release APK manifest
 
