@@ -118,7 +118,6 @@ export const ScanScope = ({
       const id = highlighted(scannerRef.current);
       const entry = entries.current.find(e => e.id === id);
       if (entry) {
-        console.log('[scan] select', entry.label);
         entry.onPress();
       }
     },
@@ -130,8 +129,10 @@ export const ScanScope = ({
   useEffect(() => {
     if (hid !== null) {
       const e = entries.current.find(x => x.id === hid);
-      // Local diagnostics only (read with adb logcat); nothing leaves the device.
-      console.log('[scan] highlight', e ? e.label : hid);
+      // Debug builds only: release builds log nothing.
+      if (__DEV__) {
+        console.log('[scan] highlight', e ? e.label : hid);
+      }
     }
   }, [hid]);
 

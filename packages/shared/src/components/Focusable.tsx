@@ -1,5 +1,12 @@
 import React, {useCallback, useEffect, useId, useRef, useState} from 'react';
-import {Pressable, StyleProp, View, ViewStyle} from 'react-native';
+import {
+  AccessibilityInfo,
+  Pressable,
+  StyleProp,
+  View,
+  ViewStyle,
+} from 'react-native';
+import {chooseSpeechRoute} from '../core';
 import {useScan} from '../scan/ScanScope';
 import {useSpeak} from '../speech/SpeechContext';
 import {useSettings} from '../settings/SettingsProvider';
@@ -32,7 +39,7 @@ export const Focusable = ({
   style,
   children,
 }: FocusableProps) => {
-  const {theme, settings, lang} = useSettings();
+  const {theme, settings, lang, screenReaderOn} = useSettings();
   const speak = useSpeak();
   const [padFocused, setFocused] = useState(false);
   const id = useId();
@@ -49,13 +56,22 @@ export const Focusable = ({
   // D-pad focus and scanner highlight look identical (same ring, same scale).
   const focused = padFocused || highlightId === id;
 
-  // Read aloud: speak the accessible label whenever this item gains focus or
-  // is highlighted by the scanner.
+  // Read aloud whenever this item gains focus or is highlighted by the
+  // scanner: through the screen reader if one is running, else our own TTS.
+  const route = chooseSpeechRoute({
+    screenReaderOn,
+    readAloud: settings.readAloud,
+  });
   useEffect(() => {
-    if (focused && settings.readAloud) {
+    if (!focused) {
+      return;
+    }
+    if (route === 'announce') {
+      AccessibilityInfo.announceForAccessibility(label);
+    } else if (route === 'tts') {
       speak(label, lang);
     }
-  }, [focused, settings.readAloud, label, lang, speak]);
+  }, [focused, route, label, lang, speak]);
   const onFocus = useCallback(() => setFocused(true), []);
   const onBlur = useCallback(() => setFocused(false), []);
 

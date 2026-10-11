@@ -51,7 +51,9 @@ export default function RootLayout() {
   useEffect(() => {
     if (loaded || error) {
       if (error) {
-        console.warn(`Error in loading fonts: ${error}`);
+        if (__DEV__) {
+          console.warn(`Error in loading fonts: ${error}`);
+        }
       }
     }
   }, [loaded, error]);

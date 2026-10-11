@@ -64,6 +64,8 @@ export const en = {
   'reset.body': 'This erases your choices and starts again from the beginning.',
   'reset.yes': 'Yes, reset',
   'reset.no': 'No, keep my choices',
+  'a11y.suggest.body': 'A screen reader is on. We suggest Easier to see and Easier to read.',
+  'a11y.suggest.apply': 'Choose them for me',
 } as const;
 
 export type StringKey = keyof typeof en;

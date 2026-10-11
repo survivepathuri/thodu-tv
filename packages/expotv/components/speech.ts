@@ -18,14 +18,18 @@ export function speak(text: string, lang: Lang): void {
       onError: (e) => {
         if (!warned) {
           warned = true;
-          console.log('[speech] engine error', String(e));
+          if (__DEV__) {
+            console.log('[speech] engine error', String(e));
+          }
         }
       },
     });
   } catch (e) {
     if (!warned) {
       warned = true;
-      console.log('[speech] unavailable', String(e));
+      if (__DEV__) {
+        console.log('[speech] unavailable', String(e));
+      }
     }
   }
 }

@@ -7,12 +7,14 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import {AccessibilityInfo, useWindowDimensions} from 'react-native';
 import {
   addHelpEvent,
   buildTheme,
   defaultPersisted,
   deriveSettings,
   deserialize,
+  effectiveFontScale,
   serialize,
   translate,
   Lang,
@@ -36,6 +38,10 @@ export interface FamilyState {
 export interface SettingsContextValue {
   /** False until the saved state has been read (first paint waits for it). */
   ready: boolean;
+  /** True while VoiceView / TalkBack is running. */
+  screenReaderOn: boolean;
+  /** The OS font scale (1 = default). Already applied to settings.fontScale. */
+  systemFontScale: number;
   needs: Need[];
   settings: Settings;
   theme: Theme;
@@ -68,6 +74,22 @@ export const SettingsProvider = ({
   const [saved, setSaved] = useState<PersistedState>(defaultPersisted);
   const [helpEvents, setHelpEvents] = useState<HelpEvent[]>([]);
   const helpSeq = useRef(0);
+  const [screenReaderOn, setScreenReaderOn] = useState(false);
+  const systemFontScale = useWindowDimensions().fontScale || 1;
+
+  useEffect(() => {
+    let alive = true;
+    AccessibilityInfo.isScreenReaderEnabled()
+      .then(on => alive && setScreenReaderOn(on))
+      .catch(() => {});
+    const sub = AccessibilityInfo.addEventListener('screenReaderChanged', on =>
+      setScreenReaderOn(on),
+    );
+    return () => {
+      alive = false;
+      sub.remove();
+    };
+  }, []);
 
   // Load once. A failing store behaves like an empty one.
   useEffect(() => {
@@ -137,13 +159,14 @@ export const SettingsProvider = ({
     setSaved(defaultPersisted());
   }, [storage]);
 
-  const settings = useMemo(
-    () => ({
-      ...deriveSettings(saved.needs),
+  const settings = useMemo(() => {
+    const derived = deriveSettings(saved.needs);
+    return {
+      ...derived,
+      fontScale: effectiveFontScale(derived.fontScale, systemFontScale),
       scanIntervalMs: saved.scanIntervalMs,
-    }),
-    [saved.needs, saved.scanIntervalMs],
-  );
+    };
+  }, [saved.needs, saved.scanIntervalMs, systemFontScale]);
   const theme = useMemo(() => buildTheme(settings), [settings]);
   const lang = saved.lang;
   const t = useCallback((key: StringKey) => translate(lang, key), [lang]);
@@ -159,6 +182,8 @@ export const SettingsProvider = ({
   const value = useMemo(
     () => ({
       ready,
+      screenReaderOn,
+      systemFontScale,
       needs: saved.needs,
       settings,
       theme,
@@ -177,6 +202,8 @@ export const SettingsProvider = ({
     }),
     [
       ready,
+      screenReaderOn,
+      systemFontScale,
       saved.needs,
       saved.setupDone,
       settings,

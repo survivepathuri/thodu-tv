@@ -1,6 +1,6 @@
 import React from 'react';
 import {ScrollView, Text, View} from 'react-native';
-import {LANGS, Lang, Need, StringKey} from '../core';
+import {LANGS, Lang, Need, StringKey, missingSuggestions} from '../core';
 import {Focusable} from '../components/Focusable';
 import {Screen} from '../components/Screen';
 import {useSettings} from '../settings/SettingsProvider';
@@ -50,10 +50,19 @@ export const SetupScreen = ({
   onOpenFamily,
   onReset,
 }: SetupScreenProps) => {
-  const {needs, toggleNeed, lang, setLang, settings, setScanInterval} =
-    useSettings();
+  const {
+    needs,
+    toggleNeed,
+    lang,
+    setLang,
+    settings,
+    setScanInterval,
+    screenReaderOn,
+  } = useSettings();
   const {t, colors, fs, sz, px, theme} = useUI();
   const isSetup = mode === 'setup';
+  // Suggest only: nothing changes until the person presses the button.
+  const suggestion = missingSuggestions(screenReaderOn, needs);
 
   return (
     <Screen>
@@ -161,6 +170,27 @@ export const SetupScreen = ({
         <ScrollView
           style={{flex: 1}}
           contentContainerStyle={{gap: px(18), padding: px(20)}}>
+          {isSetup && suggestion.length > 0 && (
+            <View
+              testID="screen-reader-suggestion"
+              style={{
+                gap: px(12),
+                padding: px(20),
+                borderRadius: 20,
+                borderWidth: 3,
+                borderColor: colors.border,
+                backgroundColor: colors.surface,
+              }}>
+              <Text style={{color: colors.text, fontSize: fs(30), lineHeight: fs(40)}}>
+                {t('a11y.suggest.body')}
+              </Text>
+              <SettingsRow
+                label={t('a11y.suggest.apply')}
+                onPress={() => suggestion.forEach(toggleNeed)}
+                testID="suggest-apply"
+              />
+            </View>
+          )}
           {SETUP_ORDER.map((need, i) => {
             const selected = needs.includes(need);
             const title = t(`need.${need}.title` as StringKey);
