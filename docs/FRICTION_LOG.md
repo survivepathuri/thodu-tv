@@ -214,7 +214,7 @@
 - Task attempted: Set `org.gradle.java.home` to the JDK 17 folder on Windows.
 - Steps taken:
   1. Wrote the path with single backslashes in gradle.properties (an edit was refused earlier because the file had not been read first).
-  2. Gradle failed immediately; Java properties parsed the path as `D:Androidjdk17`.
+  2. Gradle failed immediately; Java properties parsed the path as `<jdk17>` without its backslashes.
   3. Rewrote the path with escaped backslashes.
 - Expected: Gradle starts with the JDK 17.
 - Actual: Gradle failed at startup on the invalid java home (exact text not recorded; the log was overwritten).

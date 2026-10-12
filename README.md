@@ -124,8 +124,8 @@ corepack yarn expotv:prebuild
 
 # 3. release build (JS bundle is embedded, no Metro needed)
 #    Point JAVA_HOME at JDK 17 and ANDROID_HOME at the Android SDK first, for example in Git Bash:
-export JAVA_HOME='D:\Android\jdk17'
-export ANDROID_HOME='D:\Android\sdk'
+export JAVA_HOME='<folder of JDK 17>'
+export ANDROID_HOME='<folder of the Android SDK>'
 cd packages/expotv/android
 ./gradlew assembleRelease
 #    Result: app/build/outputs/apk/release/app-release.apk (universal APK, about 68 MB)
