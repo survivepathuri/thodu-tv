@@ -1,8 +1,8 @@
 # Thodu friction log (structured)
 
 **Environment:** Windows 11 Pro (build 22621), solo developer, Fire TV track, React Native + Expo (react-native-tvos), Android TV emulator (Android 14 TV image, x86) with the SDK, AVD and JDK 17 on the D: drive.
-**Date range:** 2026-10-11 to 2026-10-12 (F-001 to F-018 on 2026-10-11; F-019 to F-030 on 2026-10-12).
-**Honesty note:** all 30 entries are real and unedited in substance; they were reformatted from our append-only working log. Where a detail was not recorded at the time, this document says "not recorded" instead of reconstructing it. F-019 and F-020 keep their original corrections.
+**Date range:** 2026-10-11 to 2026-10-12 (F-001 to F-018 on 2026-10-11; F-019 to F-033 on 2026-10-12).
+**Honesty note:** all 33 entries are real and unedited in substance; they were reformatted from our append-only working log. Where a detail was not recorded at the time, this document says "not recorded" instead of reconstructing it. F-019 and F-020 keep their original corrections.
 
 **Severity (our own rating, not Amazon's):** Blocker = stopped progress for more than 1 hour or forced a different approach (tool, version, or source); Major = cost 20-60 minutes; Minor = under 20 minutes or cosmetic. If time lost was not recorded, severity is "not recorded". Time lost values are the estimates written in the log at the time ("~" = approximate).
 
@@ -42,6 +42,9 @@
 | F-028 | Android TV emulator (Ethernet-only image), adb | Major | ~20 min |
 | F-029 | Android 14 font scaling, React Native Text | Minor | ~8 min plus build #2 (1m 11s) |
 | F-030 | Android deep links (am start) with expo-router | Minor | ~5 min |
+| F-031 | Yarn 4 via packageManager (no global yarn) | Minor | ~3 min |
+| F-032 | Gradle SDK location check on a clean clone | Minor | ~5 min |
+| F-033 | Gradle multi-ABI native build, network drop | Major | ~28 min |
 
 ## Entries
 
@@ -448,6 +451,43 @@
 - Severity (our rating): Minor   (time lost: ~5 min)
 - Workaround used: Force-stop and relaunch before each deep link.
 - Actionable suggestion: In expo-router deep-link testing docs, note that opening a route already on the stack keeps its state and recommend a force-stop before testing.
+
+### F-031 — `packageManager` names Yarn 4 but `yarn` is not on the PATH   [Dev]
+- Tool / SDK: Yarn 4 (Berry) with Node.js 24 and Corepack
+- Task attempted: Follow the README on a fresh clone: `yarn workspaces focus @thodu/expotv`.
+- Steps taken:
+  1. Ran `yarn --version` on a machine with Node 24: "command not found".
+  2. Found Corepack present (`corepack --version`) and ran the same command as `corepack yarn ...`, which fetched Yarn 4.5.0 from the `packageManager` field.
+- Expected: The repository's declared package manager runs without extra setup.
+- Actual: Command not found; the error gave no hint that Corepack exists.
+- Severity (our rating): Minor   (time lost: ~3 min)
+- Workaround used: Prefix every Yarn command with `corepack yarn`; README updated.
+- Actionable suggestion: In the Expo/Yarn setup docs, state that Corepack must be enabled (or commands prefixed with `corepack`) when a project pins Yarn 4 through `packageManager`.
+
+### F-032 — Android Gradle build finds out about the missing SDK only after minutes of work   [Dev]
+- Tool / SDK: Gradle 9.0.0, Android Gradle plugin, Expo prebuild
+- Task attempted: First release build on a fresh clone with only JAVA_HOME set.
+- Steps taken:
+  1. Ran `./gradlew assembleRelease` (the Gradle distribution was downloaded first).
+  2. After 4 min 49 s, with 28 tasks executed, it failed: "SDK location not found. Define a valid SDK location with an ANDROID_HOME environment variable".
+  3. Set ANDROID_HOME to the SDK folder and ran it again.
+- Expected: The SDK location is checked at the start, or `expo prebuild` warns about it.
+- Actual: The error appeared only during project configuration, after the Gradle download and 28 tasks.
+- Severity (our rating): Minor   (time lost: ~5 min)
+- Workaround used: Set ANDROID_HOME before building; README now says so.
+- Actionable suggestion: In the React Native / Expo Android setup docs, list ANDROID_HOME next to JAVA_HOME as a required environment variable for command-line builds, and have `expo prebuild` warn when it is missing.
+
+### F-033 — One dropped connection failed a 27-minute multi-ABI native build   [Dev]
+- Tool / SDK: Gradle 9.0.0 with CMake and prefab (react-native-gesture-handler)
+- Task attempted: Release build for arm64-v8a, armeabi-v7a and x86 on a low-memory PC.
+- Steps taken:
+  1. The build failed after 27 min 30 s at `:react-native-gesture-handler:configureCMakeRelWithDebInfo[arm64-v8a]`: it could not download core-ktx-1.16.0.aar ("Network is unreachable").
+  2. Checked that the same host was reachable again, then re-ran the same command; Gradle reused finished tasks and the build succeeded in 13 min 50 s.
+- Expected: Dependencies are resolved before the long native compilation, or the download is retried.
+- Actual: A dependency first needed during the native configure step was fetched late, and one transient failure ended the build.
+- Severity (our rating): Major   (time lost: ~28 min)
+- Workaround used: Re-ran the build after confirming the network.
+- Actionable suggestion: In the React Native Android build docs, suggest warming the dependency cache (for example `./gradlew dependencies`) before the first long build on an unreliable network, and note that re-running resumes from cached tasks.
 
 ## Top 5 suggestions for Amazon
 

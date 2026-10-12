@@ -65,6 +65,7 @@ All screenshots are from an Android TV **emulator** (Android 14, 1920x1080).
 | Read-aloud speech | English voice observed on the emulator; Hindi and Telugu voices **not verified** |
 | Hindi and Telugu text | Written by the developer; **need native-speaker review** |
 | Real Fire TV hardware | **Not tested** (emulator only) |
+| Universal APK (arm64-v8a, armeabi-v7a, x86) | Built from a fresh clone; native libraries for all three ABIs verified present in the APK; installed and run on the x86 emulator only, **not yet run on an ARM device** |
 | Medicines screen | Placeholder only |
 
 ## Claims and evidence
@@ -103,33 +104,46 @@ Tools: `tools/cold-start.mjs`, `tools/a11y-audit.mjs`, `tools/security-check.mjs
 
 ## Setup and run on Windows
 
-These are the steps that worked for us. Prerequisites and the versions we used:
+These steps were followed from a fresh clone (see the clean-clone note at the end of this section). Prerequisites and the versions we used:
 
-- Windows 11, Node.js 24, Yarn 4.5.0 (we ran it through `npx @yarnpkg/cli-dist@4.5.0`)
+- Windows 11, Node.js 24 (it includes Corepack). Yarn 4.5.0 is pinned in `package.json`; there is no global `yarn` on a fresh machine, so every command below is run as `corepack yarn ...`.
 - **JDK 17** (Eclipse Temurin 17). Android Studio's bundled JDK 25 failed in the Android Gradle plugin prefab step.
-- Android SDK with an Android TV system image (we used API 34, x86, from an Android Studio install)
+- Android SDK with platform 36, NDK 27.1.12297006 and CMake 3.22.1 installed (the versions our SDK had; we did not test a machine without them, where Gradle may try to download them and needs the SDK licences accepted). For the emulator we used an Android TV system image (API 34, x86).
 - Expo SDK 55, react-native-tvos 0.83.6-0, Gradle 9.0.0 (downloaded by the build)
-- **A short repo path** (about 15 characters or fewer). Longer paths made the native build fail with "Filename longer than 260 characters", even with Windows long paths enabled.
+- **A short repo path** (about 15 characters or fewer, for example `D:\t`). Longer paths made the native build fail with "Filename longer than 260 characters", even with Windows long paths enabled.
+- An internet connection for the whole build (Gradle downloads libraries as it goes). On an unreliable connection a download can fail late in the build; running the same command again resumes from the finished tasks.
 
 ```bash
 # 1. dependencies (repo root)
-yarn workspaces focus @thodu/expotv
+corepack yarn workspaces focus @thodu/expotv
 
 # 2. generate the native Android project (sets EXPO_TV=1)
-yarn expotv:prebuild
+#    This also applies the committed build settings from app.json: the three ABIs
+#    (arm64-v8a, armeabi-v7a, x86) and low-memory Gradle settings.
+corepack yarn expotv:prebuild
 
-# 3. release build with JAVA_HOME pointing at JDK 17 (JS bundle is embedded, no Metro needed)
-#    x86 emulator image: first add reactNativeArchitectures=x86 to
-#    packages/expotv/android/gradle.properties (the android/ folder is generated, not committed)
+# 3. release build (JS bundle is embedded, no Metro needed)
+#    Point JAVA_HOME at JDK 17 and ANDROID_HOME at the Android SDK first, for example in Git Bash:
+export JAVA_HOME='D:\Android\jdk17'
+export ANDROID_HOME='D:\Android\sdk'
 cd packages/expotv/android
 ./gradlew assembleRelease
+#    Result: app/build/outputs/apk/release/app-release.apk (universal APK, about 68 MB)
 
-# 4. install and launch on a running emulator
+# 4. install and launch on a running emulator or TV
 adb install -r app/build/outputs/apk/release/app-release.apk
 adb shell monkey -p com.thodu.tv -c android.intent.category.LEANBACK_LAUNCHER 1
 ```
 
-Notes: the first release build took about 19 minutes on our low-memory PC (x86 only); later builds after JS-only changes took about 1 to 3 minutes. After editing JS in `packages/shared`, run the Gradle task `:app:createBundleReleaseJsAndAssets --rerun` or Gradle may ship stale JavaScript. Our list of tool problems is in [docs/FRICTION_LOG.md](docs/FRICTION_LOG.md). The release build is signed with the debug keystore, which is fine for a demo only.
+To run the unit tests after step 1: `corepack yarn test` (from the repo root).
+
+**What the build contains.** One APK holds native libraries for arm64-v8a, armeabi-v7a and x86, so it is meant to install on ARM TVs and Fire TV sticks as well as on the x86 emulator. For a faster emulator-only build, add `-PreactNativeArchitectures=x86` to the `./gradlew` command. To put the APK on a real TV, see [docs/INSTALL_ON_TV.md](docs/INSTALL_ON_TV.md).
+
+**Honest status of the ARM build.** The universal APK has been built from a fresh clone and its ARM native libraries were verified to be present in the file. It has been installed and run only on the x86 emulator; it has **not yet been run on an ARM device**.
+
+**Build times.** On our low-memory PC the first full three-ABI build took about 41 minutes in total: 27.5 minutes until a network error ended it, then 13.8 minutes when the same command was run again (it reused the finished tasks). Later builds after JS-only changes should be much shorter. After editing JS in `packages/shared`, run the Gradle task `:app:createBundleReleaseJsAndAssets --rerun` or Gradle may ship stale JavaScript. Our list of tool problems is in [docs/FRICTION_LOG.md](docs/FRICTION_LOG.md). The release build is signed with the debug keystore, which is fine for a demo only.
+
+**Clean-clone note.** The steps above were run in a fresh clone of the repository (no earlier `node_modules` or `android/`). That run found three gaps that are now fixed here: no global `yarn` (use `corepack yarn`), no mention of `ANDROID_HOME`, and an outdated instruction to edit `gradle.properties` by hand for x86.
 
 ## Architecture
 
@@ -160,6 +174,6 @@ Voice trigger through Alexa+ for people who cannot use a remote (not built).
 
 The app icon, launcher banner and splash mark are original artwork made for Thodu (SVG sources in `assets/branding/`, rendered with `tools/make-branding.mjs`); no third-party logos or images are used.
 
-MIT, see [LICENSE](LICENSE). Thodu started from Amazon's [react-native-multi-tv-helloworld](https://github.com/AmazonAppDev/react-native-multi-tv-helloworld) sample (MIT-0); credits are in [NOTICE](NOTICE). Other docs: [SECURITY.md](SECURITY.md), [ACCESSIBILITY.md](ACCESSIBILITY.md), [JUDGES.md](JUDGES.md), [docs/FRICTION_LOG.md](docs/FRICTION_LOG.md).
+MIT, see [LICENSE](LICENSE). Thodu started from Amazon's [react-native-multi-tv-helloworld](https://github.com/AmazonAppDev/react-native-multi-tv-helloworld) sample (MIT-0); credits are in [NOTICE](NOTICE). Other docs: [docs/INSTALL_ON_TV.md](docs/INSTALL_ON_TV.md), [docs/USER_SESSIONS.md](docs/USER_SESSIONS.md), [SECURITY.md](SECURITY.md), [ACCESSIBILITY.md](ACCESSIBILITY.md), [JUDGES.md](JUDGES.md), [docs/FRICTION_LOG.md](docs/FRICTION_LOG.md).
 
 **Thodu is not an emergency service. In an emergency call your local emergency number.**
