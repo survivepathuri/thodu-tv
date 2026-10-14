@@ -7,7 +7,7 @@ import {Screen} from '../components/Screen';
 import {useUI} from '../settings/useUI';
 
 /**
- * Watch placeholder with captions always on: a plain demo panel (no video,
+ * Watch demo: a plain demo panel (no video,
  * no network) and a looping caption bar of sample lines.
  */
 export const WatchDemoScreen = ({onBack}: {onBack: () => void}) => {

@@ -19,9 +19,9 @@ Many older viewers and viewers with disabilities find a TV remote, small text an
 - **Single-button scanning.** With "easier remote", the app highlights one item at a time (every 1.8 s by default) and a single OK press selects it, so the app can be used with one button.
 - **Large text and high contrast.** Text scale up to 1.6x, a black-and-yellow high-contrast theme, and a thick focus ring. The default "Sunrise" theme is colourful with one colour per tile.
 - **Read-aloud and screen-reader support.** With read-aloud on, focused items are spoken with Android text-to-speech; if a screen reader is on, the app announces through it instead and suggests needs ("Choose them for me") without applying anything by itself.
-- **Captions demo.** With "easier to hear" chosen, the Watch screen is a demo panel (no real video) with a looping caption bar; without it, Watch is a placeholder screen.
+- **Captions demo.** The Watch tile always opens a labelled demo panel (no real video) with a looping caption bar of sample lines, whichever needs were chosen.
 - **Visual alerts.** When "easier to hear" is chosen, the help confirmation shows a flashing "ALERT SENT" banner.
-- **Simple language and labelled buttons.** "Easier to read" also switches about 40 key strings per language to shorter, plainer wording (`core/simpleText.ts`; strings without a simple variant stay as they are) and adds a text glyph next to the label of every action button. The glyphs are plain characters (no emoji, no images) and the text label is always kept. Hindi and Telugu simple wording has not been reviewed by native speakers.
+- **Simple language and labelled buttons.** "Easier to read" also switches 37 key strings per language to shorter, plainer wording (`core/simpleText.ts`; strings without a simple variant stay as they are) and adds a text glyph next to the label of every action button. The glyphs are plain characters (no emoji, no images) and the text label is always kept. Hindi and Telugu simple wording has not been reviewed by native speakers.
 - **English, Hindi, Telugu.** Language chips on the setup screen. Hindi and Telugu need review by native speakers (see Limitations).
 - **Persistence.** Needs, language, scanning speed and the family settings are saved on the device; the next launch goes straight to Home. "Reset Thodu" clears them.
 - **Real family notification (optional).** "Tell my family" can send one short, generic message through the free [ntfy.sh](https://ntfy.sh) service to a phone that has the ntfy app. There is no Thodu server. Until a test message has succeeded, the Help button is clearly labelled as a demo, and failures are shown honestly ("We could not reach your family. Please call them.").
@@ -66,14 +66,13 @@ All screenshots are from an Android TV **emulator** (Android 14, 1920x1080).
 | Hindi and Telugu text | Written by the developer; **need native-speaker review** |
 | Real Fire TV hardware | **Not tested** (emulator only) |
 | Universal APK (arm64-v8a, armeabi-v7a, x86) | Built from a fresh clone; native libraries for all three ABIs verified present in the APK; installed and run on the x86 emulator only, **not yet run on an ARM device** |
-| Medicines screen | Placeholder only |
 
 ## Claims and evidence
 
 | Claim | Evidence |
 |---|---|
 | Needs map to settings as in the table above | `packages/shared/src/core/__tests__/adapt.test.ts` (12 tests) |
-| Text and focus colours meet WCAG AA contrast (AAA for labels in high contrast) by calculation | `core/__tests__/theme.test.ts` (65 checks over every text/background pair), `core/contrast.ts` |
+| Text and focus colours meet WCAG AA contrast (AAA for labels in high contrast) by calculation | `core/__tests__/theme.test.ts` (61 checks over every text/background pair), `core/contrast.ts` |
 | Scanning moves through items on a timer and OK selects | `core/__tests__/scanner.test.ts` (16 tests); an adb run using only ENTER and BACK keys reached the help flow (developer's key log, not committed) |
 | Settings survive restart; corrupt data falls back to safe defaults | `core/__tests__/persist.test.ts`; on the emulator, force-stop and relaunch went straight to Home in Hindi |
 | ntfy client: topic generation, payload, retry, never throws, success only on 2xx | `core/__tests__/notify.test.ts` (27 tests, network injected, no real requests) |
@@ -86,19 +85,19 @@ All screenshots are from an Android TV **emulator** (Android 14, 1920x1080).
 
 ## Tests
 
-186 unit tests in 12 suites, all passing in the latest run (Jest, pure logic in `packages/shared/src/core`, no device needed):
+182 unit tests in 12 suites, all passing in the latest run (Jest, pure logic in `packages/shared/src/core`, no device needed):
 
 ```bash
 cd packages/shared
 npx jest -c jest.core.config.js        # or: yarn test  (from the repo root)
 ```
 
-Suites: theme 65, notify 27, persist 18, scanner 16, simpleText 13, adapt 12, a11y 9, strings 8, helpEvents 7, speech 4, captions 4, buttonIcons 3. The screens themselves have no automated UI tests; they were checked by hand on the emulator.
+Suites: theme 61, notify 27, persist 18, scanner 16, simpleText 13, adapt 12, a11y 9, strings 8, helpEvents 7, speech 4, captions 4, buttonIcons 3. The screens themselves have no automated UI tests; they were checked by hand on the emulator.
 
 ## Measured numbers (emulator only)
 
 - **Cold start** (Google AOSP TV, x86 emulator, Android 14, release build, 7 runs after force-stop, `am start -W`): min 1136 ms, median 1351 ms, max 1965 ms. Not a Fire TV Stick number.
-- **Label audit** (uiautomator, 9 screens): 35 interactive nodes, 0 without a text or content description. This checks that names exist, not that they sound right.
+- **Label audit** (uiautomator, 9 screens): 35 interactive nodes, 0 without a text or content description. Measured on an earlier build whose ninth screen was the since-removed Medicines placeholder; not re-run after the change. This checks that names exist, not that they sound right.
 
 Tools: `tools/cold-start.mjs`, `tools/a11y-audit.mjs`, `tools/security-check.mjs` (set `ANDROID_HOME` to your SDK folder).
 
@@ -160,7 +159,7 @@ To run the unit tests after step 1: `corepack yarn test` (from the repo root).
 - Telugu and Hindi strings were written by the developer and have not been reviewed by native speakers. Telugu and Hindi speech voices were not checked.
 - Everything was run on an emulator. No real Fire TV, no real screen reader, no real family phone, and no sessions with real users yet.
 - ntfy.sh is a public service: anyone who knows the topic name can read or post messages. The name is random but should be treated as a shared secret.
-- The help log is kept in memory only. Medicines is a placeholder. Watch is a demo.
+- The help log is kept in memory only. Watch is a demo.
 - Back on Home exits to the launcher.
 - Release builds use the debug keystore. The dependency audit lists 108 advisories (see SECURITY.md); we have not upgraded dependencies.
 - Sample code from the Amazon starter remains in `packages/expotv` (components, layouts, hooks, constants) but is not used by the app.

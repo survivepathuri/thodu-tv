@@ -19,7 +19,7 @@ Status words: **Verified** = we have a test or a recorded run that shows it work
 |---|---|---|---|
 | 10-foot readability | Partially verified | Screenshots at 1920x1080; text scale 1.0x to 1.6x | Judged on screenshots, not from a sofa on a real TV |
 | Focus visibility | Verified (emulator) | Screenshots 01, 02, 04; focus ring is an overlay so it never changes layout; ring/border contrast 3:1 tested in `theme.test.ts` | Ring width 4 default, 10 for low vision |
-| Remote-only journeys | Verified (emulator) | adb key logs: D-pad and ENTER/BACK only; setup, home, settings, help, Telugu, placeholder screen | Developer key logs are not committed; screens lag keys by up to about 1 s on the emulator |
+| Remote-only journeys | Verified (emulator) | adb key logs: D-pad and ENTER/BACK only; setup, home, settings, help, Telugu (an earlier build also covered a since-removed placeholder screen) | Developer key logs are not committed; screens lag keys by up to about 1 s on the emulator |
 | Back and Home behaviour | Partially verified | Back pops the stack and restores focus on the tile that opened the screen (emulator run); **Back on Home exits to the launcher** | That is the platform convention for a root screen; not changed |
 | Text scaling | Verified (emulator) | `a11y.test.ts`; system font scale 1.3 run, layouts still fit | We honour the system font scale only up to x1.3, and our own scale times the system scale is capped at x2.0, so text cannot grow past what the layouts can hold (`core/a11y.ts`) |
 | Contrast | Verified by calculation | `theme.test.ts` checks every text/background pair: AA minimum in the Sunrise theme, AAA for labels in high contrast | Calculated ratios, not measured on a screen; colour-blindness not simulated |

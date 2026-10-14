@@ -1,11 +1,9 @@
 import { Scoped } from '@/components/Scoped';
-import { FamilyScreen, InfoScreen, WatchDemoScreen, useSettings } from '@thodu/shared';
-import type { StringKey } from '@thodu/shared';
-import { useLocalSearchParams, useRouter } from 'expo-router';
+import { FamilyScreen, WatchDemoScreen } from '@thodu/shared';
+import { Redirect, useLocalSearchParams, useRouter } from 'expo-router';
 
 export default function Section() {
   const router = useRouter();
-  const { t, settings } = useSettings();
   const { id } = useLocalSearchParams<{ id: string }>();
 
   if (id === 'family') {
@@ -16,7 +14,8 @@ export default function Section() {
     );
   }
 
-  if (id === 'watch' && settings.captionsAlwaysOn) {
+  // Watch is always the labelled demo (no real video), whatever needs were chosen.
+  if (id === 'watch') {
     return (
       <Scoped>
         <WatchDemoScreen onBack={() => router.back()} />
@@ -24,15 +23,6 @@ export default function Section() {
     );
   }
 
-  // Placeholder: the section name (Watch, Medicines) is the title.
-  const name = t(`tile.${id}` as StringKey);
-  return (
-    <Scoped>
-      <InfoScreen
-        title={name}
-        body={`${t('placeholder.title')}. ${t('placeholder.body')}`}
-        onBack={() => router.back()}
-      />
-    </Scoped>
-  );
+  // Not a known section: go Home rather than show an empty screen.
+  return <Redirect href="/home" />;
 }

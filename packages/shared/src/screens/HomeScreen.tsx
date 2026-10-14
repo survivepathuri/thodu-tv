@@ -6,9 +6,9 @@ import {Focusable} from '../components/Focusable';
 import {Screen} from '../components/Screen';
 import {useUI} from '../settings/useUI';
 
-/** Tiles per row: 5 across normally, 3+2 when text is enlarged. */
+/** Tiles per row: 4 across normally, 2+2 when text is enlarged (no orphan tile). */
 export function columnsFor(fontScale: number): number {
-  return fontScale > 1.3 ? 3 : 5;
+  return fontScale > 1.3 ? 2 : 4;
 }
 
 function chunk<T>(items: readonly T[], size: number): T[][] {
@@ -31,7 +31,6 @@ interface TileDef {
 const TILES: readonly TileDef[] = [
   {id: 'watch', labelKey: 'tile.watch', glyph: '▶'},
   {id: 'family', labelKey: 'tile.family', glyph: '●●'},
-  {id: 'medicines', labelKey: 'tile.medicines', glyph: '+'},
   {id: 'help', labelKey: 'tile.help', glyph: '?'},
   {id: 'settings', labelKey: 'tile.settings', glyph: '≡'},
 ];
@@ -78,7 +77,7 @@ export const HomeScreen = ({onOpen}: {onOpen: (id: HomeTileId) => void}) => {
                       return (
                       <View
                         style={{
-                          height: cols === 5 ? sz(420) : px(300),
+                          height: cols === 4 ? sz(420) : px(300),
                           borderRadius: 20,
                           alignItems: 'center',
                           justifyContent: 'center',

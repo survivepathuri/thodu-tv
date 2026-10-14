@@ -1,11 +1,10 @@
 import type {Need} from './needs';
 
-export type TileId = 'watch' | 'family' | 'medicines' | 'help' | 'settings';
+export type TileId = 'watch' | 'family' | 'help' | 'settings';
 
 export const TILE_IDS: readonly TileId[] = [
   'watch',
   'family',
-  'medicines',
   'help',
   'settings',
 ];
@@ -63,7 +62,6 @@ export const SUNRISE_PALETTE: Readonly<Palette> = Object.freeze({
   tile: {
     watch: {bg: '#7DB8FF', fg: INK, glyph: INK},
     family: {bg: '#FF9EC4', fg: INK, glyph: INK},
-    medicines: {bg: '#7FD99A', fg: INK, glyph: INK},
     help: {bg: '#FFA95C', fg: INK, glyph: INK},
     settings: {bg: '#C3A6FF', fg: INK, glyph: INK},
   },
@@ -89,7 +87,6 @@ export const HIGH_CONTRAST_PALETTE: Readonly<Palette> = Object.freeze({
   tile: {
     watch: {bg: '#101010', fg: '#FFFFFF', glyph: '#FFE600'},
     family: {bg: '#101010', fg: '#FFFFFF', glyph: '#FFE600'},
-    medicines: {bg: '#101010', fg: '#FFFFFF', glyph: '#FFE600'},
     help: {bg: '#101010', fg: '#FFFFFF', glyph: '#FFE600'},
     settings: {bg: '#101010', fg: '#FFFFFF', glyph: '#FFE600'},
   },

@@ -12,7 +12,7 @@ const SCREENS = [
   {name: 'Reset confirm', uri: 'thodu://reset'},
   {name: 'Help confirm', uri: 'thodu://help'},
   {name: 'Family log', uri: 'thodu://section/family'},
-  {name: 'Medicines (placeholder)', uri: 'thodu://section/medicines'},
+  {name: 'Watch (demo)', uri: 'thodu://section/watch'},
 ];
 
 function attrs(tag) {
