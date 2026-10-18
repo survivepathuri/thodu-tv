@@ -34,7 +34,7 @@ Each block is self-contained so it can be pasted into one text box. The exact De
 
 **Build with it again?** Yes (draft from the log; developer to confirm) — it is the version that ran on the emulator, which the other starter did not [F-014, F-017]. We would want the README fixes above first.
 
-## A2. React Native for TV (react-native-tvos) as the Fire TV app stack
+## A2. React Native for TV (react-native-tvos) as the stack for a Fire TV / Android TV build
 
 **react-native-tvos is a community fork of React Native for TV, NOT an Amazon-maintained tool.** We include it because Amazon's sample builds on it.
 

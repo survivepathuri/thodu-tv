@@ -55,7 +55,7 @@ prepareRelease.sh
 # Workspace files
 *.code-workspace
 
-# Thodu additions
+# Thodu TV additions
 node_modules
 .expo
 android/build
