@@ -150,7 +150,8 @@ Only two intervals exist in the screens (`grep setInterval packages/shared/src`)
 
 ## Not verified (read this before relying on anything above)
 
-- **No VoiceView or TalkBack session** on any device. Detection and routing are unit-tested only.
+- **No VoiceView or TalkBack session** on any device `[not tested]`. Detection and routing are unit-tested only.
+- **Known limitation:** VoiceView "Described By" is not implemented for static status text (titles, "Family notified", "ALERT SENT"). A screen-reader user may not hear it. No code change was made; it is listed under Next steps.
 - No test with older adults, low-vision, hard-of-hearing or one-switch users. [USER_TESTING.md](USER_TESTING.md) is a template marked NOT YET DONE.
 - No test on a Fire TV with the current build; no check from a normal viewing distance; Amazon's 2-second Home-exit test not run.
 - Hindi and Telugu strings, simple wording and speech voices are not reviewed by native speakers (the developer wrote them).

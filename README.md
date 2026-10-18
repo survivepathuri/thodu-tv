@@ -88,7 +88,7 @@ cd packages/shared
 npx jest -c jest.core.config.js                # or, from the repo root: corepack yarn test
 ```
 
-Suites: theme 65, notify 27, familyAlert 19, persist 18, scanner 16, simpleText 13, adapt 12, a11y 9, strings 8, helpEvents 7, a11yCoverage 5, captions 4, speech 4, buttonIcons 3, secrets 2. The screens have no automated UI tests. Type-check: `../expotv/node_modules/.bin/tsc --noEmit -p .` inside `packages/shared` (0 errors).
+Suites: theme 65, notify 27, familyAlert 19, persist 18, scanner 16, simpleText 13, adapt 12, a11y 9, strings 8, helpEvents 7, a11yCoverage 5, captions 4, speech 4, buttonIcons 3, secrets 2. The screens have no automated UI tests. Type-check: `../expotv/node_modules/.bin/tsc --noEmit -p .` inside `packages/shared` (0 errors); the app package needs a path-mapped temporary tsconfig, see [docs/JUDGES.md](docs/JUDGES.md) "Run from source".
 
 Tools: `node tools/a11y-measure.mjs` (contrast, text sizes, label coverage; no device), `tools/a11y-audit.mjs`, `tools/cold-start.mjs`, `tools/security-check.mjs` (these three need `ANDROID_HOME` and an emulator).
 

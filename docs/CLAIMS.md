@@ -3,7 +3,7 @@
 
 Every claim the README, the judge guide, the Devpost text and the video make, with its evidence tag and the command or path that shows it. If a claim is not in this table it is not made. Tags are explained in [DEVICE_EVIDENCE.md](DEVICE_EVIDENCE.md): `[unit test]` · `[code only]` · `[cloud Fire TV, date, build]` · `[real Android TV, Sony, user-reported]` · `[emulator]` · `[APK static]` · `[script]` · `[not tested]`.
 
-Commands run from the repository root. Jest: `cd packages/shared && npx jest -c jest.core.config.js`. Latest run (2026-10-18, HEAD plus the a11y test): **15 suites, 212 tests, all passing**: theme 65, notify 27, familyAlert 19, persist 18, scanner 16, simpleText 13, adapt 12, a11y 9, strings 8, helpEvents 7, a11yCoverage 5, captions 4, speech 4, buttonIcons 3, secrets 2. The shared package type-checks with `../expotv/node_modules/.bin/tsc --noEmit -p .` (run inside `packages/shared`; 0 errors).
+Commands run from the repository root. Jest: `cd packages/shared && npx jest -c jest.core.config.js`. Latest run (2026-10-18, HEAD plus the a11y test): **15 suites, 212 tests, all passing**: theme 65, notify 27, familyAlert 19, persist 18, scanner 16, simpleText 13, adapt 12, a11y 9, strings 8, helpEvents 7, a11yCoverage 5, captions 4, speech 4, buttonIcons 3, secrets 2. The shared package type-checks with `../expotv/node_modules/.bin/tsc --noEmit -p .` (run inside `packages/shared`; 0 errors) `[script]`. The app package needs a path-mapped temporary tsconfig because of the `nohoist` install layout (command and explanation: [JUDGES.md](JUDGES.md) "Run from source"); with it, `packages/expotv/app` and `packages/shared/src` are clean `[script]` and 9 errors remain in unused Expo starter-template files, left unfixed.
 
 ## What the app does
 
@@ -50,6 +50,7 @@ Commands run from the repository root. Jest: `cd packages/shared && npx jest -c 
 | 29 | The emulator label audit found 35 interactive nodes with names and 0 without | `[emulator]` on an earlier build; not re-run | `tools/a11y-audit.mjs` |
 | 30 | Nothing disappears on a timer; the alert banner changes every 700 ms; captions rotate every 3000 ms | `[code only]` | [ACCESSIBILITY.md](ACCESSIBILITY.md) |
 | 31 | VoiceView / TalkBack behaviour | `[not tested]` | Detection and routing only: `a11y.test.ts` |
+| 31a | **Known limitation:** static status text (for example "Family notified") has no VoiceView "Described By" association, so a screen reader may not read it unless it is in a focused button label or is announced | `[not tested]` with a screen reader; not implemented in code (`[code only]`) | [ACCESSIBILITY.md](ACCESSIBILITY.md) "Accessibility labels" and "Not verified" |
 
 ## Platform and build
 

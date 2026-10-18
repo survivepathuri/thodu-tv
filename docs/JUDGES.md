@@ -55,6 +55,24 @@ cd packages/expotv/android && ./gradlew assembleRelease
 adb install -r app/build/outputs/apk/release/app-release.apk
 ```
 
+Type-check and tests (no device needed):
+
+```bash
+cd packages/shared && npx jest -c jest.core.config.js   # 15 suites, 212 tests
+```
+
+```bash
+# 1. Shared package (all app logic and screens): 0 errors
+cd packages/shared && ../expotv/node_modules/.bin/tsc --noEmit -p .
+# 2. App package: needs path mapping (see the note), then remove the temporary file
+cd ../expotv
+printf '{"extends":"./tsconfig.json","compilerOptions":{"baseUrl":".","paths":{"@/*":["./*"],"react-native":["./node_modules/react-native"],"react":["./node_modules/@types/react"],"react/*":["./node_modules/@types/react/*"]}}}' > tsconfig.check.json
+./node_modules/.bin/tsc --noEmit -p tsconfig.check.json   # 9 errors, all in unused Expo template files
+rm tsconfig.check.json
+```
+
+Why plain `tsc` in `packages/expotv` fails: the root `package.json` marks `react`, `react-native` and friends `nohoist`, so they are installed only in `packages/expotv/node_modules`. The shared sources under `packages/shared/src` are imported by the app but resolve bare imports from their own folder, which has no `react-native` (15 "Cannot find module 'react-native'" errors) and its own `@types/react` (a duplicate-type error). That is the install layout, not a code problem; the path mapping above points both at the app's copy. With it, `packages/shared/src` and `packages/expotv/app` type-check clean `[script]` (run 2026-10-18). The 9 remaining errors are in Expo starter-template files that no screen imports (`components/EventHandlingDemo.tsx`, `components/ParallaxScrollView.tsx`, `hooks/useThemeColor.ts`, `layouts/TabLayout.tsx`, `layouts/TabLayout.web.tsx`); they were left alone.
+
 Optional: to bake **your own** notification topic into a source build, copy `packages/expotv/.env.example` to `packages/expotv/.env.local` and set `EXPO_PUBLIC_THODU_TOPIC` to `thodu-` followed by 3 or 4 groups of 4 random characters from `a-z` and `2-7` (for example `thodu-` then `xxxx-xxxx-xxxx` with your own letters). Leave it empty for a topic-free build. The first full build took about 41 minutes on the developer's low-memory PC (see README), so the APK is the easier route.
 
 ## What you will see (demo path, 3 minutes)
