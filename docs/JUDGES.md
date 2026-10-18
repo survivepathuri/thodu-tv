@@ -1,7 +1,7 @@
 # Thodu TV: For judges, in 3 minutes
 *A TV app that older adults and people with disabilities can use with one button, and that tells their family when they need help.*
 
-**Thodu TV (తోడు టీవీ; Thodu means "companion" in Telugu)** is an Android TV / Fire TV app for older viewers and people with disabilities. It starts from what would make TV easier ("Easier to see / hear / read / remote") and changes the whole interface at once. Three buttons (Family, Medicines, Help) can tell a family member through a public notification service.
+**Thodu TV (తోడు టీవీ; Thodu means "companion" in Telugu)** is a TV app, built for Android TV and Fire TV, for older viewers and people with disabilities. It starts from what would make TV easier ("Easier to see / hear / read / remote") and changes the whole interface at once. Three buttons (Family, Medicines, Help) can tell a family member through a public notification service.
 
 > Thodu TV is **not** an emergency service and **not** a medical device. In an emergency call your local emergency number.
 
