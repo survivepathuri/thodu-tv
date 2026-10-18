@@ -54,7 +54,7 @@ React Native (react-native-tvos 0.83.6-0), React 19.2, Expo SDK 55, expo-router,
 
 ## Try it out
 - Code: [GitHub repository URL; see submission.md for the access action]
-- Judge APK (topic-free demo build): [download link to thodu-196f20a-judge.apk, SHA-256 947b2bc9e6165146bc4f6b2c28b0cb8223f4d008aed02455ac9f841f257f540c]
+- Judge APK (topic-free demo build): [download link to thodu-tv-ff5e452-judge.apk, SHA-256 d3370233b838e415cc3725e07de9440390e480184161765c431f4f513f59153b]
 - Judge guide: `docs/JUDGES.md` in the repository
 - Demo video: [YouTube link]
 

@@ -16,7 +16,7 @@ Evidence tags (`[unit test]`, `[code only]`, `[cloud Fire TV, ...]`, `[real Andr
 
 ## Install the judge APK on a Fire TV (about 5 minutes)
 
-The judge build is **topic-free**: it contains no notification topic, so it can never message anyone until you create your own (see "Try the notifications"). File: `thodu-196f20a-judge.apk`, 68,356,621 bytes, SHA-256 `947b2bc9e6165146bc4f6b2c28b0cb8223f4d008aed02455ac9f841f257f540c`. Download link: on the Devpost submission page (not in this repository). The APK is signed with a debug key, which is fine for a demo. It was built from commit `196f20a`; later commits only change documentation, tests, tools, the versionName plugin and one English string in the simple-wording mode ("Easy words, icons, read aloud"), so the app text in that one mode differs slightly from the source.
+The judge build is **topic-free**: it contains no notification topic, so it can never message anyone until you create your own (see "Try the notifications"). File: `thodu-tv-ff5e452-judge.apk`, 68,381,837 bytes, SHA-256 `d3370233b838e415cc3725e07de9440390e480184161765c431f4f513f59153b`. Download link: on the Devpost submission page (not in this repository). The APK is signed with a debug key, which is fine for a demo. It was built from commit `ff5e452` (versionName `1.0.0+ff5e452-judge`); later commits change documentation only. The APK has not yet been installed or run on any device `[APK static]`, `[not tested]`. APK hosting: GitHub Release when the repo is public: USER-ONLY.
 
 ```bash
 # 1. Fire TV: Settings > My Fire TV (or Device) > Developer Options: turn on "ADB Debugging" and
@@ -25,20 +25,20 @@ The judge build is **topic-free**: it contains no notification topic, so it can 
 #    Source: Amazon, "Connect to Fire TV through ADB". Menu names vary by Fire OS version.
 # 2. Find the IP address: Settings > My Fire TV > About > Network.
 adb connect <fire-tv-ip>:5555        # accept the prompt on the TV
-adb install -r thodu-196f20a-judge.apk   # expect "Success"
+adb install -r thodu-tv-ff5e452-judge.apk   # expect "Success"
 adb shell monkey -p com.thodu.tv -c android.intent.category.LEANBACK_LAUNCHER 1
 ```
 
 Thodu TV also appears in the Apps row. Uninstall with `adb uninstall com.thodu.tv`. More detail and troubleshooting: [INSTALL_ON_TV.md](INSTALL_ON_TV.md). Turn ADB debugging off when you are done.
 
-**No Fire TV at hand?** Amazon Developer Console > Appstore Quality Central > Live Device Interaction lets you upload the APK to a real Amazon Fire TV in the cloud. The developer used this on 2026-10-14 with an older build `[cloud Fire TV, 2026-10-14, older build]`; the current build has not yet been run there (see DEVICE_EVIDENCE.md).
+**No Fire TV at hand?** Amazon Developer Console > Appstore Quality Central > Live Device Interaction lets you upload the APK to a real Amazon Fire TV in the cloud. The developer used this on 2026-10-14 with an older build `[cloud Fire TV, 2026-10-14, older build]`; build `ff5e452` has not yet been run there (see DEVICE_EVIDENCE.md).
 
 ## Install in an emulator
 
 Create an Android TV AVD (Android Studio > Device Manager > Television, for example API 34), start it, then:
 
 ```bash
-adb install -r thodu-196f20a-judge.apk
+adb install -r thodu-tv-ff5e452-judge.apk
 adb shell monkey -p com.thodu.tv -c android.intent.category.LEANBACK_LAUNCHER 1
 ```
 

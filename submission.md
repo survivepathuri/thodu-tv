@@ -7,7 +7,7 @@ Deadline: **Fri 2026-10-23, 12:00 pm Pacific** (internal target 2026-10-22 about
 
 | Item | Status | Where |
 |---|---|---|
-| Working Fire OS / Android TV app (APK) | done (judge build `196f20a`) | `docs/JUDGES.md`; build steps in `README.md` |
+| Working Fire OS / Android TV app (APK) | done (judge build `ff5e452`) | `docs/JUDGES.md`; build steps in `README.md` |
 | Text description | doc (draft) | `docs/DEVPOST_DESCRIPTION.md` |
 | Code repository with source, assets and setup/run instructions | done | `README.md`, `docs/JUDGES.md`, `docs/INSTALL_ON_TV.md` |
 | Open-source license file | done (MIT; Amazon sample MIT-0 text kept) | `LICENSE`, `THIRD_PARTY_NOTICES.md`, `NOTICE` |
@@ -21,22 +21,26 @@ Deadline: **Fri 2026-10-23, 12:00 pm Pacific** (internal target 2026-10-22 about
 | Privacy and safety | doc | `docs/PRIVACY_AND_SAFETY.md`, `SECURITY.md` |
 | User testing page | doc: **NOT YET DONE** template | `docs/USER_TESTING.md` |
 | Secret scan (tracked files and history) | done, 0 hits | `docs/CLAIMS.md` #20; `secrets.test.ts` |
-| Judge APK without a topic | done, outside the repo | `thodu-196f20a-judge.apk` (SHA-256 in `docs/JUDGES.md`) |
+| Judge APK without a topic | done, outside the repo | `thodu-tv-ff5e452-judge.apk` (SHA-256 in `docs/JUDGES.md`) |
 
 ## B. USER-ONLY items (nobody else can do these)
 
 | # | Item | Exact need |
 |---|---|---|
-| 1 | **Fresh cloud Fire TV recording** | In Amazon Developer Console > Appstore Quality Central > Live Device Interaction, install `thodu-196f20a-judge.apk` on a real Fire TV and record the **whole browser window** (console, device name and the app all visible). Then read the model and OS from the console **Details** tab and write them into `docs/DEVICE_EVIDENCE.md` (last table row) and the Devpost description. Do not guess "Fire OS 14". |
+| 1 | **Fresh cloud Fire TV recording** | In Amazon Developer Console > Appstore Quality Central > Live Device Interaction, install `thodu-tv-ff5e452-judge.apk` on a real Fire TV and record the **whole browser window** (console, device name and the app all visible). Then read the model and OS from the console **Details** tab and write them into `docs/DEVICE_EVIDENCE.md` (last table row) and the Devpost description. Do not guess "Fire OS 14". |
 | 2 | **Home-TV footage** (Sony TV, Android TV) | Film on 2026-10-19 with the family member. Label it "Android TV", never "Fire TV". Keep a dated file name. Do not show the real notification topic on screen. |
 | 3 | **User testing facts** | After 2026-10-19 fill `docs/USER_TESTING.md` (date, anonymous participant, tasks, observations, problems, changes). Until then no text says "tested with users". |
 | 4 | **Demo video** | Under 3 minutes; see section D. |
 | 5 | **YouTube (or Vimeo) upload** | Public visibility, English; paste the link on the Devpost form. |
 | 6 | **Devpost form** | Paste the fields from `DEVPOST_PASTE_KIT.md` (in `Desktop\thodu-audit`, outside the repo); choose track Fire TV; no mini challenge unless a separate public contribution exists; answer the Product Feedback would-build-again question in your own words. |
 | 7 | **Repo access action** | Either make the repo public and check the license shows in the About box, **or** keep it private and add `chris-trag`, `knmeiss`, `giolaq`, `anishamalde`, `mosesroth`, `emersonsklar` as collaborators **at submission time** (invitations expire after 7 days). Recommendation: `REPO_ACCESS_RECOMMENDATION.md` (also in `Desktop\thodu-audit`). Nothing has been pushed or changed by the assistant. |
-| 8 | **Judge APK hosting** | Choose where judges download `thodu-196f20a-judge.apk` (must stay available until the judging period ends on 2026-11-20). Never publish the private topic-bearing build. |
+| 8 | **Judge APK hosting** | APK hosting: GitHub Release when the repo is public: USER-ONLY. Choose where judges download `thodu-tv-ff5e452-judge.apk` (must stay available until the judging period ends on 2026-11-20). Never publish the private topic-bearing build. |
 | 9 | **Eligibility and ownership confirmations** | Age of majority, no financial or preferential support from Amazon/Devpost, you are the Representative. |
 | 10 | **Real phone delivery proof (optional)** | Subscribe a phone to a throwaway topic, press Help on the TV (not the cloud device), note the time. Only then may any text say the message reached a phone. |
+| 12 | **Install the private build on the Sony TV** | Install `thodu-tv-ff5e452-ntfy.apk` over the existing app (`adb install -r`) and confirm the launcher label and banner say Thodu TV. |
+| 13 | **Sony model and Android version** | Fill both in `docs/DEVICE_EVIDENCE.md` from Settings > About. |
+| 14 | **Phone delivery test** | Run a phone notification delivery test with your own topic (see item 10). |
+| 15 | **Fresh cloud Fire TV recording with the new judge build** | Use `thodu-tv-ff5e452-judge.apk` (see item 1). |
 | 11 | **Freeze** | No repository or form changes after the deadline. |
 
 ## C. Pre-submission checks (the day before)

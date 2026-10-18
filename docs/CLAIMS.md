@@ -33,7 +33,7 @@ Commands run from the repository root. Jest: `cd packages/shared && npx jest -c 
 | 17 | One retry after a network error, timeout, 5xx or 429; no retry after other 4xx | `[unit test]` | `notify.test.ts` |
 | 18 | A repeat press of the same button within 3 s of a success is ignored; a failure can be retried at once | `[unit test]` | `familyAlert.test.ts` |
 | 19 | With no topic configured, or before a test message succeeded, the app is in demo mode: "Demo: nobody was told" and nothing is sent | `[code only]` for the demo branch and text; `[unit test]` for the topic-config rules and the string keys | `settings/useFamilyAlert.ts`, `expotv/app/help.tsx`, `familyAlert.test.ts` (`applyConfiguredTopic`), `strings.test.ts` |
-| 20 | The judge APK contains no notification topic | `[APK static]` (searched; the private build used as a control does contain one) | `thodu-196f20a-judge.apk`; the tracked repo is checked by `secrets.test.ts` (2) |
+| 20 | The judge APK contains no notification topic | `[APK static]` (searched; the private build used as a control does contain one) | `thodu-tv-ff5e452-judge.apk`; the tracked repo is checked by `secrets.test.ts` (2) |
 | 21 | A real POST from a PC to a private topic returned HTTP 200 and was read back by polling | PC run, 2026-10-18 (not a TV run) | The developer's audit note `RESUME_POINT.md` (outside the repo). Topic never recorded. |
 | 22 | Delivery from the TV app to a phone | `[not tested]` | Do not claim |
 | 23 | Medicines is a one-press check-in ("Yes, I took it") that notifies the family; there are no timed reminders and no schedule | `[unit test]` for the send; `[code only]` for the screen | `screens/MedicinesScreen.tsx`, `familyAlert.test.ts`. On any TV: `[not tested]` |
@@ -58,10 +58,11 @@ Commands run from the repository root. Jest: `cd packages/shared && npx jest -c 
 |---|---|---|---|
 | 32 | The APK declares a leanback launcher, touchscreen not required, a banner, minSdk 24, targetSdk 36 | `[APK static]` | [DEVICE_EVIDENCE.md](DEVICE_EVIDENCE.md) `aapt2 dump badging` |
 | 33 | Permissions: INTERNET, ACCESS_NETWORK_STATE (library), an AndroidX signature permission; no Google Play Services or Firebase classes | `[APK static]` | `SECURITY.md`, DEVICE_EVIDENCE.md |
-| 34 | The universal APK has arm64-v8a, armeabi-v7a and x86 libraries and is 68,356,621 bytes (judge build) | `[APK static]` | `aapt2 dump badging`, file size |
+| 34 | The universal APK has arm64-v8a, armeabi-v7a and x86 libraries and is 68,381,837 bytes (judge build) | `[APK static]` | `aapt2 dump badging`, file size |
 | 35 | Cold start median 1351 ms (min 1136, max 1965; 7 runs) | `[emulator]` (x86, Android 14, an earlier build) | `tools/cold-start.mjs`. Not a Fire TV number. |
 | 36 | The app was started on an Amazon cloud Fire TV on 2026-10-14 | `[cloud Fire TV, 2026-10-14, older build]`; the recordings show no device frame | [DEVICE_EVIDENCE.md](DEVICE_EVIDENCE.md). **A fresh recording with the console visible is still to do.** |
-| 37 | The current build (`196f20a`) runs on a Fire TV | `[not tested]` | Do not claim |
+| 37 | The current build (`ff5e452`) runs on a Fire TV | `[not tested]` | Do not claim |
+| 38 | Build `ff5e452` has the launcher label "Thodu TV" and a banner reading "Thodu TV / Easy TV. One button. Family one press away." | `[APK static]` (`aapt2 dump badging`; banner image viewed) | `thodu-tv-ff5e452-judge.apk`; not yet seen on any TV `[not tested]` |
 | 38 | Built from Amazon's multi-TV starter (MIT-0), new repository started 2026-10-12 | git history | [PRE_EXISTING.md](PRE_EXISTING.md), `NOTICE` |
 | 39 | `versionName` is generated from the git SHA at prebuild | `[code only]` (checked on a copy of `build.gradle`) | `packages/expotv/plugins/withGitVersionName.js` |
 
@@ -79,3 +80,4 @@ Commands run from the repository root. Jest: `cd packages/shared && npx jest -c 
 | Delivery to a phone from a TV | `[not tested]` |
 | Native-speaker-reviewed Hindi/Telugu; VoiceView/TalkBack verified | `[not tested]` |
 | The Sony TV is a Fire TV | It is an Android TV; always labelled so |
+
