@@ -25,7 +25,7 @@ The rules ask that a project which "existed prior to the Hackathon Submission Pe
 
 ## 2. Amazon starter sample (attributed, MIT-0)
 
-The repository was started from Amazon's **react-native-multi-tv-helloworld** (`github.com/AmazonAppDev/react-native-multi-tv-helloworld`), imported at upstream commit `4b9ebf86d697e06c4547084e98b51a7318976a75` (upstream commit date 2026-09-21, also after August 31). Its license is MIT No Attribution (MIT-0), copyright Amazon.com, Inc. (text kept in `LICENSE-AMAZON-SAMPLE`; credits in `NOTICE`). It provided the Yarn 4 monorepo layout, the Expo / react-native-tvos 0.83 project shell and a hello-world TV screen. The sample itself contains code derived from the React Native Community template (MIT; `LICENSE-THIRD-PARTY`). `react-native-tvos` is a community fork of React Native for TV, not an Amazon product.
+The repository was started from Amazon's **react-native-multi-tv-helloworld** (`github.com/AmazonAppDev/react-native-multi-tv-helloworld`), imported at upstream commit `4b9ebf86d697e06c4547084e98b51a7318976a75` (upstream commit date 2026-09-21, also after August 31). Its license is MIT No Attribution (MIT-0), copyright Amazon.com, Inc. (text kept in `THIRD_PARTY_NOTICES.md`; credits in `NOTICE`). It provided the Yarn 4 monorepo layout, the Expo / react-native-tvos 0.83 project shell and a hello-world TV screen. The sample itself contains code derived from the React Native Community template (MIT; `THIRD_PARTY_NOTICES.md`). `react-native-tvos` is a community fork of React Native for TV, not an Amazon product.
 
 Some sample files remain in `packages/expotv` (`components/`, `layouts/`, `hooks/`, `constants/`) but the app does not use them. Everything the person sees in Thodu is Thodu code.
 

@@ -8,9 +8,9 @@ This project started from the following third-party work:
   Imported at commit 4b9ebf86d697e06c4547084e98b51a7318976a75
   Copyright 2025 Amazon.com, Inc. or its affiliates. All rights reserved.
   License: MIT No Attribution (MIT-0). Credit is given here voluntarily.
-  The original license text is kept in LICENSE-AMAZON-SAMPLE.
+  The original license text is kept in THIRD_PARTY_NOTICES.md.
 
 The imported sample itself includes code derived from the React Native Community
-Template (MIT). Its license text is kept in LICENSE-THIRD-PARTY.
+Template (MIT). Its license text is kept in THIRD_PARTY_NOTICES.md.
 
 Dependencies installed through Yarn keep their own licenses.

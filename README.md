@@ -147,7 +147,7 @@ Timed medicine reminders and a schedule; a voice trigger through Alexa+ for peop
 
 ## Credits and license
 
-Started from Amazon's [react-native-multi-tv-helloworld](https://github.com/AmazonAppDev/react-native-multi-tv-helloworld) sample (MIT-0, Amazon.com, Inc.); see [NOTICE](NOTICE), [LICENSE-AMAZON-SAMPLE](LICENSE-AMAZON-SAMPLE) and [docs/PRE_EXISTING.md](docs/PRE_EXISTING.md). `react-native-tvos` is a community fork, not an Amazon product. The icon, launcher banner and splash mark are original artwork (`assets/branding/`, rendered by `tools/make-branding.mjs`); no third-party logos or images are used.
+Started from Amazon's [react-native-multi-tv-helloworld](https://github.com/AmazonAppDev/react-native-multi-tv-helloworld) sample (MIT-0, Amazon.com, Inc.); see [NOTICE](NOTICE), [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and [docs/PRE_EXISTING.md](docs/PRE_EXISTING.md). `react-native-tvos` is a community fork, not an Amazon product. The icon, launcher banner and splash mark are original artwork (`assets/branding/`, rendered by `tools/make-branding.mjs`); no third-party logos or images are used.
 
 Thodu's own code is **MIT**, see [LICENSE](LICENSE).
 

@@ -9,7 +9,7 @@ Deadline: **Fri 2026-10-23, 12:00 pm Pacific** (internal target 2026-10-22 about
 | Working Fire OS / Android TV app (APK) | done (judge build `196f20a`) | `docs/JUDGES.md`; build steps in `README.md` |
 | Text description | doc (draft) | `docs/DEVPOST_DESCRIPTION.md` |
 | Code repository with source, assets and setup/run instructions | done | `README.md`, `docs/JUDGES.md`, `docs/INSTALL_ON_TV.md` |
-| Open-source license file | done (MIT; Amazon sample MIT-0 text kept) | `LICENSE`, `LICENSE-AMAZON-SAMPLE`, `NOTICE` |
+| Open-source license file | done (MIT; Amazon sample MIT-0 text kept) | `LICENSE`, `THIRD_PARTY_NOTICES.md`, `NOTICE` |
 | Pre-existing work explained | doc | `docs/PRE_EXISTING.md` |
 | Product Feedback per tool (five elements) | doc; would-build-again answers need the developer's own words | `docs/PRODUCT_FEEDBACK.md` |
 | Friction log (optional, up to 10% bonus) | doc (33 evidenced entries) | `FRICTION_LOG.md`, `docs/DEVPOST_FRICTION_PASTE.md` |

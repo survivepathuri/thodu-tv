@@ -15,7 +15,7 @@ Evidence tags (`[unit test]`, `[code only]`, `[cloud Fire TV, ...]`, `[real Andr
 
 ## Install the judge APK on a Fire TV (about 5 minutes)
 
-The judge build is **topic-free**: it contains no notification topic, so it can never message anyone until you create your own (see "Try the notifications"). File: `thodu-196f20a-judge.apk`, 68,356,621 bytes, SHA-256 `947b2bc9e6165146bc4f6b2c28b0cb8223f4d008aed02455ac9f841f257f540c`. Download link: on the Devpost submission page (not in this repository). The APK is signed with a debug key, which is fine for a demo.
+The judge build is **topic-free**: it contains no notification topic, so it can never message anyone until you create your own (see "Try the notifications"). File: `thodu-196f20a-judge.apk`, 68,356,621 bytes, SHA-256 `947b2bc9e6165146bc4f6b2c28b0cb8223f4d008aed02455ac9f841f257f540c`. Download link: on the Devpost submission page (not in this repository). The APK is signed with a debug key, which is fine for a demo. It was built from commit `196f20a`; later commits only change documentation, tests, tools, the versionName plugin and one English string in the simple-wording mode ("Easy words, icons, read aloud"), so the app text in that one mode differs slightly from the source.
 
 ```bash
 # 1. Fire TV: Settings > My Fire TV (or Device) > Developer Options: turn on "ADB Debugging" and
