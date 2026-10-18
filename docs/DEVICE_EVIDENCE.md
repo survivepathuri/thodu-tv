@@ -31,7 +31,7 @@ APK checked, read-only: `thodu-tv-ff5e452-judge.apk` (68,381,837 bytes, 65.2 MiB
 | Leanback feature flag | `android.software.leanback` `required=false` (so the same APK also installs on phones; fine for Fire TV) | `[APK static]` |
 | TV banner | `android:banner` set; a 1280x720 PNG is supplied (`assets/branding/banner-1280x720.png`) | `[APK static]` `banner='res/O5.png'` |
 | No Google Play Services / Firebase | No `com/google/android/gms` or `com/google/firebase` strings in the three dex files; no such dependency in the `package.json` files | `[APK static]` search of `classes*.dex`; `[code only]` dependency list |
-| Min / target SDK | minSdk 24, targetSdk 36, compileSdk 36. Fire OS 14 is documented as API 34, so a higher target is allowed. Older Fire OS levels were not tested. | `[APK static]` |
+| Min / target SDK | minSdk 24, targetSdk 36, compileSdk 36. Fire OS 14 is documented as API 34, so a higher target is allowed. Older Fire OS levels were not tested, and no list of supported Fire TV models is stated: the only claim is the manifest's minSdk 24 (Android 7.0). We did not open an Amazon page mapping Fire OS versions to API levels. The APK is signed with the v2 scheme only (v1, v3, v3.1 absent, per the independent audit), which is fine for API 24 and above. | `[APK static]` |
 | App size: "2 GB or less (recommended)"; 4 GB hard limit when installed | The APK is 65.2 MiB. Installed size on a device was not measured. | `[APK static]`; installed size `[not tested]` |
 | ABIs | arm64-v8a, armeabi-v7a, x86 in one universal APK | `[APK static]` |
 | Permissions: none of Amazon's "should not use" list (SET_WALLPAPER, CALL_PHONE, READ_PHONE_STATE, SMS, ACCESS_FINE_LOCATION, RECORD_AUDIO, CAMERA, ...) | Only `INTERNET` (the one ntfy.sh request); `ACCESS_NETWORK_STATE` (added by a library; the app's own code never calls it); `com.thodu.tv.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION` (an app-private signature permission added by AndroidX). Storage, overlay and vibrate permissions are removed on purpose. | `[APK static]`; `packages/expotv/app.json`; `SECURITY.md` |
@@ -49,13 +49,13 @@ APK checked, read-only: `thodu-tv-ff5e452-judge.apk` (68,381,837 bytes, 65.2 MiB
 
 ### Signing and build notes
 - The release APKs are signed with the generated **debug keystore** (fine for a demo, not for a store). All three APKs share one signer.
-- `versionName` is derived from `app.json` (`1.0.0`) plus the git short SHA at prebuild by `packages/expotv/plugins/withGitVersionName.js`; set `THODU_BUILD_LABEL=judge` for a `-judge` suffix. `versionCode` stays 1. The plugin was checked on a temporary copy of `build.gradle` (it produced `1.0.0+<sha>-judge`); it has not been run in a full prebuild or APK build in this session `[code only]`.
+- `versionName` is derived from `app.json` (`1.0.0`) plus the git short SHA at prebuild by `packages/expotv/plugins/withGitVersionName.js`; set `THODU_BUILD_LABEL=judge` for a `-judge` suffix. `versionCode` stays 1. The plugin was checked on a temporary copy of `build.gradle` (it produced `1.0.0+<sha>-judge`); it ran in the full builds: the judge APK reports `versionName` `1.0.0+ff5e452-judge` (aapt2) and an independent prebuild on a clean clone produced `1.0.0+9b6688e` (audit, 2026-10-18) `[APK static]`.
 
 ## 3. What this page does not claim
 Fire TV certified or Appstore approved; tested on a Fire TV with the current build; tested with users; VoiceView or TalkBack verified; emergency or medical use.
 
 
-## 3. Builds
+## 4. Builds
 
 | Build | File | Size (bytes) | SHA-256 | Status |
 |---|---|---|---|---|

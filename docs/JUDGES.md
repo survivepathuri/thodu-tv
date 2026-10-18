@@ -46,6 +46,8 @@ Use the keyboard arrow keys, Enter (Select) and Esc/Backspace (Back) in the emul
 
 ## Run from source
 
+**Use Git Bash for every command below, and clone to a very short path (about 15 characters, e.g. `C:\t`).** A normal path such as `C:\Users\<name>\Documents\GitHub\thodu-tv` fails the native build after about 13 minutes (F-016). The `versionName` of a source build is `1.0.0+<your HEAD sha>`, so it will not match the judge APK's `1.0.0+ff5e452-judge`.
+
 Full Windows steps (JDK 17, Android SDK, short repo path) are in the [README](../README.md#setup-and-run-from-source). In short:
 
 ```bash
@@ -58,7 +60,7 @@ adb install -r app/build/outputs/apk/release/app-release.apk
 Type-check and tests (no device needed):
 
 ```bash
-cd packages/shared && npx jest -c jest.core.config.js   # 15 suites, 212 tests
+cd packages/shared && npx jest -c jest.core.config.js   # 16 suites, 223 tests
 ```
 
 ```bash

@@ -1,7 +1,7 @@
 # Thodu TV: Submission checklist (Fire TV track)
 *A TV app that older adults and people with disabilities can use with one button, and that tells their family when they need help.*
 
-Deadline: **Fri 2026-10-23, 12:00 pm Pacific** (internal target 2026-10-22 about 6 PM IST). No edits are allowed after the deadline. Rules source and quotes: the developer's `RULES_CHECKLIST.md` (outside the repo, fetched 2026-10-18 from the official Devpost pages). Status words: **done**, **doc** (written, in the repo), **USER-ONLY**.
+Deadline: **Fri 2026-10-23, 12:00 pm Pacific** (internal target 2026-10-22 about 6 PM IST). No edits are allowed after the deadline. Rules source: the official Devpost rules and overview pages (https://amazonappdev2026.devpost.com/), re-read on 2026-10-18. Status words: **done**, **doc** (written, in the repo), **USER-ONLY**.
 
 ## A. Done or written (in this repository)
 
@@ -11,10 +11,11 @@ Deadline: **Fri 2026-10-23, 12:00 pm Pacific** (internal target 2026-10-22 about
 | Text description | doc (draft) | `docs/DEVPOST_DESCRIPTION.md` |
 | Code repository with source, assets and setup/run instructions | done | `README.md`, `docs/JUDGES.md`, `docs/INSTALL_ON_TV.md` |
 | Open-source license file | done (MIT; Amazon sample MIT-0 text kept) | `LICENSE`, `THIRD_PARTY_NOTICES.md`, `NOTICE` |
-| Pre-existing work explained | doc | `docs/PRE_EXISTING.md` |
+| Pre-existing work explained (nothing predates 2026-08-31; starting material disclosed) | doc | `docs/PRE_EXISTING.md` |
+| Sources for every statistic | doc | `docs/SOURCES.md` |
 | Product Feedback per tool (five elements) | doc; would-build-again answers need the developer's own words | `docs/PRODUCT_FEEDBACK.md` |
 | Friction log (optional, up to 10% bonus) | doc (35 entries: 33 from notes kept at the time, 2 user-reported) | `FRICTION_LOG.md`, `docs/DEVPOST_FRICTION_PASTE.md` |
-| Feature requests (optional) | doc | `docs/DEVPOST_DESCRIPTION.md` |
+| Feature requests (optional) | doc | `docs/FEATURE_REQUESTS.md` |
 | Claims with evidence | doc | `docs/CLAIMS.md` |
 | Device evidence and Fire TV readiness | doc (cloud row to be filled) | `docs/DEVICE_EVIDENCE.md` |
 | Accessibility self-audit (measured) | done | `docs/ACCESSIBILITY.md`, `tools/a11y-measure.mjs` |
@@ -27,28 +28,40 @@ Deadline: **Fri 2026-10-23, 12:00 pm Pacific** (internal target 2026-10-22 about
 
 | # | Item | Exact need |
 |---|---|---|
-| 1 | **Fresh cloud Fire TV recording** | In Amazon Developer Console > Appstore Quality Central > Live Device Interaction, install `thodu-tv-ff5e452-judge.apk` on a real Fire TV and record the **whole browser window** (console, device name and the app all visible). Then read the model and OS from the console **Details** tab and write them into `docs/DEVICE_EVIDENCE.md` (last table row) and the Devpost description. Do not guess "Fire OS 14". |
-| 2 | **Home-TV footage** (Sony TV, Android TV) | Film on 2026-10-19 with the family member. Label it "Android TV", never "Fire TV". Keep a dated file name. Do not show the real notification topic on screen. |
-| 3 | **User testing facts** | After 2026-10-19 fill `docs/USER_TESTING.md` (date, anonymous participant, tasks, observations, problems, changes). Until then no text says "tested with users". |
-| 4 | **Demo video** | Under 3 minutes; see section D. |
-| 5 | **YouTube (or Vimeo) upload** | Public visibility, English; paste the link on the Devpost form. |
-| 6 | **Devpost form** | Paste the fields from `DEVPOST_PASTE_KIT.md` (in `Desktop\thodu-audit`, outside the repo); choose track Fire TV; no mini challenge unless a separate public contribution exists; answer the Product Feedback would-build-again question in your own words. |
-| 7 | **Repo access action** | Either make the repo public and check the license shows in the About box, **or** keep it private and add `chris-trag`, `knmeiss`, `giolaq`, `anishamalde`, `mosesroth`, `emersonsklar` as collaborators **at submission time** (invitations expire after 7 days). Recommendation: `REPO_ACCESS_RECOMMENDATION.md` (also in `Desktop\thodu-audit`). Nothing has been pushed or changed by the assistant. |
-| 8 | **Judge APK hosting** | APK hosting: GitHub Release when the repo is public: USER-ONLY. Choose where judges download `thodu-tv-ff5e452-judge.apk` (must stay available until the judging period ends on 2026-11-20). Never publish the private topic-bearing build. |
-| 9 | **Eligibility and ownership confirmations** | Age of majority, no financial or preferential support from Amazon/Devpost, you are the Representative. |
-| 10 | **Real phone delivery proof (optional)** | Subscribe a phone to a throwaway topic, press Help on the TV (not the cloud device), note the time. Only then may any text say the message reached a phone. |
-| 12 | **Install the private build on the Sony TV** | Install `thodu-tv-ff5e452-ntfy.apk` over the existing app (`adb install -r`) and confirm the launcher label and banner say Thodu TV. |
-| 13 | **Sony model and Android version** | Fill both in `docs/DEVICE_EVIDENCE.md` from Settings > About. |
-| 14 | **Phone delivery test** | Run a phone notification delivery test with your own topic (see item 10). |
-| 15 | **Fresh cloud Fire TV recording with the new judge build** | Use `thodu-tv-ff5e452-judge.apk` (see item 1). |
-| 11 | **Freeze** | No repository or form changes after the deadline. |
+| 1 | **Ask the family member for consent to be filmed before the session** | Before the 2026-10-19 session ask the adult family member, aloud, using the consent statement in `docs/USER_SESSIONS.md`: trying the app (yes/no), filming screen and hands (yes/no), filming the face (separate yes/no). Voluntary; they can stop and ask for deletion at any time. No consent, no filming. |
+| 2 | **Fresh cloud Fire TV recording (final judge build)** | In Amazon Developer Console > Appstore Quality Central > Live Device Interaction, install the **final** judge APK (built after the demo-mode fix; Part 4B) on a real Fire TV and record the **whole browser window** (console, device name and the app all visible). Read the model and OS from the console **Details** tab and write them into `docs/DEVICE_EVIDENCE.md` and the Devpost description. Do not guess "Fire OS 14". Also the first launch of the judge APK on any device (it has never been run). |
+| 3 | **Home-TV footage** (Sony TV, Android TV) | Film on 2026-10-19 **only after item 1**: screen and hands, a face only if they agree, no names. Label it "Android TV", never "Fire TV". Keep a dated file name. Do not show the real notification topic on screen. |
+| 4 | **User testing facts** | After 2026-10-19 fill `docs/USER_TESTING.md` (date, anonymous participant, tasks, observations, problems, changes). Until then no text says "tested with users". |
+| 5 | **Sony model and Android version** | Fill both in `docs/DEVICE_EVIDENCE.md` from Settings > About. |
+| 6 | **Install the private build on the Sony TV** | Install the topic-bearing `-ntfy` APK over the existing app (`adb install -r`) and confirm the launcher label and banner say Thodu TV. Never publish that APK. |
+| 7 | **Phone delivery proof (optional)** | Subscribe a phone to a throwaway topic, press Help on the TV (not the cloud device), note the time. Only then may any text say the message reached a phone. |
+| 8 | **Demo video** | Under 3 minutes; see section D. |
+| 9 | **YouTube (or Vimeo) upload** | Public visibility, English; paste the link on the Devpost form. |
+| 10 | **Repo access action** | Plan: make the repo public around 2026-10-22 and check the license shows in the About box while logged out. Fallback: keep it private and, **at submission time only** (invitations expire after 7 days), add collaborators `testing@devpost.com` plus `knmeiss`, `giolaq`, `anishamalde`, `mosesroth`, `emersonsklar`; the rules page also lists `chris-trag` (it has no profile link there, so check the spelling). Nothing has been pushed or changed by the assistant. |
+| 11 | **Judge APK hosting** | GitHub Release when the repo is public (hash in the notes). Must stay available until the judging period ends on 2026-11-20. Never publish the private topic-bearing build. |
+| 12 | **Devpost form** | Paste the fields from the developer's private paste kit; choose track Fire TV; no mini challenge (Open Source mini is deferred; if ever claimed, the form needs contribution URL, repo URL, GitHub username and a short description); answer the Product Feedback would-build-again question in your own words. |
+| 13 | **Native-speaker check** | Ask a Hindi and a Telugu speaker to read the six safety strings; keep the "not native-reviewed" label until then. |
+| 14 | **Eligibility and ownership confirmations** | Age of majority, no financial or preferential support from Amazon/Devpost, you are the Representative. |
+| 15 | **Freeze** | No repository or form changes after 2026-10-23 12:00 pm Pacific. |
+
+## B2. Open items for the Product Feedback (moved here from `docs/PRODUCT_FEEDBACK.md`)
+
+- **Fresh Live Device Interaction session** with the current judge APK, recording the whole browser window, then fill the model and OS from the console Details tab (see `docs/DEVICE_EVIDENCE.md`). Until then A4 stays as written above.
+- **A4 facts nobody recorded:** how the 2026-10-14 recordings were made (console feature or screen capture), whether the APK upload to the cloud device had any problem, onboarding steps and time.
+- **Would-build-again answers (A1 to A5):** the developer must give yes or no and the reason in their own words.
+- **Onboarding totals:** no end-to-end "zero to hello world" time is recorded for any tool.
+- **Not recorded in the logs:** F-002 (expected, time lost, severity); F-003 and F-004 (expected); F-008 (steps, time lost, severity); F-011 (expected); F-013 (exact Gradle error text); F-014 (cause of the RCTText crash, not investigated); F-027 (time is approximate only).
+- **F-014:** the logs do not say whether any Amazon guide points to the `with-tv` example, so do not present F-014 as an Amazon documentation fault.
+- **Vega SDK:** confirm the "not available on Windows" statement and say whether you ever tried it.
+- **Devpost form:** exact layout (one box vs. per tool), character limits and required fields were not read; check before pasting.
+- **New blocks B6 (ntfy.sh) and B7 (expo-speech, AsyncStorage):** add your own would-build-again answer.
 
 ## C. Pre-submission checks (the day before)
 
 - [ ] `cd packages/shared && npx jest -c jest.core.config.js` shows all tests passing.
 - [ ] `git status` clean; the commit you submit is the one the judge APK was built from (or say so).
 - [ ] No topic anywhere: `git grep` for a `thodu-xxxx-xxxx-xxxx` shaped string returns only the placeholders and test fixtures.
-- [ ] README, JUDGES, DEVPOST_DESCRIPTION still say the same numbers (212 tests, 15 suites).
+- [ ] README, JUDGES, DEVPOST_DESCRIPTION still say the same numbers (223 tests, 16 suites).
 - [ ] Links in the Devpost text open for a logged-out visitor (video, APK).
 
 ## D. Video must-haves (from the verified rules)
@@ -73,7 +86,7 @@ Rules: "should be less than three (3) minutes", "should include footage that sho
 - "Medicines: one-press check-in, no reminders yet"
 - "Not an emergency service"
 - "Not yet tested with users" (or the facts from `docs/USER_TESTING.md` once filled)
-- "212 unit tests passing; contrast measured by script" (re-check the numbers before filming)
+- "223 unit tests passing; contrast measured by script" (re-check the numbers before filming)
 
 ### Wording that must not appear
 Fire TV certified, Appstore approved, tested with users (without evidence), emergency service, medical device, "reminder" as a feature, voice recognition or voice control, usage-adaptive or learning Home, "works on all Fire TVs", any claim about the current build running on a Fire TV before item B1 is done.

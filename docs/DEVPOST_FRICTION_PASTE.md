@@ -341,7 +341,7 @@ Environment: Windows 11 Pro, solo developer, React Native + Expo (react-native-t
 
 ## Part 3. Amazon cloud devices, user-reported (2 entries, within the 35 total)
 
-**F-34: The Live Device Interaction recording shows only the device screen, so it cannot prove a Fire TV** [user-reported]
+**F-034: The Live Device Interaction recording shows only the device screen, so it cannot prove a Fire TV** [user-reported]
 - Tool: Appstore Quality Central > Live Device Interaction, built-in screen recording (cloud Fire TV device)
 - Task attempted: Record a cloud Fire TV session as proof for the hackathon video.
 - Steps taken: Started a Live Device Interaction session on 2026-10-14 and used the built-in recording (three recordings, about 2:00, 2:00 and 1:43, 1920x1080). Checked the saved files afterwards [user-reported].
@@ -352,7 +352,7 @@ Environment: Windows 11 Pro, solo developer, React Native + Expo (react-native-t
 - Suggestion: Offer a window-level recording, or burn the device name/model into the capture.
 - Evidence: The three 2026-10-14 recordings in the developer's Downloads folder (`recording.mp4`, `recording (1).mp4`, `recording (2).mp4`; outside this repo). The statement about the cause is [user-reported].
 
-**F-35: Unclear at first how to choose between the cloud devices "FOS 14 3P TV" and "Smart TV - Amazon Fire TV"** [user-reported]
+**F-035: Unclear at first how to choose between the cloud devices "FOS 14 3P TV" and "Smart TV - Amazon Fire TV"** [user-reported]
 - Tool: Appstore Quality Central > Live Device Interaction, device list (cloud Fire TV devices)
 - Task attempted: Choose a cloud device for a Live Device Interaction session.
 - Steps taken: Opened the device list and saw "FOS 14 3P TV" and "Smart TV - Amazon Fire TV". Worked out the difference after some time [user-reported]; how long was not recorded.

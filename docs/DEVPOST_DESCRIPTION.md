@@ -13,7 +13,19 @@ Easy TV. One button. Family one press away. (43 characters)
 Fire TV. Mini challenges: none claimed (see "Mini challenges" below).
 
 ## Inspiration
-Many older viewers and people with low vision, hearing loss, limited hand control or reading difficulty find a TV remote, small text and dense menus hard to use, and the usual answer is a settings menu they cannot easily find. We wanted a TV that starts from the person's need instead of from the menu, and that lets them tell a family member something with one button. Thodu means "companion" in Telugu.
+Our starting assumption (not a measured finding; no user session has been run) is that some older viewers and people with low vision, hearing loss, limited hand control or reading difficulty can find a TV remote, small text and dense menus hard to use, and that a settings menu is not an easy answer for them. We wanted a TV that starts from the person's need instead of from the menu, and that lets them tell a family member something with one button. Thodu means "companion" in Telugu.
+
+## Why this matters (context, cited)
+
+Context from official sources, not results of Thodu TV (full quotes, dates and URLs in [docs/SOURCES.md](SOURCES.md), opened 2026-10-19):
+
+- WHO: "An estimated 1.3 billion people experience significant disability. This represents 16% of the world's population, or 1 in 6 of us." (WHO fact sheet, 7 March 2023.)
+- WHO: the share of the world's population aged 60 and over "will increase from 1 billion in 2020 to 1.4 billion" by 2030, and "common conditions in older age include hearing loss, cataracts and refractive errors". (WHO fact sheet, 1 October 2025.)
+- Government of India (PIB, 28 October 2025): the elderly population (60+) is "projected to more than double from 100 million in 2011 to 230 million by 2036", with "above-average elderly populations" in southern states; "technology adoption barriers, lack of training and accessible devices" are listed among the challenges of the elderly.
+- MoSPI, Census 2011 (published 2016): "about 2.68 Cr persons are 'disabled' which is 2.21% of the total population."
+- Amazon: Fire OS already ships its own screen reader, VoiceView. Thodu TV is a layer of one-button setup and family contact, not a replacement for it, and it has not been tested with VoiceView.
+
+We did not find an official source for how many TV households there are or how hard remotes are to use, so we state no number for them. Thodu TV has had no user session yet.
 
 ## What it does
 Thodu TV is an accessibility-first Fire TV / Android TV app. The first screen asks "What would make TV easier for you?" with four large choices and the whole screen restyles live as the person chooses:
@@ -47,6 +59,8 @@ From our friction log (35 entries: 33 from notes kept at the time, 2 user-report
 Remote-first design means every state needs a visible focus and a way out; "honest status" text is as important as the feature; and a public notification topic is a shared secret, not access control.
 
 ## What's next
+Beyond the hackathon, as plans only: real video-app integration, scheduled medicine reminders, a caregiver view with a private notification channel, more languages, a Vega OS port. None is built.
+
 Run the current build on a Fire TV and with VoiceView; sessions with real users; native-speaker review of Hindi and Telugu; timed medicine reminders and a schedule; an Alexa+ voice trigger for people who cannot use a remote (none of these is built).
 
 ## Built With
@@ -58,8 +72,8 @@ React Native (react-native-tvos 0.83.6-0), React 19.2, Expo SDK 55, expo-router,
 - Judge guide: `docs/JUDGES.md` in the repository
 - Demo video: [YouTube link]
 
-## Pre-existing project explanation
-The repository was started on 2026-10-12 (after the Submission Period began on 2026-08-31) from Amazon's react-native-multi-tv-helloworld sample (MIT-0, upstream commit dated 2026-09-21). All screens, logic, themes, scanner, notification sender, strings, tests, tools and artwork were written in the repository after that import. An earlier, separate, unsubmitted project of the same developer ("AURA+", 23 commits on 2026-09-26 and 2026-09-27) is disclosed; no code from it was ported. Details and commit dates: `docs/PRE_EXISTING.md`.
+## Did anything exist before the Submission Period?
+No part of Thodu TV existed before 2026-08-31 (10:15 am PT). The repository was started on 2026-10-12 (after the Submission Period began on 2026-08-31) from Amazon's react-native-multi-tv-helloworld sample (MIT-0, upstream commit dated 2026-09-21). All screens, logic, themes, scanner, notification sender, strings, tests, tools and artwork were written in the repository after that import. An earlier, separate, unsubmitted project of the same developer ("AURA+", 23 commits on 2026-09-26 and 2026-09-27, also inside the Submission Period) is disclosed; no code from it was ported. Details and commit dates: `docs/PRE_EXISTING.md`.
 
 ## Mini challenges
 - **AWS Builder:** not entered. Thodu TV uses no AWS service.
@@ -72,5 +86,7 @@ Paste from `docs/PRODUCT_FEEDBACK.md` (five elements per tool: A1 Amazon multi-T
 Paste from `docs/DEVPOST_FRICTION_PASTE.md` (35 entries, each with task, steps, expected vs actual, severity, workaround, suggestion).
 
 ## Feature requests (optional)
-- Nice-to-have: a Live Device Interaction recording or export that includes the device name and OS. (Not confirmed whether it already exists.)
-- Important: a Windows note in the Amazon sample README about the 260-character path limit, and an "Android TV only (no Vega)" install section (F-015, F-016).
+- **Important: window-level or labeled recording in Live Device Interaction.** What: let the built-in recording capture the whole console window, or burn the device name and model into the capture (not confirmed whether it already exists). Why it matters: the Fire TV track needs video of an actual Fire TV, and the built-in recording shows only the app full-screen with no device name, so it cannot prove a Fire TV by itself (three 2026-10-14 recordings). Evidence: F-034 [user-reported].
+- **Nice-to-have: Fire OS version and model in the Live Device Interaction device list.** What: show both clearly. Why it matters: choosing between "FOS 14 3P TV" and "Smart TV - Amazon Fire TV" was unclear at first and was worked out after some time. Evidence: F-035 [user-reported].
+- **Important: Windows long-path note (or an early check) for the Amazon multi-TV sample.** What: tell Windows users to clone to a path under about 15 characters and fail early with a clear message. Why it matters: the native build failed on the 260-character limit after about 13 minutes and cost about 35 minutes with no README warning. Evidence: F-016.
+Full text: `docs/FEATURE_REQUESTS.md`.

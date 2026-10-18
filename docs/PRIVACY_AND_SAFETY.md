@@ -27,7 +27,7 @@ Only when the person presses a family button in **real mode**, Thodu TV makes on
 | Headers | `Title: Thodu TV`, `Priority: high`, `Tags` (an emoji tag such as `warning`, `wave`, `pill`) |
 | Not included | name, address, health condition, medicine name, dose, settings, device id |
 
-The clock time is the TV's local time. ntfy.sh also sees what any web server sees (the sender's IP address and when the request was made). We did not review ntfy.sh's retention or logging; check ntfy's own privacy policy.
+The clock time is the TV's local time. ntfy.sh also sees what any web server sees (the sender's IP address and when the request was made). What ntfy's own pages say about retention and logging is summarised below ("ntfy.sh: what the official pages say"); that is the pages' wording, not a legal review.
 
 ### Who can read the messages
 
@@ -36,6 +36,24 @@ The clock time is the TV's local time. ntfy.sh also sees what any web server see
 - The TV makes a random topic `thodu-` + 12 characters from a 32-letter alphabet (60 random bits) from a cryptographic source `[unit test]` `notify.test.ts`; it is shown only on the TV's Settings > Family notifications screen. That is unguessable in practice but it is a shared secret, not access control.
 - Share it only with the family member who needs it. "Make a new name" creates a new one; the family phone must subscribe again.
 - **Judges and testers: use the topic your own TV generates. Never reuse a topic from a document, a screenshot or a video.** The judge APK contains no topic at all `[APK static]` (searched), and the developer's private test build is never published.
+
+## ntfy.sh: what the official pages say
+
+Read on **2026-10-19** (GET only; nothing was posted to ntfy.sh for this). This restates the pages and adds nothing beyond them. The pages can change; check them again if it matters.
+
+- **What it is.** From the Terms: "ntfy (pronounced "notify") is a simple HTTP-based pub-sub notification service. It allows you to send push notifications to your phone or desktop via scripts from any computer, using a REST API." The hosted service is "operated by ntfy LLC"; the server and apps are open source and can be self-hosted. (https://ntfy.sh/docs/terms/, "Last updated: January 26, 2026".)
+- **No login on the free public server.** Terms: "You may use the Service without creating an account or subscribing to a paid plan. Free usage is subject to rate limits and other restrictions as described in our documentation." Privacy policy: "You can use ntfy without creating an account. Anonymous usage is fully supported." (https://docs.ntfy.sh/privacy/)
+- **Topics are not authenticated.** Terms: "Topic names on ntfy.sh are public. If you use the Service without access controls, your topic name functions as a password. You are responsible for choosing topic names that cannot be easily guessed. We are not responsible for any unauthorized access to messages published to easily guessable topic names." Publishing docs: "Since there is no sign-up, the topic is essentially a password, so pick something that's not easily guessable." and "Obviously all topics on ntfy.sh are public". (https://docs.ntfy.sh/publish/) So anyone who knows a topic name can read and publish to it, as stated above.
+- **Message caching and retention.** Privacy policy: "Messages you publish are temporarily cached on our servers (default: 12 hours) to support message polling and to overcome client network disruptions. Messages are deleted after the cache duration expires." Its retention table lists "Messages: 12 hours (configurable by server operators)". The FAQ gives the same default: "Messages are cached for the duration configured in server.yml (12h by default)". (https://docs.ntfy.sh/privacy/, https://docs.ntfy.sh/faq/.) We did not check what the hosted server is actually configured to; "default" is the pages' word.
+- **Logs.** Privacy policy: "IP addresses - Used for rate limiting to prevent abuse. May be temporarily logged for debugging purposes, though this is typically turned off." and "The server does not log message content by default". FAQ: "the logs do contain topic names and IP addresses, but I don't use them for anything other than troubleshooting and rate limiting."
+- **Availability.** Terms: "The Service is provided on a "best effort" basis. We do not guarantee any specific uptime or availability." and for guaranteed uptime "we recommend self-hosting your own ntfy server". This is another reason the family message can never be the only way to get help.
+- **Acceptable use.** Terms: users agree not to "Send spam, unsolicited messages, or messages to recipients who have not consented to receive them". Thodu TV sends only to a topic the family member chose to subscribe to; judges and testers should do the same.
+
+**Recommendation (ours, based on the above):** every judge and user should set their own random topic (Settings > Family notifications > "Make a new name" generates one) and never reuse a topic from a document, screenshot or video. For anything that matters, self-hosting an ntfy server or using ntfy's access controls would be the next step; neither is built into Thodu TV.
+
+## Duplicate messages are possible
+
+The sender retries once after a timeout. If the first POST was slow but did reach ntfy.sh, the family phone can receive the same message twice (`core/notify.ts`, unit-tested as intended behaviour in `notify.test.ts`). A duplicate is preferred to a lost help request. This is not an error state the person sees.
 
 ## Honest behaviour
 

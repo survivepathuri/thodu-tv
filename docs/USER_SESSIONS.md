@@ -3,7 +3,7 @@
 
 This is a template for short, consented sessions where a person who might benefit from Thodu TV tries it on a TV. It is for learning where the app confuses people. It is **not** a clinical study and it does not test anyone's ability.
 
-The real notes are kept **outside this repository**, in a private folder. Nothing from a session (no names, photos, recordings or personal details) is committed here.
+The real notes are kept **outside this repository**, in a private folder. Nothing from a session (no names, personal details, photos or footage) is committed here. The only filming planned is the one described under "Filming" below, and only with the participant's consent.
 
 ## Before the session
 
@@ -15,16 +15,25 @@ The real notes are kept **outside this repository**, in a private folder. Nothin
 
 Say this aloud (or give it written, in the person's language), and ask for a clear yes or no:
 
-> I am testing a TV app to find out where it is hard to use. We are testing the app, not you. You can stop at any time, skip anything, and ask me to leave. I will not take photos or record your voice or screen. I will not write down your name or personal details. I may write a short note about what happened and, if you agree, one sentence you said in my own words. Do you agree to try it?
+> I am testing a TV app to find out where it is hard to use. We are testing the app, not you. Taking part is voluntary. You can stop at any time, skip anything, and ask me to leave. I would like to film the TV screen and your hands while you try it, for my notes and possibly for a short video about the project. I will film your face only if you say yes to that separately. I will not write down or show your name or personal details. If you want, afterwards you can ask me to delete the footage and I will. I may also write a short note about what happened and, if you agree, one sentence you said in my own words. Do you agree to try it, and do you agree to the filming of the screen and hands? Do you also agree to your face being filmed? (Each answer can be different.)
 
-Record only **that consent was given** (yes or no, spoken or written, date). If the answer is no, thank the person and stop.
+Record only **that consent was given** and for what (try the app: yes or no; film screen and hands: yes or no; film face: yes or no; spoken or written; date). If the answer to trying the app is no, thank the person and stop. If the answer to filming is no, do not film and run the session without it.
+
+## Filming (verbal consent before filming)
+
+- Consent is asked **before** any filming starts, aloud, and noted as above. Nothing is filmed first and asked later.
+- Default: film the TV screen and the participant's hands. A face is filmed **only if** the participant agrees to that separately.
+- No names or personal details appear in any document, file name, caption or video. The participant is "Participant 1".
+- The participant can stop at any time and can ask for the footage to be deleted, before or after the video is published; the developer deletes it on request.
+- Footage stays on the developer's own device and in the private folder. It is not committed to this repository. Footage goes into the public demo video only with the consent given above.
+- Do not show the real notification topic on screen.
 
 ## What we will and will not record
 
 | We will write down | We will not record |
 |---|---|
-| Which tasks were tried and whether they worked | Photos or video |
-| Roughly how long each took | Voice recordings |
+| Which tasks were tried and whether they worked | Footage beyond what the participant agreed to (screen and hands; a face only with separate consent) |
+| Roughly how long each took | Voice, unless the participant agreed to it when asked about filming |
 | What looked confusing (in the observer's words) | The person's name, address, health details or phone numbers |
 | One paraphrased comment, only if the person agrees | Anything that could identify the person or the household |
 

@@ -9,7 +9,7 @@ Project: Thodu TV (తోడు టీవీ), a Fire TV track app for elderly a
 
 **Amazon tools used:** (A1) the Amazon react-native-multi-tv-helloworld sample; (A4) Appstore Quality Central Live Device Interaction; (A5) Amazon Fire TV developer documentation. **Not used:** Vega SDK, Amazon Appstore submission, Alexa+ tooling, Amazon Devices Builder Tools (MCP server and Agent Skills), Kiro, any AWS service (no Bedrock or SNS calls), VoiceView on a device. We therefore do not enter the AWS Builder mini challenge.
 
-Each block is self-contained so it can be pasted into one text box. The exact Devpost form layout was not read when this was written.
+Each block is self-contained so it can be pasted into one text box.
 
 ---
 
@@ -135,6 +135,14 @@ Each block is self-contained so it can be pasted into one text box. The exact De
 
 *Not an Amazon or platform issue:* the AI coding-agent shell tool cut off heredocs on Windows [F-027]; this is not counted against any tool above.
 
+## B6. ntfy.sh (public notification service, the one runtime API)
+
+**Used for:** the family message from Help, Family and Medicines: one HTTPS POST of a short generic text to `https://ntfy.sh/<topic>`. **Worked:** a POST from a PC to a private topic returned HTTP 200 and was read back by polling (2026-10-18, not a TV run); the sender's success, failure, timeout and retry paths are unit-tested with a fake network. **Needs work (from ntfy's own pages, read 2026-10-19; see `docs/PRIVACY_AND_SAFETY.md`):** topics are public and act as a password, messages are cached for 12 hours by default, and availability is best effort. Delivery from the TV to a phone has not been tested. **Onboarding:** not recorded. **Again?** For a prototype, the developer's own answer: ________ (left for the developer).
+
+## B7. expo-speech (Android text-to-speech) and AsyncStorage
+
+**Used for:** read-aloud of screen text (expo-speech) and saving settings on the device (AsyncStorage). **Worked:** the speech request logic and the persistence format are unit-tested (`speech.test.ts`, `persist.test.ts`). **Needs work:** read-aloud and saved settings have not been verified on a Fire TV with the current build, and Hindi/Telugu text-to-speech on a TV was not checked. No friction entry was recorded for either. **Onboarding:** not recorded. **Again?** Left for the developer.
+
 ---
 
 # Part C — Top 5 suggestions for Amazon
@@ -146,14 +154,3 @@ Each block is self-contained so it can be pasted into one text box. The exact De
 5. **Fix the undocumented traps in the sample [F-020, F-022, F-023, F-024].** Comment that `TabLayout.web.tsx` is the TV layout; fix the shared package's jest preset resolution; add `typescript` and Yarn 4 setup (`corepack`) instructions; make the Expo bundle Gradle task rebuild when workspace packages change.
 
 ---
-
-# Part D: gaps the human must fill
-
-- **Fresh Live Device Interaction session** with the current judge APK, recording the whole browser window, then fill the model and OS from the console Details tab (see `docs/DEVICE_EVIDENCE.md`). Until then A4 stays as written above.
-- **A4 facts nobody recorded:** how the 2026-10-14 recordings were made (console feature or screen capture), whether the APK upload to the cloud device had any problem, onboarding steps and time.
-- **Would-build-again answers (A1 to A5):** the developer must give yes or no and the reason in their own words.
-- **Onboarding totals:** no end-to-end "zero to hello world" time is recorded for any tool.
-- **Not recorded in the logs:** F-002 (expected, time lost, severity); F-003 and F-004 (expected); F-008 (steps, time lost, severity); F-011 (expected); F-013 (exact Gradle error text); F-014 (cause of the RCTText crash, not investigated); F-027 (time is approximate only).
-- **F-014:** the logs do not say whether any Amazon guide points to the `with-tv` example, so do not present F-014 as an Amazon documentation fault.
-- **Vega SDK:** confirm the "not available on Windows" statement and say whether you ever tried it.
-- **Devpost form:** exact layout (one box vs. per tool), character limits and required fields were not read; check before pasting.

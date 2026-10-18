@@ -34,7 +34,7 @@ Commands run from the repository root. Jest: `cd packages/shared && npx jest -c 
 | 18 | A repeat press of the same button within 3 s of a success is ignored; a failure can be retried at once | `[unit test]` | `familyAlert.test.ts` |
 | 19 | With no topic configured, or before a test message succeeded, the app is in demo mode: "Demo: nobody was told" and nothing is sent | `[code only]` for the demo branch and text; `[unit test]` for the topic-config rules and the string keys | `settings/useFamilyAlert.ts`, `expotv/app/help.tsx`, `familyAlert.test.ts` (`applyConfiguredTopic`), `strings.test.ts` |
 | 20 | The judge APK contains no notification topic | `[APK static]` (searched; the private build used as a control does contain one) | `thodu-tv-ff5e452-judge.apk`; the tracked repo is checked by `secrets.test.ts` (2) |
-| 21 | A real POST from a PC to a private topic returned HTTP 200 and was read back by polling | PC run, 2026-10-18 (not a TV run) | The developer's audit note `RESUME_POINT.md` (outside the repo). Topic never recorded. |
+| 21 | A real POST from a PC to a private topic returned HTTP 200 and was read back by polling | PC run, 2026-10-18 (not a TV run) | The developer's private working notes (not in the repository, so a judge cannot re-check this row). Topic never recorded. |
 | 22 | Delivery from the TV app to a phone | `[not tested]` | Do not claim |
 | 23 | Medicines is a one-press check-in ("Yes, I took it") that notifies the family; there are no timed reminders and no schedule | `[unit test]` for the send; `[code only]` for the screen | `screens/MedicinesScreen.tsx`, `familyAlert.test.ts`. On any TV: `[not tested]` |
 | 24 | Anyone who knows the topic can read the messages | Fact about ntfy.sh | [PRIVACY_AND_SAFETY.md](PRIVACY_AND_SAFETY.md) |
@@ -63,8 +63,8 @@ Commands run from the repository root. Jest: `cd packages/shared && npx jest -c 
 | 36 | The app was started on an Amazon cloud Fire TV on 2026-10-14 | `[cloud Fire TV, 2026-10-14, older build]`; the recordings show no device frame | [DEVICE_EVIDENCE.md](DEVICE_EVIDENCE.md). **A fresh recording with the console visible is still to do.** |
 | 37 | The current build (`ff5e452`) runs on a Fire TV | `[not tested]` | Do not claim |
 | 38 | Build `ff5e452` has the launcher label "Thodu TV" and a banner reading "Thodu TV / Easy TV. One button. Family one press away." | `[APK static]` (`aapt2 dump badging`; banner image viewed) | `thodu-tv-ff5e452-judge.apk`; not yet seen on any TV `[not tested]` |
-| 38 | Built from Amazon's multi-TV starter (MIT-0), new repository started 2026-10-12 | git history | [PRE_EXISTING.md](PRE_EXISTING.md), `NOTICE` |
-| 39 | `versionName` is generated from the git SHA at prebuild | `[code only]` (checked on a copy of `build.gradle`) | `packages/expotv/plugins/withGitVersionName.js` |
+| 40 | Built from Amazon's multi-TV starter (MIT-0), new repository started 2026-10-12 | git history | [PRE_EXISTING.md](PRE_EXISTING.md), `NOTICE` |
+| 41 | `versionName` is generated from the git SHA at prebuild | `[code only]` (checked on a copy of `build.gradle`) | `packages/expotv/plugins/withGitVersionName.js` |
 
 ## Claims that are NOT made
 
