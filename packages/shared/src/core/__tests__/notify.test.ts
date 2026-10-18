@@ -76,7 +76,7 @@ describe('generateTopic / isValidTopic', () => {
 describe('buildPayload', () => {
   it('is generic: title, message with the time, high priority, tags', () => {
     expect(buildPayload('help', NOW)).toEqual({
-      title: 'Thodu',
+      title: 'Thodu TV',
       message: 'Help was requested from the TV at 18:42',
       priority: 'high',
       tags: ['warning'],
@@ -122,7 +122,7 @@ describe('sendHelp', () => {
     const init = callInit(f);
     expect(init.method).toBe('POST');
     expect(init.body).toBe('Help was requested from the TV at 18:42');
-    expect(init.headers).toEqual({Title: 'Thodu', Priority: 'high', Tags: 'warning'});
+    expect(init.headers).toEqual({Title: 'Thodu TV', Priority: 'high', Tags: 'warning'});
   });
 
   it('accepts any 2xx', async () => {

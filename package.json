@@ -1,7 +1,7 @@
 {
   "name": "@thodu/workspace",
   "version": "0.1.0",
-  "description": "Thodu - accessibility-first TV app for Fire TV / Android TV (Yarn workspaces monorepo)",
+  "description": "Thodu TV (తోడు టీవీ): A TV app that older adults and people with disabilities can use with one button, and that tells their family when they need help.",
   "scripts": {
     "clean": "yarn workspaces foreach --all run clean ; rm -rf node_modules",
     "expotv": "yarn workspace @thodu/expotv",

@@ -66,28 +66,28 @@ export function buildPayload(kind: NotifyKind, now: number): NotifyPayload {
   switch (kind) {
     case 'test':
       return {
-        title: 'Thodu',
+        title: 'Thodu TV',
         message: `This is a test message from the TV at ${time}`,
         priority: 'high',
         tags: ['white_check_mark'],
       };
     case 'family':
       return {
-        title: 'Thodu',
+        title: 'Thodu TV',
         message: `A hello from the TV at ${time}`,
         priority: 'high',
         tags: ['wave'],
       };
     case 'medicine':
       return {
-        title: 'Thodu',
+        title: 'Thodu TV',
         message: `Medicine was confirmed on the TV at ${time}`,
         priority: 'high',
         tags: ['pill'],
       };
     default:
       return {
-        title: 'Thodu',
+        title: 'Thodu TV',
         message: `Help was requested from the TV at ${time}`,
         priority: 'high',
         tags: ['warning'],

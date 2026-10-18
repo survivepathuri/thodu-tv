@@ -1,7 +1,7 @@
 import type {StringKey} from './en';
 
 // Needs review by a native Hindi speaker before it is shown to judges or users.
-// "Thodu" stays in Latin script on purpose (it is the product name).
+// "Thodu TV" stays in Latin script on purpose (it is the product name).
 export const hi: Record<StringKey, string> = {
   'lang.name': 'हिन्दी',
   'common.back': 'पीछे',
@@ -45,7 +45,7 @@ export const hi: Record<StringKey, string> = {
   'family.event': 'मदद माँगी',
   'family.simulated': 'नकली',
   'family.phone.label': 'परिवार का फ़ोन (नकली)',
-  'family.phone.title': 'Thodu चेतावनी',
+  'family.phone.title': 'Thodu TV चेतावनी',
   'family.phone.body': 'आपके परिवार के सदस्य ने {time} बजे मदद माँगी।',
   'family.phone.empty': 'अभी कोई चेतावनी नहीं।',
   'caption.1': 'शुभ संध्या, कार्यक्रम में आपका स्वागत है।',
@@ -56,13 +56,13 @@ export const hi: Record<StringKey, string> = {
   'settings.title': 'सेटिंग्स',
   'settings.subtitle': 'जो आपके काम आए, उसे बदलें।',
   'settings.done': 'हो गया',
-  'settings.reset': 'Thodu रीसेट करें',
+  'settings.reset': 'Thodu TV रीसेट करें',
   'settings.family': 'परिवार को सूचनाएँ',
   'scan.speed': 'स्कैनिंग की गति',
   'scan.slow': 'धीमी',
   'scan.normal': 'सामान्य',
   'scan.fast': 'तेज़',
-  'reset.title': 'Thodu रीसेट करें?',
+  'reset.title': 'Thodu TV रीसेट करें?',
   'reset.body': 'इससे आपकी चुनी हुई बातें मिट जाएँगी और सब कुछ फिर से शुरू होगा।',
   'reset.yes': 'हाँ, रीसेट करें',
   'reset.no': 'नहीं, मेरे चुनाव रखें',
@@ -76,7 +76,7 @@ export const hi: Record<StringKey, string> = {
   'help.failed.body': 'कृपया उन्हें फ़ोन करें।',
   'help.failed.retry': 'फिर कोशिश करें',
   'help.emergency':
-    'Thodu कोई आपातकालीन सेवा नहीं है। आपात स्थिति में अपने स्थानीय आपातकालीन नंबर पर कॉल करें।',
+    'Thodu TV कोई आपातकालीन सेवा नहीं है। आपात स्थिति में अपने स्थानीय आपातकालीन नंबर पर कॉल करें।',
   'family.event.failed': 'मदद माँगी - भेजी नहीं जा सकी',
   'family.event.demo': 'मदद माँगी (डेमो)',
   'fam.topic.label': 'आपके परिवार का नाम',
@@ -88,7 +88,7 @@ export const hi: Record<StringKey, string> = {
   'fam.new': 'नया नाम बनाएँ',
   'fam.new.title': 'नया नाम बनाएँ?',
   'fam.new.body':
-    'परिवार के फ़ोन को नए नाम को सब्सक्राइब करना होगा। जाँच संदेश भेजने तक Thodu डेमो में ही रहेगा।',
+    'परिवार के फ़ोन को नए नाम को सब्सक्राइब करना होगा। जाँच संदेश भेजने तक Thodu TV डेमो में ही रहेगा।',
   'fam.new.yes': 'हाँ, नया नाम बनाएँ',
   'fam.new.no': 'नहीं, यही नाम रखें',
   'fam.mode': 'जब आप मदद माँगें',

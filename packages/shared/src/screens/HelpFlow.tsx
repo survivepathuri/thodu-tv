@@ -30,7 +30,7 @@ const DemoTag = ({text}: {text: string}) => {
   );
 };
 
-/** Plain, always-visible reminder that Thodu cannot call emergency services. */
+/** Plain, always-visible reminder that Thodu TV cannot call emergency services. */
 export const EmergencyNote = () => {
   const {t, colors, fs} = useUI();
   return (
@@ -396,7 +396,7 @@ export const FamilyScreen = ({onBack}: {onBack: () => void}) => {
   );
 };
 
-/** "Reset Thodu?" confirmation. Cancel holds the initial focus. */
+/** "Reset Thodu TV?" confirmation. Cancel holds the initial focus. */
 export const ResetConfirmScreen = ({
   onConfirm,
   onCancel,
