@@ -46,9 +46,9 @@ for (const [name, p] of [
   pair(name, 'scan hint (background on text)', p.background, p.text, 4.5);
 }
 // Colours written directly in screens.
-pair('Both', 'caption bar text (#FFFFFF on #000000)', '#FFFFFF', '#000000', 4.5);
-pair('Both', 'alert banner phase A (#000000 on #FFE600)', '#000000', '#FFE600', 4.5);
-pair('Both', 'alert banner phase B (#FFE600 on #000000)', '#FFE600', '#000000', 4.5);
+pair('Both', 'caption bar text', '#FFFFFF', '#000000', 4.5);
+pair('Both', 'alert banner phase A', '#000000', '#FFE600', 4.5);
+pair('Both', 'alert banner phase B', '#FFE600', '#000000', 4.5);
 
 // Source scan.
 function walk(dir, out = []) {
