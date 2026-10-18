@@ -17,7 +17,7 @@ const en: Simple = {
   'need.lowVision.desc': 'Big words, strong colors',
   'need.hardOfHearing.desc': 'Words on screen, alerts',
   'need.remoteDifficulty.desc': 'Big buttons, auto scan',
-  'need.readingDifficulty.desc': 'Easy words, pictures, voice',
+  'need.readingDifficulty.desc': 'Easy words, icons, read aloud',
   'home.title': 'What do you want to do?',
   'help.body': 'Only a demo. No one was told.',
   'help.confirm.title': 'Need help?',
