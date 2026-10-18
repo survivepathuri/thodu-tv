@@ -1,18 +1,24 @@
-# Thodu (తోడు)
+# Thodu TV (తోడు టీవీ)
 
-**A Fire TV / Android TV app that starts from what would make TV easier for an older or disabled viewer, and lets them tell a family member with one button.**
+A TV app that older adults and people with disabilities can use with one button, and that tells their family when they need help.
 
-Thodu means "a companion by your side" in Telugu. It was built for the Amazon "Build, Ship, Shape" hackathon (Fire TV track). It is a working prototype, not a finished product.
+Thodu means "companion" in Telugu.
 
-> **Thodu is not an emergency service and not a medical device. In an emergency call your local emergency number.**
+Easy TV. One button. Family one press away.
+
+Not a medical device or emergency service.
+
+Thodu TV is a Fire TV track entry for the Amazon "Build, Ship, Shape" hackathon. It starts from what would make TV easier for an older or disabled viewer, and lets them tell a family member with one button. It is a working prototype, not a finished product.
+
+> **Thodu TV is not an emergency service and not a medical device. In an emergency call your local emergency number.**
 
 **Judges: start with [docs/JUDGES.md](docs/JUDGES.md)** (3 minutes, install steps, how to try the notifications with your own topic). Every claim below carries an evidence tag; the full table is [docs/CLAIMS.md](docs/CLAIMS.md).
 
-Tags: `[unit test]` · `[code only]` · `[cloud Fire TV, date, build]` · `[real Android TV 12 Redmi]` (the developer's home TV, an Android TV, not a Fire TV) · `[emulator]` · `[APK static]` · `[script]` · `[not tested]`. Details in [docs/DEVICE_EVIDENCE.md](docs/DEVICE_EVIDENCE.md).
+Tags: `[unit test]` · `[code only]` · `[cloud Fire TV, date, build]` · `[real Android TV, Sony, user-reported]` (the developer's home TV, an Android TV, not a Fire TV) · `[emulator]` · `[APK static]` · `[script]` · `[not tested]`. Details in [docs/DEVICE_EVIDENCE.md](docs/DEVICE_EVIDENCE.md).
 
 ## What, for whom, why
 
-Many older viewers and people with low vision, hearing loss, limited hand control or reading difficulty find a TV remote, small text and dense menus hard to use. Thodu opens with one question, "What would make TV easier for you?", and four large choices:
+Many older viewers and people with low vision, hearing loss, limited hand control or reading difficulty find a TV remote, small text and dense menus hard to use. Thodu TV opens with one question, "What would make TV easier for you?", and four large choices:
 
 | Choice | What changes | Tag |
 |---|---|---|
@@ -31,7 +37,7 @@ Home has five tiles `[unit test]` (layout) / `[code only]` (screen):
 - **Help**: "Do you need help?" then a family notification. **Not an emergency call.**
 - **Settings**: needs, language, scanning speed, Family notifications, Reset.
 
-Family, Medicines and Help send one short, generic message ("Help was requested from the TV at HH:MM") through the public service **[ntfy.sh](https://ntfy.sh)** to a phone running the ntfy app. There is no Thodu server. **Anyone who knows the topic name can read the messages**, so every user and judge should use the random topic their own TV generates (Settings > Family notifications). "Family notified" appears only after ntfy.sh answers with an HTTP 2xx `[unit test]`. Until a test message has succeeded the buttons say "Demo: nobody was told" and nothing leaves the TV `[code only]`. Details: [docs/PRIVACY_AND_SAFETY.md](docs/PRIVACY_AND_SAFETY.md).
+Family, Medicines and Help send one short, generic message ("Help was requested from the TV at HH:MM") through the public service **[ntfy.sh](https://ntfy.sh)** to a phone running the ntfy app. There is no Thodu TV server. **Anyone who knows the topic name can read the messages**, so every user and judge should use the random topic their own TV generates (Settings > Family notifications). "Family notified" appears only after ntfy.sh answers with an HTTP 2xx `[unit test]`. Until a test message has succeeded the buttons say "Demo: nobody was told" and nothing leaves the TV `[code only]`. Details: [docs/PRIVACY_AND_SAFETY.md](docs/PRIVACY_AND_SAFETY.md).
 
 ## 60-second path
 
@@ -50,7 +56,7 @@ No device? Run the tests (below) and read [docs/ACCESSIBILITY.md](docs/ACCESSIBI
 | Contrast, text sizes, label coverage | Measured: 73 colour pairs 0 below target, lowest text 7.79:1, smallest text 22 design px, 25 of 25 focusable elements labelled | `[script]` `node tools/a11y-measure.mjs`, `[unit test]` |
 | APK is a valid Fire TV / Android TV app (leanback launcher, touchscreen not required, banner, minSdk 24, no Google Play Services) | Checked in the built APK | `[APK static]` |
 | Runs on a real Amazon Fire TV | Started once on an Amazon cloud device on 2026-10-14 with an **older build**; the recordings do not show the device frame, so they do not prove a Fire TV by themselves. **The current build has not been run there yet.** | `[cloud Fire TV, 2026-10-14, older build]` |
-| Onboarding, language switch, high contrast, D-pad, Settings | Verified on the developer's TV (Android TV 12, **not** a Fire TV), with a 4-tile build | `[real Android TV 12 Redmi]` |
+| Onboarding, language switch, high contrast, D-pad, Settings | Verified on the developer's TV (Sony TV, Android TV, **not** a Fire TV), with a 4-tile build | `[real Android TV, Sony, user-reported]` |
 | Medicines tile and real Family / Medicines / Help notifications on a TV | Logic unit-tested with a fake network; **not run on a TV** | `[unit test]`, `[not tested]` |
 | A real HTTP POST reaching ntfy.sh | Done from a PC on 2026-10-18 (HTTP 200, read back by polling) | PC run, not the TV app |
 | Delivery to a phone from the TV | Not verified | `[not tested]` |
@@ -121,7 +127,7 @@ adb shell monkey -p com.thodu.tv -c android.intent.category.LEANBACK_LAUNCHER 1
 
 **Notification topic.** A source build has **no topic** and starts in demo mode. To bake in your own, copy `packages/expotv/.env.example` to `packages/expotv/.env.local` (git-ignored) and set `EXPO_PUBLIC_THODU_TOPIC` (format and warning inside the file). Otherwise create one on the TV in Settings > Family notifications.
 
-**Build notes.** The first full three-ABI build took about 41 minutes on a low-memory PC (27.5 minutes until a network error ended it, then 13.8 minutes on a re-run that reused finished tasks). After editing JS in `packages/shared`, run the Gradle task `:app:createBundleReleaseJsAndAssets --rerun` or Gradle may ship stale JavaScript. For an x86-only emulator build add `-PreactNativeArchitectures=x86`. The release build is signed with the debug keystore, fine for a demo only. The three ARM libraries were verified present in the APK; the universal APK has run only on an x86 emulator, the developer's Android TV 12 (a build before the latest), and the cloud device above. Putting the APK on a TV: [docs/INSTALL_ON_TV.md](docs/INSTALL_ON_TV.md). Our list of tool problems: [FRICTION_LOG.md](FRICTION_LOG.md).
+**Build notes.** The first full three-ABI build took about 41 minutes on a low-memory PC (27.5 minutes until a network error ended it, then 13.8 minutes on a re-run that reused finished tasks). After editing JS in `packages/shared`, run the Gradle task `:app:createBundleReleaseJsAndAssets --rerun` or Gradle may ship stale JavaScript. For an x86-only emulator build add `-PreactNativeArchitectures=x86`. The release build is signed with the debug keystore, fine for a demo only. The three ARM libraries were verified present in the APK; the universal APK has run only on an x86 emulator, the developer's Sony TV running Android TV (a build before the latest), and the cloud device above. Putting the APK on a TV: [docs/INSTALL_ON_TV.md](docs/INSTALL_ON_TV.md). Our list of tool problems: [FRICTION_LOG.md](FRICTION_LOG.md).
 
 ## Architecture
 
@@ -149,8 +155,8 @@ Timed medicine reminders and a schedule; a voice trigger through Alexa+ for peop
 
 Started from Amazon's [react-native-multi-tv-helloworld](https://github.com/AmazonAppDev/react-native-multi-tv-helloworld) sample (MIT-0, Amazon.com, Inc.); see [NOTICE](NOTICE), [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and [docs/PRE_EXISTING.md](docs/PRE_EXISTING.md). `react-native-tvos` is a community fork, not an Amazon product. The icon, launcher banner and splash mark are original artwork (`assets/branding/`, rendered by `tools/make-branding.mjs`); no third-party logos or images are used.
 
-Thodu's own code is **MIT**, see [LICENSE](LICENSE).
+Thodu TV's own code is **MIT**, see [LICENSE](LICENSE).
 
 Docs: [docs/JUDGES.md](docs/JUDGES.md) · [docs/CLAIMS.md](docs/CLAIMS.md) · [docs/DEVICE_EVIDENCE.md](docs/DEVICE_EVIDENCE.md) · [docs/ACCESSIBILITY.md](docs/ACCESSIBILITY.md) · [docs/PRIVACY_AND_SAFETY.md](docs/PRIVACY_AND_SAFETY.md) · [SECURITY.md](SECURITY.md) · [docs/PRE_EXISTING.md](docs/PRE_EXISTING.md) · [docs/USER_TESTING.md](docs/USER_TESTING.md) · [FRICTION_LOG.md](FRICTION_LOG.md) · [docs/PRODUCT_FEEDBACK.md](docs/PRODUCT_FEEDBACK.md) · [submission.md](submission.md)
 
-**Thodu is not an emergency service. In an emergency call your local emergency number.**
+**Thodu TV is not an emergency service. In an emergency call your local emergency number.**

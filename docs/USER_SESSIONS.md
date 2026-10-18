@@ -1,6 +1,7 @@
-# Sessions with real users: template
+# Thodu TV: Sessions with real users: template
+*A TV app that older adults and people with disabilities can use with one button, and that tells their family when they need help.*
 
-This is a template for short, consented sessions where a person who might benefit from Thodu tries it on a TV. It is for learning where the app confuses people. It is **not** a clinical study and it does not test anyone's ability.
+This is a template for short, consented sessions where a person who might benefit from Thodu TV tries it on a TV. It is for learning where the app confuses people. It is **not** a clinical study and it does not test anyone's ability.
 
 The real notes are kept **outside this repository**, in a private folder. Nothing from a session (no names, photos, recordings or personal details) is committed here.
 
@@ -53,7 +54,7 @@ Also note: the needs chosen on the setup screen, whether read-aloud or large tex
 
 ## After the session
 
-- Thank the person. Offer to reset the app ("Reset Thodu" in Settings) or uninstall it.
+- Thank the person. Offer to reset the app ("Reset Thodu TV" in Settings) or uninstall it.
 - Delete anything you wrote that could identify them.
 - Turn network debugging off on the TV.
 

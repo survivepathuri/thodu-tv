@@ -1,6 +1,7 @@
-# Claims and evidence
+# Thodu TV: Claims and evidence
+*A TV app that older adults and people with disabilities can use with one button, and that tells their family when they need help.*
 
-Every claim the README, the judge guide, the Devpost text and the video make, with its evidence tag and the command or path that shows it. If a claim is not in this table it is not made. Tags are explained in [DEVICE_EVIDENCE.md](DEVICE_EVIDENCE.md): `[unit test]` · `[code only]` · `[cloud Fire TV, date, build]` · `[real Android TV 12 Redmi]` · `[emulator]` · `[APK static]` · `[script]` · `[not tested]`.
+Every claim the README, the judge guide, the Devpost text and the video make, with its evidence tag and the command or path that shows it. If a claim is not in this table it is not made. Tags are explained in [DEVICE_EVIDENCE.md](DEVICE_EVIDENCE.md): `[unit test]` · `[code only]` · `[cloud Fire TV, date, build]` · `[real Android TV, Sony, user-reported]` · `[emulator]` · `[APK static]` · `[script]` · `[not tested]`.
 
 Commands run from the repository root. Jest: `cd packages/shared && npx jest -c jest.core.config.js`. Latest run (2026-10-18, HEAD plus the a11y test): **15 suites, 212 tests, all passing**: theme 65, notify 27, familyAlert 19, persist 18, scanner 16, simpleText 13, adapt 12, a11y 9, strings 8, helpEvents 7, a11yCoverage 5, captions 4, speech 4, buttonIcons 3, secrets 2. The shared package type-checks with `../expotv/node_modules/.bin/tsc --noEmit -p .` (run inside `packages/shared`; 0 errors).
 
@@ -12,21 +13,21 @@ Commands run from the repository root. Jest: `cd packages/shared && npx jest -c 
 | 2 | "Easier to see": text 1.6x, high-contrast theme, ring 10, larger buttons | `[unit test]` | `adapt.test.ts`, `core/adapt.ts` |
 | 3 | The setup screen restyles live while choosing | `[code only]`; seen on `[emulator]` | `screens/SetupScreen.tsx`; screenshots `docs/screenshots/01`, `03` |
 | 4 | Single-button scanning: one item highlighted at a time, Select chooses; speeds 2600 / 1800 / 1200 ms | `[unit test]` for the state machine; `[emulator]` ENTER-only run on an earlier build | `core/scanner.ts`, `scanner.test.ts` (16); `screens/SetupScreen.tsx` (`SCAN_SPEEDS`) |
-| 5 | Home has five tiles: Watch, Family, Medicines, Help, Settings | `[unit test]` tile list, Medicines label in all languages and layout; `[code only]` screen | `core/palette.ts` (`TILE_IDS`), `core/homeLayout.ts`, `familyAlert.test.ts`, `screens/HomeScreen.tsx`. Home on a device with all five tiles: `[not tested]` on the current build (the 4-tile build ran on `[real Android TV 12 Redmi]`) |
+| 5 | Home has five tiles: Watch, Family, Medicines, Help, Settings | `[unit test]` tile list, Medicines label in all languages and layout; `[code only]` screen | `core/palette.ts` (`TILE_IDS`), `core/homeLayout.ts`, `familyAlert.test.ts`, `screens/HomeScreen.tsx`. Home on a device with all five tiles: `[not tested]` on the current build (the 4-tile build ran on `[real Android TV, Sony, user-reported]`) |
 | 6 | Watch opens a labelled demo panel with looping sample captions; no real video | `[code only]`, `[unit test]` captions | `screens/WatchDemo.tsx`, `captions.test.ts` (4) |
 | 7 | Read-aloud of the focused item with Android text-to-speech; routes to the screen reader's announce when one is on | `[unit test]` the route decision; `[emulator]` English speech heard | `core/speech.ts`, `speech.test.ts`, `a11y.test.ts`; Hindi/Telugu voices `[not tested]` |
 | 8 | Simple wording for key strings and a glyph next to action buttons ("Easier to read") | `[unit test]` | `simpleText.test.ts` (13), `buttonIcons.test.ts` (3) |
 | 9 | English, Hindi, Telugu have the same string keys | `[unit test]` | `strings.test.ts` (8). Native-speaker review: `[not tested]` |
 | 10 | Settings survive restart; corrupt data falls back to safe defaults; versioned storage | `[unit test]`; relaunch seen on `[emulator]` | `persist.test.ts` (18) |
 | 11 | System font scale honoured up to 1.3, total capped at 2.0; Home wraps to 3+2 tiles above 1.3 | `[unit test]` | `a11y.test.ts`; `familyAlert.test.ts` (`columnsFor`) |
-| 12 | Onboarding, language switch, high-contrast theme, D-pad navigation and Settings work on the developer's TV | `[real Android TV 12 Redmi]` (a 4-tile build, developer's report; no dated file yet) | [DEVICE_EVIDENCE.md](DEVICE_EVIDENCE.md) |
+| 12 | Onboarding, language switch, high-contrast theme, D-pad navigation and Settings work on the developer's TV | `[real Android TV, Sony, user-reported]` (a 4-tile build, developer's report; no dated file yet) | [DEVICE_EVIDENCE.md](DEVICE_EVIDENCE.md) |
 
 ## Notifications (Family, Medicines, Help)
 
 | # | Claim | Tag | Command / path |
 |---|---|---|---|
 | 13 | One sender (`sendFamilyAlert`) serves Help, Family hello and Medicines; the Settings test uses the same HTTP path | `[code only]` | `core/notify.ts`, `settings/useFamilyAlert.ts`, `expotv/app/help.tsx` |
-| 14 | The message is generic: title "Thodu", a short sentence with the clock time, priority high, an emoji tag; no names, addresses or health data | `[unit test]` | `notify.test.ts` (27), `buildPayload` in `core/notify.ts` |
+| 14 | The message is generic: title "Thodu TV", a short sentence with the clock time, priority high, an emoji tag; no names, addresses or health data | `[unit test]` | `notify.test.ts` (27), `buildPayload` in `core/notify.ts` |
 | 15 | "Family notified" is shown only after an HTTP 2xx from ntfy.sh | `[unit test]` (fake network) | `notify.test.ts`, `familyAlert.test.ts` (19) |
 | 16 | Failures (offline, timeout, refused) show honest text in English, Hindi, Telugu | `[unit test]` | `strings.test.ts`, `familyAlert.test.ts` |
 | 17 | One retry after a network error, timeout, 5xx or 429; no retry after other 4xx | `[unit test]` | `notify.test.ts` |
@@ -76,4 +77,4 @@ Commands run from the repository root. Jest: `cd packages/shared && npx jest -c 
 | Real video playback or streaming | Watch is a labelled demo panel |
 | Delivery to a phone from a TV | `[not tested]` |
 | Native-speaker-reviewed Hindi/Telugu; VoiceView/TalkBack verified | `[not tested]` |
-| The Redmi TV is a Fire TV | It is an Android TV 12; always labelled so |
+| The Sony TV is a Fire TV | It is an Android TV; always labelled so |

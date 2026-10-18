@@ -1,4 +1,5 @@
-# Devpost friction log paste
+# Thodu TV: Devpost friction log paste
+*A TV app that older adults and people with disabilities can use with one button, and that tells their family when they need help.*
 
 Paste-ready text for the optional Friction Log field (the rules ask for: "specific task attempted, steps taken, expected vs. actual result, severity rating, workaround used, and actionable suggestion"). Every entry below is copied from [../FRICTION_LOG.md](../FRICTION_LOG.md), which was written from the developer's working log on 2026-10-11 and 2026-10-12 and not reconstructed later. Severity and time lost are the developer's own rating, not Amazon's. Where a detail was not recorded the entry says "not recorded". The exact Devpost form layout and character limits were not available when this file was made: split by block if a box is too small.
 

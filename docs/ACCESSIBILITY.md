@@ -1,6 +1,7 @@
-# Accessibility self-audit (measured)
+# Thodu TV: Accessibility self-audit (measured)
+*A TV app that older adults and people with disabilities can use with one button, and that tells their family when they need help.*
 
-**This is a self-audit by the developer. It is not a certification and not a conformance claim for WCAG, Section 508, Amazon's or any other standard.** The numbers below come from the real theme colours and source files by script (`node tools/a11y-measure.mjs`) and by a Jest test (`packages/shared/src/core/__tests__/a11yCoverage.test.ts`), so a judge can re-run them. Tags are explained in [DEVICE_EVIDENCE.md](DEVICE_EVIDENCE.md): `[script]`, `[unit test]`, `[code only]`, `[emulator]`, `[real Android TV 12 Redmi]`, `[not tested]`.
+**This is a self-audit by the developer. It is not a certification and not a conformance claim for WCAG, Section 508, Amazon's or any other standard.** The numbers below come from the real theme colours and source files by script (`node tools/a11y-measure.mjs`) and by a Jest test (`packages/shared/src/core/__tests__/a11yCoverage.test.ts`), so a judge can re-run them. Tags are explained in [DEVICE_EVIDENCE.md](DEVICE_EVIDENCE.md): `[script]`, `[unit test]`, `[code only]`, `[emulator]`, `[real Android TV, Sony, user-reported]`, `[not tested]`.
 
 ## Key numbers
 
@@ -22,7 +23,7 @@
 
 | Need | Implemented | Proof | Not done |
 |---|---|---|---|
-| Low vision ("Easier to see") | Text 1.6x, high-contrast black/white/yellow theme, focus ring 10 px, larger buttons (1.25x), an icon plus a label on every tile; the setup screen restyles live | `adapt.test.ts` `[unit test]`; `[script]` contrast; screenshots 01 and 03 `[emulator]`; high-contrast theme seen on `[real Android TV 12 Redmi]` | Not tried by a low-vision person or from across a room |
+| Low vision ("Easier to see") | Text 1.6x, high-contrast black/white/yellow theme, focus ring 10 px, larger buttons (1.25x), an icon plus a label on every tile; the setup screen restyles live | `adapt.test.ts` `[unit test]`; `[script]` contrast; screenshots 01 and 03 `[emulator]`; high-contrast theme seen on `[real Android TV, Sony, user-reported]` | Not tried by a low-vision person or from across a room |
 | Hard of hearing ("Easier to hear") | Captions always on in the Watch demo, a flashing "ALERT SENT" banner after help is sent | `adapt.test.ts`, `captions.test.ts` `[unit test]`; screenshot 06 `[emulator]` | The captions are scripted sample lines, not tied to real audio or video; there is no real video player |
 | Remote difficulty ("Easier remote") | Single-button scanning: one item highlighted at a time, Select chooses, Back still works; larger buttons | `scanner.test.ts` (16 tests) `[unit test]`; an adb run with only ENTER and BACK reached the help flow `[emulator]` | No scan-back or hold-to-select; not tried by a one-switch user; not re-run on every later build |
 | Reading difficulty ("Easier to read") | Read-aloud of the focused item (Android text-to-speech), simple wording for key strings in 3 languages, a text glyph next to every action button | `speech.test.ts`, `simpleText.test.ts`, `buttonIcons.test.ts` `[unit test]`; English speech heard `[emulator]` | Hindi and Telugu voices and simple wording are not native-reviewed; read-aloud speaks item labels, not screen titles |
@@ -121,7 +122,7 @@ Lowest text ratio: 7.79:1 (Sunrise (default), tile watch: label on tile).
 ## Focus and remote paths
 
 - One component (`Focusable`) draws the focus ring and also the scanner highlight, so D-pad focus and scanning look identical (scale 1.05 plus the ring). Colour is never the only cue: every tile and card also has a glyph and a text label.
-- **D-pad path:** all screens are reachable with Up, Down, Left, Right, Select and Back. `[real Android TV 12 Redmi]` onboarding, language switch, high-contrast and Settings (older build, developer's report); `[emulator]` adb key journeys; Fire TV `[not tested]` on the current build.
+- **D-pad path:** all screens are reachable with Up, Down, Left, Right, Select and Back. `[real Android TV, Sony, user-reported]` onboarding, language switch, high-contrast and Settings (older build, developer's report); `[emulator]` adb key journeys; Fire TV `[not tested]` on the current build.
 - **One-button path:** with "Easier remote", every item is non-focusable and the scanner highlights each item in turn (speed options below). Select presses the highlighted item; a hidden 1x1 sink view keeps focus so Android keeps delivering the Select key `[code only]` `scan/ScanScope.tsx`.
 - No touch-only path, long press or gesture exists `[code only]`.
 
@@ -129,7 +130,7 @@ Lowest text ratio: 7.79:1 (Sunrise (default), tile watch: label on tile).
 
 - Every interactive element is a `Focusable` (or `ActionButton`, which wraps it), and `Focusable` requires a `label` prop (TypeScript) that becomes `accessibilityLabel`, with a role (`button`, `checkbox`, `radio`) and checked state `[code only]`.
 - The Jest test `a11yCoverage.test.ts` parses the screen sources and fails if any usage has no label, if any other component uses `Pressable`/`Touchable`, or if the hidden scan sink loses its "hidden from screen readers" flags `[unit test]`. The script prints the same count (25 of 25).
-- Limits: this proves a label exists, not that it sounds right. Static text (titles, status lines, "Family notified") is not focusable. Amazon's VoiceView guidance says to "Implement Described By for static content" so that it is read when an item gains focus; Thodu does not do that yet, so VoiceView users may not hear some status text unless it appears in a focused button label or is announced `[not tested]`.
+- Limits: this proves a label exists, not that it sounds right. Static text (titles, status lines, "Family notified") is not focusable. Amazon's VoiceView guidance says to "Implement Described By for static content" so that it is read when an item gains focus; Thodu TV does not do that yet, so VoiceView users may not hear some status text unless it appears in a focused button label or is announced `[not tested]`.
 - With a screen reader on, the app announces the focused label through `AccessibilityInfo.announceForAccessibility` instead of its own speech, and only *suggests* needs without applying them `[unit test]` `a11y.test.ts`, `speech.test.ts`.
 
 ## Timers, flashing and captions

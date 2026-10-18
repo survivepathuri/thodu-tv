@@ -1,6 +1,7 @@
-# Install Thodu on an Android TV or Fire TV (over the network)
+# Thodu TV: Install on an Android TV or Fire TV (over the network)
+*A TV app that older adults and people with disabilities can use with one button, and that tells their family when they need help.*
 
-This guide installs the Thodu APK on a TV from a computer on the same home network, using `adb`. Thodu is not on any app store. The APK is a demo build signed with a debug key, so it is for trying the app, not for general distribution.
+This guide installs the Thodu TV APK on a TV from a computer on the same home network, using `adb`. Thodu TV is not on any app store. The APK is a demo build signed with a debug key, so it is for trying the app, not for general distribution.
 
 Menu names differ between TV makers and OS versions. The steps below describe the usual path; **we have not tested these steps on every TV**, so your menus may use different words. If a step does not match your TV, search the TV's settings for "developer options" or "ADB debugging".
 
@@ -32,8 +33,8 @@ Network debugging lets any computer on the same network install software on the 
    adb install -r thodu-universal-release.apk
    ```
 
-   `-r` replaces an older Thodu and keeps its saved choices. It should print `Success`.
-6. **Open Thodu.** Press Home on the TV remote and look for "Thodu" in the Apps row (Fire TV: "Your Apps & Channels"). You can also start it from the computer:
+   `-r` replaces an older Thodu TV and keeps its saved choices. It should print `Success`.
+6. **Open Thodu TV.** Press Home on the TV remote and look for "Thodu TV" in the Apps row (Fire TV: "Your Apps & Channels"). You can also start it from the computer:
 
    ```bash
    adb shell monkey -p com.thodu.tv -c android.intent.category.LEANBACK_LAUNCHER 1
@@ -48,11 +49,11 @@ adb connect <ip>:5555
 adb uninstall com.thodu.tv
 ```
 
-This removes the app and everything it saved on the TV. You can also use the TV's Settings, then Apps, then Thodu, then Uninstall.
+This removes the app and everything it saved on the TV. You can also use the TV's Settings, then Apps, then Thodu TV, then Uninstall.
 
 ## If something goes wrong
 
 - `adb connect` says "unable to connect" or times out: check that the TV and the computer are on the same network and that network debugging is on. Some TVs only listen on port 5555 after you switch the setting off and on again.
 - `INSTALL_FAILED_NO_MATCHING_ABIS`: the APK does not hold libraries for this TV's processor. Use the universal APK.
-- `INSTALL_FAILED_UPDATE_INCOMPATIBLE`: an older Thodu was signed with a different key. Run `adb uninstall com.thodu.tv` first (this erases its saved choices).
-- Thodu does not appear in the Apps row: reboot the TV or open it with the `monkey` command above.
+- `INSTALL_FAILED_UPDATE_INCOMPATIBLE`: an older Thodu TV was signed with a different key. Run `adb uninstall com.thodu.tv` first (this erases its saved choices).
+- Thodu TV does not appear in the Apps row: reboot the TV or open it with the `monkey` command above.

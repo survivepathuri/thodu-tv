@@ -1,20 +1,21 @@
-# Security and privacy self-audit
+# Thodu TV: Security and privacy self-audit
+*A TV app that older adults and people with disabilities can use with one button, and that tells their family when they need help.*
 
-**This is a self-audit written by the developer. It is not a certification, a penetration test or a third-party review.** It states what we checked, what we found and what we did not check. Thodu is a hackathon prototype.
+**This is a self-audit written by the developer. It is not a certification, a penetration test or a third-party review.** It states what we checked, what we found and what we did not check. Thodu TV is a hackathon prototype.
 
-> **Thodu is not an emergency service. In an emergency call your local emergency number.**
+> **Thodu TV is not an emergency service. In an emergency call your local emergency number.**
 
 ## What data the app handles
 
 - **Stored on the device only:** chosen needs, language, scanning speed, the family notification topic name, the Real/Demo switch, and whether setup was finished. They are saved as one JSON entry (`thodu.state`) in Android app-private storage (AsyncStorage). It is not encrypted by the app, but it is private to the app and `allowBackup` is off, so it is not copied into Android backups.
-- **No accounts, no analytics, no advertising, no crash reporting, no Thodu server.** The only network request the app makes is the optional family notification to ntfy.sh.
+- **No accounts, no analytics, no advertising, no crash reporting, no Thodu TV server.** The only network request the app makes is the optional family notification to ntfy.sh.
 - **The help log** (the Family screen) is kept in memory only and is gone when the app closes.
 
 ## Family notification and ntfy.sh
 
 - ntfy.sh is a **public** service run by a third party. Anyone who knows a topic name can read the messages sent to it and can also post to it. We did not review what ntfy.sh logs or keeps.
 - The TV makes a random topic name (`thodu-` plus 12 random characters, 60 random bits, from `expo-crypto`). It is unguessable in practice but it is a shared secret, not real access control. It is shown only on the TV settings screen.
-- The message is generic: title "Thodu", text "Help was requested from the TV at HH:MM", high priority. It contains no names, addresses or health data (`buildPayload` in `packages/shared/src/core/notify.ts`, covered by `notify.test.ts`).
+- The message is generic: title "Thodu TV", text "Help was requested from the TV at HH:MM", high priority. It contains no names, addresses or health data (`buildPayload` in `packages/shared/src/core/notify.ts`, covered by `notify.test.ts`).
 - The request goes over HTTPS only. Success is shown only after an HTTP 2xx answer; otherwise the app says it could not reach the family.
 - Not verified: delivery to a real phone (no phone was subscribed during development), and ntfy.sh's availability.
 

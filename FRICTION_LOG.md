@@ -1,4 +1,5 @@
-# Thodu friction log (structured)
+# Thodu TV: Friction log (structured)
+*A TV app that older adults and people with disabilities can use with one button, and that tells their family when they need help.*
 
 **Environment:** Windows 11 Pro (build 22621), solo developer, Fire TV track, React Native + Expo (react-native-tvos), Android TV emulator (Android 14 TV image, x86) with the SDK, AVD and JDK 17 on the D: drive.
 **Date range:** 2026-10-11 to 2026-10-12 (F-001 to F-018 on 2026-10-11; F-019 to F-033 on 2026-10-12).

@@ -1,6 +1,7 @@
-# Privacy and safety
+# Thodu TV: Privacy and safety
+*A TV app that older adults and people with disabilities can use with one button, and that tells their family when they need help.*
 
-> **Thodu is not an emergency service and not a medical device.** It does not call emergency numbers, does not monitor health, does not give medical advice and does not schedule or remind medicines. In an emergency call your local emergency number.
+> **Thodu TV is not an emergency service and not a medical device.** It does not call emergency numbers, does not monitor health, does not give medical advice and does not schedule or remind medicines. In an emergency call your local emergency number.
 
 Tags are explained in [DEVICE_EVIDENCE.md](DEVICE_EVIDENCE.md). The full security self-audit is [../SECURITY.md](../SECURITY.md).
 
@@ -12,18 +13,18 @@ Saved in Android app-private storage as one JSON entry (`thodu.state`) `[unit te
 - whether setup was finished;
 - the family notification **topic name** (see below), the Real/Demo switch and whether a test message succeeded.
 
-Not saved: names, addresses, phone numbers, health data, voice, camera images. The "recent help requests" list on the Family screen is kept **in memory only** and disappears when the app closes `[code only]`. `allowBackup` is off, so the data is not copied into Android backups `[APK static]` (`SECURITY.md`). It is not encrypted by the app. "Reset Thodu" in Settings erases it `[code only]`.
+Not saved: names, addresses, phone numbers, health data, voice, camera images. The "recent help requests" list on the Family screen is kept **in memory only** and disappears when the app closes `[code only]`. `allowBackup` is off, so the data is not copied into Android backups `[APK static]` (`SECURITY.md`). It is not encrypted by the app. "Reset Thodu TV" in Settings erases it `[code only]`.
 
-There are no accounts, no analytics, no advertising, no crash reporting and no Thodu server `[code only]`; `INTERNET` is the only network permission the app asks for itself, and its one use is the notification request below `[APK static]`.
+There are no accounts, no analytics, no advertising, no crash reporting and no Thodu TV server `[code only]`; `INTERNET` is the only network permission the app asks for itself, and its one use is the notification request below `[APK static]`.
 
 ## What leaves the device, and where it goes
 
-Only when the person presses a family button in **real mode**, Thodu makes one HTTPS `POST` to **`https://ntfy.sh/<topic>`**, a free public notification service run by a third party `[unit test]` `notify.test.ts` (network faked) and `[code only]` `core/notify.ts`.
+Only when the person presses a family button in **real mode**, Thodu TV makes one HTTPS `POST` to **`https://ntfy.sh/<topic>`**, a free public notification service run by a third party `[unit test]` `notify.test.ts` (network faked) and `[code only]` `core/notify.ts`.
 
 | Part of the request | Value |
 |---|---|
 | Body (examples) | "Help was requested from the TV at HH:MM", "A hello from the TV at HH:MM", "Medicine was confirmed on the TV at HH:MM", "This is a test message from the TV at HH:MM" |
-| Headers | `Title: Thodu`, `Priority: high`, `Tags` (an emoji tag such as `warning`, `wave`, `pill`) |
+| Headers | `Title: Thodu TV`, `Priority: high`, `Tags` (an emoji tag such as `warning`, `wave`, `pill`) |
 | Not included | name, address, health condition, medicine name, dose, settings, device id |
 
 The clock time is the TV's local time. ntfy.sh also sees what any web server sees (the sender's IP address and when the request was made). We did not review ntfy.sh's retention or logging; check ntfy's own privacy policy.

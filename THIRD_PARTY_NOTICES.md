@@ -1,3 +1,6 @@
+# Thodu TV: Third-party notices
+*A TV app that older adults and people with disabilities can use with one button, and that tells their family when they need help.*
+
 ** react-native-multi-tv-helloworld (Amazon sample, the starting point of this repository) - https://github.com/AmazonAppDev/react-native-multi-tv-helloworld
 MIT No Attribution
 

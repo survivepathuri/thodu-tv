@@ -1,4 +1,5 @@
-# Submission checklist: Thodu (Fire TV track)
+# Thodu TV: Submission checklist (Fire TV track)
+*A TV app that older adults and people with disabilities can use with one button, and that tells their family when they need help.*
 
 Deadline: **Fri 2026-10-23, 12:00 pm Pacific** (internal target 2026-10-22 about 6 PM IST). No edits are allowed after the deadline. Rules source and quotes: the developer's `RULES_CHECKLIST.md` (outside the repo, fetched 2026-10-18 from the official Devpost pages). Status words: **done**, **doc** (written, in the repo), **USER-ONLY**.
 
@@ -27,7 +28,7 @@ Deadline: **Fri 2026-10-23, 12:00 pm Pacific** (internal target 2026-10-22 about
 | # | Item | Exact need |
 |---|---|---|
 | 1 | **Fresh cloud Fire TV recording** | In Amazon Developer Console > Appstore Quality Central > Live Device Interaction, install `thodu-196f20a-judge.apk` on a real Fire TV and record the **whole browser window** (console, device name and the app all visible). Then read the model and OS from the console **Details** tab and write them into `docs/DEVICE_EVIDENCE.md` (last table row) and the Devpost description. Do not guess "Fire OS 14". |
-| 2 | **Home-TV footage** (Redmi, Android TV 12) | Film on 2026-10-19 with the family member. Label it "Android TV 12", never "Fire TV". Keep a dated file name. Do not show the real notification topic on screen. |
+| 2 | **Home-TV footage** (Sony TV, Android TV) | Film on 2026-10-19 with the family member. Label it "Android TV", never "Fire TV". Keep a dated file name. Do not show the real notification topic on screen. |
 | 3 | **User testing facts** | After 2026-10-19 fill `docs/USER_TESTING.md` (date, anonymous participant, tasks, observations, problems, changes). Until then no text says "tested with users". |
 | 4 | **Demo video** | Under 3 minutes; see section D. |
 | 5 | **YouTube (or Vimeo) upload** | Public visibility, English; paste the link on the Devpost form. |
@@ -57,11 +58,11 @@ Rules: "should be less than three (3) minutes", "should include footage that sho
 5. Explain, on a card or in narration, that it started from Amazon's sample after Aug 31 and what was added.
 6. Music: none, or music you own or that is licensed for this use. No third-party logos, trademarks or footage added by you.
 7. Do not show the real notification topic (Settings > Family notifications displays it). Use a throwaway topic and press "Make a new name" after filming.
-8. Redmi footage is labelled "Android TV 12 (not a Fire TV)".
+8. Sony TV footage is labelled "Android TV (not a Fire TV)".
 
 ### Allowed text-card wording
 - "Fire TV: Amazon Live Device Interaction, [model and OS from the console], [date]" (only after item B1).
-- "Android TV 12 (home TV, not a Fire TV)"
+- "Android TV (home TV, not a Fire TV)"
 - "Demo mode: nobody is contacted until you send a test message"
 - "Family notified appears only after the service accepts the message"
 - "Watch is a demo panel with sample captions, no real video"

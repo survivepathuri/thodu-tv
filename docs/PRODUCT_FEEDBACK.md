@@ -1,10 +1,11 @@
-# Thodu: Product Feedback (Build, Ship, Shape)
+# Thodu TV: Product Feedback (Build, Ship, Shape)
+*A TV app that older adults and people with disabilities can use with one button, and that tells their family when they need help.*
 
-Project: Thodu (తోడు), a Fire TV track app for elderly and disabled users. Format: the five elements the rules ask for, per tool: (1) what we used it for, (2) what worked well, (3) what needs work, (4) onboarding (zero to hello world), (5) would we build with it again, yes or no, and why.
+Project: Thodu TV (తోడు టీవీ), a Fire TV track app for elderly and disabled users. Format: the five elements the rules ask for, per tool: (1) what we used it for, (2) what worked well, (3) what needs work, (4) onboarding (zero to hello world), (5) would we build with it again, yes or no, and why.
 
 **Evidence rule.** Every statement comes from `FRICTION_LOG.md` (F-001..F-033, written 2026-10-11 and 2026-10-12), from the files of the 2026-10-14 Amazon cloud-device session, or from the Amazon documentation pages read on 2026-10-18. Where nothing was recorded the text says "not recorded". Time-lost values are the estimates written in the log at the time. Severity ratings are ours, not Amazon's. The "build again" answers are **drafts from the log; the developer must confirm them in their own words** before submission.
 
-**Environment.** Windows 11 Pro (build 22621), solo developer, React Native + Expo (react-native-tvos), Android TV emulator (Android 14 TV image, x86) for development; one Amazon cloud Fire TV session on 2026-10-14; the developer's own Redmi TV (Android TV 12, not a Fire TV) for home checks.
+**Environment.** Windows 11 Pro (build 22621), solo developer, React Native + Expo (react-native-tvos), Android TV emulator (Android 14 TV image, x86) for development; one Amazon cloud Fire TV session on 2026-10-14; the developer's own Sony TV (Android TV, not a Fire TV) for home checks.
 
 **Amazon tools used:** (A1) the Amazon react-native-multi-tv-helloworld sample; (A4) Appstore Quality Central Live Device Interaction; (A5) Amazon Fire TV developer documentation. **Not used:** Vega SDK, Amazon Appstore submission, Alexa+ tooling, Amazon Devices Builder Tools (MCP server and Agent Skills), Kiro, any AWS service (no Bedrock or SNS calls), VoiceView on a device. We therefore do not enter the AWS Builder mini challenge.
 
@@ -16,7 +17,7 @@ Each block is self-contained so it can be pasted into one text box. The exact De
 
 ## A1. Amazon react-native-multi-tv-helloworld sample
 
-**What we used it for.** The base of the Thodu app: an Expo 55.0.24 / react-native-tvos 0.83.6-0 / React 19.2.0 / Gradle 9.0.0 Yarn 4 monorepo, built for Android TV only [F-015, F-017].
+**What we used it for.** The base of the Thodu TV app: an Expo 55.0.24 / react-native-tvos 0.83.6-0 / React 19.2.0 / Gradle 9.0.0 Yarn 4 monorepo, built for Android TV only [F-015, F-017].
 
 **What worked well.** With JDK 17 it built (x86 only, 19m 1s, 37 MB APK), launched, took D-pad keys, moved focus and showed a fetched joke [F-017]. The crash from the other starter did not happen here [F-014, F-017]. `yarn workspaces focus @multitv/expotv` installed from the lockfile in 2m 45s [F-015].
 
@@ -68,7 +69,7 @@ Each block is self-contained so it can be pasted into one text box. The exact De
 
 ## A4. Appstore Quality Central, Live Device Interaction (real Amazon Fire TV devices in the cloud)
 
-**What we used it for.** Running the Thodu APK on Amazon Fire TV devices in the cloud (Amazon Developer Console > Appstore Quality Central > Live Device Interaction) to see the app on Amazon hardware. One session on 2026-10-14 (user-reported) produced three screen recordings (about 2:00, 2:00 and 1:43, 1920x1080). The device names the developer saw in the console were "FOS 14 3P TV" and "Smart TV - Amazon Fire TV"; the exact model and OS were not captured (we do not assume "FOS 14" means Fire OS 14). The build was older than the current one.
+**What we used it for.** Running the Thodu TV APK on Amazon Fire TV devices in the cloud (Amazon Developer Console > Appstore Quality Central > Live Device Interaction) to see the app on Amazon hardware. One session on 2026-10-14 (user-reported) produced three screen recordings (about 2:00, 2:00 and 1:43, 1920x1080). The device names the developer saw in the console were "FOS 14 3P TV" and "Smart TV - Amazon Fire TV"; the exact model and OS were not captured (we do not assume "FOS 14" means Fire OS 14). The build was older than the current one.
 
 **What worked well.** The recordings show the app starting and its Settings, Family and Home screens running on the cloud device. No timings, setup steps or reliability observations were recorded.
 

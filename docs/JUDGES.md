@@ -1,10 +1,11 @@
-# For judges: Thodu in 3 minutes
+# Thodu TV: For judges, in 3 minutes
+*A TV app that older adults and people with disabilities can use with one button, and that tells their family when they need help.*
 
-**Thodu (తోడు, "a companion by your side" in Telugu)** is a Fire TV / Android TV app for older viewers and people with disabilities. It starts from what would make TV easier ("Easier to see / hear / read / remote") and changes the whole interface at once. Three buttons (Family, Medicines, Help) can tell a family member through a public notification service.
+**Thodu TV (తోడు టీవీ; Thodu means "companion" in Telugu)** is an Android TV / Fire TV app for older viewers and people with disabilities. It starts from what would make TV easier ("Easier to see / hear / read / remote") and changes the whole interface at once. Three buttons (Family, Medicines, Help) can tell a family member through a public notification service.
 
-> Thodu is **not** an emergency service and **not** a medical device. In an emergency call your local emergency number.
+> Thodu TV is **not** an emergency service and **not** a medical device. In an emergency call your local emergency number.
 
-Evidence tags (`[unit test]`, `[code only]`, `[cloud Fire TV, ...]`, `[real Android TV 12 Redmi]`, `[emulator]`, `[not tested]`) are explained in [DEVICE_EVIDENCE.md](DEVICE_EVIDENCE.md). Every claim and its proof is in [CLAIMS.md](CLAIMS.md).
+Evidence tags (`[unit test]`, `[code only]`, `[cloud Fire TV, ...]`, `[real Android TV, Sony, user-reported]`, `[emulator]`, `[not tested]`) are explained in [DEVICE_EVIDENCE.md](DEVICE_EVIDENCE.md). Every claim and its proof is in [CLAIMS.md](CLAIMS.md).
 
 ## The fastest path (no install): 2 minutes
 
@@ -28,7 +29,7 @@ adb install -r thodu-196f20a-judge.apk   # expect "Success"
 adb shell monkey -p com.thodu.tv -c android.intent.category.LEANBACK_LAUNCHER 1
 ```
 
-Thodu also appears in the Apps row. Uninstall with `adb uninstall com.thodu.tv`. More detail and troubleshooting: [INSTALL_ON_TV.md](INSTALL_ON_TV.md). Turn ADB debugging off when you are done.
+Thodu TV also appears in the Apps row. Uninstall with `adb uninstall com.thodu.tv`. More detail and troubleshooting: [INSTALL_ON_TV.md](INSTALL_ON_TV.md). Turn ADB debugging off when you are done.
 
 **No Fire TV at hand?** Amazon Developer Console > Appstore Quality Central > Live Device Interaction lets you upload the APK to a real Amazon Fire TV in the cloud. The developer used this on 2026-10-14 with an older build `[cloud Fire TV, 2026-10-14, older build]`; the current build has not yet been run there (see DEVICE_EVIDENCE.md).
 
@@ -62,8 +63,8 @@ First launch shows the setup screen "What would make TV easier for you?".
 
 | Step | What to do | Expected result | Evidence |
 |---|---|---|---|
-| 1 | Choose **Easier to see**, then Continue | The screen restyles live: text 1.6x, black/white/yellow high-contrast theme, 10 px focus ring | `[unit test]` `adapt.test.ts`, `theme.test.ts`; theme switch seen on `[real Android TV 12 Redmi]` (older build) |
-| 2 | Change language: EN, हिन्दी, తెలుగు | Labels change language | `[unit test]` `strings.test.ts` (same keys); switch seen on `[real Android TV 12 Redmi]`. Hindi/Telugu not native-reviewed |
+| 1 | Choose **Easier to see**, then Continue | The screen restyles live: text 1.6x, black/white/yellow high-contrast theme, 10 px focus ring | `[unit test]` `adapt.test.ts`, `theme.test.ts`; theme switch seen on `[real Android TV, Sony, user-reported]` (older build) |
+| 2 | Change language: EN, हिन्दी, తెలుగు | Labels change language | `[unit test]` `strings.test.ts` (same keys); switch seen on `[real Android TV, Sony, user-reported]`. Hindi/Telugu not native-reviewed |
 | 3 | Home: five tiles **Watch, Family, Medicines, Help, Settings** | One tile per colour, each with a glyph and a label | `[unit test]` `homeLayout`; `[emulator]` screenshots 02, 03 (earlier builds had four tiles) |
 | 4 | **Watch** | A labelled **demo panel** ("Demo panel - no real video") with looping sample captions. There is no real video player | `[code only]` `WatchDemo.tsx`; `[unit test]` `captions.test.ts` |
 | 5 | Settings > choose **Easier remote** | **One-button scanning**: one item is highlighted at a time (Slow 2600 ms / Normal 1800 ms / Fast 1200 ms); Select (OK) chooses | `[unit test]` `scanner.test.ts` (16 tests); `[emulator]` ENTER-only adb run on an earlier build |
@@ -73,11 +74,11 @@ First launch shows the setup screen "What would make TV easier for you?".
 
 ## Try the notifications with YOUR OWN topic (optional, 2 minutes)
 
-Thodu sends notifications through the public service **ntfy.sh**. There is no Thodu server. **Anyone who knows a topic name can read the messages sent to it and can post to it**, so use the random name your own TV generates and do not reuse a name from anywhere else.
+Thodu TV sends notifications through the public service **ntfy.sh**. There is no Thodu TV server. **Anyone who knows a topic name can read the messages sent to it and can post to it**, so use the random name your own TV generates and do not reuse a name from anywhere else.
 
-1. On the TV: Settings > **Family notifications**. Thodu generates a random family name (`thodu-xxxx-xxxx-xxxx`) and shows it on screen.
+1. On the TV: Settings > **Family notifications**. Thodu TV generates a random family name (`thodu-xxxx-xxxx-xxxx`) and shows it on screen.
 2. On a phone or computer, subscribe to that name: install the free ntfy app and subscribe, or follow ntfy's own instructions for its website. (We did not test ntfy's web app. A command-line check that we did run, from a PC, is `curl -s "https://ntfy.sh/<your-name>/json?poll=1"`.)
-3. On the TV press **Send a test message**. Expected: "Test message sent. Look at the family phone." Thodu says this **only after ntfy.sh answered with an HTTP 2xx status**; real mode then unlocks.
+3. On the TV press **Send a test message**. Expected: "Test message sent. Look at the family phone." Thodu TV says this **only after ntfy.sh answered with an HTTP 2xx status**; real mode then unlocks.
 4. Press Help > Tell my family, Family > Send a hello, or Medicines > Yes, I took it. Expected on the TV: "Family notified" (Help: "Your family was told"); on the subscribed device a short generic message such as "Help was requested from the TV at HH:MM", "A hello from the TV at HH:MM" or "Medicine was confirmed on the TV at HH:MM". No names, addresses or health data are sent.
 5. Failure text (no internet, slow connection, ntfy refused) is shown honestly in English, Hindi and Telugu: for Help "We could not reach your family. Please call them."; for the others "Could not send. Try again." Repeat presses of the same button within 3 seconds after a success are ignored (a held remote key does not spam).
 
@@ -88,9 +89,9 @@ Evidence: the sender logic, retry, 3-second debounce and "success only on 2xx" a
 | Problem | What to do |
 |---|---|
 | `adb connect` times out | TV and PC on the same network; ADB debugging on; some devices need the setting switched off and on |
-| `INSTALL_FAILED_UPDATE_INCOMPATIBLE` | An older Thodu with a different signer is installed: `adb uninstall com.thodu.tv` (erases its saved choices) |
+| `INSTALL_FAILED_UPDATE_INCOMPATIBLE` | An older Thodu TV with a different signer is installed: `adb uninstall com.thodu.tv` (erases its saved choices) |
 | `INSTALL_FAILED_NO_MATCHING_ABIS` | Use the universal APK (arm64-v8a, armeabi-v7a, x86) |
-| App starts in the middle of setup | Settings > Reset Thodu, then start again |
+| App starts in the middle of setup | Settings > Reset Thodu TV, then start again |
 | "Send a test message" says it could not send | Check internet on the TV; ntfy.sh must be reachable over HTTPS |
 | Hindi/Telugu text looks odd | Strings were written by the developer and are not native-reviewed |
 | Source build fails with "Filename longer than 260 characters" | Use a very short repo path such as `D:\t` |
