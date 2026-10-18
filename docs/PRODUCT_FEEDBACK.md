@@ -3,7 +3,7 @@
 
 Project: Thodu TV (తోడు టీవీ), a Fire TV track app for elderly and disabled users. Format: the five elements the rules ask for, per tool: (1) what we used it for, (2) what worked well, (3) what needs work, (4) onboarding (zero to hello world), (5) would we build with it again, yes or no, and why.
 
-**Evidence rule.** Every statement comes from `FRICTION_LOG.md` (F-001..F-033, written 2026-10-11 and 2026-10-12), from the files of the 2026-10-14 Amazon cloud-device session, or from the Amazon documentation pages read on 2026-10-18. Where nothing was recorded the text says "not recorded". Time-lost values are the estimates written in the log at the time. Severity ratings are ours, not Amazon's. The "build again" answers are **drafts from the log; the developer must confirm them in their own words** before submission.
+**Evidence rule.** Every statement comes from `FRICTION_LOG.md` (F-001..F-033, written 2026-10-11 and 2026-10-12; F-034 and F-035, reported by the developer on 2026-10-18 and tagged [user-reported]), from the files of the 2026-10-14 Amazon cloud-device session, or from the Amazon documentation pages read on 2026-10-18. Where nothing was recorded the text says "not recorded". Time-lost values are the estimates written in the log at the time. Severity ratings are ours, not Amazon's. The "build again" answers are **drafts from the log; the developer must confirm them in their own words** before submission.
 
 **Environment.** Windows 11 Pro (build 22621), solo developer, React Native + Expo (react-native-tvos), Android TV emulator (Android 14 TV image, x86) for development; one Amazon cloud Fire TV session on 2026-10-14; the developer's own Sony TV (Android TV, not a Fire TV) for home checks.
 
@@ -71,12 +71,22 @@ Each block is self-contained so it can be pasted into one text box. The exact De
 
 **What we used it for.** Running the Thodu TV APK on Amazon Fire TV devices in the cloud (Amazon Developer Console > Appstore Quality Central > Live Device Interaction) to see the app on Amazon hardware. One session on 2026-10-14 (user-reported) produced three screen recordings (about 2:00, 2:00 and 1:43, 1920x1080). The device names the developer saw in the console were "FOS 14 3P TV" and "Smart TV - Amazon Fire TV"; the exact model and OS were not captured (we do not assume "FOS 14" means Fire OS 14). The build was older than the current one.
 
-**What worked well.** The recordings show the app starting and its Settings, Family and Home screens running on the cloud device. No timings, setup steps or reliability observations were recorded.
+**What worked well.**
+- The recordings show the app starting and its Settings, Family and Home screens running on the cloud device. No timings or reliability observations were recorded.
+- Installing the 68 MB universal APK on the cloud device worked step by step with no problems, and the app opened [user-reported].
 
-**What needs work.** One observation from the files, not yet confirmed as a tool problem: the three recordings contain only the app's picture, with no console, device name or device frame, so they cannot show which device was used. Whether that comes from the console's own recording feature or from how we captured it was not recorded. Nothing else was recorded.
-- Possible feature request (optional, priority Nice-to-have, not confirmed whether it already exists): a session recording or export that includes the device name and OS, so an entrant can prove the Fire TV used.
+**What needs work.**
+- The built-in recording captures only the device screen, with no Amazon UI and no device name, so it cannot by itself prove a Fire TV for the hackathon video [user-reported; F-034]. Evidence: the three 2026-10-14 recordings. Workaround: record the whole browser window with a separate screen recorder. Suggested fix: offer a window-level recording, or burn the device name/model into the capture. Severity: low-medium (our rating).
+- The user did not understand at first how to choose between the cloud devices "FOS 14 3P TV" and "Smart TV - Amazon Fire TV", and understood after some time [user-reported; F-035]. Evidence: user statement only. Suggested fix: show the Fire OS version and model clearly in the device list. Severity: low (our rating).
 
-**Onboarding (zero to hello world).** Not recorded (no steps or time were written down). A fresh session with the current judge build is still to be done and will be added here, with the model and OS read from the console Details tab.
+**Official session facts (from Amazon's pages, not a friction entry).** Sources: [Appstore Quality Central FAQ](https://www.developer.amazon.com/docs/app-testing/appstore-quality-central-faq.html) and the [Live Device Interaction (physical devices)](https://www.developer.amazon.com/docs/app-testing/live-device-interaction-physical.html) page, read 2026-10-18.
+- A session gives "up to 60 minutes" on a device; the device disconnects when it expires (FAQ).
+- A device left idle for more than 15 minutes can disconnect (Live Device Interaction page: "Leave the device idle for more than 15 minutes" is under "Don't"; idle "can cause device disconnections").
+- Screenshots, videos and logs must be downloaded before closing the session; unsaved artifacts are lost (FAQ and Live Device Interaction page).
+- The weekly submission limit (eight automated test submissions per week) does not apply to Live Device Interaction (FAQ).
+- The developer remembers a shorter session limit; the documentation does not confirm it. [user-reported, unconfirmed: to be checked against the console timer in the next session]
+
+**Onboarding (zero to hello world).** Not recorded (no steps or time were written down), apart from the APK install noted above [user-reported]. A fresh session with the current judge build is still to be done and will be added here, with the model and OS copied from the console Details tab (it lists name, model, family and OS version). Download the whole-window recording before closing the session.
 
 **Build with it again, and why?** Not answered yet: the developer must say yes or no in their own words.
 

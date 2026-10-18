@@ -2,10 +2,10 @@
 *A TV app that older adults and people with disabilities can use with one button, and that tells their family when they need help.*
 
 **Environment:** Windows 11 Pro (build 22621), solo developer, Fire TV track, React Native + Expo (react-native-tvos), Android TV emulator (Android 14 TV image, x86) with the SDK, AVD and JDK 17 on the D: drive.
-**Date range:** 2026-10-11 to 2026-10-12 (F-001 to F-018 on 2026-10-11; F-019 to F-033 on 2026-10-12).
-**Honesty note:** all 33 entries are real and unedited in substance; they were reformatted from our append-only working log. Where a detail was not recorded at the time, this document says "not recorded" instead of reconstructing it. F-019 and F-020 keep their original corrections.
+**Date range:** 2026-10-11 to 2026-10-12 (F-001 to F-018 on 2026-10-11; F-019 to F-033 on 2026-10-12), plus two entries reported by the developer on 2026-10-18 about the 2026-10-14 cloud-device session (F-034, F-035).
+**Honesty note:** all 35 entries are real. F-001 to F-033 are unedited in substance; they were reformatted from our append-only working log. F-034 and F-035 were not written at the time: the developer reported them on 2026-10-18 from memory of the 2026-10-14 session, so they are tagged `[user-reported]`; the only file evidence is the three 2026-10-14 recordings (F-034), and F-035 has the user's statement only. Where a detail was not recorded at the time, this document says "not recorded" instead of reconstructing it. F-019 and F-020 keep their original corrections.
 
-**Not covered:** no entry was written for the 2026-10-14 Amazon cloud-device session (Live Device Interaction) because no notes were kept; see `docs/PRODUCT_FEEDBACK.md` A4. A paste-ready copy of these entries is `docs/DEVPOST_FRICTION_PASTE.md`.
+**Not covered:** no notes were kept during the 2026-10-14 Amazon cloud-device session (Live Device Interaction), so the only entries about it are the two user-reported ones (F-034, F-035); see `docs/PRODUCT_FEEDBACK.md` A4. Severity for those two is the developer's own "low-medium" and "low" because no time was recorded. A paste-ready copy of these entries is `docs/DEVPOST_FRICTION_PASTE.md`.
 
 **Severity (our own rating, not Amazon's):** Blocker = stopped progress for more than 1 hour or forced a different approach (tool, version, or source); Major = cost 20-60 minutes; Minor = under 20 minutes or cosmetic. If time lost was not recorded, severity is "not recorded". Time lost values are the estimates written in the log at the time ("~" = approximate).
 
@@ -48,6 +48,8 @@
 | F-031 | Yarn 4 via packageManager (no global yarn) | Minor | ~3 min |
 | F-032 | Gradle SDK location check on a clean clone | Minor | ~5 min |
 | F-033 | Gradle multi-ABI native build, network drop | Major | ~28 min |
+| F-034 | Live Device Interaction built-in recording (user-reported) | Low-medium | not recorded |
+| F-035 | Live Device Interaction device list (user-reported) | Low | not recorded |
 
 ## Entries
 
@@ -491,6 +493,32 @@
 - Severity (our rating): Major   (time lost: ~28 min)
 - Workaround used: Re-ran the build after confirming the network.
 - Actionable suggestion: In the React Native Android build docs, suggest warming the dependency cache (for example `./gradlew dependencies`) before the first long build on an unreliable network, and note that re-running resumes from cached tasks.
+
+### F-34 — The Live Device Interaction recording shows only the device screen, so it cannot prove a Fire TV   [Dev] [user-reported]
+- Tool / SDK: Appstore Quality Central > Live Device Interaction, built-in screen recording (cloud Fire TV device)
+- Task attempted: Record a cloud Fire TV session as proof for the hackathon video.
+- Steps taken:
+  1. Started a Live Device Interaction session on 2026-10-14 and used the built-in recording (three recordings, about 2:00, 2:00 and 1:43, 1920x1080).
+  2. Checked the saved files afterwards [user-reported].
+- Expected: The recording shows enough to identify the device (Amazon console UI or the device name/model).
+- Actual: The built-in recording captures only the device screen, with no Amazon UI and no device name, so it cannot by itself prove a Fire TV [user-reported]. The three files show only the app full-screen.
+- Severity (our rating): Low-medium (user's rating; time lost not recorded)
+- Workaround used: Record the whole browser window with a separate screen recorder.
+- Actionable suggestion: Offer a window-level recording, or burn the device name/model into the capture.
+- Evidence: The three 2026-10-14 recordings in the developer's Downloads folder (`recording.mp4`, `recording (1).mp4`, `recording (2).mp4`; outside this repo). The statement about the cause is [user-reported].
+
+### F-35 — Unclear at first how to choose between the cloud devices "FOS 14 3P TV" and "Smart TV - Amazon Fire TV"   [Dev] [user-reported]
+- Tool / SDK: Appstore Quality Central > Live Device Interaction, device list (cloud Fire TV devices)
+- Task attempted: Choose a cloud device for a Live Device Interaction session.
+- Steps taken:
+  1. Opened the device list and saw "FOS 14 3P TV" and "Smart TV - Amazon Fire TV".
+  2. Worked out the difference after some time [user-reported]; how long was not recorded.
+- Expected: The list makes the model and Fire OS version of each device clear.
+- Actual: The user did not understand at first how to choose between the two, and understood after some time [user-reported].
+- Severity (our rating): Low (user's rating; time lost not recorded)
+- Workaround used: Worked it out by trial (details not recorded).
+- Actionable suggestion: Show the Fire OS version and model clearly in the device list.
+- Evidence: User statement only; no file.
 
 ## Top 5 suggestions for Amazon
 

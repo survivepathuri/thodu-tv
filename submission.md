@@ -13,7 +13,7 @@ Deadline: **Fri 2026-10-23, 12:00 pm Pacific** (internal target 2026-10-22 about
 | Open-source license file | done (MIT; Amazon sample MIT-0 text kept) | `LICENSE`, `THIRD_PARTY_NOTICES.md`, `NOTICE` |
 | Pre-existing work explained | doc | `docs/PRE_EXISTING.md` |
 | Product Feedback per tool (five elements) | doc; would-build-again answers need the developer's own words | `docs/PRODUCT_FEEDBACK.md` |
-| Friction log (optional, up to 10% bonus) | doc (33 evidenced entries) | `FRICTION_LOG.md`, `docs/DEVPOST_FRICTION_PASTE.md` |
+| Friction log (optional, up to 10% bonus) | doc (35 entries: 33 from notes kept at the time, 2 user-reported) | `FRICTION_LOG.md`, `docs/DEVPOST_FRICTION_PASTE.md` |
 | Feature requests (optional) | doc | `docs/DEVPOST_DESCRIPTION.md` |
 | Claims with evidence | doc | `docs/CLAIMS.md` |
 | Device evidence and Fire TV readiness | doc (cloud row to be filled) | `docs/DEVICE_EVIDENCE.md` |

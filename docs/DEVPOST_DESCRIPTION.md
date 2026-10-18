@@ -35,7 +35,7 @@ A React Native app on Amazon's react-native-multi-tv-helloworld sample (Expo SDK
 - Not yet: the current build on a Fire TV; real VoiceView/TalkBack; sessions with users; delivery from the TV to a phone.
 
 ## Challenges we ran into
-From our friction log (33 entries, all evidenced): a Windows 260-character path limit that broke the native build of the Amazon sample (about 35 minutes), a stale-JavaScript trap in the Gradle bundle task (about 25 minutes), and the fact that `useTVEventHandler` receives no key events when no view has focus, which cost most OK presses in scanning mode until we added one invisible focusable "sink" view (about 35 minutes). Each has a workaround and a suggestion in `FRICTION_LOG.md`.
+From our friction log (35 entries: 33 from notes kept at the time, 2 user-reported): a Windows 260-character path limit that broke the native build of the Amazon sample (about 35 minutes), a stale-JavaScript trap in the Gradle bundle task (about 25 minutes), and the fact that `useTVEventHandler` receives no key events when no view has focus, which cost most OK presses in scanning mode until we added one invisible focusable "sink" view (about 35 minutes). Each has a workaround and a suggestion in `FRICTION_LOG.md`.
 
 ## Accomplishments we are proud of
 - One-button scanning that works with a single OK key, with unit-tested state machine.
@@ -69,7 +69,7 @@ The repository was started on 2026-10-12 (after the Submission Period began on 2
 Paste from `docs/PRODUCT_FEEDBACK.md` (five elements per tool: A1 Amazon multi-TV sample, A2 react-native-tvos, A3 Fire TV / Android TV emulator workflow, A4 Appstore Quality Central Live Device Interaction, A5 Fire TV documentation). Would-build-again answers are the developer's own words.
 
 ## Friction log (optional, up to a 10% bonus)
-Paste from `docs/DEVPOST_FRICTION_PASTE.md` (33 entries, each with task, steps, expected vs actual, severity, workaround, suggestion).
+Paste from `docs/DEVPOST_FRICTION_PASTE.md` (35 entries, each with task, steps, expected vs actual, severity, workaround, suggestion).
 
 ## Feature requests (optional)
 - Nice-to-have: a Live Device Interaction recording or export that includes the device name and OS. (Not confirmed whether it already exists.)

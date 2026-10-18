@@ -1,9 +1,9 @@
 # Thodu TV: Devpost friction log paste
 *A TV app that older adults and people with disabilities can use with one button, and that tells their family when they need help.*
 
-Paste-ready text for the optional Friction Log field (the rules ask for: "specific task attempted, steps taken, expected vs. actual result, severity rating, workaround used, and actionable suggestion"). Every entry below is copied from [../FRICTION_LOG.md](../FRICTION_LOG.md), which was written from the developer's working log on 2026-10-11 and 2026-10-12 and not reconstructed later. Severity and time lost are the developer's own rating, not Amazon's. Where a detail was not recorded the entry says "not recorded". The exact Devpost form layout and character limits were not available when this file was made: split by block if a box is too small.
+Paste-ready text for the optional Friction Log field (the rules ask for: "specific task attempted, steps taken, expected vs. actual result, severity rating, workaround used, and actionable suggestion"). Every entry below is copied from [../FRICTION_LOG.md](../FRICTION_LOG.md), which was written from the developer's working log on 2026-10-11 and 2026-10-12 and not reconstructed later (F-034 and F-035 are the exception: the developer reported them on 2026-10-18 about the 2026-10-14 cloud session, tagged [user-reported]). Severity and time lost are the developer's own rating, not Amazon's. Where a detail was not recorded the entry says "not recorded". The exact Devpost form layout and character limits were not available when this file was made: split by block if a box is too small.
 
-Environment: Windows 11 Pro, solo developer, React Native + Expo (react-native-tvos 0.83.6-0), Android TV emulator (Android 14 TV image, x86). No friction from the 2026-10-14 Amazon cloud-device session was recorded in notes, so none is listed.
+Environment: Windows 11 Pro, solo developer, React Native + Expo (react-native-tvos 0.83.6-0), Android TV emulator (Android 14 TV image, x86). No notes were kept during the 2026-10-14 Amazon cloud-device session; the only entries about it (F-034, F-035) are user-reported from memory, with the recordings as the only file evidence.
 
 ## Part 1. Amazon sample and Fire TV / Android TV stack (11 entries)
 
@@ -338,6 +338,30 @@ Environment: Windows 11 Pro, solo developer, React Native + Expo (react-native-t
 - Severity (our rating) and time lost: Major   (time lost: ~28 min)
 - Workaround: Re-ran the build after confirming the network.
 - Suggestion: In the React Native Android build docs, suggest warming the dependency cache (for example `./gradlew dependencies`) before the first long build on an unreliable network, and note that re-running resumes from cached tasks.
+
+## Part 3. Amazon cloud devices, user-reported (2 entries, within the 35 total)
+
+**F-34: The Live Device Interaction recording shows only the device screen, so it cannot prove a Fire TV** [user-reported]
+- Tool: Appstore Quality Central > Live Device Interaction, built-in screen recording (cloud Fire TV device)
+- Task attempted: Record a cloud Fire TV session as proof for the hackathon video.
+- Steps taken: Started a Live Device Interaction session on 2026-10-14 and used the built-in recording (three recordings, about 2:00, 2:00 and 1:43, 1920x1080). Checked the saved files afterwards [user-reported].
+- Expected: The recording shows enough to identify the device (Amazon console UI or the device name/model).
+- Actual: The built-in recording captures only the device screen, with no Amazon UI and no device name, so it cannot by itself prove a Fire TV [user-reported]. The three files show only the app full-screen.
+- Severity (our rating) and time lost: Low-medium (user's rating; time lost not recorded)
+- Workaround: Record the whole browser window with a separate screen recorder.
+- Suggestion: Offer a window-level recording, or burn the device name/model into the capture.
+- Evidence: The three 2026-10-14 recordings in the developer's Downloads folder (`recording.mp4`, `recording (1).mp4`, `recording (2).mp4`; outside this repo). The statement about the cause is [user-reported].
+
+**F-35: Unclear at first how to choose between the cloud devices "FOS 14 3P TV" and "Smart TV - Amazon Fire TV"** [user-reported]
+- Tool: Appstore Quality Central > Live Device Interaction, device list (cloud Fire TV devices)
+- Task attempted: Choose a cloud device for a Live Device Interaction session.
+- Steps taken: Opened the device list and saw "FOS 14 3P TV" and "Smart TV - Amazon Fire TV". Worked out the difference after some time [user-reported]; how long was not recorded.
+- Expected: The list makes the model and Fire OS version of each device clear.
+- Actual: The user did not understand at first how to choose between the two, and understood after some time [user-reported].
+- Severity (our rating) and time lost: Low (user's rating; time lost not recorded)
+- Workaround: Worked it out by trial (details not recorded).
+- Suggestion: Show the Fire OS version and model clearly in the device list.
+- Evidence: User statement only; no file.
 
 ## Top 5 suggestions for Amazon (summary of the above)
 
