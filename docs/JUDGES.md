@@ -11,6 +11,8 @@ Evidence tags (`[unit test]`, `[code only]`, `[cloud Fire TV, ...]`, `[real Andr
 
 ## The fastest path (no install): 2 minutes
 
+To run the app itself, the fastest way is to download the judge APK from the Release page and install it with `adb install -r` (steps in the next section). Building from source takes much longer. The steps below need no device.
+
 1. Read the top of [README.md](../README.md) (problem, status table).
 2. Look at the screenshots in the README (Android TV emulator, 2026-10-12) and watch the demo video (link on the Devpost page).
 3. Re-run the tests: `corepack yarn workspaces focus @thodu/expotv` then `cd packages/shared && npx jest -c jest.core.config.js`. Expected: **16 suites, 223 tests, all passing** `[unit test]`.
@@ -50,6 +52,8 @@ Use the keyboard arrow keys, Enter (Select) and Esc/Backspace (Back) in the emul
 
 **Use Git Bash for every command below, and clone to a very short path (about 15 characters, e.g. `C:\t`).** A normal path such as `C:\Users\<name>\Documents\GitHub\thodu-tv` fails the native build after about 13 minutes (F-016). The `versionName` of a source build is `1.0.0+<your HEAD sha>`, so it will not match the judge APK's `1.0.0+0f5dc84-judge`.
 
+A first release build took about 30 minutes on our Windows machine (measured: `gradlew assembleRelease` 29 m 42 s, plus about 80 s for the dependency install), so most reviewers should use the APK. The shipped judge APK was built with `EXPO_PUBLIC_THODU_TOPIC` set to an empty string, while a plain source build leaves it unset; behaviour is the same (demo mode), only the JS bundle differs by 4 bytes.
+
 Full Windows steps (JDK 17, Android SDK, short repo path) are in the [README](../README.md#setup-and-run-from-source). In short:
 
 ```bash
@@ -58,6 +62,8 @@ corepack yarn expotv:prebuild                # generates the git-ignored android
 cd packages/expotv/android && ./gradlew assembleRelease
 adb install -r app/build/outputs/apk/release/app-release.apk
 ```
+
+**Source build vs shipped APK** `[measured, 2026-10-19]`: a clean clone built from the README gives an APK whose package, versionCode, label, SDK levels, permissions, TV banner entry and signer match the judge APK. The versionName differs because it includes the git sha of the commit being built. The native libraries, the baseline profile and 40 bytes of the Hermes JS bundle (its source hash and footer hash) differ in bytes; we have not traced why. We do not claim the two APKs are byte-identical.
 
 Type-check and tests (no device needed):
 
