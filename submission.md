@@ -7,7 +7,7 @@ Deadline: **Fri 2026-10-23, 12:00 pm Pacific** (internal target 2026-10-22 about
 
 | Item | Status | Where |
 |---|---|---|
-| Working Fire OS / Android TV app (APK) | done (judge build `ff5e452`) | `docs/JUDGES.md`; build steps in `README.md` |
+| Working Fire OS / Android TV app (APK) | done (judge build `0f5dc84`) | `docs/JUDGES.md`; build steps in `README.md` |
 | Text description | doc (draft) | `docs/DEVPOST_DESCRIPTION.md` |
 | Code repository with source, assets and setup/run instructions | done | `README.md`, `docs/JUDGES.md`, `docs/INSTALL_ON_TV.md` |
 | Open-source license file | done (MIT; Amazon sample MIT-0 text kept) | `LICENSE`, `THIRD_PARTY_NOTICES.md`, `NOTICE` |
@@ -22,7 +22,7 @@ Deadline: **Fri 2026-10-23, 12:00 pm Pacific** (internal target 2026-10-22 about
 | Privacy and safety | doc | `docs/PRIVACY_AND_SAFETY.md`, `SECURITY.md` |
 | User testing page | doc: **NOT YET DONE** template | `docs/USER_TESTING.md` |
 | Secret scan (tracked files and history) | done, 0 hits | `docs/CLAIMS.md` #20; `secrets.test.ts` |
-| Judge APK without a topic | done, outside the repo | `thodu-tv-ff5e452-judge.apk` (SHA-256 in `docs/JUDGES.md`) |
+| Judge APK without a topic | done, outside the repo | `thodu-tv-0f5dc84-judge.apk` (SHA-256 in `docs/JUDGES.md`) |
 
 ## B. USER-ONLY items (nobody else can do these)
 

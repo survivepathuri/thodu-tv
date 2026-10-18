@@ -11,12 +11,12 @@ Evidence tags (`[unit test]`, `[code only]`, `[cloud Fire TV, ...]`, `[real Andr
 
 1. Read the top of [README.md](../README.md) (problem, status table).
 2. Look at the screenshots in the README (Android TV emulator, 2026-10-12) and watch the demo video (link on the Devpost page).
-3. Re-run the tests: `corepack yarn workspaces focus @thodu/expotv` then `cd packages/shared && npx jest -c jest.core.config.js`. Expected: **15 suites, 212 tests, all passing** `[unit test]`.
+3. Re-run the tests: `corepack yarn workspaces focus @thodu/expotv` then `cd packages/shared && npx jest -c jest.core.config.js`. Expected: **16 suites, 223 tests, all passing** `[unit test]`.
 4. Re-run the accessibility measurement: `node tools/a11y-measure.mjs` (Node 22.18+ or 24; prints contrast ratios, text sizes, label coverage).
 
 ## Install the judge APK on a Fire TV (about 5 minutes)
 
-The judge build is **topic-free**: it contains no notification topic, so it can never message anyone until you create your own (see "Try the notifications"). File: `thodu-tv-ff5e452-judge.apk`, 68,381,837 bytes, SHA-256 `d3370233b838e415cc3725e07de9440390e480184161765c431f4f513f59153b`. Download link: on the Devpost submission page (not in this repository). The APK is signed with a debug key, which is fine for a demo. It was built from commit `ff5e452` (versionName `1.0.0+ff5e452-judge`); later commits change documentation only. The APK has not yet been installed or run on any device `[APK static]`, `[not tested]`. APK hosting: GitHub Release when the repo is public: USER-ONLY.
+The judge build is **topic-free**: it contains no notification topic, so it can never message anyone until you create your own (see "Try the notifications"). File: `thodu-tv-0f5dc84-judge.apk`, 68,382,021 bytes, SHA-256 `ef8ed3f3a4e377f31ea875c9a820f0394becb4667909f7684bfba1eb139c28ac`. Download link: on the Devpost submission page (not in this repository). The APK is signed with a debug key, which is fine for a demo. It was built from commit `0f5dc84` (versionName `1.0.0+0f5dc84-judge`); later commits change documentation only. The APK has not yet been installed or run on any device `[APK static]`, `[not tested]`. APK hosting: GitHub Release when the repo is public: USER-ONLY.
 
 ```bash
 # 1. Fire TV: Settings > My Fire TV (or Device) > Developer Options: turn on "ADB Debugging" and
@@ -25,20 +25,20 @@ The judge build is **topic-free**: it contains no notification topic, so it can 
 #    Source: Amazon, "Connect to Fire TV through ADB". Menu names vary by Fire OS version.
 # 2. Find the IP address: Settings > My Fire TV > About > Network.
 adb connect <fire-tv-ip>:5555        # accept the prompt on the TV
-adb install -r thodu-tv-ff5e452-judge.apk   # expect "Success"
+adb install -r thodu-tv-0f5dc84-judge.apk   # expect "Success"
 adb shell monkey -p com.thodu.tv -c android.intent.category.LEANBACK_LAUNCHER 1
 ```
 
 Thodu TV also appears in the Apps row. Uninstall with `adb uninstall com.thodu.tv`. More detail and troubleshooting: [INSTALL_ON_TV.md](INSTALL_ON_TV.md). Turn ADB debugging off when you are done.
 
-**No Fire TV at hand?** Amazon Developer Console > Appstore Quality Central > Live Device Interaction lets you upload the APK to a real Amazon Fire TV in the cloud. The developer used this on 2026-10-14 with an older build `[cloud Fire TV, 2026-10-14, older build]`; build `ff5e452` has not yet been run there (see DEVICE_EVIDENCE.md).
+**No Fire TV at hand?** Amazon Developer Console > Appstore Quality Central > Live Device Interaction lets you upload the APK to a real Amazon Fire TV in the cloud. The developer used this on 2026-10-14 with an older build `[cloud Fire TV, 2026-10-14, older build]`; build `0f5dc84` has not yet been run there (see DEVICE_EVIDENCE.md).
 
 ## Install in an emulator
 
 Create an Android TV AVD (Android Studio > Device Manager > Television, for example API 34), start it, then:
 
 ```bash
-adb install -r thodu-tv-ff5e452-judge.apk
+adb install -r thodu-tv-0f5dc84-judge.apk
 adb shell monkey -p com.thodu.tv -c android.intent.category.LEANBACK_LAUNCHER 1
 ```
 
@@ -46,7 +46,7 @@ Use the keyboard arrow keys, Enter (Select) and Esc/Backspace (Back) in the emul
 
 ## Run from source
 
-**Use Git Bash for every command below, and clone to a very short path (about 15 characters, e.g. `C:\t`).** A normal path such as `C:\Users\<name>\Documents\GitHub\thodu-tv` fails the native build after about 13 minutes (F-016). The `versionName` of a source build is `1.0.0+<your HEAD sha>`, so it will not match the judge APK's `1.0.0+ff5e452-judge`.
+**Use Git Bash for every command below, and clone to a very short path (about 15 characters, e.g. `C:\t`).** A normal path such as `C:\Users\<name>\Documents\GitHub\thodu-tv` fails the native build after about 13 minutes (F-016). The `versionName` of a source build is `1.0.0+<your HEAD sha>`, so it will not match the judge APK's `1.0.0+0f5dc84-judge`.
 
 Full Windows steps (JDK 17, Android SDK, short repo path) are in the [README](../README.md#setup-and-run-from-source). In short:
 

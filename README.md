@@ -74,8 +74,8 @@ We did not find an official source for how many TV households there are or how h
 
 ## 60-second path
 
-1. Get `thodu-tv-ff5e452-judge.apk` (topic-free demo build; link on the Devpost page; SHA-256 in [docs/JUDGES.md](docs/JUDGES.md)).
-2. `adb connect <tv-ip>:5555` then `adb install -r thodu-tv-ff5e452-judge.apk` (Fire TV: enable ADB debugging first).
+1. Get `thodu-tv-0f5dc84-judge.apk` (topic-free demo build; link on the Devpost page; SHA-256 in [docs/JUDGES.md](docs/JUDGES.md)).
+2. `adb connect <tv-ip>:5555` then `adb install -r thodu-tv-0f5dc84-judge.apk` (Fire TV: enable ADB debugging first).
 3. `adb shell monkey -p com.thodu.tv -c android.intent.category.LEANBACK_LAUNCHER 1`
 4. Choose "Easier remote", Continue, open **Help** > Tell my family: you see the labelled demo result. To see a real message, follow "Try the notifications" in docs/JUDGES.md.
 
