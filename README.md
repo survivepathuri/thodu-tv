@@ -1,178 +1,156 @@
-# Thodu
+# Thodu (తోడు)
 
-**Thodu — the TV that adapts to you.**
+**A Fire TV / Android TV app that starts from what would make TV easier for an older or disabled viewer, and lets them tell a family member with one button.**
 
-Thodu (తోడు) means "a companion by your side" in Telugu.
+Thodu means "a companion by your side" in Telugu. It was built for the Amazon "Build, Ship, Shape" hackathon (Fire TV track). It is a working prototype, not a finished product.
 
-An accessibility-first Android TV / Fire TV app (React Native + Expo). It was built for the Amazon developer hackathon and is a working prototype, not a finished product. Reviewers: start with [JUDGES.md](JUDGES.md).
+> **Thodu is not an emergency service and not a medical device. In an emergency call your local emergency number.**
 
-> **Thodu is not an emergency service. In an emergency call your local emergency number.**
+**Judges: start with [docs/JUDGES.md](docs/JUDGES.md)** (3 minutes, install steps, how to try the notifications with your own topic). Every claim below carries an evidence tag; the full table is [docs/CLAIMS.md](docs/CLAIMS.md).
 
-## The problem
+Tags: `[unit test]` · `[code only]` · `[cloud Fire TV, date, build]` · `[real Android TV 12 Redmi]` (the developer's home TV, an Android TV, not a Fire TV) · `[emulator]` · `[APK static]` · `[script]` · `[not tested]`. Details in [docs/DEVICE_EVIDENCE.md](docs/DEVICE_EVIDENCE.md).
 
-Many older viewers and viewers with disabilities find a TV remote, small text and dense menus hard to use. Typical difficulties are reading small or low-contrast text, hearing the sound, pressing many small remote buttons, and following long menus. Thodu starts from the person's needs instead of from a settings menu.
+## What, for whom, why
 
-## What Thodu does
+Many older viewers and people with low vision, hearing loss, limited hand control or reading difficulty find a TV remote, small text and dense menus hard to use. Thodu opens with one question, "What would make TV easier for you?", and four large choices:
 
-- **Needs-based setup.** The first screen asks "What would make TV easier for you?" with four large choices (easier remote, easier to see, easier to hear, easier to read). The choices are turned into settings by one pure function (`packages/shared/src/core/adapt.ts`).
-- **Live adaptation preview.** While choosing, the whole setup screen restyles immediately (text size, colours, focus ring, button size).
-- **Single-button scanning.** With "easier remote", the app highlights one item at a time (every 1.8 s by default) and a single OK press selects it, so the app can be used with one button.
-- **Large text and high contrast.** Text scale up to 1.6x, a black-and-yellow high-contrast theme, and a thick focus ring. The default "Sunrise" theme is colourful with one colour per tile.
-- **Read-aloud and screen-reader support.** With read-aloud on, focused items are spoken with Android text-to-speech; if a screen reader is on, the app announces through it instead and suggests needs ("Choose them for me") without applying anything by itself.
-- **Captions demo.** The Watch tile always opens a labelled demo panel (no real video) with a looping caption bar of sample lines, whichever needs were chosen.
-- **Visual alerts.** When "easier to hear" is chosen, the help confirmation shows a flashing "ALERT SENT" banner.
-- **Simple language and labelled buttons.** "Easier to read" also switches 37 key strings per language to shorter, plainer wording (`core/simpleText.ts`; strings without a simple variant stay as they are) and adds a text glyph next to the label of every action button. The glyphs are plain characters (no emoji, no images) and the text label is always kept. Hindi and Telugu simple wording has not been reviewed by native speakers.
-- **English, Hindi, Telugu.** Language chips on the setup screen. Hindi and Telugu need review by native speakers (see Limitations).
-- **Persistence.** Needs, language, scanning speed and the family settings are saved on the device; the next launch goes straight to Home. "Reset Thodu" clears them.
-- **Real family notification (optional).** "Tell my family" can send one short, generic message through the free [ntfy.sh](https://ntfy.sh) service to a phone that has the ntfy app. There is no Thodu server. Until a test message has succeeded, the Help button is clearly labelled as a demo, and failures are shown honestly ("We could not reach your family. Please call them.").
+| Choice | What changes | Tag |
+|---|---|---|
+| **Easier to see** | text 1.6x, black/white/yellow high-contrast theme, focus ring 10 px (default 4), larger buttons | `[unit test]` `adapt.test.ts`, `theme.test.ts` |
+| **Easier to hear** | captions always on in the Watch demo, flashing "ALERT SENT" banner | `[unit test]` `adapt.test.ts`, `captions.test.ts` |
+| **Easier remote** | one-button auto-scanning (one item highlighted at a time; OK chooses; 2.6 s / 1.8 s / 1.2 s), larger buttons | `[unit test]` `scanner.test.ts` |
+| **Easier to read** | read-aloud (text-to-speech), simple wording for key strings, a glyph beside every action button | `[unit test]` `simpleText.test.ts`, `speech.test.ts` |
 
-## How your needs change the app
+Choices combine and the screen restyles live while the person chooses. The interface is in **English, Hindi and Telugu** (Hindi and Telugu are not native-reviewed). Settings are saved on the device.
 
-From `packages/shared/src/core/adapt.ts` (tested in `adapt.test.ts`). Needs combine by taking the larger number or the OR of the on/off settings.
+Home has five tiles `[unit test]` (layout) / `[code only]` (screen):
 
-| Need chosen | Settings changed |
-|---|---|
-| Easier to see (low vision) | text scale 1.6x, high-contrast theme, focus ring width 10 (default 4), larger buttons |
-| Easier to hear (hard of hearing) | captions always on, visual alerts on |
-| Easier remote (remote difficulty) | single-button scanning on (1800 ms per item), larger buttons |
-| Easier to read (reading difficulty) | read-aloud on; simple language on (shorter wording for the key strings on Setup, Home, Help, Family and Settings, in English, Hindi and Telugu); icons with labels on (every action button such as Back, Continue, Try again, Tell my family, Cancel and Send a test shows a glyph next to its text; home tiles always show a glyph and a label) |
+- **Watch**: a labelled **demo panel** with sample captions. No real video.
+- **Family**: recent help requests and a "Send a hello" button.
+- **Medicines**: a one-press "Did you take your medicine?" check-in, "Yes, I took it". **No timed reminders or schedule.**
+- **Help**: "Do you need help?" then a family notification. **Not an emergency call.**
+- **Settings**: needs, language, scanning speed, Family notifications, Reset.
 
-Nothing chosen = default settings (text 1.0x, ring 4, everything else off).
+Family, Medicines and Help send one short, generic message ("Help was requested from the TV at HH:MM") through the public service **[ntfy.sh](https://ntfy.sh)** to a phone running the ntfy app. There is no Thodu server. **Anyone who knows the topic name can read the messages**, so every user and judge should use the random topic their own TV generates (Settings > Family notifications). "Family notified" appears only after ntfy.sh answers with an HTTP 2xx `[unit test]`. Until a test message has succeeded the buttons say "Demo: nobody was told" and nothing leaves the TV `[code only]`. Details: [docs/PRIVACY_AND_SAFETY.md](docs/PRIVACY_AND_SAFETY.md).
+
+## 60-second path
+
+1. Get `thodu-196f20a-judge.apk` (topic-free demo build; link on the Devpost page; SHA-256 in [docs/JUDGES.md](docs/JUDGES.md)).
+2. `adb connect <tv-ip>:5555` then `adb install -r thodu-196f20a-judge.apk` (Fire TV: enable ADB debugging first).
+3. `adb shell monkey -p com.thodu.tv -c android.intent.category.LEANBACK_LAUNCHER 1`
+4. Choose "Easier remote", Continue, open **Help** > Tell my family: you see the labelled demo result. To see a real message, follow "Try the notifications" in docs/JUDGES.md.
+
+No device? Run the tests (below) and read [docs/ACCESSIBILITY.md](docs/ACCESSIBILITY.md): its numbers come from scripts you can re-run.
+
+## Status: what is real, what is not
+
+| Part | Status | Tag / evidence |
+|---|---|---|
+| Needs to settings, themes, scanner, persistence, strings, notification sender | Implemented, tested by 212 unit tests | `[unit test]` |
+| Contrast, text sizes, label coverage | Measured: 73 colour pairs 0 below target, lowest text 7.79:1, smallest text 22 design px, 25 of 25 focusable elements labelled | `[script]` `node tools/a11y-measure.mjs`, `[unit test]` |
+| APK is a valid Fire TV / Android TV app (leanback launcher, touchscreen not required, banner, minSdk 24, no Google Play Services) | Checked in the built APK | `[APK static]` |
+| Runs on a real Amazon Fire TV | Started once on an Amazon cloud device on 2026-10-14 with an **older build**; the recordings do not show the device frame, so they do not prove a Fire TV by themselves. **The current build has not been run there yet.** | `[cloud Fire TV, 2026-10-14, older build]` |
+| Onboarding, language switch, high contrast, D-pad, Settings | Verified on the developer's TV (Android TV 12, **not** a Fire TV), with a 4-tile build | `[real Android TV 12 Redmi]` |
+| Medicines tile and real Family / Medicines / Help notifications on a TV | Logic unit-tested with a fake network; **not run on a TV** | `[unit test]`, `[not tested]` |
+| A real HTTP POST reaching ntfy.sh | Done from a PC on 2026-10-18 (HTTP 200, read back by polling) | PC run, not the TV app |
+| Delivery to a phone from the TV | Not verified | `[not tested]` |
+| Watch screen and captions | Demo panel, scripted captions, no real video | `[code only]` |
+| VoiceView / TalkBack | Detection and routing unit-tested; **no session with a screen reader** | `[unit test]`, `[not tested]` |
+| Hindi and Telugu text and speech | Written by the developer; not native-reviewed | `[not tested]` |
+| Tested with users | **No.** A session is planned for 2026-10-19; see [docs/USER_TESTING.md](docs/USER_TESTING.md) | NOT YET DONE |
+| Fire TV certified / Appstore approved | **No.** Not submitted. | Not claimed |
+| Cold start | Median 1351 ms on an x86 TV emulator; not a Fire TV number | `[emulator]` |
 
 ## Screenshots
 
-All screenshots are from an Android TV **emulator** (Android 14, 1920x1080).
+All from the Android TV **emulator** (Android 14 TV image, 1920x1080), captured 2026-10-12 on earlier builds (Home then had four tiles; the Family screen shows the old simulated phone card). They are not from a Fire TV.
 
 | | |
 |---|---|
-| ![Setup](docs/screenshots/01-setup-needs.png) Needs-based setup | ![Home](docs/screenshots/02-home-sunrise.png) Home, default Sunrise theme |
-| ![High contrast](docs/screenshots/03-home-high-contrast.png) High-contrast, large text, larger tiles | ![Scanning](docs/screenshots/04-scanning-highlight.png) Scanning mode highlight and hint |
-| ![Hindi](docs/screenshots/05-home-hindi.png) Home in Hindi | ![Captions](docs/screenshots/06-watch-captions-demo.png) Watch screen: demo panel with caption bar |
-| ![Help sent](docs/screenshots/07-help-sent.png) Help sent (real mode, ntfy answered 2xx) | ![Help failed](docs/screenshots/08-help-failed-honest.png) Help failed (offline simulated on the emulator) |
-
-## Real vs simulated
-
-| Part | Status |
-|---|---|
-| Family notification through ntfy.sh | **Real** HTTPS request; success is shown only when ntfy.sh answers with HTTP 2xx. We did **not** subscribe a phone during development, so delivery to a real phone is not yet verified. |
-| "Family phone" card on the Family screen | **Simulated** preview (labelled "Simulated" in the app) |
-| Help flow before a test message succeeded | **Demo** (labelled "DEMO - simulated notification") |
-| Watch screen and captions | **Demo panel**, no real video, scripted captions |
-| Offline / failure screen | Verified by simulating a lost network on the emulator (`adb emu network delay`); other real-world failures use the same error handling but were not each tried |
-| Cold-start numbers | Measured on an **emulator** only |
-| Accessibility label audit | Self-run with uiautomator on the emulator |
-| Screen reader (VoiceView / TalkBack) | Detection and routing implemented and unit-tested; **not tested on a real device or with a screen reader running** |
-| Read-aloud speech | English voice observed on the emulator; Hindi and Telugu voices **not verified** |
-| Hindi and Telugu text | Written by the developer; **need native-speaker review** |
-| Real Fire TV hardware | **Not tested** (emulator only) |
-| Universal APK (arm64-v8a, armeabi-v7a, x86) | Built from a fresh clone; native libraries for all three ABIs verified present in the APK; installed and run on the x86 emulator only, **not yet run on an ARM device** |
-
-## Claims and evidence
-
-| Claim | Evidence |
-|---|---|
-| Needs map to settings as in the table above | `packages/shared/src/core/__tests__/adapt.test.ts` (12 tests) |
-| Text and focus colours meet WCAG AA contrast (AAA for labels in high contrast) by calculation | `core/__tests__/theme.test.ts` (61 checks over every text/background pair), `core/contrast.ts` |
-| Scanning moves through items on a timer and OK selects | `core/__tests__/scanner.test.ts` (16 tests); an adb run using only ENTER and BACK keys reached the help flow (developer's key log, not committed) |
-| Settings survive restart; corrupt data falls back to safe defaults | `core/__tests__/persist.test.ts`; on the emulator, force-stop and relaunch went straight to Home in Hindi |
-| ntfy client: topic generation, payload, retry, never throws, success only on 2xx | `core/__tests__/notify.test.ts` (27 tests, network injected, no real requests) |
-| The notification text is generic | `buildPayload` in `core/notify.ts` |
-| English, Hindi and Telugu have the same keys | `core/__tests__/strings.test.ts` |
-| System font scale is capped at 1.3x and the total at 2.0x | `core/a11y.ts`, `core/__tests__/a11y.test.ts` |
-| Every interactive element has a name (35 nodes, 0 unlabeled) | `tools/a11y-audit.mjs` (uiautomator on the emulator); numbers below |
-| App asks only for INTERNET and network-state permissions, no cleartext, no backup | [SECURITY.md](SECURITY.md); `packages/expotv/app.json` |
-| The emergency disclaimer is shown on help screens | Screenshots 07 and 08; `core/strings/en.ts` |
+| ![Setup](docs/screenshots/01-setup-needs.png) Needs-based setup (emulator, 2026-10-12) | ![Home](docs/screenshots/02-home-sunrise.png) Home, default Sunrise theme (emulator, 2026-10-12) |
+| ![High contrast](docs/screenshots/03-home-high-contrast.png) High-contrast, large text (emulator, 2026-10-12) | ![Scanning](docs/screenshots/04-scanning-highlight.png) Scanning highlight and hint (emulator, 2026-10-12) |
+| ![Hindi](docs/screenshots/05-home-hindi.png) Home in Hindi (emulator, 2026-10-12) | ![Captions](docs/screenshots/06-watch-captions-demo.png) Watch demo panel with caption bar (emulator, 2026-10-12) |
+| ![Help sent](docs/screenshots/07-help-sent.png) Help sent, real mode, ntfy answered 2xx (emulator, 2026-10-12) | ![Help failed](docs/screenshots/08-help-failed-honest.png) Help failed, offline simulated (emulator, 2026-10-12) |
 
 ## Tests
 
-182 unit tests in 12 suites, all passing in the latest run (Jest, pure logic in `packages/shared/src/core`, no device needed):
+**212 unit tests in 15 suites, all passing** (re-run 2026-10-18; Jest, pure logic in `packages/shared/src/core`, no device needed):
 
 ```bash
+corepack yarn workspaces focus @thodu/expotv   # once, at the repo root
 cd packages/shared
-npx jest -c jest.core.config.js        # or: yarn test  (from the repo root)
+npx jest -c jest.core.config.js                # or, from the repo root: corepack yarn test
 ```
 
-Suites: theme 61, notify 27, persist 18, scanner 16, simpleText 13, adapt 12, a11y 9, strings 8, helpEvents 7, speech 4, captions 4, buttonIcons 3. The screens themselves have no automated UI tests; they were checked by hand on the emulator.
+Suites: theme 65, notify 27, familyAlert 19, persist 18, scanner 16, simpleText 13, adapt 12, a11y 9, strings 8, helpEvents 7, a11yCoverage 5, captions 4, speech 4, buttonIcons 3, secrets 2. The screens have no automated UI tests. Type-check: `../expotv/node_modules/.bin/tsc --noEmit -p .` inside `packages/shared` (0 errors).
 
-## Measured numbers (emulator only)
+Tools: `node tools/a11y-measure.mjs` (contrast, text sizes, label coverage; no device), `tools/a11y-audit.mjs`, `tools/cold-start.mjs`, `tools/security-check.mjs` (these three need `ANDROID_HOME` and an emulator).
 
-- **Cold start** (Google AOSP TV, x86 emulator, Android 14, release build, 7 runs after force-stop, `am start -W`): min 1136 ms, median 1351 ms, max 1965 ms. Not a Fire TV Stick number.
-- **Label audit** (uiautomator, 9 screens): 35 interactive nodes, 0 without a text or content description. Measured on an earlier build whose ninth screen was the since-removed Medicines placeholder; not re-run after the change. This checks that names exist, not that they sound right.
+## Setup and run from source
 
-Tools: `tools/cold-start.mjs`, `tools/a11y-audit.mjs`, `tools/security-check.mjs` (set `ANDROID_HOME` to your SDK folder).
+Followed from a fresh clone on Windows. Prerequisites:
 
-## Setup and run on Windows
-
-These steps were followed from a fresh clone (see the clean-clone note at the end of this section). Prerequisites and the versions we used:
-
-- Windows 11, Node.js 24 (it includes Corepack). Yarn 4.5.0 is pinned in `package.json`; there is no global `yarn` on a fresh machine, so every command below is run as `corepack yarn ...`.
+- Windows 11, Node.js 24 (includes Corepack). Yarn 4.5.0 is pinned; there is no global `yarn`, so run `corepack yarn ...`.
 - **JDK 17** (Eclipse Temurin 17). Android Studio's bundled JDK 25 failed in the Android Gradle plugin prefab step.
-- Android SDK with platform 36, NDK 27.1.12297006 and CMake 3.22.1 installed (the versions our SDK had; we did not test a machine without them, where Gradle may try to download them and needs the SDK licences accepted). For the emulator we used an Android TV system image (API 34, x86).
-- Expo SDK 55, react-native-tvos 0.83.6-0, Gradle 9.0.0 (downloaded by the build)
-- **A short repo path** (about 15 characters or fewer, for example `D:\t`). Longer paths made the native build fail with "Filename longer than 260 characters", even with Windows long paths enabled.
-- An internet connection for the whole build (Gradle downloads libraries as it goes). On an unreliable connection a download can fail late in the build; running the same command again resumes from the finished tasks.
+- Android SDK platform 36, NDK 27.1.12297006 and CMake 3.22.1 (the versions our SDK had; a machine without them was not tested). For an emulator we used an Android TV image (API 34, x86).
+- Expo SDK 55, react-native-tvos 0.83.6-0, Gradle 9.0.0 (downloaded by the build).
+- **A short repo path** (about 15 characters or fewer, for example `D:\t`). Longer paths made the native build fail with "Filename longer than 260 characters".
+- An internet connection for the whole build.
 
 ```bash
 # 1. dependencies (repo root)
 corepack yarn workspaces focus @thodu/expotv
 
-# 2. generate the native Android project (sets EXPO_TV=1)
-#    This also applies the committed build settings from app.json: the three ABIs
-#    (arm64-v8a, armeabi-v7a, x86) and low-memory Gradle settings.
+# 2. generate the git-ignored native Android project (sets EXPO_TV=1); applies the three ABIs,
+#    low-memory Gradle settings and a versionName of "1.0.0+<git sha>".
+#    Optional: THODU_BUILD_LABEL=judge adds "-judge" to versionName.
 corepack yarn expotv:prebuild
 
-# 3. release build (JS bundle is embedded, no Metro needed)
-#    Point JAVA_HOME at JDK 17 and ANDROID_HOME at the Android SDK first, for example in Git Bash:
+# 3. release build (the JS bundle is embedded; no Metro needed). Point JAVA_HOME at JDK 17 and
+#    ANDROID_HOME at the Android SDK first, for example in Git Bash:
 export JAVA_HOME='<folder of JDK 17>'
 export ANDROID_HOME='<folder of the Android SDK>'
 cd packages/expotv/android
 ./gradlew assembleRelease
-#    Result: app/build/outputs/apk/release/app-release.apk (universal APK, about 68 MB)
+#    Result: app/build/outputs/apk/release/app-release.apk (universal, about 68 MB)
 
 # 4. install and launch on a running emulator or TV
 adb install -r app/build/outputs/apk/release/app-release.apk
 adb shell monkey -p com.thodu.tv -c android.intent.category.LEANBACK_LAUNCHER 1
 ```
 
-To run the unit tests after step 1: `corepack yarn test` (from the repo root).
+**Notification topic.** A source build has **no topic** and starts in demo mode. To bake in your own, copy `packages/expotv/.env.example` to `packages/expotv/.env.local` (git-ignored) and set `EXPO_PUBLIC_THODU_TOPIC` (format and warning inside the file). Otherwise create one on the TV in Settings > Family notifications.
 
-**What the build contains.** One APK holds native libraries for arm64-v8a, armeabi-v7a and x86, so it is meant to install on ARM TVs and Fire TV sticks as well as on the x86 emulator. For a faster emulator-only build, add `-PreactNativeArchitectures=x86` to the `./gradlew` command. To put the APK on a real TV, see [docs/INSTALL_ON_TV.md](docs/INSTALL_ON_TV.md).
-
-**Honest status of the ARM build.** The universal APK has been built from a fresh clone and its ARM native libraries were verified to be present in the file. It has been installed and run only on the x86 emulator; it has **not yet been run on an ARM device**.
-
-**Build times.** On our low-memory PC the first full three-ABI build took about 41 minutes in total: 27.5 minutes until a network error ended it, then 13.8 minutes when the same command was run again (it reused the finished tasks). Later builds after JS-only changes should be much shorter. After editing JS in `packages/shared`, run the Gradle task `:app:createBundleReleaseJsAndAssets --rerun` or Gradle may ship stale JavaScript. Our list of tool problems is in [docs/FRICTION_LOG.md](docs/FRICTION_LOG.md). The release build is signed with the debug keystore, which is fine for a demo only.
-
-**Clean-clone note.** The steps above were run in a fresh clone of the repository (no earlier `node_modules` or `android/`). That run found three gaps that are now fixed here: no global `yarn` (use `corepack yarn`), no mention of `ANDROID_HOME`, and an outdated instruction to edit `gradle.properties` by hand for x86.
+**Build notes.** The first full three-ABI build took about 41 minutes on a low-memory PC (27.5 minutes until a network error ended it, then 13.8 minutes on a re-run that reused finished tasks). After editing JS in `packages/shared`, run the Gradle task `:app:createBundleReleaseJsAndAssets --rerun` or Gradle may ship stale JavaScript. For an x86-only emulator build add `-PreactNativeArchitectures=x86`. The release build is signed with the debug keystore, fine for a demo only. The three ARM libraries were verified present in the APK; the universal APK has run only on an x86 emulator, the developer's Android TV 12 (a build before the latest), and the cloud device above. Putting the APK on a TV: [docs/INSTALL_ON_TV.md](docs/INSTALL_ON_TV.md). Our list of tool problems: [FRICTION_LOG.md](FRICTION_LOG.md).
 
 ## Architecture
 
-- Yarn 4 workspaces monorepo: `packages/expotv` (the Expo TV app shell, routes in `app/`) and `packages/shared` (all app code).
-- `packages/shared/src/core`: pure TypeScript logic with no React Native imports, so it is unit-tested with Jest: needs to settings (`adapt.ts`), themes and contrast (`theme.ts`, `contrast.ts`), scanner state machine (`scanner.ts`), persistence (`persist.ts`), ntfy client (`notify.ts`), screen-reader and font-scale rules (`a11y.ts`, `speech.ts`), strings in `en`, `hi`, `te`.
-- `packages/shared/src/settings`: provider that holds settings and loads and saves them with AsyncStorage (injected as a storage interface).
-- `packages/shared/src/scan`: `ScanScope` runs the scanner over every focusable item on a screen, with one invisible focus-sink view because Android only delivers remote keys while some view has focus.
-- `packages/shared/src/components` and `screens`: focusable buttons, text wrapper, setup, home, help flow, family settings, watch demo.
-- Notification path: Help screen -> `sendHelp` (HTTPS POST to ntfy.sh, 8 s timeout, one retry) -> result shown honestly. No backend, no analytics, no accounts.
-- Navigation: expo-router stack; the remote Back button pops the stack, and on Home it leaves the app.
+- Yarn 4 workspaces monorepo: `packages/expotv` (Expo TV app shell, routes in `app/`) and `packages/shared` (all app code).
+- `packages/shared/src/core`: pure TypeScript with no React Native imports, so Jest tests it: needs to settings (`adapt.ts`), themes and contrast (`palette.ts`, `theme.ts`, `contrast.ts`), scanner state machine (`scanner.ts`), persistence (`persist.ts`), ntfy client and the shared alert sender (`notify.ts`), screen-reader and font-scale rules (`a11y.ts`, `speech.ts`), strings in `en`, `hi`, `te`.
+- `settings/` (provider, AsyncStorage injected), `scan/ScanScope.tsx` (scans every focusable item; one invisible focus sink keeps Android delivering remote keys), `components/` (the one `Focusable` button with ring and labels), `screens/`.
+- Notification path: Help / Family / Medicines -> `sendFamilyAlert` (HTTPS POST to ntfy.sh, 8 s timeout, one retry, 3 s debounce) -> result shown honestly. No backend, no analytics, no accounts.
+- Navigation: expo-router stack, no animation; Back pops the stack and on Home leaves the app.
 
-## Limitations and known issues
+## Limitations
 
-- Telugu and Hindi strings were written by the developer and have not been reviewed by native speakers. Telugu and Hindi speech voices were not checked.
-- Everything was run on an emulator. No real Fire TV, no real screen reader, no real family phone, and no sessions with real users yet.
-- ntfy.sh is a public service: anyone who knows the topic name can read or post messages. The name is random but should be treated as a shared secret.
-- The help log is kept in memory only. Watch is a demo.
-- Back on Home exits to the launcher.
-- Release builds use the debug keystore. The dependency audit lists 108 advisories (see SECURITY.md); we have not upgraded dependencies.
-- Sample code from the Amazon starter remains in `packages/expotv` (components, layouts, hooks, constants) but is not used by the app.
-- Scanning was proven by an adb run on an earlier build; it was not re-run on every later build.
+- The current build has not run on a Fire TV; the cloud run of 2026-10-14 was an older build without device proof in the recordings.
+- No user sessions yet; no VoiceView / TalkBack session; Hindi and Telugu not native-reviewed.
+- ntfy.sh is public; anyone who knows the topic can read or post. Delivery to a phone from the TV is not verified.
+- The help log is in memory only. Watch is a demo. Back on Home exits to the launcher.
+- Release builds use the debug keystore. The dependency audit lists 108 advisories (see [SECURITY.md](SECURITY.md)); nothing was upgraded.
+- Sample code from the Amazon starter remains in `packages/expotv` (`components/`, `layouts/`, `hooks/`, `constants/`) but is unused.
+- Scanning was proven by an adb run on an earlier build and not re-run on every later build.
 
-## Roadmap
+## Roadmap (not built)
 
-Voice trigger through Alexa+ for people who cannot use a remote (not built).
+Timed medicine reminders and a schedule; a voice trigger through Alexa+ for people who cannot use a remote.
 
 ## Credits and license
 
-The app icon, launcher banner and splash mark are original artwork made for Thodu (SVG sources in `assets/branding/`, rendered with `tools/make-branding.mjs`); no third-party logos or images are used.
+Started from Amazon's [react-native-multi-tv-helloworld](https://github.com/AmazonAppDev/react-native-multi-tv-helloworld) sample (MIT-0, Amazon.com, Inc.); see [NOTICE](NOTICE), [LICENSE-AMAZON-SAMPLE](LICENSE-AMAZON-SAMPLE) and [docs/PRE_EXISTING.md](docs/PRE_EXISTING.md). `react-native-tvos` is a community fork, not an Amazon product. The icon, launcher banner and splash mark are original artwork (`assets/branding/`, rendered by `tools/make-branding.mjs`); no third-party logos or images are used.
 
-MIT, see [LICENSE](LICENSE). Thodu started from Amazon's [react-native-multi-tv-helloworld](https://github.com/AmazonAppDev/react-native-multi-tv-helloworld) sample (MIT-0); credits are in [NOTICE](NOTICE). Other docs: [docs/INSTALL_ON_TV.md](docs/INSTALL_ON_TV.md), [docs/USER_SESSIONS.md](docs/USER_SESSIONS.md), [SECURITY.md](SECURITY.md), [ACCESSIBILITY.md](ACCESSIBILITY.md), [JUDGES.md](JUDGES.md), [docs/FRICTION_LOG.md](docs/FRICTION_LOG.md).
+Thodu's own code is **MIT**, see [LICENSE](LICENSE).
+
+Docs: [docs/JUDGES.md](docs/JUDGES.md) · [docs/CLAIMS.md](docs/CLAIMS.md) · [docs/DEVICE_EVIDENCE.md](docs/DEVICE_EVIDENCE.md) · [docs/ACCESSIBILITY.md](docs/ACCESSIBILITY.md) · [docs/PRIVACY_AND_SAFETY.md](docs/PRIVACY_AND_SAFETY.md) · [SECURITY.md](SECURITY.md) · [docs/PRE_EXISTING.md](docs/PRE_EXISTING.md) · [docs/USER_TESTING.md](docs/USER_TESTING.md) · [FRICTION_LOG.md](FRICTION_LOG.md) · [docs/PRODUCT_FEEDBACK.md](docs/PRODUCT_FEEDBACK.md) · [submission.md](submission.md)
 
 **Thodu is not an emergency service. In an emergency call your local emergency number.**
