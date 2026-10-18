@@ -91,5 +91,14 @@ export const en = {
   'fam.status.server': 'Could not send. The message service did not accept it.',
   'fam.status.needTest': 'Send a test message first. It must work before real mode can be used.',
   'fam.status.demo': 'Demo mode: nobody is contacted when you ask for help.',
+  'tile.medicines': 'Medicines',
+  'med.question': 'Did you take your medicine?',
+  'med.yes': 'Yes, I took it',
+  'med.no': 'Not yet',
+  'alert.sending': 'Sending...',
+  'alert.sent': 'Family notified',
+  'alert.failed': 'Could not send. Try again.',
+  'alert.demo': 'Demo: nobody was told. Send a test message in Settings first.',
+  'family.hello': 'Send a hello',
 } as const;
 export type StringKey = keyof typeof en;

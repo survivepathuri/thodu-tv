@@ -19,3 +19,4 @@ export * from './speech';
 export * from './notify';
 export * from './simpleText';
 export * from './buttonIcons';
+export * from './homeLayout';

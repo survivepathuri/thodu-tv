@@ -1,23 +1,10 @@
 import React from 'react';
 import {ScrollView, View} from 'react-native';
 import {Text} from '../components/Text';
-import {StringKey, TileId} from '../core';
+import {StringKey, TileId, columnsFor, homeRows} from '../core';
 import {Focusable} from '../components/Focusable';
 import {Screen} from '../components/Screen';
 import {useUI} from '../settings/useUI';
-
-/** Tiles per row: 4 across normally, 2+2 when text is enlarged (no orphan tile). */
-export function columnsFor(fontScale: number): number {
-  return fontScale > 1.3 ? 2 : 4;
-}
-
-function chunk<T>(items: readonly T[], size: number): T[][] {
-  const rows: T[][] = [];
-  for (let i = 0; i < items.length; i += size) {
-    rows.push(items.slice(i, i + size));
-  }
-  return rows;
-}
 
 export type HomeTileId = TileId;
 
@@ -31,14 +18,15 @@ interface TileDef {
 const TILES: readonly TileDef[] = [
   {id: 'watch', labelKey: 'tile.watch', glyph: '▶'},
   {id: 'family', labelKey: 'tile.family', glyph: '●●'},
+  {id: 'medicines', labelKey: 'tile.medicines', glyph: '+'},
   {id: 'help', labelKey: 'tile.help', glyph: '?'},
   {id: 'settings', labelKey: 'tile.settings', glyph: '≡'},
 ];
 
 export const HomeScreen = ({onOpen}: {onOpen: (id: HomeTileId) => void}) => {
   const {t, colors, theme, fs, sz, px, settings} = useUI();
-  const cols = columnsFor(settings.fontScale);
-  const rows = chunk(TILES, cols);
+  const cols = columnsFor(settings.fontScale, TILES.length);
+  const rows = homeRows(TILES, cols);
 
   return (
     <Screen>
@@ -77,7 +65,7 @@ export const HomeScreen = ({onOpen}: {onOpen: (id: HomeTileId) => void}) => {
                       return (
                       <View
                         style={{
-                          height: cols === 4 ? sz(420) : px(300),
+                          height: rows.length === 1 ? sz(420) : px(300),
                           borderRadius: 20,
                           alignItems: 'center',
                           justifyContent: 'center',

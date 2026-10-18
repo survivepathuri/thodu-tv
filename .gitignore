@@ -72,3 +72,8 @@ dist
 
 # Self-check tool output
 reports/
+
+# Local secrets (ntfy topic): never commit
+.env
+.env.*
+!.env.example

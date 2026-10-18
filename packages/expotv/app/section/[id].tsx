@@ -1,5 +1,5 @@
 import { Scoped } from '@/components/Scoped';
-import { FamilyScreen, WatchDemoScreen } from '@thodu/shared';
+import { FamilyScreen, MedicinesScreen, WatchDemoScreen } from '@thodu/shared';
 import { Redirect, useLocalSearchParams, useRouter } from 'expo-router';
 
 export default function Section() {
@@ -10,6 +10,14 @@ export default function Section() {
     return (
       <Scoped>
         <FamilyScreen onBack={() => router.back()} />
+      </Scoped>
+    );
+  }
+
+  if (id === 'medicines') {
+    return (
+      <Scoped>
+        <MedicinesScreen onBack={() => router.back()} />
       </Scoped>
     );
   }

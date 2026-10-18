@@ -3,6 +3,7 @@ import {View} from 'react-native';
 import {Text} from '../components/Text';
 import {formatClock, recentHelpEvents} from '../core';
 import {ActionButton} from '../components/ActionButton';
+import {useFamilyAlert} from '../settings/useFamilyAlert';
 import {Screen} from '../components/Screen';
 import {useSettings} from '../settings/SettingsProvider';
 import {useUI} from '../settings/useUI';
@@ -259,6 +260,7 @@ export const HelpSentScreen = ({
 export const FamilyScreen = ({onBack}: {onBack: () => void}) => {
   const {t, colors, fs, px} = useUI();
   const {helpEvents} = useSettings();
+  const hello = useFamilyAlert('family');
   const recent = recentHelpEvents(helpEvents, 5);
   // The simulated phone only ever shows simulated (demo) requests.
   const latest = recent.find(e => e.result === 'demo');
@@ -310,15 +312,38 @@ export const FamilyScreen = ({onBack}: {onBack: () => void}) => {
               </Text>
             </View>
           ))}
-          <View style={{marginTop: px(12), alignSelf: 'flex-start'}}>
+          <View style={{marginTop: px(12), flexDirection: 'row', gap: px(32)}}>
             <ActionButton
+              primary
               preferred
+              label={t('family.hello')}
+              onPress={hello.send}
+              icon="send"
+              testID="family-hello"
+            />
+            <ActionButton
               label={t('common.back')}
               onPress={onBack}
               icon="back"
               testID="back-button"
             />
           </View>
+          {hello.phase !== 'idle' && (
+            <Text
+              testID="family-hello-status"
+              accessibilityLiveRegion="polite"
+              style={{color: colors.text, fontSize: fs(34), fontWeight: 'bold'}}>
+              {t(
+                hello.phase === 'sending'
+                  ? 'alert.sending'
+                  : hello.phase === 'sent'
+                    ? 'alert.sent'
+                    : hello.phase === 'demo'
+                      ? 'alert.demo'
+                      : 'alert.failed',
+              )}
+            </Text>
+          )}
         </View>
 
         {/* Simulated caregiver phone */}

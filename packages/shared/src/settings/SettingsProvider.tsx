@@ -10,6 +10,7 @@ import React, {
 import {AccessibilityInfo, useWindowDimensions} from 'react-native';
 import {
   addHelpEvent,
+  applyConfiguredTopic,
   buildTheme,
   defaultPersisted,
   deriveSettings,
@@ -65,9 +66,12 @@ const SettingsContext = createContext<SettingsContextValue | null>(null);
 
 export const SettingsProvider = ({
   storage,
+  configuredTopic,
   children,
 }: {
   storage: StorageLike;
+  /** Topic baked into the build from a local untracked file, if any. */
+  configuredTopic?: string;
   children: React.ReactNode;
 }) => {
   const [ready, setReady] = useState(false);
@@ -99,14 +103,14 @@ export const SettingsProvider = ({
       .catch(() => null)
       .then(text => {
         if (alive) {
-          setSaved(deserialize(text));
+          setSaved(applyConfiguredTopic(deserialize(text), configuredTopic));
           setReady(true);
         }
       });
     return () => {
       alive = false;
     };
-  }, [storage]);
+  }, [storage, configuredTopic]);
 
   // Save after every change, but never before the first load finished.
   useEffect(() => {
@@ -156,8 +160,8 @@ export const SettingsProvider = ({
       // The in-memory reset below still happens; the next save overwrites.
     }
     setHelpEvents([]);
-    setSaved(defaultPersisted());
-  }, [storage]);
+    setSaved(applyConfiguredTopic(defaultPersisted(), configuredTopic));
+  }, [storage, configuredTopic]);
 
   const settings = useMemo(() => {
     const derived = deriveSettings(saved.needs);

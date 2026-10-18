@@ -5,7 +5,7 @@ import {
   HelpSendingScreen,
   HelpSentScreen,
   isValidTopic,
-  sendHelp,
+  sendFamilyAlert,
   useSettings,
 } from '@thodu/shared';
 import type { FetchLike } from '@thodu/shared';
@@ -38,7 +38,7 @@ export default function Help() {
       return;
     }
     setPhase('sending');
-    const r = await sendHelp(fetch as unknown as FetchLike, topic, Date.now());
+    const r = await sendFamilyAlert(fetch as unknown as FetchLike, topic, 'help', Date.now());
     // Logged even if the person already left this screen; success only on 2xx.
     logHelp({ kind: 'helpRequest', result: r.ok ? 'sent' : 'failed' });
     if (mounted.current) {

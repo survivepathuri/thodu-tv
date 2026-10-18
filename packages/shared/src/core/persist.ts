@@ -34,7 +34,7 @@ export function defaultPersisted(): PersistedState {
   };
 }
 
-const TOPIC_RE = /^thodu-[a-z2-7]{4}-[a-z2-7]{4}-[a-z2-7]{4}$/;
+const TOPIC_RE = /^thodu(-[a-z2-7]{4}){3,4}$/;
 
 /** Stored shape: the state plus a version. Unknown fields are never kept. */
 export function serialize(state: PersistedState): string {
@@ -119,4 +119,19 @@ export interface StorageLike {
   getItem(key: string): Promise<string | null>;
   setItem(key: string, value: string): Promise<void>;
   removeItem(key: string): Promise<void>;
+}
+
+/**
+ * A topic baked into the build (from a local, untracked file) wins over a
+ * stored one, so a fresh install and an upgrade both end up on the topic the
+ * family phone follows. A change drops back to demo until a test succeeds.
+ */
+export function applyConfiguredTopic(
+  state: PersistedState,
+  configured: string | undefined,
+): PersistedState {
+  if (!configured || !TOPIC_RE.test(configured) || state.familyTopic === configured) {
+    return state;
+  }
+  return {...state, familyTopic: configured, notifyMode: 'demo', testSucceeded: false};
 }

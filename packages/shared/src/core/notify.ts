@@ -4,7 +4,8 @@ export const NTFY_BASE = 'https://ntfy.sh';
 export const SEND_TIMEOUT_MS = 8000;
 export const RETRY_DELAY_MS = 600;
 
-export type NotifyKind = 'help' | 'test';
+export type NotifyKind = 'help' | 'test' | 'family' | 'medicine';
+export const DEBOUNCE_MS = 3000;
 
 export interface NotifyPayload {
   title: string;
@@ -31,7 +32,8 @@ export type FetchLike = (
 ) => Promise<{status: number}>;
 
 const ALPHABET = 'abcdefghijklmnopqrstuvwxyz234567';
-const TOPIC_RE = /^thodu-[a-z2-7]{4}-[a-z2-7]{4}-[a-z2-7]{4}$/;
+// 3 groups (made on the TV) or 4 groups (a longer one set in the local build file).
+const TOPIC_RE = /^thodu(-[a-z2-7]{4}){3,4}$/;
 
 /**
  * "thodu-abcd-efgh-ijkl": 12 base32 characters = 60 random bits. The topic is
@@ -61,19 +63,36 @@ export function isValidTopic(topic: unknown): topic is string {
  */
 export function buildPayload(kind: NotifyKind, now: number): NotifyPayload {
   const time = formatClock(now);
-  return kind === 'test'
-    ? {
+  switch (kind) {
+    case 'test':
+      return {
         title: 'Thodu',
         message: `This is a test message from the TV at ${time}`,
         priority: 'high',
         tags: ['white_check_mark'],
-      }
-    : {
+      };
+    case 'family':
+      return {
+        title: 'Thodu',
+        message: `A hello from the TV at ${time}`,
+        priority: 'high',
+        tags: ['wave'],
+      };
+    case 'medicine':
+      return {
+        title: 'Thodu',
+        message: `Medicine was confirmed on the TV at ${time}`,
+        priority: 'high',
+        tags: ['pill'],
+      };
+    default:
+      return {
         title: 'Thodu',
         message: `Help was requested from the TV at ${time}`,
         priority: 'high',
         tags: ['warning'],
       };
+  }
 }
 
 interface SendOptions {
@@ -174,4 +193,54 @@ export async function sendHelp(
   } catch {
     return {ok: false, reason: 'offline', attempts: 1};
   }
+}
+
+const lastAlert: {at: number; kind: NotifyKind | null; ok: boolean; pending: Promise<SendResult> | null} = {
+  at: 0,
+  kind: null,
+  ok: false,
+  pending: null,
+};
+
+/**
+ * The one sender behind Help, Family and Medicines. A repeat press of the same
+ * kind within 3 s of a send that is running or succeeded (a held or bouncing
+ * remote key) returns that send's result instead of posting again. A failed
+ * send can be retried at once.
+ */
+export function sendFamilyAlert(
+  fetchImpl: FetchLike,
+  topic: string | null | undefined,
+  kind: NotifyKind,
+  now: number,
+  options: Omit<SendOptions, 'kind'> = {},
+): Promise<SendResult> {
+  const clock = Date.now();
+  if (
+    lastAlert.pending &&
+    lastAlert.kind === kind &&
+    clock - lastAlert.at < DEBOUNCE_MS &&
+    lastAlert.ok
+  ) {
+    return lastAlert.pending;
+  }
+  const pending = sendHelp(fetchImpl, topic ?? '', now, {...options, kind});
+  lastAlert.at = clock;
+  lastAlert.kind = kind;
+  lastAlert.ok = true; // treated as in flight until it settles
+  lastAlert.pending = pending;
+  pending.then(r => {
+    if (lastAlert.pending === pending) {
+      lastAlert.ok = r.ok;
+    }
+  });
+  return pending;
+}
+
+/** Test helper: forget the last alert. */
+export function resetAlertDebounce(): void {
+  lastAlert.at = 0;
+  lastAlert.kind = null;
+  lastAlert.ok = false;
+  lastAlert.pending = null;
 }

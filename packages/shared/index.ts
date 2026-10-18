@@ -23,6 +23,8 @@ export {
   ResetConfirmScreen,
 } from './src/screens/HelpFlow';
 export {FamilySettingsScreen} from './src/screens/FamilySettings';
+export {MedicinesScreen} from './src/screens/MedicinesScreen';
 export {WatchDemoScreen} from './src/screens/WatchDemo';
 export {SpeechProvider, useSpeak} from './src/speech/SpeechContext';
 export type {SpeakFn} from './src/speech/SpeechContext';
+export {useFamilyAlert} from './src/settings/useFamilyAlert';

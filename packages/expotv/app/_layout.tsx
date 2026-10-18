@@ -63,7 +63,7 @@ export default function RootLayout() {
   }
 
   return (
-    <SettingsProvider storage={AsyncStorage}>
+    <SettingsProvider storage={AsyncStorage} configuredTopic={process.env.EXPO_PUBLIC_THODU_TOPIC}>
       <SpeechProvider speak={speak}>
         <ThemedStack />
       </SpeechProvider>
