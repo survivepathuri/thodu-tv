@@ -1,6 +1,8 @@
 # Thodu TV: Submission checklist (Fire TV track)
 *A TV app that older adults and people with disabilities can use with one button, and that tells their family when they need help.*
 
+Easy TV. One button. Family one press away.
+
 Deadline: **Fri 2026-10-23, 12:00 pm Pacific** (internal target 2026-10-22 about 6 PM IST). No edits are allowed after the deadline. Rules source: the official Devpost rules and overview pages (https://amazonappdev2026.devpost.com/), re-read on 2026-10-18. Status words: **done**, **doc** (written, in the repo), **USER-ONLY**.
 
 ## A. Done or written (in this repository)
