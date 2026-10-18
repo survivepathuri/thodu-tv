@@ -11,6 +11,7 @@ Easy TV. One button. Family one press away. (43 characters)
 
 ## Primary track
 Fire TV. Mini challenges: none claimed (see "Mini challenges" below).
+Closest fit to the track's priority categories: multi-modal UX (one-button scanning, captions, read aloud, high contrast); no AI is involved and no category is claimed as won or certified.
 
 ## Inspiration
 Our starting assumption (not a measured finding; no user session has been run) is that some older viewers and people with low vision, hearing loss, limited hand control or reading difficulty can find a TV remote, small text and dense menus hard to use, and that a settings menu is not an easy answer for them. We wanted a TV that starts from the person's need instead of from the menu, and that lets them tell a family member something with one button. Thodu means "companion" in Telugu.

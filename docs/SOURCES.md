@@ -51,6 +51,12 @@ If a figure is not in this file, it is not in the docs. Things we looked for and
 - URLs: https://ntfy.sh/docs/terms/ (Terms of Service, "Last updated: January 26, 2026"), https://docs.ntfy.sh/privacy/, https://docs.ntfy.sh/faq/, https://docs.ntfy.sh/publish/. Accessed 2026-10-19 (GET only).
 - Quotes and use: [PRIVACY_AND_SAFETY.md](PRIVACY_AND_SAFETY.md), section "ntfy.sh: what the official pages say" (12-hour message cache default, topics are public and act as a password, best-effort availability).
 
+## S7. W3C: WCAG 2.2 SC 2.3.1 Three Flashes or Below Threshold
+
+- URL: https://www.w3.org/WAI/WCAG22/Understanding/three-flashes-or-below-threshold.html. Accessed 2026-10-19.
+- Quoted: "Web pages do not contain anything that flashes more than three times in any one second period," "or the flash is below the general flash and red flash thresholds." (Level A).
+- Used for: the one sentence in [ACCESSIBILITY.md](ACCESSIBILITY.md) comparing the alert banner's rate (1.4 changes per second, `[code only]`) with the 3-per-second rule. The flash-area thresholds were not assessed. No conformance claim.
+
 ## Not verified (so not stated anywhere)
 
 - The number of TV households in India or in Telugu/Hindi-speaking states from an official source. Only news reports of a ministry figure were found; the ministry document was not opened.

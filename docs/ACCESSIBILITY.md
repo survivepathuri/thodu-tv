@@ -137,7 +137,7 @@ Lowest text ratio: 7.79:1 (Sunrise (default), tile watch: label on tile).
 
 Only two intervals exist in the screens (`grep setInterval packages/shared/src`) plus the scanner's own timer:
 
-- **Alert banner** (Help sent, "Easier to hear" only): alternates black-on-yellow and yellow-on-black every 700 ms, about 0.7 cycles per second (1.4 changes per second), below 3 flashes per second `[code only]` `screens/HelpFlow.tsx`. No photosensitivity review was done. The banner stays until the person leaves the screen.
+- **Alert banner** (Help sent, "Easier to hear" only): alternates black-on-yellow and yellow-on-black every 700 ms, about 0.7 cycles per second (1.4 changes per second), below 3 flashes per second `[code only]` `screens/HelpFlow.tsx`. WCAG 2.2 SC 2.3.1 (Level A) says pages must not contain anything that "flashes more than three times in any one second period" or must stay below the flash thresholds ([SOURCES.md](SOURCES.md) S7); the banner's rate is below that limit by the code value above, but this is not a claim of WCAG conformance, and no photosensitivity test or review was done. The banner stays until the person leaves the screen.
 - **Caption demo** (Watch): a sample caption line changes every 3000 ms in a loop `[code only]` `core/captions.ts`. It is demo content with no pause control; this would need one in a real player.
 - **Scanner:** moves the highlight every 2600 ms (slow), 1800 ms (normal, default) or 1200 ms (fast). The speed is a setting in Settings (three chips). The scanner highlights; it never hides or removes content.
 - Nothing disappears on its own: result screens have no auto-dismiss.
