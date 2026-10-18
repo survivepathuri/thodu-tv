@@ -19,7 +19,7 @@ Many older viewers and people with low vision, hearing loss, limited hand contro
 Thodu TV is an accessibility-first Fire TV / Android TV app. The first screen asks "What would make TV easier for you?" with four large choices and the whole screen restyles live as the person chooses:
 
 - **Easier to see:** text 1.6x, a black/white/yellow high-contrast theme, a thick focus ring, larger buttons.
-- **Easier to hear:** captions always on in the Watch demo and a flashing "ALERT SENT" banner.
+- **Easier to hear:** captions always on in the Watch demo and a flashing banner after Help (it reads "ALERT SENT" only when a real message got an HTTP 2xx; in demo mode it reads "Demo only" and says nobody was told).
 - **Easier remote:** **one-button auto-scanning**: one item is highlighted at a time and a single OK press chooses it (three speeds).
 - **Easier to read:** read-aloud with Android text-to-speech, simple wording and a glyph beside every action button.
 

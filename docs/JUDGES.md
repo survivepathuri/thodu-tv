@@ -86,7 +86,7 @@ First launch shows the setup screen "What would make TV easier for you?".
 | 3 | Home: five tiles **Watch, Family, Medicines, Help, Settings** | One tile per colour, each with a glyph and a label | `[unit test]` `homeLayout`; `[emulator]` screenshots 02, 03 (earlier builds had four tiles) |
 | 4 | **Watch** | A labelled **demo panel** ("Demo panel - no real video") with looping sample captions. There is no real video player | `[code only]` `WatchDemo.tsx`; `[unit test]` `captions.test.ts` |
 | 5 | Settings > choose **Easier remote** | **One-button scanning**: one item is highlighted at a time (Slow 2600 ms / Normal 1800 ms / Fast 1200 ms); Select (OK) chooses | `[unit test]` `scanner.test.ts` (16 tests); `[emulator]` ENTER-only adb run on an earlier build |
-| 6 | **Help**, then "Tell my family" | **Demo mode** (no topic yet): "Your family was told (demo)", labelled "DEMO - simulated notification". Nobody is contacted | `[unit test]` `familyAlert.test.ts`, `notify.test.ts`; device run of this build `[not tested]` |
+| 6 | **Help**, then "Tell my family" | **Demo mode** (no topic yet): banner "Demo only" (if Easier to hear is on), title "This is only a demo. No one has been contacted.", labelled "DEMO - simulated notification". "ALERT SENT" / "Your family was told" appear only after a real message got an HTTP 2xx. Nobody is contacted in demo mode | `[unit test]` `familyAlert.test.ts`, `notify.test.ts`; device run of this build `[not tested]` |
 | 7 | **Family** > "Send a hello" | "Demo: nobody was told. Send a test message in Settings first." | `[unit test]` `familyAlert.test.ts` |
 | 8 | **Medicines** > "Yes, I took it" | Same demo text. "Not yet" simply goes back; there is no schedule and no reminder | `[unit test]` `familyAlert.test.ts` |
 

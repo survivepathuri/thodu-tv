@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {View} from 'react-native';
 import {Text} from '../components/Text';
-import {formatClock, recentHelpEvents} from '../core';
+import {formatClock, helpSentCopy, recentHelpEvents} from '../core';
 import {ActionButton} from '../components/ActionButton';
 import {useFamilyAlert} from '../settings/useFamilyAlert';
 import {Screen} from '../components/Screen';
@@ -176,7 +176,8 @@ export const HelpFailedScreen = ({
 
 /**
  * Success state. With visualAlerts, a flashing high-contrast banner (about
- * 1 Hz). `demo` = nothing was sent; the screen says so.
+ * 1 Hz). `demo` = nothing was sent; the screen says so and never uses the
+ * sent/told wording (see helpSentCopy).
  */
 export const HelpSentScreen = ({
   demo,
@@ -187,6 +188,7 @@ export const HelpSentScreen = ({
 }) => {
   const {t, colors, fs, px, settings} = useUI();
   const [flash, setFlash] = useState(false);
+  const copy = helpSentCopy(demo);
 
   useEffect(() => {
     if (!settings.visualAlerts) {
@@ -217,7 +219,7 @@ export const HelpSentScreen = ({
             <Text
               accessibilityLiveRegion="assertive"
               style={{color: bannerFg, fontSize: fs(64), fontWeight: 'bold'}}>
-              {t('help.sent.alert')}
+              {t(copy.banner)}
             </Text>
           </View>
         )}
@@ -230,7 +232,7 @@ export const HelpSentScreen = ({
             lineHeight: fs(90),
             fontWeight: 'bold',
           }}>
-          {t(demo ? 'help.sent.title' : 'help.sent.real.title')}
+          {t(copy.title)}
         </Text>
         <Text
           style={{
@@ -238,7 +240,7 @@ export const HelpSentScreen = ({
             fontSize: fs(40),
             lineHeight: fs(52),
           }}>
-          {t('help.sent.body')}
+          {t(copy.body)}
         </Text>
         <View style={{alignSelf: 'flex-start'}}>
           <ActionButton

@@ -23,7 +23,7 @@ Many older viewers and people with low vision, hearing loss, limited hand contro
 | Choice | What changes | Tag |
 |---|---|---|
 | **Easier to see** | text 1.6x, black/white/yellow high-contrast theme, focus ring 10 px (default 4), larger buttons | `[unit test]` `adapt.test.ts`, `theme.test.ts` |
-| **Easier to hear** | captions always on in the Watch demo, flashing "ALERT SENT" banner | `[unit test]` `adapt.test.ts`, `captions.test.ts` |
+| **Easier to hear** | captions always on in the Watch demo, a flashing banner after Help: "ALERT SENT" only when a real message got an HTTP 2xx, "Demo only" otherwise | `[unit test]` `adapt.test.ts`, `captions.test.ts` |
 | **Easier remote** | one-button auto-scanning (one item highlighted at a time; OK chooses; 2.6 s / 1.8 s / 1.2 s), larger buttons | `[unit test]` `scanner.test.ts` |
 | **Easier to read** | read-aloud (text-to-speech), simple wording for key strings, a glyph beside every action button | `[unit test]` `simpleText.test.ts`, `speech.test.ts` |
 

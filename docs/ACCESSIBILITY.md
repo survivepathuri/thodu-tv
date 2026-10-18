@@ -24,7 +24,7 @@
 | Need | Implemented | Proof | Not done |
 |---|---|---|---|
 | Low vision ("Easier to see") | Text 1.6x, high-contrast black/white/yellow theme, focus ring 10 px, larger buttons (1.25x), an icon plus a label on every tile; the setup screen restyles live | `adapt.test.ts` `[unit test]`; `[script]` contrast; screenshots 01 and 03 `[emulator]`; high-contrast theme seen on `[real Android TV, Sony, user-reported]` | Not tried by a low-vision person or from across a room |
-| Hard of hearing ("Easier to hear") | Captions always on in the Watch demo, a flashing "ALERT SENT" banner after help is sent | `adapt.test.ts`, `captions.test.ts` `[unit test]`; screenshot 06 `[emulator]` | The captions are scripted sample lines, not tied to real audio or video; there is no real video player |
+| Hard of hearing ("Easier to hear") | Captions always on in the Watch demo, a flashing banner after Help ("ALERT SENT" only after a real 2xx send; "Demo only" in demo mode) | `adapt.test.ts`, `captions.test.ts` `[unit test]`; screenshot 06 `[emulator]` | The captions are scripted sample lines, not tied to real audio or video; there is no real video player |
 | Remote difficulty ("Easier remote") | Single-button scanning: one item highlighted at a time, Select chooses, Back still works; larger buttons | `scanner.test.ts` (16 tests) `[unit test]`; an adb run with only ENTER and BACK reached the help flow `[emulator]` | No scan-back or hold-to-select; not tried by a one-switch user; not re-run on every later build |
 | Reading difficulty ("Easier to read") | Read-aloud of the focused item (Android text-to-speech), simple wording for key strings in 3 languages, a text glyph next to every action button | `speech.test.ts`, `simpleText.test.ts`, `buttonIcons.test.ts` `[unit test]`; English speech heard `[emulator]` | Hindi and Telugu voices and simple wording are not native-reviewed; read-aloud speaks item labels, not screen titles |
 
@@ -145,13 +145,13 @@ Only two intervals exist in the screens (`grep setInterval packages/shared/src`)
 ## Captions and alerts as implemented
 
 - Captions: a looping caption bar with white 44 design px text on black (21:1) in the Watch demo; there is no real video and no speech recognition.
-- Visual alert: the banner above plus the text "ALERT SENT"; the family also gets an ntfy notification only if real mode is on (see [PRIVACY_AND_SAFETY.md](PRIVACY_AND_SAFETY.md)).
+- Visual alert: the banner above, reading "ALERT SENT" only after a real message got an HTTP 2xx and "Demo only" in demo mode (the result screen then says "This is only a demo. No one has been contacted."); the family gets an ntfy notification only if real mode is on (see [PRIVACY_AND_SAFETY.md](PRIVACY_AND_SAFETY.md)).
 - Honest failure text in English, Hindi and Telugu when a message could not be sent `[unit test]` `strings.test.ts`, `notify.test.ts`.
 
 ## Not verified (read this before relying on anything above)
 
 - **No VoiceView or TalkBack session** on any device `[not tested]`. Detection and routing are unit-tested only.
-- **Known limitation:** VoiceView "Described By" is not implemented for static status text (titles, "Family notified", "ALERT SENT"). A screen-reader user may not hear it. No code change was made; it is listed under Next steps.
+- **Known limitation:** VoiceView "Described By" is not implemented for static status text (titles, "Your family was told", "ALERT SENT"). A screen-reader user may not hear it. No code change was made; it is listed under Next steps.
 - No test with older adults, low-vision, hard-of-hearing or one-switch users. [USER_TESTING.md](USER_TESTING.md) is a template marked NOT YET DONE.
 - No test on a Fire TV with the current build; no check from a normal viewing distance; Amazon's 2-second Home-exit test not run.
 - Hindi and Telugu strings, simple wording and speech voices are not reviewed by native speakers (the developer wrote them).
