@@ -1,5 +1,5 @@
 # Thodu TV: What existed before, what was built when
-*A TV app that older adults and people with disabilities can use with one button, and that tells their family when they need help.*
+*Easy TV. One button. Family one press away.*
 
 The rules ask for "a clear explanation of what you built or changed during the submission window" only "if your project existed before the hackathon". The Submission Period began **Monday, August 31, 2026, 10:15 am Pacific**. This page lists every earlier piece of work so a judge can check it. All dates come from `git log` and are shown in the commit's own timezone (IST, +0530) as recorded.
 

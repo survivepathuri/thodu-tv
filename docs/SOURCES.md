@@ -1,6 +1,5 @@
 # Sources for facts used in this repository
 
-*A TV app that older adults and people with disabilities can use with one button, and that tells their family when they need help.*
 
 Every statistic or factual claim about people, disability, ageing or other products in the README, the Devpost description and the docs comes from one of the pages below. Each page was opened on **2026-10-19** (access date) for this repository. The facts are **context for why the problem matters**. They are not results of Thodu TV, which has had no user session (see [USER_TESTING.md](USER_TESTING.md)).
 

@@ -1,5 +1,5 @@
 # Thodu TV: Security and privacy self-audit
-*A TV app that older adults and people with disabilities can use with one button, and that tells their family when they need help.*
+*Easy TV. One button. Family one press away.*
 
 **This is a self-audit written by the developer. It is not a certification, a penetration test or a third-party review.** It states what we checked, what we found and what we did not check. Thodu TV is a hackathon prototype.
 

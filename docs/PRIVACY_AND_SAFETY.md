@@ -1,5 +1,5 @@
 # Thodu TV: Privacy and safety
-*A TV app that older adults and people with disabilities can use with one button, and that tells their family when they need help.*
+*Easy TV. One button. Family one press away.*
 
 > **Thodu TV is not an emergency service and not a medical device.** It does not call emergency numbers, does not monitor health, does not give medical advice and does not schedule or remind medicines. In an emergency call your local emergency number.
 

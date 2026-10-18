@@ -1,5 +1,5 @@
 # Thodu TV: Device evidence and Fire TV readiness
-*A TV app that older adults and people with disabilities can use with one button, and that tells their family when they need help.*
+*Easy TV. One button. Family one press away.*
 
 What was run on which device, what was only checked in code or in the APK, and what has **not** been done. Written for a sceptical reader: where proof is missing, this page says so.
 

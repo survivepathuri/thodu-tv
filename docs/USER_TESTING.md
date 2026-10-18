@@ -1,5 +1,5 @@
 # Thodu TV: User testing: NOT YET DONE
-*A TV app that older adults and people with disabilities can use with one button, and that tells their family when they need help.*
+*Easy TV. One button. Family one press away.*
 
 **Status: NOT YET DONE.** No session with a real user has been run and recorded. Until a dated evidence file exists and this page is filled in, no document, video or Devpost text may say Thodu TV was "tested with users". A session with a family member on the developer's home TV (a Sony Android TV, **not** a Fire TV) is planned for 2026-10-19. The participant is an adult family member; taking part is voluntary; verbal consent is asked before any filming; the TV screen and hands are filmed, and a face only if the participant agrees; no names or personal data appear anywhere; the participant can stop at any time and ask for the footage to be deleted.
 

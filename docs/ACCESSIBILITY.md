@@ -1,5 +1,5 @@
 # Thodu TV: Accessibility self-audit (measured)
-*A TV app that older adults and people with disabilities can use with one button, and that tells their family when they need help.*
+*Easy TV. One button. Family one press away.*
 
 **This is a self-audit by the developer. It is not a certification and not a conformance claim for WCAG, Section 508, Amazon's or any other standard.** The numbers below come from the real theme colours and source files by script (`node tools/a11y-measure.mjs`) and by a Jest test (`packages/shared/src/core/__tests__/a11yCoverage.test.ts`), so a judge can re-run them. Tags are explained in [DEVICE_EVIDENCE.md](DEVICE_EVIDENCE.md): `[script]`, `[unit test]`, `[code only]`, `[emulator]`, `[real Android TV, Sony, user-reported]`, `[not tested]`.
 

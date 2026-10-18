@@ -1,5 +1,5 @@
 # Thodu TV: Product Feedback (Build, Ship, Shape)
-*A TV app that older adults and people with disabilities can use with one button, and that tells their family when they need help.*
+*Easy TV. One button. Family one press away.*
 
 Project: Thodu TV (తోడు టీవీ), a Fire TV track app for elderly and disabled users. Format: the five elements the rules ask for, per tool: (1) what we used it for, (2) what worked well, (3) what needs work, (4) onboarding (zero to hello world), (5) would we build with it again, yes or no, and why.
 

@@ -1,5 +1,5 @@
 # Thodu TV: Claims and evidence
-*A TV app that older adults and people with disabilities can use with one button, and that tells their family when they need help.*
+*Easy TV. One button. Family one press away.*
 
 Every claim the README, the judge guide, the Devpost text and the video make, with its evidence tag and the command or path that shows it. If a claim is not in this table it is not made. Tags are explained in [DEVICE_EVIDENCE.md](DEVICE_EVIDENCE.md): `[unit test]` · `[code only]` · `[cloud Fire TV, date, build]` · `[real Android TV, Sony, user-reported]` · `[emulator]` · `[APK static]` · `[script]` · `[not tested]`.
 
