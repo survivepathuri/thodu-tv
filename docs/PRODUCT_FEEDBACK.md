@@ -1,12 +1,12 @@
-# Thodu — Product Feedback (Build, Ship, Shape)
+# Thodu: Product Feedback (Build, Ship, Shape)
 
-Project: Thodu (తోడు), a Fire TV track app for elderly and disabled users.
-Environment: Windows 11 Pro (build 22621), solo developer, React Native + Expo (react-native-tvos), Android TV emulator (Android 14 TV image, x86). Dates: 2026-10-11 to 2026-10-12.
-Sources: docs/FRICTION_LOG.md (F-001..F-033) and the structured copy of it. Time lost values are the estimates written in the log at the time. Severity ratings are ours, not Amazon's.
+Project: Thodu (తోడు), a Fire TV track app for elderly and disabled users. Format: the five elements the rules ask for, per tool: (1) what we used it for, (2) what worked well, (3) what needs work, (4) onboarding (zero to hello world), (5) would we build with it again, yes or no, and why.
 
-**Important limit:** we have NOT yet run Thodu on a real Fire TV device. Everything below comes from the Android TV emulator.
+**Evidence rule.** Every statement comes from `FRICTION_LOG.md` (F-001..F-033, written 2026-10-11 and 2026-10-12), from the files of the 2026-10-14 Amazon cloud-device session, or from the Amazon documentation pages read on 2026-10-18. Where nothing was recorded the text says "not recorded". Time-lost values are the estimates written in the log at the time. Severity ratings are ours, not Amazon's. The "build again" answers are **drafts from the log; the developer must confirm them in their own words** before submission.
 
-**Amazon tools we did NOT use:** Vega SDK, Appstore / Developer Console, Fire TV hardware or Fire OS, Alexa tooling, Kiro, and live Bedrock/SNS calls. This report covers only the sample + emulator workflow so far. Real Fire TV results via Appstore Quality Central Live Device Interaction will be added in block A4 after Oct 17.
+**Environment.** Windows 11 Pro (build 22621), solo developer, React Native + Expo (react-native-tvos), Android TV emulator (Android 14 TV image, x86) for development; one Amazon cloud Fire TV session on 2026-10-14; the developer's own Redmi TV (Android TV 12, not a Fire TV) for home checks.
+
+**Amazon tools used:** (A1) the Amazon react-native-multi-tv-helloworld sample; (A4) Appstore Quality Central Live Device Interaction; (A5) Amazon Fire TV developer documentation. **Not used:** Vega SDK, Amazon Appstore submission, Alexa+ tooling, Amazon Devices Builder Tools (MCP server and Agent Skills), Kiro, any AWS service (no Bedrock or SNS calls), VoiceView on a device. We therefore do not enter the AWS Builder mini challenge.
 
 Each block is self-contained so it can be pasted into one text box. The exact Devpost form layout was not read when this was written.
 
@@ -31,7 +31,7 @@ Each block is self-contained so it can be pasted into one text box. The exact De
 
 **Onboarding (zero to hello world).** Total not recorded. Pieces: ~5 min finding the install route [F-015]; a failed ~13 min build [F-016]; a 19m 1s build [F-017].
 
-**Build with it again?** Yes — it is the version that ran on the emulator, which the other starter did not [F-014, F-017]. We would want the README fixes above first.
+**Build with it again?** Yes (draft from the log; developer to confirm) — it is the version that ran on the emulator, which the other starter did not [F-014, F-017]. We would want the README fixes above first.
 
 ## A2. React Native for TV (react-native-tvos) as the Fire TV app stack
 
@@ -48,11 +48,11 @@ Each block is self-contained so it can be pasted into one text box. The exact De
 
 **Onboarding.** Not recorded separately from the sample (see A1).
 
-**Build with it again?** Yes, for a TV app on this stack, with the key-event rule in A2 known. The log does not record a comparison with any other stack, so we cannot say more.
+**Build with it again?** Yes (draft; developer to confirm), for a TV app on this stack, with the key-event rule in A2 known. The log does not record a comparison with any other stack, so we cannot say more.
 
 ## A3. Fire TV / Android TV target, tested on the Android TV emulator
 
-**What we used it for.** All testing so far ran on an Android TV emulator (Android 14 TV image, `system-images;android-34;android-tv;x86`) [F-003, F-017]. **We have not yet run on a real Fire TV, and not on Fire OS.** Nothing here is evidence about Fire OS behavior.
+**What we used it for.** All testing so far ran on an Android TV emulator (Android 14 TV image, `system-images;android-34;android-tv;x86`) [F-003, F-017]. The emulator is not Fire OS; nothing in this block is evidence about Fire OS behavior. The one Fire TV session is in A4.
 
 **What worked well.** The emulator booted (about 180 s first boot) and ran the release APK, D-pad keys and deep links [F-004, F-017, F-030].
 
@@ -64,26 +64,39 @@ Each block is self-contained so it can be pasted into one text box. The exact De
 
 **Onboarding.** Not recorded as a single figure. Our rating of the emulator setup problems is Minor except F-007 (Major) and F-028 (Major).
 
-**Build with it again?** Yes for development, but we need real-device results before we can say how the app behaves on Fire TV (see Part D).
+**Build with it again?** Yes for development (draft answer; developer to confirm). Real-device behaviour comes from A4.
 
-## A4. Appstore Quality Central Live Device Interaction — TO FILL AFTER OCT 17 (not used yet)
+## A4. Appstore Quality Central, Live Device Interaction (real Amazon Fire TV devices in the cloud)
 
-**What we used it for.**
+**What we used it for.** Running the Thodu APK on Amazon Fire TV devices in the cloud (Amazon Developer Console > Appstore Quality Central > Live Device Interaction) to see the app on Amazon hardware. One session on 2026-10-14 (user-reported) produced three screen recordings (about 2:00, 2:00 and 1:43, 1920x1080). The device names the developer saw in the console were "FOS 14 3P TV" and "Smart TV - Amazon Fire TV"; the exact model and OS were not captured (we do not assume "FOS 14" means Fire OS 14). The build was older than the current one.
 
-**What worked well.**
+**What worked well.** The recordings show the app starting and its Settings, Family and Home screens running on the cloud device. No timings, setup steps or reliability observations were recorded.
 
-**What needs work.**
+**What needs work.** One observation from the files, not yet confirmed as a tool problem: the three recordings contain only the app's picture, with no console, device name or device frame, so they cannot show which device was used. Whether that comes from the console's own recording feature or from how we captured it was not recorded. Nothing else was recorded.
+- Possible feature request (optional, priority Nice-to-have, not confirmed whether it already exists): a session recording or export that includes the device name and OS, so an entrant can prove the Fire TV used.
 
-**Onboarding (zero to hello world).**
+**Onboarding (zero to hello world).** Not recorded (no steps or time were written down). A fresh session with the current judge build is still to be done and will be added here, with the model and OS read from the console Details tab.
 
-**Build with it again, and why?**
+**Build with it again, and why?** Not answered yet: the developer must say yes or no in their own words.
+
+## A5. Amazon Fire TV developer documentation (Fire OS pages)
+
+**What we used it for.** On 2026-10-18, as a requirements checklist for the readiness self-check in `docs/DEVICE_EVIDENCE.md`: "Test Criteria for Amazon Appstore Apps", "Add TV Support to an Existing React Native Project (Fire TV)", "Developing for Amazon Fire TV Devices Running Fire OS 14" and "Connect to Fire TV through ADB".
+
+**What worked well.** The test criteria are explicit and testable per item (for example 4.3 D-pad, 4.4 Home, 4.5 Back, 2.11 UI highlighting, the permission list), so each could be checked against the APK. The ADB page gave the Developer Options path, the 7-click hint and the Network screen for the IP address, which we reused in `docs/JUDGES.md`.
+
+**What needs work.** Nothing recorded as a problem. One fact worth knowing, not a fault: the Test Criteria page covers Fire tablets and Fire TV on one page, so a TV-only developer has to pick out groups 1, 2 and 4.
+
+**Onboarding.** Not applicable (documentation read as a checklist, not a project start).
+
+**Build with it again?** Not answered; developer to confirm.
 
 ---
 
 ## Not used
 
 - **Vega SDK:** not used. It is not available on Windows (user-stated). The only mention in our log is that the sample's lockfile contains `@amazon-devices/*` packages for the Vega app and that a full install needs Amazon's Yarn config for Vega; we avoided it with `yarn workspaces focus @multitv/expotv` [F-015]. We did not try the Vega SDK itself.
-- **Fire OS as a separate target, real Fire TV hardware:** not used; no log entry (see A3).
+- **Real Fire TV hardware:** not used. Only the cloud devices in A4. **Amazon Appstore submission:** not done. **Amazon Devices Builder Tools (MCP server, Agent Skills):** no record of use. **AWS services:** none.
 
 ---
 
@@ -123,15 +136,13 @@ Each block is self-contained so it can be pasted into one text box. The exact De
 
 ---
 
-# Part D — Gaps the human must fill
+# Part D: gaps the human must fill
 
-- **Real Fire TV:** no run on a real Fire TV or Fire OS is in the logs. Needs real-device results (performance, remote keys, focus, fonts) before claiming anything about Fire TV.
-- **Appstore Quality Central Live Device Interaction (A4):** all five headings are empty until it is used after Oct 17.
-- **Onboarding totals:** no end-to-end "zero to hello world" time is recorded for any tool. Fill in wall-clock time if known.
+- **Fresh Live Device Interaction session** with the current judge APK, recording the whole browser window, then fill the model and OS from the console Details tab (see `docs/DEVICE_EVIDENCE.md`). Until then A4 stays as written above.
+- **A4 facts nobody recorded:** how the 2026-10-14 recordings were made (console feature or screen capture), whether the APK upload to the cloud device had any problem, onboarding steps and time.
+- **Would-build-again answers (A1 to A5):** the developer must give yes or no and the reason in their own words.
+- **Onboarding totals:** no end-to-end "zero to hello world" time is recorded for any tool.
 - **Not recorded in the logs:** F-002 (expected, time lost, severity); F-003 and F-004 (expected); F-008 (steps, time lost, severity); F-011 (expected); F-013 (exact Gradle error text); F-014 (cause of the RCTText crash, not investigated); F-027 (time is approximate only).
 - **F-014:** the logs do not say whether any Amazon guide points to the `with-tv` example, so do not present F-014 as an Amazon documentation fault.
 - **Vega SDK:** confirm the "not available on Windows" statement and say whether you ever tried it.
-- **Fire OS / other Amazon tools:** if you used any other Amazon tool, API or SDK that the log does not name (for example Amazon Appstore tooling), add a block.
-- **Would-build-again judgment: the human must confirm in their own words.**
-- **Would-build-again reasons:** the "again, and why" lines are limited to what the logs show; add your own judgment.
-- **Devpost form:** exact layout (one box vs. per tool), character limits, required fields: not read. Check before pasting.
+- **Devpost form:** exact layout (one box vs. per tool), character limits and required fields were not read; check before pasting.

@@ -4,6 +4,8 @@
 **Date range:** 2026-10-11 to 2026-10-12 (F-001 to F-018 on 2026-10-11; F-019 to F-033 on 2026-10-12).
 **Honesty note:** all 33 entries are real and unedited in substance; they were reformatted from our append-only working log. Where a detail was not recorded at the time, this document says "not recorded" instead of reconstructing it. F-019 and F-020 keep their original corrections.
 
+**Not covered:** no entry was written for the 2026-10-14 Amazon cloud-device session (Live Device Interaction) because no notes were kept; see `docs/PRODUCT_FEEDBACK.md` A4. A paste-ready copy of these entries is `docs/DEVPOST_FRICTION_PASTE.md`.
+
 **Severity (our own rating, not Amazon's):** Blocker = stopped progress for more than 1 hour or forced a different approach (tool, version, or source); Major = cost 20-60 minutes; Minor = under 20 minutes or cosmetic. If time lost was not recorded, severity is "not recorded". Time lost values are the estimates written in the log at the time ("~" = approximate).
 
 **Path placeholders:** `<workdir>` = our working folder; `<repo>` = the project repository root; `<sdk>` = Android SDK folder; `<jdk17>` = the JDK 17 folder; `<avd-name>` = the emulator AVD name; `<sample-clone>` = first clone location of the Amazon sample.
