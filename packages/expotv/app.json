@@ -24,6 +24,7 @@
         }
       ],
       "./plugins/withLowMemoryGradle.js",
+      "./plugins/withGitVersionName.js",
       "expo-web-browser"
     ],
     "android": {
@@ -49,6 +50,7 @@
     },
     "name": "Thodu",
     "slug": "thodu-tv",
+    "version": "1.0.0",
     "icon": "../../assets/branding/icon-1024.png"
   }
 }
