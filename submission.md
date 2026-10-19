@@ -49,14 +49,14 @@ Deadline: **Fri 2026-10-23, 12:00 pm Pacific** (internal target 2026-10-22 about
 ## B2. Open items for the Product Feedback (moved here from `docs/PRODUCT_FEEDBACK.md`)
 
 - **Fresh Live Device Interaction session** with the current judge APK, recording the whole browser window, then fill the model and OS from the console Details tab (see `docs/DEVICE_EVIDENCE.md`). Until then A4 stays as written above.
-- **A4 facts nobody recorded:** how the 2026-10-14 recordings were made (console feature or screen capture), whether the APK upload to the cloud device had any problem, onboarding steps and time.
-- **Would-build-again answers (A1 to A5):** the developer must give yes or no and the reason in their own words.
+- **Entry 2 (Live Device Interaction) facts nobody recorded:** how the 2026-10-14 recordings were made (console feature or screen capture), whether the APK upload to the cloud device had any problem, onboarding steps and time.
+- **Would-build-again answers:** given in the developer's own words for entries 1 to 10 and 12 (2026-10-19). **Entry 11 (ntfy.sh)** waits for the Sony TV and phone test; **entry 13 (outside tools)** stays open until after the video.
 - **Onboarding totals:** no end-to-end "zero to hello world" time is recorded for any tool.
 - **Not recorded in the logs:** F-002 (expected, time lost, severity); F-003 and F-004 (expected); F-008 (steps, time lost, severity); F-011 (expected); F-013 (exact Gradle error text); F-014 (cause of the RCTText crash, not investigated); F-027 (time is approximate only).
 - **F-014:** the logs do not say whether any Amazon guide points to the `with-tv` example, so do not present F-014 as an Amazon documentation fault.
 - **Vega SDK:** confirm the "not available on Windows" statement and say whether you ever tried it.
 - **Devpost form:** exact layout (one box vs. per tool), character limits and required fields were not read; check before pasting.
-- **New blocks B6 (ntfy.sh) and B7 (expo-speech, AsyncStorage):** add your own would-build-again answer.
+- **ntfy delivery claim:** the earlier "HTTP 200 test on 2026-10-18" claim was removed (no evidence file in the repository). Fill the placeholder in `docs/PRODUCT_FEEDBACK.md` entry 11, `docs/CLAIMS.md` row 21, `docs/PRIVACY_AND_SAFETY.md` and `docs/JUDGES.md` after the Sony TV and phone test.
 
 ## C. Pre-submission checks (the day before)
 

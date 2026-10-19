@@ -105,12 +105,12 @@ First launch shows the setup screen "What would make TV easier for you?".
 Thodu TV sends notifications through the public service **ntfy.sh**. There is no Thodu TV server. **Anyone who knows a topic name can read the messages sent to it and can post to it**, so use the random name your own TV generates and do not reuse a name from anywhere else.
 
 1. On the TV: Settings > **Family notifications**. Thodu TV generates a random family name (`thodu-xxxx-xxxx-xxxx`) and shows it on screen.
-2. On a phone or computer, subscribe to that name: install the free ntfy app and subscribe, or follow ntfy's own instructions for its website. (We did not test ntfy's web app. A command-line check that we did run, from a PC, is `curl -s "https://ntfy.sh/<your-name>/json?poll=1"`.)
+2. On a phone or computer, subscribe to that name: install the free ntfy app and subscribe, or follow ntfy's own instructions for its website. (We did not test ntfy's web app. A command-line way to read a topic is `curl -s "https://ntfy.sh/<your-name>/json?poll=1"`.)
 3. On the TV press **Send a test message**. Expected: "Test message sent. Look at the family phone." Thodu TV says this **only after ntfy.sh answered with an HTTP 2xx status**; real mode then unlocks.
 4. Press Help > Tell my family, Family > Send a hello, or Medicines > Yes, I took it. Expected on the TV: "Family notified" (Help: "Your family was told"); on the subscribed device a short generic message such as "Help was requested from the TV at HH:MM", "A hello from the TV at HH:MM" or "Medicine was confirmed on the TV at HH:MM". No names, addresses or health data are sent.
 5. Failure text (no internet, slow connection, ntfy refused) is shown honestly in English, Hindi and Telugu: for Help "We could not reach your family. Please call them."; for the others "Could not send. Try again." Repeat presses of the same button within 3 seconds after a success are ignored (a held remote key does not spam).
 
-Evidence: the sender logic, retry, 3-second debounce and "success only on 2xx" are `[unit test]` with a fake network (`notify.test.ts`, `familyAlert.test.ts`). A real POST from the developer's PC reached ntfy.sh with HTTP 200 and was read back by polling (2026-10-18). **Delivery from the TV app to a phone has not been verified on a real TV or phone** `[not tested]`.
+Evidence: the sender logic, retry, 3-second debounce and "success only on 2xx" are `[unit test]` with a fake network (`notify.test.ts`, `familyAlert.test.ts`). The app sends one POST per alert to ntfy.sh (`notify.ts`). **Delivery from the TV app to a phone has not been verified on a real TV or phone** `[not tested]`; [pending: developer's Sony Android TV and phone test, result to be added as tested on <date>, notification arrived yes/no, `[user-reported]`].
 
 ## Troubleshooting
 

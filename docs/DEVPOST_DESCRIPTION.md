@@ -81,7 +81,7 @@ No part of Thodu TV existed before 2026-08-31 (10:15 am PT). The repository was 
 - **Open Source:** not claimed on this repository alone: the rule asks for a "new, additional" open-source project or a contribution to a public repository alongside the primary submission. [Add only if a separate public contribution is made.]
 
 ## Product Feedback
-Paste from `docs/PRODUCT_FEEDBACK.md` (five elements per tool: A1 Amazon multi-TV sample, A2 react-native-tvos, A3 Fire TV / Android TV emulator workflow, A4 Appstore Quality Central Live Device Interaction, A5 Fire TV documentation). Would-build-again answers are the developer's own words.
+Paste from `docs/PRODUCT_FEEDBACK.md` (five elements per tool, 13 entries: 1 Amazon multi-TV sample, 2 Appstore Quality Central Live Device Interaction, 3 Fire TV documentation, 4 react-native-tvos, 5 Expo build tooling, 6 Expo runtime modules, 7 Gradle/JDK/Android SDK and signing, 8 Android TV emulator, 9 Yarn/Corepack/Node, 10 Jest, 11 ntfy.sh, 12 Claude Code, 13 outside tools). Would-build-again answers are the developer's own words; entries 11 and 13 are still open.
 
 ## Friction log (optional, up to a 10% bonus)
 Paste from `docs/DEVPOST_FRICTION_PASTE.md` (35 entries, each with task, steps, expected vs actual, severity, workaround, suggestion).

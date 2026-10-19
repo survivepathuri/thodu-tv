@@ -36,7 +36,7 @@ The first S4 build still carried storage permissions (re-added by library manife
 
 ## Signing
 
-The release APK is signed with the generated **debug keystore**. That is acceptable for a demo on an emulator or a developer device only. It must not be distributed through a store or to the public. A real release needs its own signing key.
+The APK is signed with the template's generated **debug keystore**, not a production key; it is a demo build. That is acceptable for a demo on an emulator or a developer device only, and it must not go to a store. The **judge APK** is a public demo build (it contains no notification topic). The **private ntfy APK** (it contains a notification topic) must not be shared. A real release needs its own signing key.
 
 ## Secrets and personal data scan (counts only, matched text never printed)
 

@@ -48,7 +48,7 @@ APK checked, read-only: `thodu-tv-0f5dc84-judge.apk` (68,382,021 bytes, 65.2 MiB
 | Appstore submission / certification | Not done. | Not claimed |
 
 ### Signing and build notes
-- The release APKs are signed with the generated **debug keystore** (fine for a demo, not for a store). All three APKs share one signer.
+- The APK is signed with the template's generated **debug keystore**, not a production key; it is a demo build (fine for a demo, not for a store). The APKs listed here share one signer, which only means they came from the same build setup.
 - `versionName` is derived from `app.json` (`1.0.0`) plus the git short SHA at prebuild by `packages/expotv/plugins/withGitVersionName.js`; set `THODU_BUILD_LABEL=judge` for a `-judge` suffix. `versionCode` stays 1. The plugin was checked on a temporary copy of `build.gradle` (it produced `1.0.0+<sha>-judge`); it ran in the full builds: the judge APK reports `versionName` `1.0.0+0f5dc84-judge` (aapt2) and an independent prebuild on a clean clone produced `1.0.0+9b6688e` (audit, 2026-10-18) `[APK static]`.
 
 ## 3. What this page does not claim
