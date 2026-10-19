@@ -91,7 +91,7 @@ No device? Run the tests (below) and read [docs/ACCESSIBILITY.md](docs/ACCESSIBI
 | Runs on a real Amazon Fire TV | Started once on an Amazon cloud device on 2026-10-14 with an **older build**; the recordings do not show the device frame, so they do not prove a Fire TV by themselves. **The current build has not been run there yet.** | `[cloud Fire TV, 2026-10-14, older build]` |
 | Onboarding, language switch, high contrast, D-pad, Settings | Verified on the developer's TV (Sony TV, Android TV, **not** a Fire TV), with a 4-tile build | `[real Android TV, Sony, user-reported]` |
 | Medicines tile and real Family / Medicines / Help notifications on a TV | Logic unit-tested with a fake network; **not run on a TV** | `[unit test]`, `[not tested]` |
-| A real HTTP POST reaching ntfy.sh | Done from a PC on 2026-10-18 (HTTP 200, read back by polling) | PC run, not the TV app |
+| A real HTTP POST reaching ntfy.sh | Not verified in this repository (sender unit-tested with a fake network) | `[not tested]` |
 | Delivery to a phone from the TV | Not verified | `[not tested]` |
 | Watch screen and captions | Demo panel, scripted captions, no real video | `[code only]` |
 | VoiceView / TalkBack | Detection and routing unit-tested; **no session with a screen reader** | `[unit test]`, `[not tested]` |
@@ -190,6 +190,6 @@ Started from Amazon's [react-native-multi-tv-helloworld](https://github.com/Amaz
 
 Thodu TV's own code is **MIT**, see [LICENSE](LICENSE).
 
-Docs: [docs/JUDGES.md](docs/JUDGES.md) · [docs/CLAIMS.md](docs/CLAIMS.md) · [docs/DEVICE_EVIDENCE.md](docs/DEVICE_EVIDENCE.md) · [docs/ACCESSIBILITY.md](docs/ACCESSIBILITY.md) · [docs/PRIVACY_AND_SAFETY.md](docs/PRIVACY_AND_SAFETY.md) · [SECURITY.md](SECURITY.md) · [docs/PRE_EXISTING.md](docs/PRE_EXISTING.md) · [docs/SOURCES.md](docs/SOURCES.md) · [docs/USER_TESTING.md](docs/USER_TESTING.md) · [FRICTION_LOG.md](FRICTION_LOG.md) · [docs/PRODUCT_FEEDBACK.md](docs/PRODUCT_FEEDBACK.md) · [submission.md](submission.md)
+Docs: [docs/JUDGES.md](docs/JUDGES.md) · [docs/CLAIMS.md](docs/CLAIMS.md) · [docs/DEVICE_EVIDENCE.md](docs/DEVICE_EVIDENCE.md) · [docs/ACCESSIBILITY.md](docs/ACCESSIBILITY.md) · [docs/PRIVACY_AND_SAFETY.md](docs/PRIVACY_AND_SAFETY.md) · [SECURITY.md](SECURITY.md) · [docs/PRE_EXISTING.md](docs/PRE_EXISTING.md) · [docs/TECH_STACK.md](docs/TECH_STACK.md) · [docs/SOURCES.md](docs/SOURCES.md) · [docs/USER_TESTING.md](docs/USER_TESTING.md) · [FRICTION_LOG.md](FRICTION_LOG.md) · [docs/PRODUCT_FEEDBACK.md](docs/PRODUCT_FEEDBACK.md) · [submission.md](submission.md)
 
 **Thodu TV is not an emergency service. In an emergency call your local emergency number.**

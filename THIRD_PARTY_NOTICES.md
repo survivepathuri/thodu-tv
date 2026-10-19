@@ -1,5 +1,57 @@
 # Thodu TV: Third-party notices
 
+## Bundled font (loaded by the app)
+
+- Space Mono Regular (packages/expotv/assets/fonts/SpaceMono-Regular.ttf) - Copyright 2016 Google Inc. - SIL Open Font License, Version 1.1 (as stated in the font file's own metadata). The font came with the Amazon sample.
+
+## Direct npm dependencies (name, installed version, license id from each package's metadata)
+
+Listed from packages/expotv/package.json and packages/shared/package.json; the license texts are those shipped by each package. About 790 transitive packages are not listed here. @thodu/shared is this repository's own workspace package, and the peer entries of packages/shared repeat packages listed here.
+
+- @expo/log-box 55.0.12 - MIT
+- @expo/vector-icons 15.0.3 - MIT
+- @react-native-async-storage/async-storage 2.2.0 - MIT
+- expo 55.0.24 - MIT
+- expo-build-properties 55.0.14 - MIT
+- expo-constants 55.0.16 - MIT
+- expo-crypto 55.0.19 - MIT
+- expo-font 55.0.7 - MIT
+- expo-linking 55.0.15 - MIT
+- expo-router 55.0.14 - MIT
+- expo-speech 55.0.18 - MIT
+- expo-splash-screen 55.0.21 - MIT
+- expo-status-bar 55.0.6 - MIT
+- expo-system-ui 55.0.18 - MIT
+- expo-web-browser 55.0.16 - MIT
+- lottie-react-native 7.3.4 - Apache-2.0
+- react 19.2.0 - MIT
+- react-dom 19.2.0 - MIT
+- react-native (react-native-tvos) 0.83.6-0 - MIT
+- react-native-gesture-handler 2.30.1 - MIT
+- react-native-reanimated 4.2.1 - MIT
+- react-native-safe-area-context 5.6.2 - MIT
+- react-native-screens 4.23.0 - MIT
+- react-native-web 0.21.2 - MIT
+- react-native-worklets 0.7.4 - MIT
+- @babel/core 7.29.0 - MIT
+- @react-native-tvos/config-tv 0.1.5 - MIT
+- @types/react 19.2.14 - MIT
+- typescript 5.9.3 - Apache-2.0
+- @babel/preset-env 7.29.0 - MIT
+- @babel/preset-flow 7.27.1 - MIT
+- @babel/preset-react 7.28.5 - MIT
+- @babel/preset-typescript 7.28.5 - MIT
+- @testing-library/react-native 12.9.0 - MIT
+- @types/jest 29.5.14 - MIT
+- @types/react 18.3.27 - MIT
+- babel-jest 29.7.0 - MIT
+- jest 29.7.0 - MIT
+- ts-jest 29.4.6 - MIT
+- typescript 4.9.5 - Apache-2.0
+
+---
+
+
 ** react-native-multi-tv-helloworld (Amazon sample, the starting point of this repository) - https://github.com/AmazonAppDev/react-native-multi-tv-helloworld
 MIT No Attribution
 
