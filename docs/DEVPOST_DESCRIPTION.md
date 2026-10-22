@@ -75,6 +75,20 @@ React Native (react-native-tvos 0.83.6-0), React 19.2, Expo SDK 55, expo-router,
 - Judge guide: `docs/JUDGES.md` in the repository
 - Demo video: https://youtu.be/T1x5jX0IRV4
 
+## Project testing link and testing instructions (83 words, limit 150)
+- **Project Testing Link:** https://github.com/survivepathuri/thodu-tv/releases/tag/v1.0.0-judge
+- **Testing instructions:**
+
+```
+Release with the judge APK (topic-free demo build; in demo mode no one is contacted): https://github.com/survivepathuri/thodu-tv/releases/tag/v1.0.0-judge
+File thodu-tv-d52f5fe-judge.apk, 68,382,021 bytes, SHA-256 6e1ef0ac79f3eda694f65e63b9234baf01b53c845cb6c41ecff55f3daea4331f.
+Install: turn on ADB debugging and Apps from Unknown Sources, then adb connect <tv-ip>:5555 and adb install -r thodu-tv-d52f5fe-judge.apk. Alternatives: the Downloader app, or Live Device Interaction on a cloud Fire TV.
+Then choose "Easier remote", Continue, open Help > Tell my family: you see the labelled demo result.
+Judge guide: https://github.com/survivepathuri/thodu-tv/blob/main/docs/JUDGES.md
+Demo video: https://youtu.be/T1x5jX0IRV4
+No account or credentials are needed.
+```
+
 ## Did anything exist before the Submission Period?
 No part of Thodu TV existed before 2026-08-31 (10:15 am PT). The repository was started on 2026-10-12 (after the Submission Period began on 2026-08-31) from Amazon's react-native-multi-tv-helloworld sample (MIT-0, upstream commit dated 2026-09-21). All screens, logic, themes, scanner, notification sender, strings, tests, tools and artwork were written in the repository after that import. An earlier, separate, unsubmitted project of the same developer ("AURA+", 23 commits on 2026-09-26 and 2026-09-27, also inside the Submission Period) is disclosed; no code from it was ported. Details and commit dates: `docs/PRE_EXISTING.md`.
 
@@ -90,7 +104,7 @@ We are entering the Open Source mini challenge alongside the primary Fire TV tra
 Paste from `docs/PRODUCT_FEEDBACK.md` (five elements per tool, 13 entries: 1 Amazon multi-TV sample, 2 Appstore Quality Central Live Device Interaction, 3 Fire TV documentation, 4 react-native-tvos, 5 Expo build tooling, 6 Expo runtime modules, 7 Gradle/JDK/Android SDK and signing, 8 Android TV emulator, 9 Yarn/Corepack/Node, 10 Jest, 11 ntfy.sh, 12 Claude Code, 13 outside tools). Would-build-again answers are the developer's own words.
 
 ## Friction log (optional, up to a 10% bonus)
-Paste from `docs/DEVPOST_FRICTION_PASTE.md` (40 entries, each with task, steps, expected vs actual, severity, workaround, suggestion).
+The Devpost field is a single-line link box, so it holds a link to https://github.com/survivepathuri/thodu-tv/blob/main/docs/DEVPOST_FRICTION_PASTE.md . That file (40 entries, each with task, steps, expected vs actual, severity, workaround, suggestion).
 
 ## Feature requests (optional)
 - **Important: window-level or labeled recording in Live Device Interaction.** What: let the built-in recording capture the whole console window, or burn the device name and model into the capture (not confirmed whether it already exists). Why it matters: the Fire TV track needs video of an actual Fire TV, and the built-in recording shows only the app full-screen with no device name, so it cannot prove a Fire TV by itself (three 2026-10-14 recordings). Evidence: F-034 [user-reported].

@@ -3,7 +3,7 @@
 
 Project: Thodu TV (తోడు టీవీ), a Fire TV track app for elderly and disabled users. Format: the five elements the rules ask for, per tool: (1) what we used it for, (2) what worked well, (3) what needs work, (4) onboarding (zero to hello world), (5) would we build with it again, yes or no, and why. 13 entries: 1 to 3 are Amazon-provided, 4 to 12 are the other main tools, 13 is tools outside the repository.
 
-**Evidence rule.** Every statement comes from `FRICTION_LOG.md` (F-001..F-033, written 2026-10-11 and 2026-10-12; F-034 and F-035, reported by the developer on 2026-10-18, and F-036 to F-040, reported on 2026-10-23 as first-hand facts from the 2026-10-22/23 recording session, all tagged [user-reported]), from the files of the 2026-10-14 Amazon cloud-device session, from the Amazon documentation pages read on 2026-10-18, or from package metadata in the repository. Where nothing was recorded the text says "not recorded". Time-lost values are the estimates written in the log at the time. Severity ratings are ours, not Amazon's. **The "Build with it again?" answers are the developer's own words**, given on 2026-10-19 in Telugu or Tenglish and translated to English with only grammar fixed; the original wording was not kept in the repository. Entries 11 and 13 are not answered yet and say so.
+**Evidence rule.** Every statement comes from `FRICTION_LOG.md` (F-001..F-033, written 2026-10-11 and 2026-10-12; F-034 and F-035, reported by the developer on 2026-10-18, and F-036 to F-040, reported on 2026-10-23 as first-hand facts from the 2026-10-22/23 recording session, all tagged [user-reported]), from the files of the 2026-10-14 Amazon cloud-device session, from the Amazon documentation pages read on 2026-10-18, or from package metadata in the repository. Where nothing was recorded the text says "not recorded". Time-lost values are the estimates written in the log at the time. Severity ratings are ours, not Amazon's. **The "Build with it again?" answers are the developer's own words**, given on 2026-10-19 in Telugu or Tenglish and translated to English with only grammar fixed; the original wording was not kept in the repository. The answers for entries 11 and 13 were added by the developer on 2026-10-23.
 
 **Environment.** Windows 11 Pro (build 22621), solo developer, React Native + Expo (react-native-tvos), Android TV emulator (Android 14 TV image, x86) for development; one Amazon cloud Fire TV session on 2026-10-14; the developer's own Sony TV (Android TV, not a Fire TV) for home checks.
 
@@ -191,7 +191,7 @@ Each block is self-contained so it can be pasted into one text box.
 
 **Onboarding.** Not recorded.
 
-**Build with it again?** No answer from the developer is recorded for this entry, so none is stated.
+**Would build with it again:** Yes. It is free, needs no account or SDK, and a plain HTTP post reached the family phone in the real home session. Caveat: the topic name is the only secret, so it suits a family notification, not an emergency service.
 
 ## 12. Claude Code (AI coding tool)
 
@@ -211,9 +211,17 @@ Each block is self-contained so it can be pasted into one text box.
 
 ## 13. Outside tools
 
-**Used (confirmed by the developer, 2026-10-19):** the device's built-in screen recorder; the Downloader app; Google Drive; a short link for sideloading; Android Studio.
+**Used (confirmed by the developer, 2026-10-19):** the device's built-in screen recorder; the Downloader app; Google Drive; a short link for sideloading; Android Studio; and, per the developer's answer below, Gemini TTS.
 
-**Not yet decided:** the screen recorder, video editor and narration tools for the demo video, and whether the ntfy phone app was used. **This entry stays open until after the video and the ntfy test.** No friction or opinion is recorded for these tools yet, so no verdict is written.
+**Not yet decided:** the screen recorder, video editor and narration tools for the demo video, and whether the ntfy phone app was used. No friction or opinion is recorded for these tools beyond what is in the friction log, so no verdict is written about them here.
+
+**What worked well.** See the friction log and the per-tool entries above.
+
+**What needs work.** See the friction log and the per-tool entries above.
+
+**Onboarding.** See the friction log and the per-tool entries above.
+
+**Would build with them again:** Yes. The helper tools (screen recorder, downloader, Drive, short link, Android Studio, Claude Code, Gemini TTS) were enough to ship solo; the limits and our own mistakes are in the friction log.
 
 ---
 
