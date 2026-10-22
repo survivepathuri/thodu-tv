@@ -34,7 +34,7 @@ Each block is self-contained so it can be pasted into one text box.
 
 **Onboarding (zero to hello world).** Total not recorded. Pieces: ~5 min finding the install route [F-015]; a failed ~13 min build [F-016]; a 19m 1s build [F-017].
 
-**Build with it again?** Yes. The developer's words: "It was easy for us, so I would use it again." (The fixes in "What needs work" would still help.)
+**Would build with it again: Yes.** Reason: it gave a working Android TV base that built and ran with JDK 17 [F-017]; the Windows path-limit note and the Android-TV-only install steps are the fixes that would help most. The developer's words: "It was easy for us, so I would use it again." (The fixes in "What needs work" would still help.)
 
 ## 2. Appstore Quality Central, Live Device Interaction (real Amazon Fire TV devices in the cloud)
 
@@ -58,7 +58,7 @@ Each block is self-contained so it can be pasted into one text box.
 
 **Onboarding (zero to hello world).** Not recorded (no steps or time were written down), apart from the APK install noted above [user-reported]. A fresh session with the current judge build is still to be done and will be added here, with the model and OS copied from the console Details tab (it lists name, model, family and OS version). Download the whole-window recording before closing the session.
 
-**Build with it again?** Yes. The developer's words: "I would use it again, including to test my own other apps on a cloud TV. But the recording does not show the device identity, and the device list felt confusing."
+**Would build with it again: Yes.** Reason: a solo builder without a physical Fire TV could test on a real cloud device, but the recorder limits (native alerts, 2-minute cap, no recording across panels, F-036 and F-037) cost time. The developer's words: "I would use it again, including to test my own other apps on a cloud TV. But the recording does not show the device identity, and the device list felt confusing."
 
 ## 3. Amazon Fire TV developer documentation (Fire OS pages)
 
