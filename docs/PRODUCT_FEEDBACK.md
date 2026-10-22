@@ -211,9 +211,7 @@ Each block is self-contained so it can be pasted into one text box.
 
 ## 13. Outside tools
 
-**Used (confirmed by the developer, 2026-10-19):** the device's built-in screen recorder; the Downloader app; Google Drive; a short link for sideloading; Android Studio; and, per the developer's answer below, Gemini TTS.
-
-**Not yet decided:** the screen recorder, video editor and narration tools for the demo video, and whether the ntfy phone app was used. No friction or opinion is recorded for these tools beyond what is in the friction log, so no verdict is written about them here.
+**Used (confirmed by the developer):** the device's built-in screen recorder; the Live Device Interaction Screen-tab recorder (entry 2); the Downloader app; Google Drive; a short link for sideloading; Android Studio; Gemini TTS for the narration voice; ffmpeg scripts, run by Claude Code, to edit the demo video; YouTube to host the demo video; and the ntfy phone app to receive alerts in the 2026-10-20 home session. No friction or opinion is recorded for these tools beyond what is in the friction log, so no verdict is written about them here.
 
 **What worked well.** See the friction log and the per-tool entries above.
 
