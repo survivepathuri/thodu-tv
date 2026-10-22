@@ -2,9 +2,9 @@
 
 **A TV built for elderly and disabled people that calls the family for help**
 
-*Easy TV. One button. Family one press away.* (Thodu means "companion" in Telugu.)
+*Built for one person, made for many.* (Thodu means "companion" in Telugu.)
 
-**[Watch the demo video (about 2:20)]([VIDEO_URL])** · **[Judge guide: 5 minutes with the APK](docs/JUDGES.md)** · **[Release: the judge APK](https://github.com/survivepathuri/thodu-tv/releases)**
+**[Demo video (about 2:20)]([VIDEO_URL])** · **[Judge guide: 5 minutes with the APK](docs/JUDGES.md)** · **[Release: the judge APK](https://github.com/survivepathuri/thodu-tv/releases)**
 
 > **Thodu TV is not an emergency service and not a medical device. In an emergency call your local emergency number.**
 
@@ -34,6 +34,28 @@ The Devpost criteria are Tech Implementation, Design, Potential Impact and Quali
 | Friction log (optional) | [docs/FRICTION_LOG.md](docs/FRICTION_LOG.md) | 11 curated entries, Amazon first; 35 detailed entries in [FRICTION_LOG.md](FRICTION_LOG.md) |
 
 Every claim and its evidence tag: [docs/CLAIMS.md](docs/CLAIMS.md).
+
+## Install and run in under 2 minutes
+
+**Judge APK** (from the Release page, file `thodu-tv-d52f5fe-judge.apk`, 68,382,021 bytes). Check it first:
+
+```bash
+sha256sum thodu-tv-d52f5fe-judge.apk     # expect 6e1ef0ac79f3eda694f65e63b9234baf01b53c845cb6c41ecff55f3daea4331f
+```
+
+- **Fire TV or Android TV with adb:** turn on ADB debugging and "Apps from unknown sources" in the TV's developer options, then
+
+  ```bash
+  adb connect <tv-ip>:5555
+  adb install -r thodu-tv-d52f5fe-judge.apk
+  adb shell monkey -p com.thodu.tv -c android.intent.category.LEANBACK_LAUNCHER 1
+  ```
+
+- **Fire TV with the Downloader app:** open the Release page's APK link in Downloader (or type the link shown on the Release page), install, then open Thodu TV from Apps.
+- **No TV at hand:** Amazon Developer Console > Appstore Quality Central > Live Device Interaction, upload the APK to a cloud Fire TV.
+- **Then:** choose "Easier remote", Continue, open Help > Tell my family: you see the labelled demo result. More steps: [docs/JUDGES.md](docs/JUDGES.md), [docs/INSTALL_ON_TV.md](docs/INSTALL_ON_TV.md).
+
+**No device?** Run the tests and the accessibility script (below); they need only Node.
 
 ## Architecture
 
@@ -69,7 +91,7 @@ Status words: **VERIFIED** = the author or a script ran it and the evidence is n
 | Judge APK facts: 68,382,021 bytes, SHA-256 `6e1ef0ac...ea4331f`, `versionName` `1.0.0+d52f5fe-judge`, minSdk 24 / targetSdk 36, leanback launcher, no topic string | VERIFIED on 2026-10-23 with `sha256sum`, `aapt2` and a search of the APK | `[APK static]` |
 | App ran on an Amazon Fire TV cloud device (Live Device Interaction) | VERIFIED by the developer's recordings; the demo video shows it. No Fire OS version is claimed | `[cloud Fire TV]` |
 | Setup, language switch, high contrast, remote navigation on a home Sony Android TV (not a Fire TV) | VERIFIED, user-reported | `[real Android TV, Sony, user-reported]` |
-| Help alerts from the TV reaching a family phone through ntfy | VERIFIED once, user-reported: several real alerts on 2026-10-20 in a consented session with the developer's elder brother, using a build of the same code with a private topic | `[real Android TV, Sony, user-reported]` |
+| Help alerts from the TV reaching a family phone through ntfy | VERIFIED once, user-reported: several real alerts on 2026-10-20 in a consented session with an adult family member, using a build of the same code with a private topic | `[real Android TV, Sony, user-reported]` |
 | The judge build sending a real alert | UNVERIFIED: it has no topic by design; follow "Try the notifications" in [docs/JUDGES.md](docs/JUDGES.md) with your own topic | |
 | Watch tile | SIMULATED: a labelled demo panel with scripted captions, no real video | `[code only]` |
 | Family screen's phone card | SIMULATED: labelled "Simulated" | `[code only]` |
@@ -91,28 +113,6 @@ Status words: **VERIFIED** = the author or a script ran it and the evidence is n
 - **Debug-keystore signing.** The APK is signed with a debug key, fine for a demo only. The dependency audit lists 108 advisories, mostly in build tooling ([SECURITY.md](SECURITY.md)); nothing was upgraded.
 - **Not built:** timed medicine reminders, real video playback, voice recognition, a caregiver view, a private notification channel. The help log is in memory only and Back on Home exits to the launcher.
 - Unused sample files from Amazon's starter remain in `packages/expotv` (`components/`, `layouts/`, `hooks/`, `constants/`).
-
-## Install and run in under 2 minutes
-
-**Judge APK** (from the Release page, file `thodu-tv-d52f5fe-judge.apk`, 68,382,021 bytes). Check it first:
-
-```bash
-sha256sum thodu-tv-d52f5fe-judge.apk     # expect 6e1ef0ac79f3eda694f65e63b9234baf01b53c845cb6c41ecff55f3daea4331f
-```
-
-- **Fire TV or Android TV with adb:** turn on ADB debugging and "Apps from unknown sources" in the TV's developer options, then
-
-  ```bash
-  adb connect <tv-ip>:5555
-  adb install -r thodu-tv-d52f5fe-judge.apk
-  adb shell monkey -p com.thodu.tv -c android.intent.category.LEANBACK_LAUNCHER 1
-  ```
-
-- **Fire TV with the Downloader app:** open the Release page's APK link in Downloader (or type the link shown on the Release page), install, then open Thodu TV from Apps.
-- **No TV at hand:** Amazon Developer Console > Appstore Quality Central > Live Device Interaction, upload the APK to a cloud Fire TV.
-- **Then:** choose "Easier remote", Continue, open Help > Tell my family: you see the labelled demo result. More steps: [docs/JUDGES.md](docs/JUDGES.md), [docs/INSTALL_ON_TV.md](docs/INSTALL_ON_TV.md).
-
-**No device?** Run the tests and the accessibility script (below); they need only Node.
 
 ## Run from source
 
@@ -140,7 +140,7 @@ cd packages/expotv/android && ./gradlew assembleRelease  # app/build/outputs/apk
 adb install -r app/build/outputs/apk/release/app-release.apk
 ```
 
-A source build has **no notification topic** and starts in demo mode. To bake in your own, copy `packages/expotv/.env.example` to `packages/expotv/.env.local` (git-ignored) and set `EXPO_PUBLIC_THODU_TOPIC`. A first full three-ABI build took about 41 minutes on a low-memory PC. After editing JS in `packages/shared`, run the Gradle task `:app:createBundleReleaseJsAndAssets --rerun` or Gradle may ship stale JavaScript. A source build is not byte-identical to the judge APK ([docs/JUDGES.md](docs/JUDGES.md)).
+A source build has **no notification topic** and starts in demo mode. To bake in your own, copy `packages/expotv/.env.example` to `packages/expotv/.env.local` (git-ignored) and set `EXPO_PUBLIC_THODU_TOPIC`. A first full three-ABI build takes about 30 to 40 minutes on the developer's Windows laptop (first build, no warm Gradle cache). After editing JS in `packages/shared`, run the Gradle task `:app:createBundleReleaseJsAndAssets --rerun` or Gradle may ship stale JavaScript. A source build is not byte-identical to the judge APK ([docs/JUDGES.md](docs/JUDGES.md)).
 
 ## Screenshots
 
@@ -161,7 +161,7 @@ Context from official sources, not results of Thodu TV (quotes, dates and URLs i
 
 Started from Amazon's [react-native-multi-tv-helloworld](https://github.com/AmazonAppDev/react-native-multi-tv-helloworld) sample (MIT-0, Amazon.com, Inc.); see [NOTICE](NOTICE), [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and [docs/PRE_EXISTING.md](docs/PRE_EXISTING.md). `react-native-tvos` is a fork of React Native that adds Apple TV and Android TV support, published by the react-native-tvos GitHub organization (MIT); Amazon's sample builds on it. The icon, launcher banner and splash mark are original artwork (`assets/branding/`); no third-party logos are used. Unused Expo-template files remain in the repository: the React logo PNGs in `packages/expotv/assets/images/` and the SpaceMono font, which the app still loads from `app/_layout.tsx` and which is under the SIL Open Font License ([THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)).
 
-Thodu TV's own code is **MIT**, see [LICENSE](LICENSE).
+Thodu TV's own code is **MIT-licensed**, see [LICENSE](LICENSE).
 
 Docs: [JUDGES](docs/JUDGES.md) · [CLAIMS](docs/CLAIMS.md) · [DEVICE_EVIDENCE](docs/DEVICE_EVIDENCE.md) · [ACCESSIBILITY](docs/ACCESSIBILITY.md) · [PRIVACY_AND_SAFETY](docs/PRIVACY_AND_SAFETY.md) · [SECURITY](SECURITY.md) · [PRE_EXISTING](docs/PRE_EXISTING.md) · [TECH_STACK](docs/TECH_STACK.md) · [SOURCES](docs/SOURCES.md) · [USER_TESTING](docs/USER_TESTING.md) · [FRICTION_LOG](docs/FRICTION_LOG.md) · [PRODUCT_FEEDBACK](docs/PRODUCT_FEEDBACK.md) · [REPO_ABOUT](docs/REPO_ABOUT.md) · [submission](submission.md)
 

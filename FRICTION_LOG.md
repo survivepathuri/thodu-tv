@@ -1,5 +1,7 @@
 # Thodu TV: Friction log (structured)
-*Easy TV. One button. Family one press away.*
+*Built for one person, made for many.*
+
+> Judges: a short, curated version of this log (11 entries, Amazon first) is in [docs/FRICTION_LOG.md](docs/FRICTION_LOG.md). This file is the full detailed log.
 
 **Environment:** Windows 11 Pro (build 22621), solo developer, Fire TV track, React Native + Expo (react-native-tvos), Android TV emulator (Android 14 TV image, x86) with the SDK, AVD and JDK 17 on the D: drive.
 **Date range:** 2026-10-11 to 2026-10-12 (F-001 to F-018 on 2026-10-11; F-019 to F-033 on 2026-10-12), plus two entries reported by the developer on 2026-10-18 about the 2026-10-14 cloud-device session (F-034, F-035).
@@ -506,7 +508,7 @@
 - Severity (our rating): Low-medium (user's rating; time lost not recorded)
 - Workaround used: Record the whole browser window with a separate screen recorder.
 - Actionable suggestion: Offer a window-level recording, or burn the device name/model into the capture.
-- Evidence: The three 2026-10-14 recordings in the developer's Downloads folder (`recording.mp4`, `recording (1).mp4`, `recording (2).mp4`; outside this repo). The statement about the cause is [user-reported].
+- Evidence: The three 2026-10-14 recordings stored outside this repository (`recording.mp4`, `recording (1).mp4`, `recording (2).mp4`). The statement about the cause is [user-reported].
 
 ### F-035 — Unclear at first how to choose between the cloud devices "FOS 14 3P TV" and "Smart TV - Amazon Fire TV"   [Dev] [user-reported]
 - Tool / SDK: Appstore Quality Central > Live Device Interaction, device list (cloud Fire TV devices)

@@ -349,7 +349,7 @@ Environment: Windows 11 Pro, solo developer, React Native + Expo (react-native-t
 - Severity (our rating) and time lost: Low-medium (user's rating; time lost not recorded)
 - Workaround: Record the whole browser window with a separate screen recorder.
 - Suggestion: Offer a window-level recording, or burn the device name/model into the capture.
-- Evidence: The three 2026-10-14 recordings in the developer's Downloads folder (`recording.mp4`, `recording (1).mp4`, `recording (2).mp4`; outside this repo). The statement about the cause is [user-reported].
+- Evidence: The three 2026-10-14 recordings stored outside this repository (`recording.mp4`, `recording (1).mp4`, `recording (2).mp4`). The statement about the cause is [user-reported].
 
 **F-035: Unclear at first how to choose between the cloud devices "FOS 14 3P TV" and "Smart TV - Amazon Fire TV"** [user-reported]
 - Tool: Appstore Quality Central > Live Device Interaction, device list (cloud Fire TV devices)
