@@ -15,7 +15,7 @@ Evidence kept: the developer's own report. No recording, photo or note from the 
 | Device | Sony TV running Android TV (not a Fire TV); model and Android version not recorded |
 | App build | A build of the same code with the developer's private notification topic; the exact `versionName` was not recorded |
 | Participant | Participant 1, an adult family member, not named or described further |
-| Consent | Given for the session (user-reported) |
+| Consent | Given for the session; consent given for all uses of the anonymised clip (user-reported) |
 | What happened | Several real Help alerts were sent from the TV and arrived on the family phone through the ntfy app `[real Android TV, Sony, user-reported]` |
 | Tasks, timings, observations, problems found | Not recorded in this repository. Nothing is invented here. |
 | Changes made because of the session | None recorded |
