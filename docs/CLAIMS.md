@@ -1,5 +1,5 @@
 # Thodu TV: Claims and evidence
-*Easy TV. One button. Family one press away.*
+*Built for one person, made for many.*
 
 Every claim the README, the judge guide, the Devpost text and the video make, with its evidence tag and the command or path that shows it. If a claim is not in this table it is not made. Tags are explained in [DEVICE_EVIDENCE.md](DEVICE_EVIDENCE.md): `[unit test]` · `[code only]` · `[cloud Fire TV, date, build]` · `[real Android TV, Sony, user-reported]` · `[emulator]` · `[APK static]` · `[script]` · `[not tested]`.
 

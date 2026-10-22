@@ -1,5 +1,5 @@
 # Thodu TV: Feature requests for Amazon's tools (optional Devpost field)
-*Easy TV. One button. Family one press away.*
+*Built for one person, made for many.*
 
 Each request comes from one entry of [FRICTION_LOG.md](../FRICTION_LOG.md) and nothing else. Priorities are the developer's own ratings: Critical / Important / Nice-to-have. F-034 and F-035 are tagged `[user-reported]` in the log (the developer's statements from memory of the 2026-10-14 session; no notes were kept at the time).
 

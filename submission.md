@@ -1,5 +1,5 @@
 # Thodu TV: Submission checklist (Fire TV track)
-*Easy TV. One button. Family one press away.*
+*Built for one person, made for many.*
 
 Deadline: **Fri 2026-10-23, 12:00 pm Pacific**. No edits are allowed after the deadline. Rules source: the official Devpost rules and overview pages (https://amazonappdev2026.devpost.com/). Status words: **done** (in this repository or released), **open** (a person has to do it).
 

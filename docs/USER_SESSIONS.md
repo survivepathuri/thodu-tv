@@ -1,5 +1,5 @@
 # Thodu TV: Sessions with real users: template
-*Easy TV. One button. Family one press away.*
+*Built for one person, made for many.*
 
 This is a template for short, consented sessions where a person who might benefit from Thodu TV tries it on a TV. It is for learning where the app confuses people. It is **not** a clinical study and it does not test anyone's ability.
 

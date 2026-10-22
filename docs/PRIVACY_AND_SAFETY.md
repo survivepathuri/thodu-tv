@@ -1,5 +1,5 @@
 # Thodu TV: Privacy and safety
-*Easy TV. One button. Family one press away.*
+*Built for one person, made for many.*
 
 > **Thodu TV is not an emergency service and not a medical device.** It does not call emergency numbers, does not monitor health, does not give medical advice and does not schedule or remind medicines. In an emergency call your local emergency number.
 

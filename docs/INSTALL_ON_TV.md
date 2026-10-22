@@ -1,5 +1,5 @@
 # Thodu TV: Install on an Android TV or Fire TV (over the network)
-*Easy TV. One button. Family one press away.*
+*Built for one person, made for many.*
 
 This guide installs the Thodu TV APK on a TV from a computer on the same home network, using `adb`. Thodu TV is not on any app store. The APK is a demo build signed with a debug key, so it is for trying the app, not for general distribution.
 

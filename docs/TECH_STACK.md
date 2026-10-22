@@ -1,5 +1,5 @@
 # Thodu TV: Tech stack
-*Easy TV. One button. Family one press away.*
+*Built for one person, made for many.*
 
 Versions are the installed ones; licenses are from each package's metadata (the full direct-dependency list is in [../THIRD_PARTY_NOTICES.md](../THIRD_PARTY_NOTICES.md)). "Inherited" means the item was already in the Amazon react-native-multi-tv-helloworld sample at our import commit 35bb725 (proof: `git log -S` on the manifests). "Chosen" means we added it. "Generated" means a tool produced it.
 
