@@ -31,7 +31,7 @@ The Devpost criteria are Tech Implementation, Design, Potential Impact and Quali
 | Repository: setup and run instructions | "Install and run" below, [docs/JUDGES.md](docs/JUDGES.md) | Sideload the APK or build from source |
 | Pre-existing work | [docs/PRE_EXISTING.md](docs/PRE_EXISTING.md) | First commit 2026-10-12, after 2026-08-31 |
 | Product Feedback | [docs/PRODUCT_FEEDBACK.md](docs/PRODUCT_FEEDBACK.md) | 13 entries in five elements each |
-| Friction log (optional) | [docs/FRICTION_LOG.md](docs/FRICTION_LOG.md) | 11 curated entries, Amazon first; 35 detailed entries in [FRICTION_LOG.md](FRICTION_LOG.md) |
+| Friction log (optional) | [docs/FRICTION_LOG.md](docs/FRICTION_LOG.md) | 16 curated entries, Amazon first, with a "For the Amazon team" table; 40 detailed entries in [FRICTION_LOG.md](FRICTION_LOG.md) |
 
 Every claim and its evidence tag: [docs/CLAIMS.md](docs/CLAIMS.md).
 

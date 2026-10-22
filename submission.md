@@ -14,7 +14,7 @@ Deadline: **Fri 2026-10-23, 12:00 pm Pacific**. No edits are allowed after the d
 | Pre-existing work explained (nothing predates 2026-08-31; starting material disclosed) | done | `docs/PRE_EXISTING.md` |
 | Sources for every statistic | done | `docs/SOURCES.md` |
 | Product Feedback per tool (five elements) | done, 13 entries | `docs/PRODUCT_FEEDBACK.md` |
-| Friction log (optional, up to 10% bonus) | done: curated list in `docs/FRICTION_LOG.md`, detailed notes in `FRICTION_LOG.md` (35 entries), paste text in `docs/DEVPOST_FRICTION_PASTE.md` | |
+| Friction log (optional, up to 10% bonus) | done: curated list in `docs/FRICTION_LOG.md`, detailed notes in `FRICTION_LOG.md` (40 entries), paste text in `docs/DEVPOST_FRICTION_PASTE.md` | |
 | Feature requests (optional) | done | `docs/FEATURE_REQUESTS.md` |
 | Claims with evidence | done | `docs/CLAIMS.md` |
 | Device evidence and Fire TV readiness | done | `docs/DEVICE_EVIDENCE.md` |

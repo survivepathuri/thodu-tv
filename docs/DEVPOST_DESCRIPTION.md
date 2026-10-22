@@ -49,7 +49,7 @@ A React Native app on Amazon's react-native-multi-tv-helloworld sample (Expo SDK
 - Not done: real VoiceView/TalkBack; spoken output verified on the cloud device; a delivery test from a Fire TV; any study with more than one person.
 
 ## Challenges we ran into
-From our friction log (35 entries: 33 from notes kept at the time, 2 user-reported): a Windows 260-character path limit that broke the native build of the Amazon sample (about 35 minutes), a stale-JavaScript trap in the Gradle bundle task (about 25 minutes), and the fact that `useTVEventHandler` receives no key events when no view has focus, which cost most OK presses in scanning mode until we added one invisible focusable "sink" view (about 35 minutes). Each has a workaround and a suggestion in `FRICTION_LOG.md`.
+From our friction log (40 entries: 33 from notes kept at the time, 7 user-reported, including 5 first-hand facts about the Live Device Interaction recorder, input and session): a Windows 260-character path limit that broke the native build of the Amazon sample (about 35 minutes), a stale-JavaScript trap in the Gradle bundle task (about 25 minutes), and the fact that `useTVEventHandler` receives no key events when no view has focus, which cost most OK presses in scanning mode until we added one invisible focusable "sink" view (about 35 minutes). Each has a workaround and a suggestion in `FRICTION_LOG.md`.
 
 ## Accomplishments we are proud of
 - One-button scanning that works with a single OK key, with unit-tested state machine.
@@ -83,7 +83,7 @@ No part of Thodu TV existed before 2026-08-31 (10:15 am PT). The repository was 
 Paste from `docs/PRODUCT_FEEDBACK.md` (five elements per tool, 13 entries: 1 Amazon multi-TV sample, 2 Appstore Quality Central Live Device Interaction, 3 Fire TV documentation, 4 react-native-tvos, 5 Expo build tooling, 6 Expo runtime modules, 7 Gradle/JDK/Android SDK and signing, 8 Android TV emulator, 9 Yarn/Corepack/Node, 10 Jest, 11 ntfy.sh, 12 Claude Code, 13 outside tools). Would-build-again answers are the developer's own words.
 
 ## Friction log (optional, up to a 10% bonus)
-Paste from `docs/DEVPOST_FRICTION_PASTE.md` (35 entries, each with task, steps, expected vs actual, severity, workaround, suggestion).
+Paste from `docs/DEVPOST_FRICTION_PASTE.md` (40 entries, each with task, steps, expected vs actual, severity, workaround, suggestion).
 
 ## Feature requests (optional)
 - **Important: window-level or labeled recording in Live Device Interaction.** What: let the built-in recording capture the whole console window, or burn the device name and model into the capture (not confirmed whether it already exists). Why it matters: the Fire TV track needs video of an actual Fire TV, and the built-in recording shows only the app full-screen with no device name, so it cannot prove a Fire TV by itself (three 2026-10-14 recordings). Evidence: F-034 [user-reported].
