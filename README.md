@@ -4,7 +4,13 @@
 
 *Built for one person, made for many.* (Thodu means "companion" in Telugu.)
 
-**[Demo video (about 2:20)](https://youtu.be/T1x5jX0IRV4)** · **[Judge guide: 5 minutes with the APK](docs/JUDGES.md)** · **[Release: the judge APK](https://github.com/survivepathuri/thodu-tv/releases)**
+> **TL;DR for reviewers.** A Fire TV app for elderly and disabled viewers: needs-based setup, one-button scanning and a Help button that alerts family. MIT licensed.
+> - **Real, simulated, not built:** see the [status table](#what-is-real-simulated-and-not-built-yet).
+> - **Test in 5 minutes:** the [judge APK](https://github.com/survivepathuri/thodu-tv/releases/tag/v1.0.0-judge) (demo mode: no one is contacted), or `corepack yarn workspaces focus @thodu/expotv` at the root, then in `packages/shared` `npx jest -c jest.core.config.js` (16 suites, 223 tests).
+> - **Evidence:** `node tools/a11y-measure.mjs`, [friction log](docs/FRICTION_LOG.md) (Amazon first), [product feedback](docs/PRODUCT_FEEDBACK.md), [feature requests](docs/FEATURE_REQUESTS.md), [judge guide](docs/JUDGES.md).
+> - **Limits:** Watch is a labelled demo panel; the judge build is demo mode; one family session (n = 1).
+
+**[Demo video (about 2:20)](https://youtu.be/T1x5jX0IRV4)** · **[Judge guide: 5 minutes with the APK](docs/JUDGES.md)** · **[Release: the judge APK (demo mode)](https://github.com/survivepathuri/thodu-tv/releases/tag/v1.0.0-judge)**
 
 > **Thodu TV is not an emergency service and not a medical device. In an emergency call your local emergency number.**
 
