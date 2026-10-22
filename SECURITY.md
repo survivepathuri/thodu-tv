@@ -1,5 +1,5 @@
 # Thodu TV: Security and privacy self-audit
-*Easy TV. One button. Family one press away.*
+*Built for one person, made for many.*
 
 **This is a self-audit written by the developer. It is not a certification, a penetration test or a third-party review.** It states what we checked, what we found and what we did not check. Thodu TV is a hackathon prototype.
 
@@ -40,7 +40,7 @@ The APK is signed with the template's generated **debug keystore**, not a produc
 
 ## Secrets and personal data scan (counts only, matched text never printed)
 
-Scan re-run for the public release with plain `git grep` / `git log --all -p | grep` (172 tracked files at HEAD, 59 commits, every branch and the remote-tracking ref). Counts only; matched text is never printed:
+Scan re-run for the public release with plain `git grep` / `git log --all -p | grep` (measured at the judge-build commit `d52f5fe`: 172 tracked files, 59 commits, every branch and the remote-tracking ref; the later commits change only `.md` files and were re-swept before publishing). Counts only; matched text is never printed:
 
 | Pattern | HEAD | History |
 |---|---|---|

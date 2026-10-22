@@ -1,7 +1,7 @@
 # Thodu TV: For judges, in 5 minutes
 *A TV built for elderly and disabled people that calls the family for help*
 
-Easy TV. One button. Family one press away.
+*Built for one person, made for many.*
 
 **Thodu TV (తోడు టీవీ; Thodu means "companion" in Telugu)** is a React Native for TV app for older viewers and people with disabilities. It starts from what would make TV easier ("Easier to see / hear / read / remote"), changes the whole interface at once, and lets the viewer tell a family member they need help through the free ntfy app. Demo video (about 2:20): [VIDEO_URL]
 
@@ -111,7 +111,7 @@ cd packages/expotv/android && ./gradlew assembleRelease
 adb install -r app/build/outputs/apk/release/app-release.apk
 ```
 
-A first release build took about 30 minutes on our Windows machine (measured: `gradlew assembleRelease` 29 m 42 s, plus about 80 s for the dependency install), so most reviewers should use the APK. The `versionName` of a source build is `1.0.0+<your HEAD sha>`, so it will not match `1.0.0+d52f5fe-judge`. The judge APK was built with `EXPO_PUBLIC_THODU_TOPIC` set to an empty string; a plain source build leaves it unset; behaviour is the same (demo mode).
+A first release build takes about 30 to 40 minutes on the developer's Windows laptop (first build, no warm Gradle cache), so most reviewers should use the APK. The `versionName` of a source build is `1.0.0+<your HEAD sha>`, so it will not match `1.0.0+d52f5fe-judge`. The judge APK was built with `EXPO_PUBLIC_THODU_TOPIC` set to an empty string; a plain source build leaves it unset; behaviour is the same (demo mode).
 
 **Source build vs shipped APK** `[measured, 2026-10-19, on an earlier judge build]`: a clean clone built from the README gives an APK whose package, versionCode, label, SDK levels, permissions, TV banner entry and signer match. The versionName differs because it includes the git sha. The native libraries, the baseline profile and 40 bytes of the Hermes JS bundle differ in bytes; we have not traced why. We do not claim the two APKs are byte-identical.
 

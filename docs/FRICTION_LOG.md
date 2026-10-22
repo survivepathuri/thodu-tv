@@ -70,7 +70,7 @@ Part A is about Amazon products and Amazon's sample. Part B is about other tools
 - **Suggestion:** Do not treat any stderr output of the prefab process as an error; publish a supported-JDK note (17 or 21).
 
 ### FL-11: One dropped connection ended a 27-minute multi-ABI native build (F-033)
-- **What happened:** The three-ABI release build failed after 27 min 30 s because one dependency, first needed during the native configure step, could not be downloaded (`Network is unreachable`). Re-running reused finished tasks and passed in 13 min 50 s.
+- **What happened:** The three-ABI release build failed after 27 min 30 s because one dependency, first needed during the native configure step, could not be downloaded (`Network is unreachable`). Re-running reused finished tasks and passed in 13 min 50 s. (A first full build takes about 30 to 40 minutes on the developer's laptop.)
 - **Impact:** About 28 minutes. Severity: major.
 - **Workaround:** Re-run after confirming the network.
 - **Suggestion:** Document warming the dependency cache (for example `./gradlew dependencies`) before the first long build on an unreliable network.
