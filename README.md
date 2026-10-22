@@ -4,7 +4,7 @@
 
 *Built for one person, made for many.* (Thodu means "companion" in Telugu.)
 
-**[Demo video (about 2:20)]([VIDEO_URL])** · **[Judge guide: 5 minutes with the APK](docs/JUDGES.md)** · **[Release: the judge APK](https://github.com/survivepathuri/thodu-tv/releases)**
+**[Demo video (about 2:20)](https://youtu.be/T1x5jX0IRV4)** · **[Judge guide: 5 minutes with the APK](docs/JUDGES.md)** · **[Release: the judge APK](https://github.com/survivepathuri/thodu-tv/releases)**
 
 > **Thodu TV is not an emergency service and not a medical device. In an emergency call your local emergency number.**
 

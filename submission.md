@@ -28,12 +28,12 @@ Deadline: **Fri 2026-10-23, 12:00 pm Pacific**. No edits are allowed after the d
 
 | # | Item | Exact need |
 |---|---|---|
-| 1 | **Publish the demo video** | Public YouTube or Vimeo upload, English, under 3 minutes. Then replace every `[VIDEO_URL]` in the repository (`grep -rn VIDEO_URL .`) and paste the link in the Devpost form. |
+| 1 | **Publish the demo video** | Done: the video link (https://youtu.be/T1x5jX0IRV4) has been added to the README, docs/JUDGES.md and docs/DEVPOST_DESCRIPTION.md. Paste the same link in the Devpost form. |
 | 2 | **Make the repository public** | Check that the MIT license shows in the About box while logged out. |
 | 3 | **Create the GitHub Release** | Upload the judge APK renamed to `thodu-tv-d52f5fe-judge.apk`; put the SHA-256 from `docs/JUDGES.md` in the release notes. It must stay available until the judging period ends on 2026-11-20. Never upload a build that contains a private notification topic. |
 | 4 | **Devpost form** | Paste the fields from `docs/DEVPOST_DESCRIPTION.md`; choose track Fire TV; enter the Open Source mini challenge with the four fields in the "Open Source mini challenge" section (no AWS Builder); answer the Product Feedback would-build-again question in your own words where it is blank. |
 | 5 | **Eligibility and ownership confirmations** | Age of majority, no financial or preferential support from Amazon/Devpost, you are the Representative. |
-| 5a | **Keep it public** | The repository, the Release and the demo video stay public and unchanged until the end of judging (2026-11-20), apart from adding the demo-video link once. |
+| 5a | **Keep it public** | The repository, the Release and the demo video stay public and unchanged until the end of judging (2026-11-20), apart from the demo-video link, which has been added. |
 | 6 | **Freeze** | No repository or form changes after 2026-10-23 12:00 pm Pacific. |
 
 Not yet recorded anywhere in the repository (say so on the form instead of guessing): the Sony TV model and Android version, the exact build used in the 2026-10-20 session, the date and device name of the cloud Fire TV footage used in the video, native-speaker review of the Hindi and Telugu safety strings.

@@ -73,7 +73,7 @@ React Native (react-native-tvos 0.83.6-0), React 19.2, Expo SDK 55, expo-router,
 - Code: https://github.com/survivepathuri/thodu-tv
 - Judge APK (topic-free demo build): the GitHub Release asset `thodu-tv-d52f5fe-judge.apk`, SHA-256 `6e1ef0ac79f3eda694f65e63b9234baf01b53c845cb6c41ecff55f3daea4331f`
 - Judge guide: `docs/JUDGES.md` in the repository
-- Demo video: [VIDEO_URL]
+- Demo video: https://youtu.be/T1x5jX0IRV4
 
 ## Did anything exist before the Submission Period?
 No part of Thodu TV existed before 2026-08-31 (10:15 am PT). The repository was started on 2026-10-12 (after the Submission Period began on 2026-08-31) from Amazon's react-native-multi-tv-helloworld sample (MIT-0, upstream commit dated 2026-09-21). All screens, logic, themes, scanner, notification sender, strings, tests, tools and artwork were written in the repository after that import. An earlier, separate, unsubmitted project of the same developer ("AURA+", 23 commits on 2026-09-26 and 2026-09-27, also inside the Submission Period) is disclosed; no code from it was ported. Details and commit dates: `docs/PRE_EXISTING.md`.

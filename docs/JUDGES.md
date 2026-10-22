@@ -3,7 +3,7 @@
 
 *Built for one person, made for many.*
 
-**Thodu TV (తోడు టీవీ; Thodu means "companion" in Telugu)** is a React Native for TV app for older viewers and people with disabilities. It starts from what would make TV easier ("Easier to see / hear / read / remote"), changes the whole interface at once, and lets the viewer tell a family member they need help through the free ntfy app. Demo video (about 2:20): [VIDEO_URL]
+**Thodu TV (తోడు టీవీ; Thodu means "companion" in Telugu)** is a React Native for TV app for older viewers and people with disabilities. It starts from what would make TV easier ("Easier to see / hear / read / remote"), changes the whole interface at once, and lets the viewer tell a family member they need help through the free ntfy app. Demo video (about 2:20): https://youtu.be/T1x5jX0IRV4
 
 > Thodu TV is **not** an emergency service and **not** a medical device. In an emergency call your local emergency number.
 
@@ -47,7 +47,7 @@ Run on 2026-10-23: no file other than `*.md` differs between `d52f5fe` and `HEAD
 ## Fastest checks (no install, 2 minutes)
 
 1. Read the top of [README.md](../README.md) (criteria table, architecture, real / simulated / not-yet table, honest limits).
-2. Watch the demo video: [VIDEO_URL].
+2. Watch the demo video: https://youtu.be/T1x5jX0IRV4.
 3. Re-run the tests: `corepack yarn workspaces focus @thodu/expotv`, then `cd packages/shared && npx jest -c jest.core.config.js`. Expected: **16 suites, 223 tests, all passing** `[unit test]`.
 4. Re-run the accessibility measurement: `node tools/a11y-measure.mjs` (Node 22.18+ or 24). Expected: 73 colour pairs, 0 below target, lowest text contrast 7.79:1, smallest text 22 design px, 25 of 25 focusable elements labelled `[script]`.
 
@@ -170,4 +170,4 @@ Optional: to bake **your own** topic into a source build, copy `packages/expotv/
 
 The judge build runs in demo mode (no topic). Fire TV evidence is Amazon cloud-device footage; the only physical-TV run was one home Sony Android TV, which is not a Fire TV. One consented family session (n = 1), no study. The notification topic works like a password and is not authentication; ntfy.sh is public. Spoken output was not verified in the cloud recording; VoiceView/TalkBack were not run; Hindi/Telugu not native-reviewed. `packages/expotv` shows type errors (27 plain, 9 with path mapping). No timed reminders, no real video, no voice recognition. Not Appstore certified or submitted.
 
-The repository, the Release and the demo video stay public and unchanged until the end of judging (2026-11-20), apart from adding the demo-video link once the video is uploaded.
+The repository, the Release and the demo video stay public and unchanged until the end of judging (2026-11-20), apart from the demo-video link, which has been added.
