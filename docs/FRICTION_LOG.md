@@ -7,16 +7,16 @@ Part A is about Amazon products and Amazon's sample. Part B is about other tools
 
 ## For the Amazon team
 
-First-hand friction with Amazon's own tool, **Appstore Quality Central > Live Device Interaction** (an Amazon Fire TV cloud device; no Fire OS version is claimed). The FL-12 to FL-16 rows come from recording the demo video on 2026-10-22/23. Time cost is written "unmeasured" where the developer did not time it; no minutes are invented. Details: FL-01, FL-02 and FL-12 to FL-16 below; exact steps in the root [FRICTION_LOG.md](../FRICTION_LOG.md) (F-034 to F-040).
+First-hand friction with Amazon's own tool, **Appstore Quality Central > Live Device Interaction** (an Amazon Fire TV cloud device; no Fire OS version is claimed). The FL-12 to FL-16 rows come from recording the demo video on 2026-10-22/23. Severity is our own honest judgement on the Devpost scale, with a one-line reason; it is not Amazon's. Time cost is written "unmeasured" where the developer did not time it; no minutes are invented. Details: FL-01, FL-02 and FL-12 to FL-16 below; exact steps in the root [FRICTION_LOG.md](../FRICTION_LOG.md) (F-034 to F-040).
 
-| Issue | What happened | Impact on the builder | Workaround we used | Suggested fix for Amazon |
-|---|---|---|---|---|
-| Recording shows no device identity (FL-01, F-034) | The built-in recording shows only the app full-screen: no console, no device name or model. | Cannot prove a Fire TV by itself. Time: not recorded. | Recorded the whole browser window with a separate screen recorder. | Window-level recording, or burn the device name and model into the capture. |
-| Recorder: native alerts, 2-minute cap, save delay (FL-12, F-036) | Native browser alerts at Start and End (a browser-automation extension cannot click them); each recording capped at 2 minutes; the file takes about 45 to 60 s to be saved after stopping. | Unmeasured. A manual click at every start and stop; about 45 to 60 s wait per recording; long takes must be split. | Clicked OK by hand; split long takes into parts. | No native alerts (in-page confirmation); a longer cap. |
-| Recording stops when you leave the Screen panel (FL-13, F-037) | Switching to the Remote panel stops the recording, so remote buttons cannot be used while recording. The first two attempts produced one-frame files until this was understood. | Unmeasured. Two failed one-frame recordings (kept as failed attempts); R1 split into three parts. | Split long takes into parts once the behaviour was understood. | Keep recording across panels so the remote can be used during a take. |
-| Keyboard input and lag (FL-14, F-038) | Arrow keys and Enter work only after clicking the grey area around the TV picture; Escape and Backspace did not work (Back needed the on-screen Back button, Enter on it); about 1 to 2 s of picture lag. | Unmeasured. The lag affects every step of a take. | Click the grey area first; use the on-screen Back button. | A key-send API; Escape or Backspace as Back; lower latency. |
-| Session handling (FL-15, FL-16, F-039, F-040) | The session is server-side: a browser-automation tool could control only the tab in its own tab group, and a new tab needed the "Control" tab to reattach. A short home-internet drop disconnected the cloud device. | Unmeasured. A reattach step; a reconnect. | Used the "Control" tab; reconnected the device. | Document reattaching a tab; let a session resume after a short network drop. |
-| Choosing a device (FL-02, F-035) | The device list offered "FOS 14 3P TV" and "Smart TV - Amazon Fire TV"; it was unclear how to choose. | Time: not recorded. | Worked it out by trial. | Show the Fire OS version and model in the list. |
+| Issue | Task attempted | Expected vs actual | Severity (Critical / High / Medium / Low, our judgement) | Impact on the builder | Workaround we used | Suggested fix for Amazon |
+|---|---|---|---|---|---|---|
+| Recording shows no device identity (FL-01, F-034) | Record a cloud Fire TV session as proof for the hackathon video (2026-10-14). | Expected: the recording shows enough to identify the device. Actual: only the app full-screen; no console, no device name or model. | Medium: the track needs video of an actual Fire TV and the recording cannot show it by itself; a workaround exists. | Cannot prove a Fire TV by itself. Time: not recorded. | Recorded the whole browser window with a separate screen recorder. | Window-level recording, or burn the device name and model into the capture. |
+| Recorder: native alerts, 2-minute cap, save delay (FL-12, F-036) | Record the app on the cloud Fire TV device for the demo video (2026-10-22/23). | Expected: start and stop without native alerts, and a cap long enough for a demo take. Actual: native browser alerts at Start and End (a browser-automation extension cannot click them); each recording capped at 2 minutes; about 45 to 60 s before the file is saved. | Medium: manual clicks and waits on every take, each with a workaround. | Unmeasured. A manual click at every start and stop; about 45 to 60 s wait per recording; long takes must be split. | Clicked OK by hand; split long takes into parts. | No native alerts (in-page confirmation); a longer cap. |
+| Recording stops when you leave the Screen panel (FL-13, F-037) | Record a demo take that includes using the remote buttons. | Expected: recording continues while the remote buttons are used. Actual: leaving the Screen panel (for example for the Remote panel) stops the recording; the first two attempts produced one-frame files. | High: it made the first two attempts unusable and a single take that shows the remote buttons impossible; splitting is the only workaround. | Unmeasured. Two failed one-frame recordings (kept as failed attempts); R1 split into three parts. | Split long takes into parts once the behaviour was understood. | Keep recording across panels so the remote can be used during a take. |
+| Keyboard input and lag (FL-14, F-038) | Navigate the app on the cloud device with the keyboard. | Expected: keys work at once, Escape or Backspace go Back, the picture follows quickly. Actual: arrow keys and Enter work only after clicking the grey area around the TV picture; Escape and Backspace did not work (Back needed the on-screen Back button, Enter on it); about 1 to 2 s of picture lag. | Medium: it slows every step and Back needs a workaround, but the app stays usable. | Unmeasured. The lag affects every step of a take. | Click the grey area first; use the on-screen Back button. | A key-send API; Escape or Backspace as Back; lower latency. |
+| Session handling (FL-15 F-039: Low; FL-16 F-040: Medium) | Drive the cloud-device session from a browser-automation tool and keep one session open while recording. | Expected: any tab can attach, and a short network drop does not end the session. Actual: the session is server-side, a browser-automation tool could control only the tab in its own tab group and a new tab needed the "Control" tab to reattach; a short home-internet drop disconnected the cloud device. | Low for F-039 (one extra reattach step, with a known workaround); Medium for F-040 (it interrupts the session and needs a manual reconnect; the cause was a short drop of the developer's home internet). | Unmeasured. A reattach step; a reconnect. | Used the "Control" tab; reconnected the device. | Document reattaching a tab; let a session resume after a short network drop. |
+| Choosing a device (FL-02, F-035) | Choose a cloud device for a Live Device Interaction session. | Expected: the list makes each device's model and Fire OS version clear. Actual: "FOS 14 3P TV" and "Smart TV - Amazon Fire TV" were offered and it was unclear how to choose. | Low: a one-time confusion, resolved by trial. | Time: not recorded. | Worked it out by trial. | Show the Fire OS version and model in the list. |
 
 Amazon's *sample* (react-native-multi-tv-helloworld) friction is not repeated here: see FL-03 to FL-06 below.
 
@@ -29,43 +29,43 @@ Amazon's *sample* (react-native-multi-tv-helloworld) friction is not repeated he
 
 ### FL-01: Live Device Interaction recording cannot prove which device it came from  [user-reported] (F-034)
 - **What happened:** On 2026-10-14 the developer used the built-in recording of a Live Device Interaction session on a cloud Fire TV (three files, about 2:00, 2:00 and 1:43, 1920x1080). The files show only the app full-screen: no Amazon console, no device name or model.
-- **Impact:** The Fire TV track needs a video that shows the project running on an actual Fire TV device. These files cannot show that by themselves. Severity (developer's rating): low-medium. Time lost: not recorded.
+- **Impact:** The Fire TV track needs a video that shows the project running on an actual Fire TV device. These files cannot show that by themselves. Severity (developer's rating: low-medium; Devpost scale: Medium (the track needs video of an actual Fire TV and the recording cannot show it by itself; a workaround exists)). Time lost: not recorded.
 - **Workaround:** Record the whole browser window with a separate screen recorder, so the console, the device name and the app are all visible.
 - **Suggestion:** Offer a window-level recording, or burn the device name and model into the capture.
 
 ### FL-02: Hard to choose between the cloud devices "FOS 14 3P TV" and "Smart TV - Amazon Fire TV"  [user-reported] (F-035)
 - **What happened:** The device list offered "FOS 14 3P TV" and "Smart TV - Amazon Fire TV". The developer did not understand at first how to choose between them and worked it out after some time (how long was not recorded).
-- **Impact:** Time lost (not recorded) and uncertainty about which Fire OS the app ran on; this repository therefore states no Fire OS version. Severity (developer's rating): low.
+- **Impact:** Time lost (not recorded) and uncertainty about which Fire OS the app ran on; this repository therefore states no Fire OS version. Severity (developer's rating: low; Devpost scale: Low (a one-time confusion, resolved by trial)).
 - **Workaround:** Worked it out by trial (details not recorded).
 - **Suggestion:** Show the Fire OS version and the model clearly in the device list.
 
 ### FL-12: The Screen-tab recorder shows native browser alerts, is capped at 2 minutes and takes 45 to 60 seconds to save  [user-reported] (F-036)
 - **What happened:** Native alerts at Start and End (a browser-automation extension cannot click them); each recording capped at 2 minutes; about 45 to 60 seconds before the file is saved after stopping.
-- **Impact:** Unmeasured. A manual click at every start and stop; about 45 to 60 s wait to save each recording; long takes had to be split. Severity: not recorded.
+- **Impact:** Unmeasured. A manual click at every start and stop; about 45 to 60 s wait to save each recording; long takes had to be split. Severity: Medium (manual clicks and waits on every take, each with a workaround).
 - **Workaround:** Clicked OK on the alerts by hand; split long takes into parts.
 - **Suggestion:** Use an in-page confirmation (or none) instead of native browser alerts, and allow a longer recording cap.
 
 ### FL-13: Leaving the Screen panel stops the recording, so the remote buttons cannot be used while recording  [user-reported] (F-037)
 - **What happened:** Leaving the Screen panel (for example switching to the Remote panel) stops the recording, so remote buttons cannot be used while recording. The first two attempts produced one-frame files.
-- **Impact:** Unmeasured. Two failed recordings (one-frame files); a long take split into three parts. Severity: not recorded.
+- **Impact:** Unmeasured. Two failed recordings (one-frame files); a long take split into three parts. Severity: High (it made the first two attempts unusable and a single take that shows the remote buttons impossible; splitting is the only workaround).
 - **Workaround:** Once understood, split long takes into parts (R1 into three parts); the two one-frame files are kept as failed attempts.
 - **Suggestion:** Keep recording across panels, so the remote buttons can be used during a take.
 
 ### FL-14: Keyboard keys work only after clicking the grey area, Escape and Backspace do nothing, and the picture lags 1 to 2 seconds  [user-reported] (F-038)
 - **What happened:** Arrow keys and Enter work only after clicking the grey area around the TV picture; Escape and Backspace did not work; Back needed the on-screen Back button (Enter on it); about 1 to 2 seconds of picture lag between a key press and the screen.
-- **Impact:** Unmeasured. The 1 to 2 s lag affects every step of a take. Severity: not recorded.
+- **Impact:** Unmeasured. The 1 to 2 s lag affects every step of a take. Severity: Medium (it slows every step and Back needs a workaround, but the app stays usable).
 - **Workaround:** Click the grey area first; use the on-screen Back button with Enter.
 - **Suggestion:** Offer a key-send API, make Escape or Backspace act as Back, and reduce the latency.
 
 ### FL-15: The device session is server-side, and a browser-automation tool could control only the tab in its own tab group  [user-reported] (F-039)
 - **What happened:** The device session is server-side; a browser-automation tool could control only the tab belonging to its own tab group; a new tab needed the "Control" tab to reattach.
-- **Impact:** Unmeasured. A reattach step whenever a new tab was needed. Severity: not recorded.
+- **Impact:** Unmeasured. A reattach step whenever a new tab was needed. Severity: Low (one extra reattach step, with a known workaround).
 - **Workaround:** Used the "Control" tab to reattach.
 - **Suggestion:** Document how to reattach a new tab to a running session.
 
 ### FL-16: A short home-internet drop disconnected the cloud device  [user-reported] (F-040)
 - **What happened:** A short home-internet drop disconnected the cloud device; it had to be reconnected.
-- **Impact:** Unmeasured. Severity: not recorded.
+- **Impact:** Unmeasured. Severity: Medium (it interrupts the session and needs a manual reconnect; the cause was a short drop of the developer's home internet).
 - **Workaround:** Reconnected the device.
 - **Suggestion:** Let a session resume after a short network drop.
 

@@ -53,11 +53,11 @@
 | F-033 | Gradle multi-ABI native build, network drop | Major | ~28 min |
 | F-034 | Live Device Interaction built-in recording (user-reported) | Low-medium | not recorded |
 | F-035 | Live Device Interaction device list (user-reported) | Low | not recorded |
-| F-036 | Live Device Interaction: recorder: native alerts, 2-minute cap, save delay (user-reported) | not recorded | unmeasured |
-| F-037 | Live Device Interaction: recording stops when you leave the Screen panel (user-reported) | not recorded | unmeasured |
-| F-038 | Live Device Interaction: keyboard input and picture lag (user-reported) | not recorded | unmeasured |
-| F-039 | Live Device Interaction: session is server-side; automation reaches only its own tab group (user-reported) | not recorded | unmeasured |
-| F-040 | Live Device Interaction: short internet drop disconnects the device (user-reported) | not recorded | unmeasured |
+| F-036 | Live Device Interaction: recorder: native alerts, 2-minute cap, save delay (user-reported) | Medium | unmeasured |
+| F-037 | Live Device Interaction: recording stops when you leave the Screen panel (user-reported) | High | unmeasured |
+| F-038 | Live Device Interaction: keyboard input and picture lag (user-reported) | Medium | unmeasured |
+| F-039 | Live Device Interaction: session is server-side; automation reaches only its own tab group (user-reported) | Low | unmeasured |
+| F-040 | Live Device Interaction: short internet drop disconnects the device (user-reported) | Medium | unmeasured |
 
 ## Entries
 
@@ -510,7 +510,7 @@
   2. Checked the saved files afterwards [user-reported].
 - Expected: The recording shows enough to identify the device (Amazon console UI or the device name/model).
 - Actual: The built-in recording captures only the device screen, with no Amazon UI and no device name, so it cannot by itself prove a Fire TV [user-reported]. The three files show only the app full-screen.
-- Severity (our rating): Low-medium (user's rating; time lost not recorded)
+- Severity (our rating): Low-medium (user's rating; time lost not recorded). On the Devpost scale (Critical / High / Medium / Low): Medium (the track needs video of an actual Fire TV and the recording cannot show it by itself; a workaround exists)
 - Workaround used: Record the whole browser window with a separate screen recorder.
 - Actionable suggestion: Offer a window-level recording, or burn the device name/model into the capture.
 - Evidence: The three 2026-10-14 recordings stored outside this repository (`recording.mp4`, `recording (1).mp4`, `recording (2).mp4`). The statement about the cause is [user-reported].
@@ -523,7 +523,7 @@
   2. Worked out the difference after some time [user-reported]; how long was not recorded.
 - Expected: The list makes the model and Fire OS version of each device clear.
 - Actual: The user did not understand at first how to choose between the two, and understood after some time [user-reported].
-- Severity (our rating): Low (user's rating; time lost not recorded)
+- Severity (our rating): Low (user's rating; time lost not recorded). On the Devpost scale (Critical / High / Medium / Low): Low (a one-time confusion, resolved by trial)
 - Workaround used: Worked it out by trial (details not recorded).
 - Actionable suggestion: Show the Fire OS version and model clearly in the device list.
 - Evidence: User statement only; no file.
@@ -537,7 +537,7 @@
   3. Each recording stopped at 2 minutes; after stopping, the file took about 45 to 60 seconds to be saved.
 - Expected: Start and stop without native alerts, and a cap long enough for a normal demo take.
 - Actual: Native alerts at Start and End (a browser-automation extension cannot click them); each recording capped at 2 minutes; about 45 to 60 seconds before the file is saved after stopping.
-- Severity (our rating): not recorded (time lost unmeasured; each recording adds about 45 to 60 s of waiting for the save)
+- Severity (our rating, Devpost scale): Medium (manual clicks and waits on every take, each with a workaround). Time lost: unmeasured; each recording adds about 45 to 60 s of waiting for the save
 - Workaround used: Clicked OK on the alerts by hand; split long takes into parts.
 - Actionable suggestion: Use an in-page confirmation (or none) instead of native browser alerts, and allow a longer recording cap.
 - Evidence: User statement only (first-hand, 2026-10-22/23); no file shows the alerts.
@@ -552,7 +552,7 @@
   4. Split the long take R1 into three parts.
 - Expected: Recording continues while the remote buttons are used.
 - Actual: Leaving the Screen panel (for example switching to the Remote panel) stops the recording, so remote buttons cannot be used while recording. The first two attempts produced one-frame files.
-- Severity (our rating): not recorded (time lost unmeasured)
+- Severity (our rating, Devpost scale): High (it made the first two attempts unusable and a single take that shows the remote buttons impossible; splitting is the only workaround). Time lost: unmeasured
 - Workaround used: Once understood, split long takes into parts (R1 into three parts); the two one-frame files are kept as failed attempts.
 - Actionable suggestion: Keep recording across panels, so the remote buttons can be used during a take.
 - Evidence: User statement; the two one-frame files are kept by the developer as failed attempts and are not in this repository.
@@ -566,7 +566,7 @@
   3. Noticed about 1 to 2 seconds between a key press and the change on screen.
 - Expected: Keys work without an extra click, Escape or Backspace go Back, and the picture follows the key quickly.
 - Actual: Arrow keys and Enter work only after clicking the grey area around the TV picture; Escape and Backspace did not work; Back needed the on-screen Back button (Enter on it); about 1 to 2 seconds of picture lag between a key press and the screen.
-- Severity (our rating): not recorded (time lost unmeasured)
+- Severity (our rating, Devpost scale): Medium (it slows every step and Back needs a workaround, but the app stays usable). Time lost: unmeasured
 - Workaround used: Click the grey area first; use the on-screen Back button with Enter.
 - Actionable suggestion: Offer a key-send API, make Escape or Backspace act as Back, and reduce the latency.
 - Evidence: User statement only (first-hand, 2026-10-22/23).
@@ -580,7 +580,7 @@
   3. Opening a new tab needed the "Control" tab to reattach.
 - Expected: Any tab can attach to the running session.
 - Actual: The device session is server-side; a browser-automation tool could control only the tab belonging to its own tab group; a new tab needed the "Control" tab to reattach.
-- Severity (our rating): not recorded (time lost unmeasured)
+- Severity (our rating, Devpost scale): Low (one extra reattach step, with a known workaround). Time lost: unmeasured
 - Workaround used: Used the "Control" tab to reattach.
 - Actionable suggestion: Document how to reattach a new tab to a running session.
 - Evidence: User statement only (first-hand, 2026-10-22/23).
@@ -594,7 +594,7 @@
   3. Reconnected the device.
 - Expected: A short network drop does not end the session, or the session resumes by itself.
 - Actual: A short home-internet drop disconnected the cloud device; it had to be reconnected.
-- Severity (our rating): not recorded (time lost unmeasured)
+- Severity (our rating, Devpost scale): Medium (it interrupts the session and needs a manual reconnect; the cause was a short drop of the developer's home internet). Time lost: unmeasured
 - Workaround used: Reconnected the device.
 - Actionable suggestion: Let a session resume after a short network drop.
 - Evidence: User statement only (first-hand, 2026-10-22/23).
