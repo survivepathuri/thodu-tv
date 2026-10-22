@@ -102,7 +102,7 @@ Evidence: sender logic, one retry, the 3-second debounce and "success only on 2x
 
 ## Run from source
 
-**Use Git Bash for every command, and clone to a very short path (about 15 characters, e.g. `C:\t`).** A normal path such as `C:\Users\<name>\Documents\GitHub\thodu-tv` fails the native build after about 13 minutes (F-016, [FL-03](FRICTION_LOG.md)). Full steps (JDK 17, Android SDK, short repo path) are in the [README](../README.md#run-from-source). In short:
+**Use Git Bash for every command, and clone to a very short path (about 15 characters, e.g. `C:\t`).** A long path such as one inside a user's Documents folder fails the native build after about 13 minutes (F-016, [FL-03](FRICTION_LOG.md)). Full steps (JDK 17, Android SDK, short repo path) are in the [README](../README.md#run-from-source). In short:
 
 ```bash
 corepack yarn workspaces focus @thodu/expotv
