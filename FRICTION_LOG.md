@@ -1,14 +1,14 @@
 # Thodu TV: Friction log (structured)
 *Built for one person, made for many.*
 
-> Judges: a short, curated version of this log (11 entries, Amazon first) is in [docs/FRICTION_LOG.md](docs/FRICTION_LOG.md). This file is the full detailed log.
+> Judges: a short, curated version of this log (16 entries, Amazon first) is in [docs/FRICTION_LOG.md](docs/FRICTION_LOG.md). This file is the full detailed log.
 
 **Environment:** Windows 11 Pro (build 22621), solo developer, Fire TV track, React Native + Expo (react-native-tvos), Android TV emulator (Android 14 TV image, x86) with the SDK, AVD and JDK 17 on the D: drive.
-**Date range:** 2026-10-11 to 2026-10-12 (F-001 to F-018 on 2026-10-11; F-019 to F-033 on 2026-10-12), plus two entries reported by the developer on 2026-10-18 about the 2026-10-14 cloud-device session (F-034, F-035).
+**Date range:** 2026-10-11 to 2026-10-12 (F-001 to F-018 on 2026-10-11; F-019 to F-033 on 2026-10-12), plus two entries reported by the developer on 2026-10-18 about the 2026-10-14 cloud-device session (F-034, F-035), plus five first-hand entries reported on 2026-10-23 about the 2026-10-22/23 recording session on the same cloud-device service (F-036 to F-040).
 **Why the log starts before the first commit:** the first entries (2026-10-11) are about setting up the tools and trying two starting projects (see F-019) before the Thodu TV repository was created; its first commit is dated 2026-10-12 00:45 +0530.
-**Honesty note:** all 35 entries are real. F-001 to F-033 are unedited in substance; they were reformatted from our append-only working log. F-034 and F-035 were not written at the time: the developer reported them on 2026-10-18 from memory of the 2026-10-14 session, so they are tagged `[user-reported]`; the only file evidence is the three 2026-10-14 recordings (F-034), and F-035 has the user's statement only. Where a detail was not recorded at the time, this document says "not recorded" instead of reconstructing it. F-019 and F-020 keep their original corrections.
+**Honesty note:** all 40 entries are real. F-001 to F-033 are unedited in substance; they were reformatted from our append-only working log. F-034 and F-035 were not written at the time: the developer reported them on 2026-10-18 from memory of the 2026-10-14 session, so they are tagged `[user-reported]`; the only file evidence is the three 2026-10-14 recordings (F-034), and F-035 has the user's statement only. Where a detail was not recorded at the time, this document says "not recorded" instead of reconstructing it. F-036 to F-040 were also not written at the time: the developer reported them on 2026-10-23 as first-hand facts from the 2026-10-22/23 recording session, so they are tagged `[user-reported]`; time lost is "unmeasured" because none was timed, and the only file evidence is two one-frame failed recordings (F-037) that are not in this repository. F-019 and F-020 keep their original corrections.
 
-**Not covered:** no notes were kept during the 2026-10-14 Amazon cloud-device session (Live Device Interaction), so the only entries about it are the two user-reported ones (F-034, F-035); see `docs/PRODUCT_FEEDBACK.md` A4. Severity for those two is the developer's own "low-medium" and "low" because no time was recorded. A paste-ready copy of these entries is `docs/DEVPOST_FRICTION_PASTE.md`.
+**Not covered:** no notes were kept during the 2026-10-14 Amazon cloud-device session (Live Device Interaction), so the only entries about it are the two user-reported ones (F-034, F-035); the 2026-10-22/23 recording session likewise has only the five user-reported entries F-036 to F-040; see `docs/PRODUCT_FEEDBACK.md` A4. Severity for those two is the developer's own "low-medium" and "low" because no time was recorded. A paste-ready copy of these entries is `docs/DEVPOST_FRICTION_PASTE.md`.
 
 **Severity (our own rating, not Amazon's):** Blocker = stopped progress for more than 1 hour or forced a different approach (tool, version, or source); Major = cost 20-60 minutes; Minor = under 20 minutes or cosmetic. If time lost was not recorded, severity is "not recorded". Time lost values are the estimates written in the log at the time ("~" = approximate).
 
@@ -53,6 +53,11 @@
 | F-033 | Gradle multi-ABI native build, network drop | Major | ~28 min |
 | F-034 | Live Device Interaction built-in recording (user-reported) | Low-medium | not recorded |
 | F-035 | Live Device Interaction device list (user-reported) | Low | not recorded |
+| F-036 | Live Device Interaction: recorder: native alerts, 2-minute cap, save delay (user-reported) | not recorded | unmeasured |
+| F-037 | Live Device Interaction: recording stops when you leave the Screen panel (user-reported) | not recorded | unmeasured |
+| F-038 | Live Device Interaction: keyboard input and picture lag (user-reported) | not recorded | unmeasured |
+| F-039 | Live Device Interaction: session is server-side; automation reaches only its own tab group (user-reported) | not recorded | unmeasured |
+| F-040 | Live Device Interaction: short internet drop disconnects the device (user-reported) | not recorded | unmeasured |
 
 ## Entries
 
@@ -522,6 +527,77 @@
 - Workaround used: Worked it out by trial (details not recorded).
 - Actionable suggestion: Show the Fire OS version and model clearly in the device list.
 - Evidence: User statement only; no file.
+
+### F-036 — The Screen-tab recorder shows native browser alerts, is capped at 2 minutes and takes 45 to 60 seconds to save   [Dev] [user-reported]
+- Tool / SDK: Appstore Quality Central > Live Device Interaction, Screen tab recorder (an Amazon Fire TV cloud device)
+- Task attempted: Record the app running on the cloud Fire TV device for the demo video (session of 2026-10-22/23).
+- Steps taken:
+  1. Opened the Screen tab and started a recording.
+  2. A native browser alert appeared at Start and again at End. A browser-automation extension cannot click native alerts, so the developer clicked OK by hand.
+  3. Each recording stopped at 2 minutes; after stopping, the file took about 45 to 60 seconds to be saved.
+- Expected: Start and stop without native alerts, and a cap long enough for a normal demo take.
+- Actual: Native alerts at Start and End (a browser-automation extension cannot click them); each recording capped at 2 minutes; about 45 to 60 seconds before the file is saved after stopping.
+- Severity (our rating): not recorded (time lost unmeasured; each recording adds about 45 to 60 s of waiting for the save)
+- Workaround used: Clicked OK on the alerts by hand; split long takes into parts.
+- Actionable suggestion: Use an in-page confirmation (or none) instead of native browser alerts, and allow a longer recording cap.
+- Evidence: User statement only (first-hand, 2026-10-22/23); no file shows the alerts.
+
+### F-037 — Leaving the Screen panel stops the recording, so the remote buttons cannot be used while recording   [Dev] [user-reported]
+- Tool / SDK: Appstore Quality Central > Live Device Interaction, Screen tab recorder (an Amazon Fire TV cloud device)
+- Task attempted: Record a demo take that includes using the remote buttons.
+- Steps taken:
+  1. Started a recording in the Screen panel.
+  2. Left the Screen panel (for example for the Remote panel); the recording stopped.
+  3. The first two recording attempts produced one-frame files (kept as failed attempts) until this behaviour, the alerts and the 2-minute cap (F-036) were understood.
+  4. Split the long take R1 into three parts.
+- Expected: Recording continues while the remote buttons are used.
+- Actual: Leaving the Screen panel (for example switching to the Remote panel) stops the recording, so remote buttons cannot be used while recording. The first two attempts produced one-frame files.
+- Severity (our rating): not recorded (time lost unmeasured)
+- Workaround used: Once understood, split long takes into parts (R1 into three parts); the two one-frame files are kept as failed attempts.
+- Actionable suggestion: Keep recording across panels, so the remote buttons can be used during a take.
+- Evidence: User statement; the two one-frame files are kept by the developer as failed attempts and are not in this repository.
+
+### F-038 — Keyboard keys work only after clicking the grey area, Escape and Backspace do nothing, and the picture lags 1 to 2 seconds   [Dev] [user-reported]
+- Tool / SDK: Appstore Quality Central > Live Device Interaction, keyboard input and video stream (an Amazon Fire TV cloud device)
+- Task attempted: Navigate the app on the cloud device with the keyboard.
+- Steps taken:
+  1. Pressed arrow keys and Enter: they worked only after the grey area around the TV picture was clicked.
+  2. Tried Escape and Backspace: they did not work. Back needed the on-screen Back button (Enter on it).
+  3. Noticed about 1 to 2 seconds between a key press and the change on screen.
+- Expected: Keys work without an extra click, Escape or Backspace go Back, and the picture follows the key quickly.
+- Actual: Arrow keys and Enter work only after clicking the grey area around the TV picture; Escape and Backspace did not work; Back needed the on-screen Back button (Enter on it); about 1 to 2 seconds of picture lag between a key press and the screen.
+- Severity (our rating): not recorded (time lost unmeasured)
+- Workaround used: Click the grey area first; use the on-screen Back button with Enter.
+- Actionable suggestion: Offer a key-send API, make Escape or Backspace act as Back, and reduce the latency.
+- Evidence: User statement only (first-hand, 2026-10-22/23).
+
+### F-039 — The device session is server-side, and a browser-automation tool could control only the tab in its own tab group   [Dev] [user-reported]
+- Tool / SDK: Appstore Quality Central > Live Device Interaction, session in the browser (an Amazon Fire TV cloud device)
+- Task attempted: Drive the cloud-device session from a browser-automation tool.
+- Steps taken:
+  1. The device session runs on the server side.
+  2. The automation tool could control only the tab belonging to its own tab group.
+  3. Opening a new tab needed the "Control" tab to reattach.
+- Expected: Any tab can attach to the running session.
+- Actual: The device session is server-side; a browser-automation tool could control only the tab belonging to its own tab group; a new tab needed the "Control" tab to reattach.
+- Severity (our rating): not recorded (time lost unmeasured)
+- Workaround used: Used the "Control" tab to reattach.
+- Actionable suggestion: Document how to reattach a new tab to a running session.
+- Evidence: User statement only (first-hand, 2026-10-22/23).
+
+### F-040 — A short home-internet drop disconnected the cloud device   [Dev] [user-reported]
+- Tool / SDK: Appstore Quality Central > Live Device Interaction, session connection (an Amazon Fire TV cloud device)
+- Task attempted: Keep one device session open while recording.
+- Steps taken:
+  1. The developer's home internet dropped for a short time.
+  2. The cloud device was disconnected.
+  3. Reconnected the device.
+- Expected: A short network drop does not end the session, or the session resumes by itself.
+- Actual: A short home-internet drop disconnected the cloud device; it had to be reconnected.
+- Severity (our rating): not recorded (time lost unmeasured)
+- Workaround used: Reconnected the device.
+- Actionable suggestion: Let a session resume after a short network drop.
+- Evidence: User statement only (first-hand, 2026-10-22/23).
 
 ## Top 5 suggestions for Amazon
 

@@ -1,9 +1,29 @@
 # Thodu TV: Friction log (curated, Amazon-related first)
 *A TV built for elderly and disabled people that calls the family for help*
 
-This is the short, judge-readable version of the friction log. Every entry below summarises an entry of the detailed log, [`FRICTION_LOG.md`](../FRICTION_LOG.md) at the repository root (35 entries, F-001 to F-035, with exact steps, expected vs actual text and our severity rating). Nothing here is new; no entry is invented. Entries marked **[user-reported]** rest on the developer's statement only, with no file as evidence. Times are the developer's rough notes kept at the time ("not recorded" where they were not).
+This is the short, judge-readable version of the friction log. Every entry below summarises an entry of the detailed log, [`FRICTION_LOG.md`](../FRICTION_LOG.md) at the repository root (40 entries, F-001 to F-040, with exact steps, expected vs actual text and our severity rating). Nothing here is new; no entry is invented. FL-12 to FL-16 are numbered after the first eleven so that existing references to FL-01 to FL-11 stay valid; they sit in Part A next to the other Live Device Interaction entries. Entries marked **[user-reported]** rest on the developer's statement only, with no file as evidence (FL-12 to FL-16 are the developer's first-hand report of the 2026-10-22/23 recording session). Times are the developer's rough notes kept at the time ("not recorded" where they were not).
 
 Part A is about Amazon products and Amazon's sample. Part B is about other tools met on the way to a Fire TV build.
+
+## For the Amazon team
+
+First-hand friction with Amazon's own tool, **Appstore Quality Central > Live Device Interaction** (an Amazon Fire TV cloud device; no Fire OS version is claimed). The FL-12 to FL-16 rows come from recording the demo video on 2026-10-22/23. Time cost is written "unmeasured" where the developer did not time it; no minutes are invented. Details: FL-01, FL-02 and FL-12 to FL-16 below; exact steps in the root [FRICTION_LOG.md](../FRICTION_LOG.md) (F-034 to F-040).
+
+| Issue | What happened | Impact on the builder | Workaround we used | Suggested fix for Amazon |
+|---|---|---|---|---|
+| Recording shows no device identity (FL-01, F-034) | The built-in recording shows only the app full-screen: no console, no device name or model. | Cannot prove a Fire TV by itself. Time: not recorded. | Recorded the whole browser window with a separate screen recorder. | Window-level recording, or burn the device name and model into the capture. |
+| Recorder: native alerts, 2-minute cap, save delay (FL-12, F-036) | Native browser alerts at Start and End (a browser-automation extension cannot click them); each recording capped at 2 minutes; the file takes about 45 to 60 s to be saved after stopping. | Unmeasured. A manual click at every start and stop; about 45 to 60 s wait per recording; long takes must be split. | Clicked OK by hand; split long takes into parts. | No native alerts (in-page confirmation); a longer cap. |
+| Recording stops when you leave the Screen panel (FL-13, F-037) | Switching to the Remote panel stops the recording, so remote buttons cannot be used while recording. The first two attempts produced one-frame files until this was understood. | Unmeasured. Two failed one-frame recordings (kept as failed attempts); R1 split into three parts. | Split long takes into parts once the behaviour was understood. | Keep recording across panels so the remote can be used during a take. |
+| Keyboard input and lag (FL-14, F-038) | Arrow keys and Enter work only after clicking the grey area around the TV picture; Escape and Backspace did not work (Back needed the on-screen Back button, Enter on it); about 1 to 2 s of picture lag. | Unmeasured. The lag affects every step of a take. | Click the grey area first; use the on-screen Back button. | A key-send API; Escape or Backspace as Back; lower latency. |
+| Session handling (FL-15, FL-16, F-039, F-040) | The session is server-side: a browser-automation tool could control only the tab in its own tab group, and a new tab needed the "Control" tab to reattach. A short home-internet drop disconnected the cloud device. | Unmeasured. A reattach step; a reconnect. | Used the "Control" tab; reconnected the device. | Document reattaching a tab; let a session resume after a short network drop. |
+| Choosing a device (FL-02, F-035) | The device list offered "FOS 14 3P TV" and "Smart TV - Amazon Fire TV"; it was unclear how to choose. | Time: not recorded. | Worked it out by trial. | Show the Fire OS version and model in the list. |
+
+Amazon's *sample* (react-native-multi-tv-helloworld) friction is not repeated here: see FL-03 to FL-06 below.
+
+**If you only read one thing:**
+1. Recorder: no native alerts, a longer cap, keep recording while the Remote panel is used (FL-12, FL-13), and the device name and model in the recording (FL-01).
+2. Input: keys that work without a first click, Escape or Backspace as Back, a key-send API and lower latency (FL-14).
+3. Sessions: resume after a short network drop and document reattaching a tab (FL-15, FL-16).
 
 ## Part A: Amazon
 
@@ -18,6 +38,36 @@ Part A is about Amazon products and Amazon's sample. Part B is about other tools
 - **Impact:** Time lost (not recorded) and uncertainty about which Fire OS the app ran on; this repository therefore states no Fire OS version. Severity (developer's rating): low.
 - **Workaround:** Worked it out by trial (details not recorded).
 - **Suggestion:** Show the Fire OS version and the model clearly in the device list.
+
+### FL-12: The Screen-tab recorder shows native browser alerts, is capped at 2 minutes and takes 45 to 60 seconds to save  [user-reported] (F-036)
+- **What happened:** Native alerts at Start and End (a browser-automation extension cannot click them); each recording capped at 2 minutes; about 45 to 60 seconds before the file is saved after stopping.
+- **Impact:** Unmeasured. A manual click at every start and stop; about 45 to 60 s wait to save each recording; long takes had to be split. Severity: not recorded.
+- **Workaround:** Clicked OK on the alerts by hand; split long takes into parts.
+- **Suggestion:** Use an in-page confirmation (or none) instead of native browser alerts, and allow a longer recording cap.
+
+### FL-13: Leaving the Screen panel stops the recording, so the remote buttons cannot be used while recording  [user-reported] (F-037)
+- **What happened:** Leaving the Screen panel (for example switching to the Remote panel) stops the recording, so remote buttons cannot be used while recording. The first two attempts produced one-frame files.
+- **Impact:** Unmeasured. Two failed recordings (one-frame files); a long take split into three parts. Severity: not recorded.
+- **Workaround:** Once understood, split long takes into parts (R1 into three parts); the two one-frame files are kept as failed attempts.
+- **Suggestion:** Keep recording across panels, so the remote buttons can be used during a take.
+
+### FL-14: Keyboard keys work only after clicking the grey area, Escape and Backspace do nothing, and the picture lags 1 to 2 seconds  [user-reported] (F-038)
+- **What happened:** Arrow keys and Enter work only after clicking the grey area around the TV picture; Escape and Backspace did not work; Back needed the on-screen Back button (Enter on it); about 1 to 2 seconds of picture lag between a key press and the screen.
+- **Impact:** Unmeasured. The 1 to 2 s lag affects every step of a take. Severity: not recorded.
+- **Workaround:** Click the grey area first; use the on-screen Back button with Enter.
+- **Suggestion:** Offer a key-send API, make Escape or Backspace act as Back, and reduce the latency.
+
+### FL-15: The device session is server-side, and a browser-automation tool could control only the tab in its own tab group  [user-reported] (F-039)
+- **What happened:** The device session is server-side; a browser-automation tool could control only the tab belonging to its own tab group; a new tab needed the "Control" tab to reattach.
+- **Impact:** Unmeasured. A reattach step whenever a new tab was needed. Severity: not recorded.
+- **Workaround:** Used the "Control" tab to reattach.
+- **Suggestion:** Document how to reattach a new tab to a running session.
+
+### FL-16: A short home-internet drop disconnected the cloud device  [user-reported] (F-040)
+- **What happened:** A short home-internet drop disconnected the cloud device; it had to be reconnected.
+- **Impact:** Unmeasured. Severity: not recorded.
+- **Workaround:** Reconnected the device.
+- **Suggestion:** Let a session resume after a short network drop.
 
 ### FL-03: Amazon multi-TV sample: native build fails on Windows' 260-character path limit (F-016)
 - **What happened:** The sample's release build, started from a clone in a normal-length folder, failed after about 13 minutes in ninja/CMake with `Filename longer than 260 characters`. The sample's README does not mention a path limit. Windows `LongPathsEnabled=1` did not help.
