@@ -1,19 +1,19 @@
 # Thodu TV: GitHub About box (exact text)
 
-Set these in the repository's About box (the gear icon next to "About") when the repository is made public. Nothing here has been applied; the current About text on the private repository is out of date.
+Set these in the repository's About box (the gear icon next to "About") when the repository is made public. These are the values applied to the About box at publication.
 
 **Description** (under the 350-character limit):
 
 ```
-A TV built for elderly and disabled people that calls the family for help. One-button scanning, needs-based setup, Help via the free ntfy app. React Native for TV (Expo). Fire TV track entry, Amazon Build, Ship, Shape hackathon. Demo mode by default.
+A TV built for elderly and disabled people that calls the family for help. Built for one person, made for many. One-button scanning, needs-based setup, Help via the free ntfy app. React Native for TV (Expo). Fire TV track entry, Amazon Build, Ship, Shape hackathon. Demo mode by default.
 ```
 
-**Website:** leave empty until the demo video exists, then set it to the video link (`[VIDEO_URL]`).
+**Website:** none (leave empty).
 
 **Topics** (lowercase, as GitHub requires):
 
 ```
-fire-tv  android-tv  react-native  react-native-tvos  expo  accessibility  assistive-technology  elderly  ntfy  typescript  hackathon
+react-native  tvos  fire-tv  accessibility  expo  typescript  hackathon  a11y
 ```
 
 **Check after making the repository public** (logged out, in a private window):

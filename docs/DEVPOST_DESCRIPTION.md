@@ -1,13 +1,14 @@
 # Thodu TV: Devpost description (English)
-*A TV app that older adults and people with disabilities can use with one button, and that tells their family when they need help.*
+*A TV built for elderly and disabled people that calls the family for help.*
+*Built for one person, made for many.*
 
-Written for the Devpost fields in form order. Every claim is backed in [CLAIMS.md](CLAIMS.md) and uses its evidence tags. Nothing here says Thodu TV is Fire TV certified, Appstore approved, tested with users, an emergency or medical service, voice-controlled, or that it has medicine reminders or a usage-adaptive Home. The only placeholders are the repository, release and video links, which exist only after publishing.
+Written for the Devpost fields in form order. Every claim is backed in [CLAIMS.md](CLAIMS.md) and uses its evidence tags. Nothing here says Thodu TV is Fire TV certified, Appstore approved, tested with users, an emergency or medical service, voice-controlled, or that it has medicine reminders or a usage-adaptive Home. The only placeholder left is the demo video link, which exists only after the video is uploaded.
 
 ## Project name
 Thodu TV (తోడు టీవీ)
 
 ## Tagline (60 characters or fewer)
-Easy TV. One button. Family one press away. (43 characters)
+Built for one person, made for many. (36 characters)
 
 ## Primary track
 Fire TV. Mini challenges: none claimed (see "Mini challenges" below).
@@ -62,13 +63,11 @@ Remote-first design means every state needs a visible focus and a way out; "hone
 ## What's next
 Beyond the hackathon, as plans only: real video-app integration, scheduled medicine reminders, a caregiver view with a private notification channel, more languages, a Vega OS port. None is built.
 
-Run with VoiceView/TalkBack; more sessions with real users; native-speaker review of Hindi and Telugu; timed medicine reminders and a schedule; an Alexa+ voice trigger for people who cannot use a remote (none of these is built).
-
 ## Built With
 React Native (react-native-tvos 0.83.6-0), React 19.2, Expo SDK 55, expo-router, TypeScript, Hermes, AsyncStorage, expo-speech, expo-crypto, expo-build-properties, react-native-reanimated, react-native-screens, Jest, Yarn 4 (workspaces), Gradle, Android / Fire OS, ntfy.sh (public notification service), Amazon react-native-multi-tv-helloworld sample (MIT-0).
 
 ## Try it out
-- Code: [GitHub repository URL; see submission.md for the access action]
+- Code: https://github.com/survivepathuri/thodu-tv
 - Judge APK (topic-free demo build): the GitHub Release asset `thodu-tv-d52f5fe-judge.apk`, SHA-256 `6e1ef0ac79f3eda694f65e63b9234baf01b53c845cb6c41ecff55f3daea4331f`
 - Judge guide: `docs/JUDGES.md` in the repository
 - Demo video: [VIDEO_URL]
@@ -78,7 +77,7 @@ No part of Thodu TV existed before 2026-08-31 (10:15 am PT). The repository was 
 
 ## Mini challenges
 - **AWS Builder:** not entered. Thodu TV uses no AWS service.
-- **Open Source:** not claimed on this repository alone: the rule asks for a "new, additional" open-source project or a contribution to a public repository alongside the primary submission. [Add only if a separate public contribution is made.]
+- **Open Source:** not claimed on this repository alone: the rule asks for a "new, additional" open-source project or a contribution to a public repository alongside the primary submission.
 
 ## Product Feedback
 Paste from `docs/PRODUCT_FEEDBACK.md` (five elements per tool, 13 entries: 1 Amazon multi-TV sample, 2 Appstore Quality Central Live Device Interaction, 3 Fire TV documentation, 4 react-native-tvos, 5 Expo build tooling, 6 Expo runtime modules, 7 Gradle/JDK/Android SDK and signing, 8 Android TV emulator, 9 Yarn/Corepack/Node, 10 Jest, 11 ntfy.sh, 12 Claude Code, 13 outside tools). Would-build-again answers are the developer's own words.
