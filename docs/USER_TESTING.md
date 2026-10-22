@@ -1,45 +1,27 @@
-# Thodu TV: User testing: NOT YET DONE
+# Thodu TV: User testing: one family session
 *Easy TV. One button. Family one press away.*
 
-**Status: NOT YET DONE.** No session with a real user has been run and recorded. Until a dated evidence file exists and this page is filled in, no document, video or Devpost text may say Thodu TV was "tested with users". A session with a family member on the developer's home TV (a Sony Android TV, **not** a Fire TV) is planned for 2026-10-19. The participant is an adult family member; taking part is voluntary; verbal consent is asked before any filming; the TV screen and hands are filmed, and a face only if the participant agrees; no names or personal data appear anywhere; the participant can stop at any time and ask for the footage to be deleted.
+**Status: one consented session with one family member, user-reported. Not a study.** On 20 October 2026 the developer ran Thodu TV with an adult family member (the developer's elder brother) on the developer's home TV, a Sony Android TV, **not** a Fire TV. The participant agreed to take part. Several real Help alerts were sent from the TV and reached the family phone through the ntfy app. That is all this page claims.
 
-How to run a session (consent statement, tasks, what is and is not recorded) is in [USER_SESSIONS.md](USER_SESSIONS.md). Notes with names or personal details are kept **outside this repository**; only anonymous facts are copied here.
+What this page does **not** claim: that the app helps anyone, any measured result, any percentage, any diagnosis of the participant, or that this session tested the judge APK itself (the session used a build of the same code that had the developer's private notification topic; the judge build is the same code with that topic removed). One session with one person is an anecdote (n = 1), not evidence of benefit.
 
-## Session 1 (fill in after 2026-10-19; leave blank until it happens)
+Evidence kept: the developer's own report. No recording, photo or note from the session is stored in this repository. Nothing in this repository names or identifies the participant. How a session is meant to be run (consent statement, tasks, what is and is not recorded) is in [USER_SESSIONS.md](USER_SESSIONS.md); that file is the template, and this session is the first use of it.
+
+## Session 1
 
 | Field | Entry |
 |---|---|
-| Date | |
-| Device and OS (read from the TV, not guessed) | |
-| App build (`versionName` from Settings > Apps, or the APK file name) | |
-| Participant (anonymous label and, only if they agree, an age band) | Participant 1 |
-| Consent given (yes / no, spoken or written) | |
-| Needs chosen on the setup screen | |
-| Evidence file (name and where it is kept; no names or faces in the repository) | |
-
-### Tasks
-
-| Task | Result (yes / no / with help) | Time (seconds, roughly) | What confused them |
-|---|---|---|---|
-| 1. Turn on scanning (Easier remote) and reach a tile | | | |
-| 2. Open Help (demo mode) | | | |
-| 3. Open Medicines and answer | | | |
-| 4. Change language | | | |
-
-### Observations
-
-_(plain description in the observer's words)_
-
-### Problems found
-
-_(each problem: what happened, on which screen)_
-
-### Changes made because of the session
-
-_(each change: commit sha and what changed; or "none")_
+| Date | 20 October 2026 (user-reported) |
+| Device | Sony TV running Android TV (not a Fire TV); model and Android version not recorded |
+| App build | A build of the same code with the developer's private notification topic; the exact `versionName` was not recorded |
+| Participant | Participant 1, an adult family member, referred to only as the developer's elder brother |
+| Consent | Given for the session (user-reported) |
+| What happened | Several real Help alerts were sent from the TV and arrived on the family phone through the ntfy app `[real Android TV, Sony, user-reported]` |
+| Tasks, timings, observations, problems found | Not recorded in this repository. Nothing is invented here. |
+| Changes made because of the session | None recorded |
 
 ## Rules for reporting results
-- Report honestly and small ("n = 1"), as anecdotes, never as percentages or as proof of benefit.
+- Report honestly and small ("n = 1"), as an anecdote, never as percentages or as proof of benefit.
+- State no health information or diagnosis about any participant.
 - Quote only paraphrased comments, and only with permission.
 - Report failures too.
-- If no session happens, this page stays as it is and the submission says "not yet tested with users".

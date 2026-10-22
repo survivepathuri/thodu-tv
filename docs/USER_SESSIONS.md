@@ -8,7 +8,7 @@ The real notes are kept **outside this repository**, in a private folder. Nothin
 ## Before the session
 
 - Choose a time and place the person is comfortable with. A family member the person trusts may sit beside them.
-- Install the app (see [INSTALL_ON_TV.md](INSTALL_ON_TV.md)) and leave it in **Demo mode**: do not subscribe a real family phone and do not use a real notification name during a session, so nobody receives a real message by accident.
+- Install the app (see [INSTALL_ON_TV.md](INSTALL_ON_TV.md)). By default leave it in **Demo mode**, so nobody receives a real message by accident. Only turn on real notifications when the family member who will receive the alerts has agreed and is expecting them, as in the 20 October 2026 session ([USER_TESTING.md](USER_TESTING.md)).
 - The observer writes on paper or in a private file, not in the repository.
 
 ## Consent statement
@@ -44,7 +44,7 @@ Use a label such as "Participant 1". Add a general age band only if the person a
 Read each task in plain words and let the person try. Do not hint unless they ask; if you help, mark "with help".
 
 1. Turn on scanning (single-button mode) and use it to move to a tile.
-2. Open Help (in Demo mode, this sends only a demo request).
+2. Open Help (in Demo mode, this sends only a demo request; in real mode it sends a real alert to the subscribed phone).
 3. Send a test message in Settings, Family notifications (in Demo mode this is clearly marked as a demo).
 4. Change the language.
 

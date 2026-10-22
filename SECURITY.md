@@ -17,7 +17,7 @@
 - The TV makes a random topic name (`thodu-` plus 12 random characters, 60 random bits, from `expo-crypto`). It is unguessable in practice but it is a shared secret, not real access control. It is shown only on the TV settings screen.
 - The message is generic: title "Thodu TV", text "Help was requested from the TV at HH:MM", high priority. It contains no names, addresses or health data (`buildPayload` in `packages/shared/src/core/notify.ts`, covered by `notify.test.ts`).
 - The request goes over HTTPS only. Success is shown only after an HTTP 2xx answer; otherwise the app says it could not reach the family.
-- Not verified: delivery to a real phone (no phone was subscribed during development), and ntfy.sh's availability.
+- Delivery to a real phone: on 2026-10-20, in a consented family session on a Sony Android TV, several real Help alerts sent from the TV reached the family phone through the ntfy app (user-reported; no recording is stored in this repository). Delivery from the Amazon cloud Fire TV was not tested, because the judge build contains no topic. ntfy.sh's availability and its logging are not verified.
 
 ## Android permissions and build settings (release APK manifest)
 
@@ -36,20 +36,21 @@ The first S4 build still carried storage permissions (re-added by library manife
 
 ## Signing
 
-The APK is signed with the template's generated **debug keystore**, not a production key; it is a demo build. That is acceptable for a demo on an emulator or a developer device only, and it must not go to a store. The **judge APK** is a public demo build (it contains no notification topic). The **private ntfy APK** (it contains a notification topic) must not be shared. A real release needs its own signing key.
+The APK is signed with the template's generated **debug keystore**, not a production key; it is a demo build. That is acceptable for a demo on an emulator or a developer device only, and it must not go to a store. The **judge APK** (`thodu-tv-d52f5fe-judge.apk`) is a public demo build signed with that debug key and contains no notification topic; it is published to the public as a GitHub Release asset for the hackathon judges and anyone else who wants to try it, which is acceptable only because it is a demo with no secrets in it. Builds that contain a real notification topic are never published. A real release needs its own signing key.
 
 ## Secrets and personal data scan (counts only, matched text never printed)
 
-Scan of the repository taken just before this file was last updated (113 tracked files at HEAD, 24 commits of history; the email-like and topic-shaped counts move by a few as documents are added, so re-run the tool for exact current values):
+Scan re-run for the public release with plain `git grep` / `git log --all -p | grep` (172 tracked files at HEAD, 59 commits, every branch and the remote-tracking ref). Counts only; matched text is never printed:
 
 | Pattern | HEAD | History |
 |---|---|---|
-| AWS key, private key block, GitHub token, bearer token, generic secret assignment | 0 | 0 |
-| Absolute local path | 0 | 0 |
-| Email-like strings | 8 | 52 |
-| ntfy topic-shaped strings | 10 | 13 |
+| AWS key, GitHub token, Google API key, Slack token, `sk-` key | 0 (the only `AKIA` hit is the scanner's own regex in `tools/security-check.mjs`) | same, plus the commit that added that scanner |
+| Absolute local path with a user name, or a Windows drive path to the developer's folders | 0 | 0 |
+| Email-like strings (excluding `yarn.lock`) | 0 | 4 distinct addresses: the author's GitHub no-reply address and the AI-assistant co-author address in commit metadata, an upstream code-of-conduct contact in the imported Amazon sample, and the public Devpost testing address in one earlier version of `submission.md` (a public hackathon contact, not a person's address) |
+| Private notification topic | 0 | 0 |
+| ntfy topic-shaped strings (`thodu-` plus groups of 4) | 14 occurrences of 5 distinct placeholders and test fixtures (`thodu-xxxx-xxxx-xxxx`, `thodu-aaaa-aaaa-aaaa`, `thodu-abcd-efgh-ijkl`, `thodu-abcd-efgh-ijkl-mnop`, `thodu-abz2-7a7h-ijkl`) | the same 5 |
 
-The email-like matches are package specifiers such as `yarn@4.5.0`, lockfile entries and upstream contact addresses in the unchanged imported Amazon sample; we found no personal address in the tree. The topic-shaped matches are test fixtures and a documentation example (`thodu-abcd-efgh-ijkl` and similar), not real topics. Commit author identity metadata uses a GitHub no-reply address. Re-run it yourself with `node tools/security-check.mjs` (needs `ANDROID_HOME`).
+Tracked files contain no APK, no keystore and no `.env` file other than `.env.example`. The test `secrets.test.ts` checks that `.env.local` is git-ignored and, only on a machine that has such a file, that the topic written in it appears in no tracked file (on a fresh clone it checks nothing about topics). Commit author identity metadata uses a GitHub no-reply address. `node tools/security-check.mjs` (needs `ANDROID_HOME` and an emulator) is the older scanner.
 
 ## Dependency audit
 
@@ -76,7 +77,7 @@ Making these numbers meaningful would need a build-time bundle analysis and a de
 - Debug-keystore signing (above); dependencies not upgraded (above).
 - Local storage is not encrypted at rest by the app. A device with root access could read it, including the topic name.
 - Anyone who learns the topic name can read or post. The "Make a new name" button in Family settings creates a new topic (after a confirm screen); the family must subscribe again.
-- The app has not been tested on real hardware.
+- Hardware: the app ran on an Amazon Fire TV cloud device (Live Device Interaction) and on one home Sony Android TV; no other device was tested, and no hardware security testing was done.
 
 ## How to report an issue
 

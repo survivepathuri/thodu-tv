@@ -61,7 +61,7 @@ The sender retries once after a timeout. If the first POST was slow but did reac
 - Before a test message has succeeded, the buttons are clearly labelled demo and nothing leaves the TV: "Demo: nobody was told" `[unit test]`.
 - If sending fails the app says so in English, Hindi and Telugu ("We could not reach your family. Please call them.") `[unit test]` `strings.test.ts`.
 - A held or bouncing remote key cannot spam: a repeat of the same button within 3 seconds after a success is ignored `[unit test]`.
-- The app sends one POST per alert to ntfy.sh (`notify.ts`). Delivery from a real TV to a real phone has **not** been verified `[not tested]`: [pending: developer's Sony Android TV and phone test, result to be added as tested on <date>, notification arrived yes/no, `[user-reported]`].
+- The app sends one POST per alert to ntfy.sh (`notify.ts`). Delivery from a real TV to a real phone **was tested once**: on 2026-10-20, in a consented family session on the developer's home Sony Android TV, several real Help alerts reached the family phone through the ntfy app `[real Android TV, Sony, user-reported]`. No recording is stored in this repository. Delivery from the cloud Fire TV was not tested (the judge build has no topic).
 
 ## Safety limits
 

@@ -184,13 +184,13 @@ Each block is self-contained so it can be pasted into one text box.
 
 **What we used it for.** The family message from Help, Family and Medicines: the app sends one HTTPS POST per alert of a short generic text to `https://ntfy.sh/<topic>` (`notify.ts`).
 
-**What worked well.** The sender's success, failure, timeout and retry paths are unit-tested with a fake network. End-to-end TV-to-phone delivery: **[pending: the developer's Sony Android TV and phone test has not been run yet; result to be added as tested on <date>, notification arrived yes/no, [user-reported]]**.
+**What worked well.** The sender's success, failure, timeout and retry paths are unit-tested with a fake network. End-to-end delivery worked once: on 2026-10-20 several real Help alerts sent from the developer's home Sony Android TV reached the family phone through the ntfy app [user-reported; `docs/USER_TESTING.md`]. No recording is kept in the repository.
 
 **What needs work (from ntfy's own pages, read 2026-10-19; see `docs/PRIVACY_AND_SAFETY.md`).** Topics are public and act as a password, messages are cached for 12 hours by default, and availability is best effort.
 
 **Onboarding.** Not recorded.
 
-**Build with it again?** **[pending: the developer's own words, to be added after the Sony TV and phone test]**
+**Build with it again?** No answer from the developer is recorded for this entry, so none is stated.
 
 ## 12. Claude Code (AI coding tool)
 
