@@ -7,6 +7,8 @@ The rules ask for "a clear explanation of what you built or changed during the s
 
 **No part of Thodu TV existed before August 31, 2026.** The first commit of this repository (`35bb725`) is dated **2026-10-12**. The only other related repository of the developer (the unsubmitted "AURA+", `AURA-PLUS-MCP`, checked read-only) has its first commit on **2026-09-26** and its last on **2026-09-27**: these 23 commits also fall inside the window, and **nothing was ported from it**. The only third-party starting material is Amazon's open-source sample (MIT-0, upstream commit dated 2026-09-21, also inside the window) and the `react-native-tvos` fork it depends on. This page is therefore a disclosure of starting material, not an explanation of a pre-hackathon project.
 
+The Open Source mini challenge entry is this new repository itself. **No pull request, fork contribution or change to Amazon's upstream sample is made or claimed.**
+
 | Repository | First commit | Last commit | Commits | Before 2026-08-31? |
 |---|---|---|---|---|
 | Thodu TV (this repo) | 2026-10-12 00:45 +0530 (`35bb725`) | see `git log` | 50 at `9b6688e`, more since (docs and fixes) | No |

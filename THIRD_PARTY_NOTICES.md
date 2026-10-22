@@ -4,6 +4,12 @@
 
 - Space Mono Regular (packages/expotv/assets/fonts/SpaceMono-Regular.ttf) - Copyright 2016 Google Inc. - SIL Open Font License, Version 1.1 (as stated in the font file's own metadata). The font came with the Amazon sample.
 
+## Services and artwork
+
+- ntfy.sh (the public notification service): Thodu TV sends one HTTPS request to it when the viewer asks for help in real mode. No ntfy code or license text is bundled in this repository, and the ntfy app on the family phone is installed separately. No license is stated here for it.
+- Launcher icon, banner and splash mark (`assets/branding/`): original artwork made for this project. No third-party logos are used.
+- Unused Expo-template files that remain in `packages/expotv/assets/images/` (the React logo PNGs): no separate license text is stored in this repository for them, so none is stated here.
+
 ## Direct npm dependencies (name, installed version, license id from each package's metadata)
 
 Listed from packages/expotv/package.json and packages/shared/package.json; the license texts are those shipped by each package. About 790 transitive packages are not listed here. @thodu/shared is this repository's own workspace package, and the peer entries of packages/shared repeat packages listed here.

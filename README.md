@@ -28,6 +28,7 @@ The Devpost criteria are Tech Implementation, Design, Potential Impact and Quali
 | Potential Impact (credible, specific case) | [docs/SOURCES.md](docs/SOURCES.md), [docs/USER_TESTING.md](docs/USER_TESTING.md) | Cited WHO and Government of India figures; one consented family session (n = 1, an anecdote, not evidence of benefit) |
 | Quality of the Idea | [docs/JUDGES.md](docs/JUDGES.md) steps 1 to 6 | Needs-based setup, one-button scanning and a family alert in one app |
 | Repository: open-source license | [LICENSE](LICENSE) | MIT (Amazon's MIT-0 sample text is kept in [NOTICE](NOTICE)) |
+| Open Source mini challenge | [LICENSE](LICENSE), [docs/DEVPOST_DESCRIPTION.md](docs/DEVPOST_DESCRIPTION.md) | Entered through this new MIT-licensed repository (first commit 2026-10-12). No pull request or change to Amazon's upstream sample is made or claimed |
 | Repository: setup and run instructions | "Install and run" below, [docs/JUDGES.md](docs/JUDGES.md) | Sideload the APK or build from source |
 | Pre-existing work | [docs/PRE_EXISTING.md](docs/PRE_EXISTING.md) | First commit 2026-10-12, after 2026-08-31 |
 | Product Feedback | [docs/PRODUCT_FEEDBACK.md](docs/PRODUCT_FEEDBACK.md) | 13 entries in five elements each |

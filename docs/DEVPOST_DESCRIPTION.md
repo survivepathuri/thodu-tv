@@ -11,8 +11,11 @@ Thodu TV (తోడు టీవీ)
 Built for one person, made for many. (36 characters)
 
 ## Primary track
-Fire TV. Mini challenges: none claimed (see "Mini challenges" below).
-Closest fit to the track's priority categories: multi-modal UX (one-button scanning, captions, read aloud, high contrast); no AI is involved and no category is claimed as won or certified.
+Fire TV. Mini challenge: **Open Source** (entered, see "Open Source mini challenge" below). AWS Builder is not claimed.
+Fit to the track's priority categories, using only what the repository evidences:
+- **Multi-modal UX:** one-button auto-scanning with a single OK key, captions in the Watch demo and a flashing visual banner after Help, read-aloud with Android text-to-speech, and a high-contrast theme with a thick focus ring (unit tests, `tools/a11y-measure.mjs`, [CLAIMS.md](CLAIMS.md)).
+- **Family entertainment:** the Watch tile is a labelled demo panel with scripted captions (no real video or streaming is claimed), and the Family, Medicines and Help tiles connect the viewer with family. Real video playback is not built.
+No AI is involved and no category is claimed as won or certified.
 
 ## Inspiration
 Our starting assumption (not a measured finding) is that some older viewers and people with low vision, hearing loss, limited hand control or reading difficulty can find a TV remote, small text and dense menus hard to use, and that a settings menu is not an easy answer for them. We wanted a TV that starts from the person's need instead of from the menu, and that lets them tell a family member something with one button. Thodu means "companion" in Telugu.
@@ -75,9 +78,13 @@ React Native (react-native-tvos 0.83.6-0), React 19.2, Expo SDK 55, expo-router,
 ## Did anything exist before the Submission Period?
 No part of Thodu TV existed before 2026-08-31 (10:15 am PT). The repository was started on 2026-10-12 (after the Submission Period began on 2026-08-31) from Amazon's react-native-multi-tv-helloworld sample (MIT-0, upstream commit dated 2026-09-21). All screens, logic, themes, scanner, notification sender, strings, tests, tools and artwork were written in the repository after that import. An earlier, separate, unsubmitted project of the same developer ("AURA+", 23 commits on 2026-09-26 and 2026-09-27, also inside the Submission Period) is disclosed; no code from it was ported. Details and commit dates: `docs/PRE_EXISTING.md`.
 
-## Mini challenges
-- **AWS Builder:** not entered. Thodu TV uses no AWS service.
-- **Open Source:** not claimed on this repository alone: the rule asks for a "new, additional" open-source project or a contribution to a public repository alongside the primary submission.
+## Open Source mini challenge
+We are entering the Open Source mini challenge alongside the primary Fire TV track. The rules allow the contribution to be a new repository with an open-source license created during the hackathon window; ours is this new MIT-licensed repository (first commit 2026-10-12, after the Submission Period began on 2026-08-31). **No pull request, fork contribution or change to Amazon's upstream sample is made or claimed.** The AWS Builder mini challenge is not claimed: Thodu TV uses no AWS service.
+
+- **Contribution URL:** https://github.com/survivepathuri/thodu-tv
+- **Project repo URL:** https://github.com/survivepathuri/thodu-tv
+- **GitHub username:** survivepathuri
+- **Description (74 words):** I built and open-sourced Thodu TV, a TV accessibility app, under the MIT license, with documented setup, 223 unit tests, a public friction log and written feedback for Amazon's tools. How it works: a shared TypeScript core (needs to settings, themes, scanner, notifications) sits under a React Native for TV app. Why it matters: it is a reusable starting point for accessibility-first TV apps built on Amazon's multi-TV sample, which is credited in PRE_EXISTING.md.
 
 ## Product Feedback
 Paste from `docs/PRODUCT_FEEDBACK.md` (five elements per tool, 13 entries: 1 Amazon multi-TV sample, 2 Appstore Quality Central Live Device Interaction, 3 Fire TV documentation, 4 react-native-tvos, 5 Expo build tooling, 6 Expo runtime modules, 7 Gradle/JDK/Android SDK and signing, 8 Android TV emulator, 9 Yarn/Corepack/Node, 10 Jest, 11 ntfy.sh, 12 Claude Code, 13 outside tools). Would-build-again answers are the developer's own words.
@@ -89,4 +96,9 @@ Paste from `docs/DEVPOST_FRICTION_PASTE.md` (40 entries, each with task, steps, 
 - **Important: window-level or labeled recording in Live Device Interaction.** What: let the built-in recording capture the whole console window, or burn the device name and model into the capture (not confirmed whether it already exists). Why it matters: the Fire TV track needs video of an actual Fire TV, and the built-in recording shows only the app full-screen with no device name, so it cannot prove a Fire TV by itself (three 2026-10-14 recordings). Evidence: F-034 [user-reported].
 - **Nice-to-have: Fire OS version and model in the Live Device Interaction device list.** What: show both clearly. Why it matters: choosing between "FOS 14 3P TV" and "Smart TV - Amazon Fire TV" was unclear at first and was worked out after some time. Evidence: F-035 [user-reported].
 - **Important: Windows long-path note (or an early check) for the Amazon multi-TV sample.** What: tell Windows users to clone to a path under about 15 characters and fail early with a clear message. Why it matters: the native build failed on the 260-character limit after about 13 minutes and cost about 35 minutes with no README warning. Evidence: F-016.
-Full text: `docs/FEATURE_REQUESTS.md`.
+- **Important: Recorder without native browser alerts.** What: Replace the native alerts shown at recording Start and End with an in-page confirmation (or none). Why it matters: A browser-automation extension cannot click native alerts, so every start and stop needed a manual click. Evidence: F-036 [user-reported].
+- **Nice-to-have: Longer recording cap in Live Device Interaction.** What: Raise the 2-minute cap per recording (or let a recording continue past it). Why it matters: Each recording stops at 2 minutes and the file then takes about 45 to 60 seconds to be saved, so a normal demo take had to be split into parts (R1 into three). Evidence: F-036 [user-reported].
+- **Important: Keep recording across panels.** What: Do not stop the recording when the user leaves the Screen panel, so the Remote panel's buttons can be used during a take. Why it matters: Leaving the Screen panel stops the recording, so remote buttons cannot be used while recording; the first two attempts produced one-frame files. Evidence: F-037 [user-reported].
+- **Nice-to-have: A key-send API (and Escape / Backspace as Back).** What: Offer a way to send keys to the cloud device without first clicking the grey area, and let Escape or Backspace act as Back. Why it matters: Arrow keys and Enter worked only after clicking the grey area around the TV picture, and Escape and Backspace did not work; Back needed the on-screen Back button. Evidence: F-038 [user-reported].
+- **Nice-to-have: Lower picture latency.** What: Reduce the delay between a key press and the screen. Why it matters: The developer saw about 1 to 2 seconds of picture lag, which affects every step of a recorded take. Evidence: F-038 [user-reported].
+Full text of all 8 requests: `docs/FEATURE_REQUESTS.md`.

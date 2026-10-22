@@ -65,11 +65,14 @@ Commands run from the repository root. Jest: `cd packages/shared && npx jest -c 
 | 38 | The judge build has the launcher label "Thodu TV" and a banner reading "Thodu TV / Easy TV. One button. Family one press away." | `[APK static]` (`aapt2 dump badging`; banner image viewed) | `thodu-tv-d52f5fe-judge.apk` |
 | 40 | Built from Amazon's multi-TV starter (MIT-0), new repository started 2026-10-12 | git history | [PRE_EXISTING.md](PRE_EXISTING.md), `NOTICE` |
 | 41 | `versionName` is generated from the git SHA at prebuild | `[code only]` (checked on a copy of `build.gradle`) | `packages/expotv/plugins/withGitVersionName.js` |
+| 42 | Entered in the Open Source mini challenge through this new MIT-licensed repository (first commit 2026-10-12, after 2026-08-31) | git history, `LICENSE` | [PRE_EXISTING.md](PRE_EXISTING.md), [DEVPOST_DESCRIPTION.md](DEVPOST_DESCRIPTION.md) |
 
 ## Claims that are NOT made
 
 | Not claimed | Why |
 |---|---|
+| A pull request, fork contribution or change to Amazon's upstream sample (Open Source mini challenge) | None made; the contribution is this new repository only |
+| AWS Builder mini challenge | Not entered; no AWS service is used |
 | Fire TV certified, Appstore approved or submitted | Not done |
 | Tested with users as a study, or any measured benefit | One consented family session, n = 1, user-reported, no recording ([USER_TESTING.md](USER_TESTING.md)) |
 | Emergency service, medical device, health monitoring | It is a notification to a phone through a public service |

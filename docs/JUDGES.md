@@ -169,3 +169,5 @@ Optional: to bake **your own** topic into a source build, copy `packages/expotv/
 ## Honest limits
 
 The judge build runs in demo mode (no topic). Fire TV evidence is Amazon cloud-device footage; the only physical-TV run was one home Sony Android TV, which is not a Fire TV. One consented family session (n = 1), no study. The notification topic works like a password and is not authentication; ntfy.sh is public. Spoken output was not verified in the cloud recording; VoiceView/TalkBack were not run; Hindi/Telugu not native-reviewed. `packages/expotv` shows type errors (27 plain, 9 with path mapping). No timed reminders, no real video, no voice recognition. Not Appstore certified or submitted.
+
+The repository, the Release and the demo video stay public and unchanged until the end of judging (2026-11-20), apart from adding the demo-video link once the video is uploaded.
